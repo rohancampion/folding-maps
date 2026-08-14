@@ -52,3 +52,11 @@ Check the following in order:
 
 The checked-in `vercel.json` makes the install and build commands explicit, so
 an imported project does not depend on stale framework-detection settings.
+
+### Reproducible builds
+
+The application pins Next.js, React, TypeScript and the remaining build
+dependencies to exact versions. Do not replace these versions with `latest`:
+doing so allows Vercel to select a new compiler or framework release between
+deployments. The repository also selects Node.js 20 through both `package.json`
+and `.nvmrc`, matching the runtime expected by the pinned framework version.
