@@ -1,0 +1,2 @@
+import { describe,expect,it } from 'vitest';import {articles,cases} from '@/lib/content';
+describe('editorial content',()=>{it('has unique routes for all case studies and articles',()=>{const slugs=[...cases,...articles].map(x=>x.slug);expect(new Set(slugs).size).toBe(slugs.length)});it('labels unfinished or fictional case work',()=>{expect(cases.every(x=>['In progress','Illustrative'].includes(x.status))).toBe(true)})});
