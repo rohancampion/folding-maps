@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { articleDecisionRows, articleResearch, articles, caseDecisionRows, caseResearch, cases } from '@/lib/content';
 import { articleDepth, caseDepth } from '@/lib/paperDepth';
 import { firstConversation, serviceJourney, servicePathways } from '@/lib/serviceModel';
+import { newsEditorial } from '@/lib/newsEditorial';
 
 describe('editorial content', () => {
   it('has unique routes for all case studies and articles', () => {
@@ -23,6 +24,10 @@ describe('editorial content', () => {
     expect(cases.every((item) => caseDepth[item.slug]?.baseline.length >= 4 && caseDepth[item.slug]?.workPackages.length >= 4 && caseDepth[item.slug]?.risks.length >= 4 && caseDepth[item.slug]?.acceptance.length >= 4)).toBe(true);
   });
 
+  it('provides a prose-first editorial analysis for every news article', () => {
+    expect(articles.every((item) => newsEditorial[item.slug]?.sections.length === 5 && newsEditorial[item.slug]?.takeaways.length === 3)).toBe(true);
+  });
+
   it('spells out the client service and first-conversation pipeline', () => {
     expect(serviceJourney).toHaveLength(6);
     expect(servicePathways).toHaveLength(3);
@@ -30,7 +35,6 @@ describe('editorial content', () => {
   });
 
   it('does not use em dashes in published content', () => {
-    expect(JSON.stringify({ cases, articles, caseResearch, articleResearch, articleDepth, caseDepth, serviceJourney, servicePathways })).not.toContain('—');
+    expect(JSON.stringify({ cases, articles, caseResearch, articleResearch, articleDepth, caseDepth, serviceJourney, servicePathways, newsEditorial })).not.toContain('—');
   });
 });
-

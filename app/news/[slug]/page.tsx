@@ -2,9 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight, Check } from 'lucide-react';
-import { BarExhibit, BlueprintExhibit, CodeExhibit, MetricStrip, OperatingTable, ResearchEvidence, RiskRegister, ScorecardExhibit } from '@/components/ConsultingExhibits';
+import { BarExhibit, CodeExhibit, MetricStrip, ResearchEvidence } from '@/components/ConsultingExhibits';
 import { MechanicalMark } from '@/components/MechanicalVisuals';
-import { articleDecisionRows, articleResearch, articles } from '@/lib/content';
+import { NewsAnalysisProse } from '@/components/NewsAnalysisProse';
+import { articleResearch, articles } from '@/lib/content';
+import { newsEditorial } from '@/lib/newsEditorial';
 import { articleDepth } from '@/lib/paperDepth';
 
 export function generateStaticParams() {
@@ -15,30 +17,31 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
   const { slug } = await params;
   const article = articles.find((item) => item.slug === slug);
   if (!article) notFound();
+  const editorial = newsEditorial[article.slug];
 
   return (
-    <article className="article-detail insight-report">
-      <Link className="back" href="/news"><ArrowLeft size={16}/> All insights</Link>
+    <article className="article-detail insight-report prose-first-report">
+      <Link className="back" href="/news"><ArrowLeft size={16}/> All analysis</Link>
       <div className="report-meta"><span>{article.tag}</span><span>{article.date}</span><span>{article.read}</span></div>
-      <h1>{article.title}</h1>
-      <p className="lede">{article.intro}</p>
+      <h1>{editorial.title}</h1>
+      <p className="lede">{editorial.standfirst}</p>
       <div className="article-hero-image"><Image src={article.image} alt="" fill priority sizes="(max-width: 1000px) 100vw, 860px"/><span>{article.artLabel}</span><MechanicalMark label="Evidence briefing"/></div>
 
-      <section className="thesis-panel"><span>Our perspective</span><p>{article.thesis}</p></section>
+      <section className="thesis-panel"><span>Central contention</span><p>{editorial.thesis}</p></section>
       <MetricStrip metrics={article.metrics}/>
 
       <section className="key-findings">
-        <span>Key findings</span>
-        <div>{article.takeaways.map((takeaway, index) => <p key={takeaway}><b>{String(index + 1).padStart(2, '0')}</b>{takeaway}</p>)}</div>
+        <span>The argument in brief</span>
+        <div>{editorial.takeaways.map((takeaway, index) => <p key={takeaway}><b>{String(index + 1).padStart(2, '0')}</b>{takeaway}</p>)}</div>
       </section>
 
       <div className="report-body article-report-body">
-        <nav className="report-contents" aria-label="Article contents">
-          <span>In this briefing</span>
-          {article.sections.map((section, index) => <a href={`#section-${index + 1}`} key={section.heading}>{String(index + 1).padStart(2, '0')} {section.heading}</a>)}
+        <nav className="report-contents" aria-label="Analysis contents">
+          <span>In this analysis</span>
+          {editorial.sections.map((section, index) => <a href={`#section-${index + 1}`} key={section.heading}>{String(index + 1).padStart(2, '0')} {section.heading}</a>)}
         </nav>
-        <div className="report-sections">
-          {article.sections.map((section, index) => (
+        <div className="report-sections editorial-report-sections">
+          {editorial.sections.map((section, index) => (
             <section id={`section-${index + 1}`} key={section.heading}>
               <span className="section-number">{String(index + 1).padStart(2, '0')}</span>
               <h2>{section.heading}</h2>
@@ -49,10 +52,7 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
       </div>
 
       <ResearchEvidence title="What the wider evidence says" findings={articleResearch[article.slug]}/>
-      <BlueprintExhibit eyebrow="Executive playbook" title="A controlled route from thesis to operating evidence" steps={articleDepth[article.slug].playbook}/>
-      <OperatingTable title="A practical decision sequence for leadership teams" rows={articleDecisionRows[article.slug]}/>
-      <RiskRegister title="The failure modes leadership should watch before scale" rows={articleDepth[article.slug].risks}/>
-      <ScorecardExhibit title="A scorecard that connects activity to management action" rows={articleDepth[article.slug].scorecard}/>
+      <NewsAnalysisProse depth={articleDepth[article.slug]}/>
       <BarExhibit number="1" title={article.exhibit.title} subtitle={article.exhibit.subtitle} bars={article.exhibit.bars} note={article.exhibit.note}/>
       <CodeExhibit title={article.code.title} eyebrow="Implementation pattern" lines={article.code.lines} nodes={article.code.nodes}/>
 
@@ -64,10 +64,9 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
 
       <aside className="references">
         <h2>Sources and further reading</h2>
-        <p>External evidence is used for context. Quiet Gears analysis and illustrative exhibits are identified separately.</p>
+        <p>External evidence is used for context. Quiet Gears analysis and illustrative charts are identified separately.</p>
         <ol>{article.sources.map((source) => <li key={source.href}><a href={source.href} target="_blank" rel="noreferrer">{source.label} <ArrowUpRight size={14}/></a></li>)}</ol>
       </aside>
     </article>
   );
 }
-
