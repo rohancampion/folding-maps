@@ -14,7 +14,19 @@ export function ContactForm() {
     setErrorMessage('');
 
     try {
-      const data = Object.fromEntries(new FormData(e.currentTarget));
+      const formData = new FormData(e.currentTarget);
+      const data = {
+        email: String(formData.get('email') || ''),
+        interest: String(formData.get('interest') || ''),
+        companySize: String(formData.get('companySize') || ''),
+        budget: String(formData.get('budget') || ''),
+        message: String(formData.get('message') || ''),
+        consent: formData.has('consent'),
+        referred,
+        referralSource: referred ? String(formData.get('referralSource') || '') : '',
+        referralName: referred ? String(formData.get('referralName') || '') : '',
+        website: String(formData.get('website') || ''),
+      };
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -47,7 +59,7 @@ export function ContactForm() {
         <label>Company size<select required name="companySize" defaultValue=""><option value="" disabled>Select a range</option><option>1–10</option><option>11–50</option><option>51–250</option><option>250+</option></select></label>
       </div>
       <label>Indicative budget<select required name="budget" defaultValue=""><option value="" disabled>Select a range</option><option>£2,000–£5,000</option><option>£5,000–£15,000</option><option>£15,000–£50,000</option><option>£50,000+</option><option>Not sure yet</option></select></label>
-      <label>Tell us about the opportunity<textarea required name="message" rows={6} placeholder="What would you like to improve, automate or build?"/></label>
+      <label>Tell us about the opportunity<textarea required minLength={10} name="message" rows={6} placeholder="What would you like to improve, automate or build?"/><small className="field-hint">Please provide at least 10 characters.</small></label>
       <fieldset className="referral-field">
         <legend>Referral</legend>
         <label className={`referral-check ${referred ? 'active' : ''}`}>
@@ -62,7 +74,7 @@ export function ContactForm() {
           <label>Who referred you?<input required name="referralName" placeholder="Name or organisation"/></label>
         </div>
       )}
-      <label className="consent"><input required type="checkbox" name="consent"/> I agree to Quiet Gears using my details to respond to this enquiry.</label>
+      <label className="consent"><input required type="checkbox" name="consent"/> I agree to Quiet Gears using my details to respond to this enquiry. <strong>Required</strong></label>
       <button disabled={state === 'sending'} className="button dark" type="submit">{state === 'sending' ? 'Sending…' : 'Send enquiry'} <ArrowRight size={17}/></button>
       {state === 'error' && <p className="error" role="alert">{errorMessage}</p>}
       <small>Protected by a hidden honeypot field and server-side validation.</small>
@@ -70,3 +82,4 @@ export function ContactForm() {
     </form>
   );
 }
+
