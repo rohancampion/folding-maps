@@ -1,34 +1,21 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
-
-const clean = (value: unknown, max = 3000) =>
-  typeof value === 'string' ? value.trim().slice(0, max) : '';
+import { validateContactPayload } from '@/lib/contactValidation';
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
-    if (clean(body.website)) return NextResponse.json({ ok: true });
+    const body = await request.json() as Record<string, unknown>;
+    const { payload, missing } = validateContactPayload(body);
+    if (payload.website) return NextResponse.json({ ok: true });
 
-    const email = clean(body.email, 254);
-    const interest = clean(body.interest, 100);
-    const companySize = clean(body.companySize, 30);
-    const budget = clean(body.budget, 50);
-    const message = clean(body.message);
-    const referred = body.referred === 'yes';
-    const referralSource = clean(body.referralSource, 100);
-    const referralName = clean(body.referralName, 150);
-
-    if (
-      !/^\S+@\S+\.\S+$/.test(email) ||
-      !interest ||
-      !companySize ||
-      !budget ||
-      message.length < 10 ||
-      !body.consent ||
-      (referred && (!referralSource || !referralName))
-    ) {
-      return NextResponse.json({ error: 'Please complete all required fields.' }, { status: 400 });
+    if (missing.length) {
+      return NextResponse.json(
+        { error: `Please check: ${missing.join(', ')}.`, fields: missing },
+        { status: 400 },
+      );
     }
+
+    const { email, interest, companySize, budget, message, referred, referralSource, referralName } = payload;
 
     const apiKey = process.env.RESEND_API_KEY?.trim();
     if (!apiKey) {
@@ -84,3 +71,4 @@ export async function POST(request: Request) {
     );
   }
 }
+
