@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
-import { Space_Grotesk, DM_Sans } from 'next/font/google';
+import { Newsreader, DM_Sans } from 'next/font/google';
 import './globals.css';
 import { Header, Footer } from '@/components/Shell';
 
-const display = Space_Grotesk({ subsets: ['latin'], variable: '--display' });
+const display = Newsreader({ subsets: ['latin'], variable: '--display', weight: ['400', '500', '600'] });
 const body = DM_Sans({ subsets: ['latin'], variable: '--body' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://quietgears.co.uk'),
-  title: { default: 'quiet gears — AI systems for ambitious SMEs', template: '%s — quiet gears' },
+  title: { default: 'Quiet Gears | AI systems for ambitious SMEs', template: '%s | Quiet Gears' },
   description: 'London-based AI consulting, automation and software for UK SMEs.',
-  openGraph: { title: 'quiet gears', description: 'AI systems that keep business moving.', type: 'website' },
+  openGraph: { title: 'Quiet Gears', description: 'AI systems that keep business moving.', type: 'website' },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
