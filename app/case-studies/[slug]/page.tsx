@@ -2,8 +2,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
-import { BarExhibit, CodeExhibit, MetricStrip, OperatingTable, ProcessExhibit, ResearchEvidence } from '@/components/ConsultingExhibits';
+import { BarExhibit, BaselineMatrix, BlueprintExhibit, CodeExhibit, MetricStrip, OperatingTable, ProcessExhibit, ResearchEvidence, RiskRegister, ScorecardExhibit } from '@/components/ConsultingExhibits';
+import { MechanicalMark } from '@/components/MechanicalVisuals';
 import { caseDecisionRows, caseResearch, cases } from '@/lib/content';
+import { caseDepth } from '@/lib/paperDepth';
 
 export function generateStaticParams() {
   return cases.map((item) => ({ slug: item.slug }));
@@ -23,7 +25,7 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
         <p className="lede">{study.summary}</p>
         <div className="executive-brief"><span>Executive brief</span><p>{study.brief}</p></div>
         <MetricStrip metrics={study.metrics}/>
-        <div className="detail-visual report-visual"><Image src={study.image} alt="" fill priority sizes="(max-width: 1200px) 100vw, 1030px"/><div className="case-image-wash"/></div>
+        <div className="detail-visual report-visual"><Image src={study.image} alt="" fill priority sizes="(max-width: 1200px) 100vw, 1030px"/><MechanicalMark label="System blueprint"/><div className="case-image-wash"/></div>
 
         <div className="report-body">
           <nav className="report-contents" aria-label="Case study contents">
@@ -42,8 +44,12 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
           </div>
         </div>
 
+        <BaselineMatrix title="From current operating friction to a controlled target state" rows={caseDepth[study.slug].baseline}/>
         <ResearchEvidence title="External evidence sharpens the engagement hypothesis" findings={caseResearch[study.slug]}/>
+        <BlueprintExhibit eyebrow="Delivery work packages" title="The engagement is organised around four evidence-producing work packages" steps={caseDepth[study.slug].workPackages}/>
         <OperatingTable title="Each operational decision has evidence, control and a measure" rows={caseDecisionRows[study.slug]}/>
+        <RiskRegister title="Risks are designed into the operating model before launch" rows={caseDepth[study.slug].risks}/>
+        <ScorecardExhibit title="Acceptance links the release to observable operating performance" rows={caseDepth[study.slug].acceptance}/>
         <BarExhibit number="1" title={study.barTitle} subtitle={study.barSubtitle} bars={study.bars} note={study.barNote}/>
         <ProcessExhibit number="2" title="Delivery follows a controlled progression from evidence to operation" steps={study.phases}/>
         <CodeExhibit title={study.code.title} eyebrow="System blueprint" lines={study.code.lines} nodes={study.code.nodes}/>
