@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import { Newsreader, DM_Sans } from 'next/font/google';
+import { Instrument_Serif, DM_Sans } from 'next/font/google';
 import './globals.css';
 import { Header, Footer } from '@/components/Shell';
 
-const display = Newsreader({ subsets: ['latin'], variable: '--display', weight: ['400', '500', '600'] });
+const display = Instrument_Serif({ subsets: ['latin'], variable: '--display', weight: '400' });
 const body = DM_Sans({ subsets: ['latin'], variable: '--body' });
 
 export const metadata: Metadata = {
