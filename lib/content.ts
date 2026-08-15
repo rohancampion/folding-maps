@@ -82,7 +82,7 @@ export const cases: CaseStudy[] = [
       { heading: 'Situation', paragraphs: ['Temperature-controlled operations generate continuous readings but often depend on periodic human consolidation. Teams can spend substantial time assembling routine evidence while a smaller number of material exceptions require rapid judgement.', 'The operational risk sits between the sensor and the response. A reading without equipment context, duration, location and prior action does not tell a complete story.'] },
       { heading: 'Diagnostic', paragraphs: ['The proposed diagnostic separates data quality from operational severity. Missing or implausible readings are treated as system exceptions. Valid excursions are assessed against duration, asset state and product context before reaching the response queue.', 'This design prevents a high-volume alert stream from becoming background noise. It also makes clear when the system lacks enough evidence to recommend a priority.'], bullets: ['Validate the signal before classifying the event', 'Use operating context to set priority', 'Record the decision and the supporting evidence'] },
       { heading: 'Solution design', paragraphs: ['A monitoring service ingests readings and equipment status, applies explicit threshold policies and assembles an exception case. A concise operational summary presents the evidence, likely cause and required checks. A responsible person then confirms, escalates or closes the event.', 'AI may assist with summarising maintenance notes or grouping similar events. It should not conceal threshold logic or take direct equipment action without a separately assessed control case.'] },
-      { heading: 'Control model', paragraphs: ['The system would use role-based access, durable audit events and separation between monitoring and equipment control. Missing data would remain visible. Changes to thresholds would require approval and version history.', 'The design supports food-safety records but does not replace the operatorâ€™s hazard analysis, maintenance regime or legal responsibilities.'] },
+      { heading: 'Control model', paragraphs: ['The system would use role-based access, durable audit events and separation between monitoring and equipment control. Missing data would remain visible. Changes to thresholds would require approval and version history.', 'The design supports food-safety records but does not replace the operator’s hazard analysis, maintenance regime or legal responsibilities.'] },
       { heading: 'Expected value', paragraphs: ['The expected value is a shift in staff attention from compiling routine reports to resolving exceptions. Any pilot should measure alert precision, response time, reporting effort and the completeness of the evidence attached to each closure.', 'These are hypotheses and design targets, not measured client results.'] },
     ],
     barTitle: 'Exception quality depends on context, not volume',
@@ -354,4 +354,108 @@ export const articles: Article[] = [
     sources: [{ label: 'UK Government, AI Adoption Research 2026', href: 'https://www.gov.uk/government/publications/ai-adoption-research/ai-adoption-research' }, { label: 'McKinsey, How organizations are rewiring to capture value', href: 'https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-how-organizations-are-rewiring-to-capture-value' }, { label: 'NIST, AI Risk Management Framework', href: 'https://www.nist.gov/itl/ai-risk-management-framework' }],
   },
 ];
+
+export type ResearchFinding = { statistic: string; finding: string; implication: string; source: string; href: string };
+export type DecisionRow = { decision: string; evidence: string; control: string; measure: string };
+
+export const caseResearch: Record<string, ResearchFinding[]> = {
+  'yacht-operations': [
+    { statistic: '65%', finding: 'SME users most often report improved employee performance', implication: 'The strongest pitch is better staff leverage inside core work, not technology adoption for its own sake.', source: 'OECD, Generative AI and the SME Workforce, 2025', href: 'https://www.oecd.org/en/publications/generative-ai-and-the-sme-workforce_2d08b99d-en/full-report.html' },
+    { statistic: '21%', finding: 'Only a minority of UK AI users report integration with existing systems', implication: 'A shared operational backbone addresses the gap between individual tool use and an accountable end-to-end workflow.', source: 'UK Business Data Survey 2026', href: 'https://www.gov.uk/government/statistics/uk-business-data-survey-2026/uk-business-data-survey-2026' },
+    { statistic: '7 capabilities', finding: 'Google DORA identifies organisational capabilities that amplify AI value', implication: 'Clear workflows, user focus, data access and feedback loops should be designed with the application rather than added later.', source: 'Google DORA, AI Capabilities Model, 2025', href: 'https://dora.dev/research/2025/dora-report/' },
+  ],
+  'cold-chain': [
+    { statistic: '8 principles', finding: 'NCSC guidance treats secure OT connectivity as a managed architecture decision', implication: 'Monitoring should query a controlled data layer and avoid creating an uncontrolled path back into equipment.', source: 'NCSC, Secure connectivity for operational technology, 2026', href: 'https://www.ncsc.gov.uk/collection/operational-technology/secure-connectivity' },
+    { statistic: '4 functions', finding: 'NIST structures AI risk work around govern, map, measure and manage', implication: 'Operational AI needs named ownership, context mapping, performance tests and an active response plan.', source: 'NIST AI Risk Management Framework', href: 'https://www.nist.gov/itl/ai-risk-management-framework' },
+    { statistic: 'Continuous', finding: 'Cold-chain controls depend on recorded temperature checks and corrective action', implication: 'A useful digital record must connect readings with context, review and closure rather than present telemetry alone.', source: 'Food Standards Agency, Chilling food correctly', href: 'https://www.food.gov.uk/business-guidance/chilling-food-correctly-in-your-business' },
+  ],
+  'property-pipeline': [
+    { statistic: '1%', finding: 'Only a small share of surveyed built-environment firms report AI scaled across projects', implication: 'The near-term opportunity is a bounded transaction workflow with governed data, not a broad transformation claim.', source: 'RICS, Artificial Intelligence in Construction Report 2025', href: 'https://www.rics.org/news-insights/artificial-intelligence-in-construction-report' },
+    { statistic: '37%', finding: 'System integration is a leading reported barrier in the RICS survey', implication: 'Connecting evidence, stage gates and actions is likely to matter more than adding a standalone assistant.', source: 'RICS, AI in Construction 2025 findings', href: 'https://www.rics.org/news-insights/optimism-high-for-ai-in-construction-but-skills-shortages-and-integration-challenges-adoption' },
+    { statistic: 'Guardrails', finding: 'RICS guidance emphasises professional judgement and responsible AI use', implication: 'Extracted fields and generated summaries should remain proposals until an accountable professional confirms them.', source: 'RICS, Responsible use of AI in surveying practice', href: 'https://www.rics.org/profession-standards/rics-standards-and-guidance/conduct-competence/responsible-use-of-ai' },
+  ],
+  'professional-services-intake': [
+    { statistic: 'Authoritative', finding: 'The Law Society warns that generated legal citations and propositions require verification', implication: 'The system should preserve source evidence and never present model output as an accepted professional conclusion.', source: 'The Law Society, Conducting legal research in the age of AI, 2026', href: 'https://www.lawsociety.org.uk/topics/ai-and-lawtech/conducting-legal-research-in-the-age-of-ai' },
+    { statistic: 'SME focus', finding: 'Law Society guidance addresses both opportunity and data risk for smaller firms', implication: 'Intake automation needs an approved data boundary, confidentiality controls and clear professional ownership.', source: 'The Law Society, Generative AI: the essentials, 2025', href: 'https://www.lawsociety.org.uk/Topics/AI-and-lawtech/Guides/Generative-AI-the-essentials' },
+    { statistic: '3 outputs', finding: 'ICO guidance combines audit methodology, organisational guidance and practical tools', implication: 'Data protection should be evidenced through design records, tests and operating controls, not policy wording alone.', source: 'ICO, Guidance on AI and data protection', href: 'https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/artificial-intelligence/guidance-on-ai-and-data-protection/about-this-guidance/' },
+  ],
+  'field-service-planning': [
+    { statistic: 'Amplifier', finding: 'Google DORA finds that AI magnifies existing organisational strengths and weaknesses', implication: 'Poor work-order data and unclear priorities will be amplified by an optimiser unless corrected first.', source: 'Google DORA, State of AI-assisted Software Development 2025', href: 'https://dora.dev/research/2025/dora-report/' },
+    { statistic: 'Known good', finding: 'NCSC recommends schema-based validation at operational trust boundaries', implication: 'Jobs, resource data and telemetry should be validated before they influence a daily plan.', source: 'NCSC, Standardised and secure OT protocols, 2026', href: 'https://www.ncsc.gov.uk/collection/operational-technology/secure-connectivity/principle-4' },
+    { statistic: 'Lifecycle', finding: 'NIST risk guidance expects measurement and management throughout operation', implication: 'Overrides, actual durations and plan failures should feed a continuing review rather than a one-off model assessment.', source: 'NIST AI Risk Management Framework', href: 'https://www.nist.gov/itl/ai-risk-management-framework' },
+  ],
+};
+
+export const caseDecisionRows: Record<string, DecisionRow[]> = {
+  'yacht-operations': [
+    { decision: 'Is the enquiry qualified?', evidence: 'Need, timing, fit and source', control: 'Required fields plus owner review', measure: 'Time to qualification' },
+    { decision: 'What happens next?', evidence: 'Current state, commitments and availability', control: 'State policy with named owner', measure: 'Overdue next actions' },
+    { decision: 'Can communication be sent?', evidence: 'Approved facts and customer context', control: 'Human approval before release', measure: 'Corrections after drafting' },
+    { decision: 'Where is management attention needed?', evidence: 'Age, exceptions and commercial value', control: 'Transparent priority rules', measure: 'Risks identified before impact' },
+  ],
+  'cold-chain': [
+    { decision: 'Is the signal trustworthy?', evidence: 'Reading, heartbeat and calibration state', control: 'Data-quality policy', measure: 'Invalid signals detected' },
+    { decision: 'Is this an operational exception?', evidence: 'Duration, threshold, asset and product context', control: 'Versioned threshold policy', measure: 'Alert precision' },
+    { decision: 'What response is required?', evidence: 'Severity, prior action and operating procedure', control: 'Human triage and escalation matrix', measure: 'Time to accountable action' },
+    { decision: 'Can the event close?', evidence: 'Corrective action and confirmed recovery', control: 'Required closure evidence', measure: 'Complete exception records' },
+  ],
+  'property-pipeline': [
+    { decision: 'Can the transaction enter the pipeline?', evidence: 'Parties, objective, authority and fit', control: 'Qualification gate', measure: 'Unqualified work admitted' },
+    { decision: 'Can the stage advance?', evidence: 'Minimum data set and required documents', control: 'Evidence-backed stage gate', measure: 'Stage reversals' },
+    { decision: 'What needs escalation?', evidence: 'Deadline, missing evidence and dependency', control: 'Exception policy with owner', measure: 'Late risks identified' },
+    { decision: 'Is completion ready?', evidence: 'Approval, documents and outstanding actions', control: 'Professional sign-off', measure: 'Completion defects' },
+  ],
+  'professional-services-intake': [
+    { decision: 'Is the enquiry complete?', evidence: 'Structured facts and supporting documents', control: 'Mandatory field validation', measure: 'Requests for missing information' },
+    { decision: 'Do controls permit review?', evidence: 'Identity, conflict and eligibility results', control: 'Deterministic stop gates', measure: 'Control exceptions' },
+    { decision: 'Which service route applies?', evidence: 'Matter type, urgency and complexity', control: 'Approved triage taxonomy', measure: 'Reclassified matters' },
+    { decision: 'Will the firm accept?', evidence: 'Original evidence, controls and professional assessment', control: 'Named professional approval', measure: 'Time to first decision' },
+  ],
+  'field-service-planning': [
+    { decision: 'Is the job schedulable?', evidence: 'Scope, location, duration, parts and eligibility', control: 'Hard constraint validation', measure: 'Failed assignments' },
+    { decision: 'Which option is preferred?', evidence: 'Service level, priority, travel and stability', control: 'Visible balanced score', measure: 'Plan objective performance' },
+    { decision: 'Should the plan change?', evidence: 'New event and impact on committed work', control: 'Minimum-change policy', measure: 'In-day plan churn' },
+    { decision: 'What should the model learn?', evidence: 'Actuals and coded override reason', control: 'Weekly operational review', measure: 'Assumption error by category' },
+  ],
+};
+
+export const articleResearch: Record<string, ResearchFinding[]> = {
+  'ai-integration-gap': [
+    { statistic: '21%', finding: 'System integration trails reported AI use among UK businesses', implication: 'The strategic gap sits in workflow connection, data and operating ownership rather than access to tools.', source: 'UK Business Data Survey 2026', href: 'https://www.gov.uk/government/statistics/uk-business-data-survey-2026/uk-business-data-survey-2026' },
+    { statistic: '65%', finding: 'SME users report employee performance as the leading benefit', implication: 'Core-work enablement is a stronger initial value pool than speculative headcount reduction.', source: 'OECD, Generative AI and the SME Workforce, 2025', href: 'https://www.oecd.org/en/publications/generative-ai-and-the-sme-workforce_2d08b99d-en/full-report.html' },
+    { statistic: 'Amplifier', finding: 'Google DORA finds that AI magnifies the surrounding organisational system', implication: 'AI investment should include user focus, workflow clarity, quality data and fast feedback.', source: 'Google DORA Report 2025', href: 'https://dora.dev/research/2025/dora-report/' },
+  ],
+  'open-weight-price-war': [
+    { statistic: '280x', finding: 'Equivalent-capability inference cost fell sharply from 2022 to 2024', implication: 'SMEs can benchmark more use cases, but lower model cost does not remove integration and quality cost.', source: 'Stanford HAI, AI Index 2025', href: 'https://hai.stanford.edu/assets/files/hai_ai_index_report_2025.pdf' },
+    { statistic: 'Lifecycle', finding: 'NIST frames generative AI risks across design, deployment and use', implication: 'Model portability should include repeatable evaluation, monitoring and incident response.', source: 'NIST Generative AI Profile', href: 'https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence' },
+    { statistic: 'Core tasks', finding: 'OECD finds reported SME benefits are stronger when AI supports core company tasks', implication: 'Cheaper models create the most value when attached to material workflows rather than peripheral novelty.', source: 'OECD, AI adoption by SMEs, 2025', href: 'https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/12/ai-adoption-by-small-and-medium-sized-enterprises_9c48eae6/426399c1-en.pdf' },
+  ],
+  'automation-before-agents': [
+    { statistic: '19% slower', finding: 'Experienced open-source developers took longer with early-2025 AI tools in one randomised study', implication: 'Capability claims must be tested in the real context, especially where experts hold substantial tacit knowledge.', source: 'METR, Experienced Developer Productivity Study, 2025', href: 'https://metr.org/Early_2025_AI_Experienced_OS_Devs_Study-paper.pdf' },
+    { statistic: 'Jagged', finding: 'Field research finds that AI performance varies materially across task boundaries', implication: 'Authority should be assigned by task and consequence, not by a general belief that the model is capable.', source: 'Harvard Business School, Navigating the Jagged Technological Frontier', href: 'https://www.hbs.edu/ris/download.aspx?name=24-013.pdf' },
+    { statistic: '7%', finding: 'Agentic AI remains the least adopted AI category in current UK research', implication: 'Leaders should treat agent deployment as controlled operating-model change, not a mature default.', source: 'UK Government, AI Adoption Research 2026', href: 'https://www.gov.uk/government/publications/ai-adoption-research/ai-adoption-research' },
+  ],
+  'cold-chain-collaboration': [
+    { statistic: 'Definitive view', finding: 'NCSC guidance begins with a current architecture and asset record', implication: 'Monitoring design should document sensors, gateways, network boundaries and third-party access before adding analytics.', source: 'NCSC, Operational Technology guidance', href: 'https://www.ncsc.gov.uk/collection/operational-technology' },
+    { statistic: 'Known good', finding: 'NCSC recommends schema validation across OT trust boundaries', implication: 'Telemetry and equipment context should be validated before automated classification.', source: 'NCSC, Secure OT protocols, 2026', href: 'https://www.ncsc.gov.uk/collection/operational-technology/secure-connectivity/principle-4' },
+    { statistic: 'Human record', finding: 'Food safety guidance links temperature control with checks and corrective action', implication: 'The digital system should improve evidence quality while preserving operator responsibility.', source: 'Food Standards Agency', href: 'https://www.food.gov.uk/business-guidance/chilling-food-correctly-in-your-business' },
+  ],
+  'small-teams-ai-advantage': [
+    { statistic: '31%', finding: 'Nearly one third of surveyed SMEs across seven countries use generative AI', implication: 'Access barriers have fallen, so advantage increasingly depends on implementation discipline.', source: 'OECD, Generative AI and the SME Workforce, 2025', href: 'https://www.oecd.org/en/publications/generative-ai-and-the-sme-workforce_2d08b99d-en/full-report.html' },
+    { statistic: '39%', finding: 'Many AI-using SMEs with a recent skills gap say generative AI helped compensate', implication: 'Small firms can target bottlenecks where scarce expertise limits throughput.', source: 'OECD, Generative AI and the SME Workforce, 2025', href: 'https://www.oecd.org/en/publications/generative-ai-and-the-sme-workforce_2d08b99d-en/full-report.html' },
+    { statistic: '83%', finding: 'Most surveyed SME users report no change in overall staff need', implication: 'The near-term case is workforce augmentation and growth capacity, not an automatic labour-reduction thesis.', source: 'OECD, Generative AI and the SME Workforce, 2025', href: 'https://www.oecd.org/en/publications/generative-ai-and-the-sme-workforce_2d08b99d-en/full-report.html' },
+  ],
+  'measure-automation-value': [
+    { statistic: '15%', finding: 'A field study of 5,172 support agents found higher issues resolved per hour with AI assistance', implication: 'Value can be material in a well-matched workflow, but the measured outcome is specific to the task and operating environment.', source: 'Quarterly Journal of Economics, Generative AI at Work, 2025', href: 'https://academic.oup.com/qje/article/140/2/889/7990658' },
+    { statistic: '19% slower', finding: 'A different randomised study found a slowdown for experienced developers on familiar repositories', implication: 'A credible business case must test the target workflow rather than import a productivity percentage from another context.', source: 'METR, Experienced Developer Productivity Study, 2025', href: 'https://metr.org/Early_2025_AI_Experienced_OS_Devs_Study-paper.pdf' },
+    { statistic: 'Amplifier', finding: 'Google DORA connects returns to the quality of the organisational system', implication: 'Benefits measurement should include adoption, process quality and the capabilities surrounding the tool.', source: 'Google DORA Report 2025', href: 'https://dora.dev/research/2025/dora-report/' },
+  ],
+};
+
+export const articleDecisionRows: Record<string, DecisionRow[]> = Object.fromEntries(articles.map((article) => [article.slug, [
+  { decision: 'What business result should change?', evidence: 'Baseline volume, quality, delay and cost', control: 'Named operational owner', measure: 'Observed change against baseline' },
+  { decision: 'Where may AI contribute?', evidence: 'Task variation, judgement and failure modes', control: 'Bounded use-case definition', measure: 'Accepted output and exception rate' },
+  { decision: 'Can authority expand?', evidence: 'Evaluation, live performance and incident record', control: 'Explicit approval threshold', measure: 'Performance by risk category' },
+  { decision: 'Should investment continue?', evidence: 'Adoption, total cost, realised value and risk', control: 'Quarterly value review', measure: 'Realised benefit with confidence range' },
+]]));
 

@@ -10,6 +10,14 @@ type Bar = {
   display: string;
 };
 
+export type ResearchFinding = {
+  statistic: string;
+  finding: string;
+  implication: string;
+  source: string;
+  href: string;
+};
+
 export function MetricStrip({ metrics }: { metrics: Metric[] }) {
   return (
     <section className="metric-strip" aria-label="Key facts">
@@ -106,6 +114,49 @@ export function CodeExhibit({
         </div>
       </div>
     </figure>
+  );
+}
+
+export function ResearchEvidence({
+  title,
+  findings,
+}: {
+  title: string;
+  findings: ResearchFinding[];
+}) {
+  return (
+    <section className="research-evidence">
+      <div className="research-heading"><span>Research context</span><h2>{title}</h2><p>Findings are paraphrased from the linked original publications. Their scope and populations differ, so they inform the thesis rather than prove a universal outcome.</p></div>
+      <div className="research-grid">
+        {findings.map((item) => (
+          <article key={`${item.statistic}-${item.source}`}>
+            <strong>{item.statistic}</strong>
+            <h3>{item.finding}</h3>
+            <p>{item.implication}</p>
+            <a href={item.href} target="_blank" rel="noreferrer">Source: {item.source}</a>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function OperatingTable({
+  title,
+  rows,
+}: {
+  title: string;
+  rows: { decision: string; evidence: string; control: string; measure: string }[];
+}) {
+  return (
+    <section className="operating-table-wrap">
+      <span>Decision architecture</span>
+      <h2>{title}</h2>
+      <div className="operating-table" role="table" aria-label={title}>
+        <div className="operating-table-head" role="row"><b>Decision</b><b>Required evidence</b><b>Control</b><b>Performance measure</b></div>
+        {rows.map((row) => <div role="row" key={row.decision}><strong>{row.decision}</strong><span>{row.evidence}</span><span>{row.control}</span><span>{row.measure}</span></div>)}
+      </div>
+    </section>
   );
 }
 

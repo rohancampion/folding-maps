@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight, Check } from 'lucide-react';
-import { BarExhibit, CodeExhibit, MetricStrip } from '@/components/ConsultingExhibits';
-import { articles } from '@/lib/content';
+import { BarExhibit, CodeExhibit, MetricStrip, OperatingTable, ResearchEvidence } from '@/components/ConsultingExhibits';
+import { articleDecisionRows, articleResearch, articles } from '@/lib/content';
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
@@ -46,6 +46,8 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
         </div>
       </div>
 
+      <ResearchEvidence title="What the wider evidence says" findings={articleResearch[article.slug]}/>
+      <OperatingTable title="A practical decision sequence for leadership teams" rows={articleDecisionRows[article.slug]}/>
       <BarExhibit number="1" title={article.exhibit.title} subtitle={article.exhibit.subtitle} bars={article.exhibit.bars} note={article.exhibit.note}/>
       <CodeExhibit title={article.code.title} eyebrow="Implementation pattern" lines={article.code.lines} nodes={article.code.nodes}/>
 
