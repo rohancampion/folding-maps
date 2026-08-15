@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { ArrowRight, Check } from 'lucide-react';
 import { GearSystem } from '@/components/GearSystem';
 import { Reveal } from '@/components/Reveal';
+import { ServiceJourney, ServicePathways } from '@/components/ServiceJourney';
 
 export const metadata = { title: 'About' };
 
@@ -99,6 +100,9 @@ export default function About() {
           ))}
         </div>
       </section>
+
+      <ServiceJourney />
+      <ServicePathways />
 
       <section className="values">
         <div className="section-heading">

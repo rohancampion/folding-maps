@@ -2,8 +2,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight, Check } from 'lucide-react';
-import { BarExhibit, CodeExhibit, MetricStrip, OperatingTable, ResearchEvidence } from '@/components/ConsultingExhibits';
+import { BarExhibit, BlueprintExhibit, CodeExhibit, MetricStrip, OperatingTable, ResearchEvidence, RiskRegister, ScorecardExhibit } from '@/components/ConsultingExhibits';
+import { MechanicalMark } from '@/components/MechanicalVisuals';
 import { articleDecisionRows, articleResearch, articles } from '@/lib/content';
+import { articleDepth } from '@/lib/paperDepth';
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
@@ -20,7 +22,7 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
       <div className="report-meta"><span>{article.tag}</span><span>{article.date}</span><span>{article.read}</span></div>
       <h1>{article.title}</h1>
       <p className="lede">{article.intro}</p>
-      <div className="article-hero-image"><Image src={article.image} alt="" fill priority sizes="(max-width: 1000px) 100vw, 860px"/><span>{article.artLabel}</span></div>
+      <div className="article-hero-image"><Image src={article.image} alt="" fill priority sizes="(max-width: 1000px) 100vw, 860px"/><span>{article.artLabel}</span><MechanicalMark label="Evidence briefing"/></div>
 
       <section className="thesis-panel"><span>Our perspective</span><p>{article.thesis}</p></section>
       <MetricStrip metrics={article.metrics}/>
@@ -47,7 +49,10 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
       </div>
 
       <ResearchEvidence title="What the wider evidence says" findings={articleResearch[article.slug]}/>
+      <BlueprintExhibit eyebrow="Executive playbook" title="A controlled route from thesis to operating evidence" steps={articleDepth[article.slug].playbook}/>
       <OperatingTable title="A practical decision sequence for leadership teams" rows={articleDecisionRows[article.slug]}/>
+      <RiskRegister title="The failure modes leadership should watch before scale" rows={articleDepth[article.slug].risks}/>
+      <ScorecardExhibit title="A scorecard that connects activity to management action" rows={articleDepth[article.slug].scorecard}/>
       <BarExhibit number="1" title={article.exhibit.title} subtitle={article.exhibit.subtitle} bars={article.exhibit.bars} note={article.exhibit.note}/>
       <CodeExhibit title={article.code.title} eyebrow="Implementation pattern" lines={article.code.lines} nodes={article.code.nodes}/>
 
