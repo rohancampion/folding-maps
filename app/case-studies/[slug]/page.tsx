@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
-import { BarExhibit, CodeExhibit, MetricStrip, ProcessExhibit } from '@/components/ConsultingExhibits';
-import { cases } from '@/lib/content';
+import { BarExhibit, CodeExhibit, MetricStrip, OperatingTable, ProcessExhibit, ResearchEvidence } from '@/components/ConsultingExhibits';
+import { caseDecisionRows, caseResearch, cases } from '@/lib/content';
 
 export function generateStaticParams() {
   return cases.map((item) => ({ slug: item.slug }));
@@ -42,6 +42,8 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
           </div>
         </div>
 
+        <ResearchEvidence title="External evidence sharpens the engagement hypothesis" findings={caseResearch[study.slug]}/>
+        <OperatingTable title="Each operational decision has evidence, control and a measure" rows={caseDecisionRows[study.slug]}/>
         <BarExhibit number="1" title={study.barTitle} subtitle={study.barSubtitle} bars={study.bars} note={study.barNote}/>
         <ProcessExhibit number="2" title="Delivery follows a controlled progression from evidence to operation" steps={study.phases}/>
         <CodeExhibit title={study.code.title} eyebrow="System blueprint" lines={study.code.lines} nodes={study.code.nodes}/>
