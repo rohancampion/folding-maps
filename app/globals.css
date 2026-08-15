@@ -13,3 +13,15 @@
 .case-visual img,.detail-visual img{object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .5s}.case-card:hover .case-visual img{transform:scale(1.07);filter:saturate(1.15)}.case-visual>span{z-index:2;background:rgba(23,23,43,.78);color:white;padding:8px 10px}.case-image-wash{position:absolute;inset:0;z-index:1;background:linear-gradient(135deg,rgba(74,69,214,.14),transparent 55%,rgba(255,121,92,.2));mix-blend-mode:color}.detail-visual{position:relative;overflow:hidden}.detail-visual:hover img{transform:scale(1.025)}
 .code-waterfall{isolation:isolate;color:white;background:linear-gradient(90deg,rgba(23,23,43,.95),rgba(23,23,43,.58)),url('/images/code-waterfall.svg') center/cover}.code-waterfall:after{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(90deg,transparent 0 58px,rgba(118,112,255,.16) 59px 60px);animation:scan 12s linear infinite}.code-waterfall>p{color:#d8d5e5}.code-waterfall em{color:#ff9c86}.code-rain{position:absolute;z-index:-1;right:5vw;top:120px;width:44%;font:12px/4 var(--body);letter-spacing:3px;color:rgba(255,255,255,.45);writing-mode:vertical-rl;animation:codefall 10s linear infinite;text-shadow:0 0 12px #8f89ff}@keyframes codefall{50%{transform:translateY(45px)}}@keyframes scan{to{background-position:600px 0}}
 @media(max-width:800px){.logo-grid{grid-template-columns:1fr 1fr}.partner-logo{min-height:90px}.partner-logo:last-child{grid-column:1/-1}.code-rain{width:65%;opacity:.45}.code-waterfall{background-position:62% center}}
+
+
+/* Compact referral check control */
+.referral-field{border:0;padding:0;margin:0 0 24px;min-width:0}
+.referral-field legend{margin-bottom:9px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
+.referral-check{position:relative;display:inline-flex!important;align-items:center;gap:9px;width:auto;margin:0!important;padding:8px 11px 8px 9px;border:1px solid var(--line);border-radius:999px;background:#faf8f4;color:var(--muted);font-size:11px!important;font-weight:700!important;line-height:1;text-transform:none!important;letter-spacing:0!important;cursor:pointer;transition:border-color .2s,background .2s,color .2s,box-shadow .2s,transform .2s}
+.referral-check:hover{border-color:rgba(74,69,214,.45);color:var(--ink);transform:translateY(-1px);box-shadow:0 5px 16px rgba(23,23,43,.07)}
+.referral-check.active{border-color:var(--green);background:rgba(74,69,214,.08);color:var(--ink);box-shadow:0 0 0 3px rgba(74,69,214,.08)}
+.referral-check input{position:absolute!important;width:1px!important;height:1px!important;margin:0!important;padding:0!important;opacity:0;pointer-events:none}
+.referral-check-box{width:20px;height:20px;display:grid;place-items:center;border:1px solid #aaa8b8;border-radius:50%;background:white;color:transparent;transition:background .2s,border-color .2s,color .2s,transform .2s}
+.referral-check.active .referral-check-box{border-color:var(--green);background:var(--green);color:white;transform:scale(1.04)}
+.referral-details{padding:18px 18px 0;margin:-10px 0 24px;border-left:2px solid var(--green);background:rgba(74,69,214,.035)}
