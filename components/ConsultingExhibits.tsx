@@ -1,16 +1,10 @@
-import { Cog, ShieldAlert, Target } from 'lucide-react';
-import type { BaselineRow, BlueprintStep, RiskRow, ScorecardRow } from '@/lib/paperDepth';
+import { Cog } from 'lucide-react';
+import type { BlueprintStep } from '@/lib/paperDepth';
 
 type Metric = {
   value: string;
   label: string;
   detail?: string;
-};
-
-type Bar = {
-  label: string;
-  value: number;
-  display: string;
 };
 
 export type ResearchFinding = {
@@ -32,39 +26,6 @@ export function MetricStrip({ metrics }: { metrics: Metric[] }) {
         </div>
       ))}
     </section>
-  );
-}
-
-export function BarExhibit({
-  number,
-  title,
-  subtitle,
-  bars,
-  note,
-}: {
-  number: string;
-  title: string;
-  subtitle: string;
-  bars: Bar[];
-  note: string;
-}) {
-  return (
-    <figure className="consulting-exhibit">
-      <figcaption>
-        <span>Exhibit {number}</span>
-        <h2>{title}</h2>
-        <p>{subtitle}</p>
-      </figcaption>
-      <div className="bar-chart">
-        {bars.map((bar) => (
-          <div className="bar-row" key={bar.label}>
-            <div className="bar-label"><span>{bar.label}</span><strong>{bar.display}</strong></div>
-            <div className="bar-track" aria-hidden="true"><i style={{ width: `${Math.max(4, bar.value)}%` }}/></div>
-          </div>
-        ))}
-      </div>
-      <small className="exhibit-note">{note}</small>
-    </figure>
   );
 }
 
@@ -144,25 +105,6 @@ export function ResearchEvidence({
   );
 }
 
-export function OperatingTable({
-  title,
-  rows,
-}: {
-  title: string;
-  rows: { decision: string; evidence: string; control: string; measure: string }[];
-}) {
-  return (
-    <section className="operating-table-wrap">
-      <span>Decision architecture</span>
-      <h2>{title}</h2>
-      <div className="operating-table" role="table" aria-label={title}>
-        <div className="operating-table-head" role="row"><b>Decision</b><b>Required evidence</b><b>Control</b><b>Performance measure</b></div>
-        {rows.map((row) => <div role="row" key={row.decision}><strong>{row.decision}</strong><span>{row.evidence}</span><span>{row.control}</span><span>{row.measure}</span></div>)}
-      </div>
-    </section>
-  );
-}
-
 export function BlueprintExhibit({
   title,
   eyebrow,
@@ -191,40 +133,3 @@ export function BlueprintExhibit({
     </section>
   );
 }
-
-export function BaselineMatrix({ title, rows }: { title: string; rows: BaselineRow[] }) {
-  return (
-    <section className="depth-table-wrap baseline-matrix">
-      <div className="depth-heading"><span>Operating baseline</span><h2>{title}</h2><p>The diagnostic tests the current state using observable work, then describes the controlled operating state the release is intended to create.</p></div>
-      <div className="depth-table" role="table" aria-label={title}>
-        <div className="depth-table-head" role="row"><b>Operating area</b><b>Current condition</b><b>Evidence to collect</b><b>Target condition</b></div>
-        {rows.map((row) => <div role="row" key={row.area}><strong>{row.area}</strong><span>{row.currentState}</span><span>{row.evidence}</span><span>{row.targetState}</span></div>)}
-      </div>
-    </section>
-  );
-}
-
-export function RiskRegister({ title, rows }: { title: string; rows: RiskRow[] }) {
-  return (
-    <section className="depth-table-wrap risk-register">
-      <div className="depth-heading"><span><ShieldAlert size={15}/> Delivery and operating risk</span><h2>{title}</h2><p>Risks become manageable when the early signal, control and accountable owner are agreed before release.</p></div>
-      <div className="depth-table" role="table" aria-label={title}>
-        <div className="depth-table-head" role="row"><b>Risk</b><b>Early signal</b><b>Primary control</b><b>Accountable owner</b></div>
-        {rows.map((row) => <div role="row" key={row.risk}><strong>{row.risk}</strong><span>{row.earlySignal}</span><span>{row.control}</span><span>{row.owner}</span></div>)}
-      </div>
-    </section>
-  );
-}
-
-export function ScorecardExhibit({ title, rows }: { title: string; rows: ScorecardRow[] }) {
-  return (
-    <section className="depth-table-wrap scorecard-exhibit">
-      <div className="depth-heading"><span><Target size={15}/> Measurement system</span><h2>{title}</h2><p>Measures are useful only when their definition is stable and their movement changes a management decision.</p></div>
-      <div className="depth-table" role="table" aria-label={title}>
-        <div className="depth-table-head" role="row"><b>Outcome</b><b>Definition</b><b>Leading evidence</b><b>Decision supported</b></div>
-        {rows.map((row) => <div role="row" key={row.outcome}><strong>{row.outcome}</strong><span>{row.definition}</span><span>{row.leading}</span><span>{row.decision}</span></div>)}
-      </div>
-    </section>
-  );
-}
-

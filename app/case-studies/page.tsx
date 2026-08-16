@@ -12,8 +12,8 @@ export default function Cases() {
       <section className="page-hero report-hero report-hero-layout">
         <div className="report-hero-copy"><span className="kicker">Case studies</span>
           <h1>From operational friction<br/><em>to working systems.</em></h1>
-          <p>Detailed engagement papers covering operating baselines, delivery work packages, technical design, governance, acceptance controls and the path to measurable value. Illustrative work and in-progress outcomes are labelled clearly.</p>
-          <div className="section-proof"><div><strong>{cases.length}</strong><span>Detailed studies</span></div><div><strong>5</strong><span>Operating sectors</span></div><div><strong>9</strong><span>Evidence exhibits per case</span></div></div>
+          <p>Narrative engagement papers that begin with an operating moment, trace the commercial and control tension, then show how evidence becomes a bounded release. Illustrative work and in-progress outcomes are labelled clearly.</p>
+          <div className="section-proof"><div><strong>{cases.length}</strong><span>Detailed studies</span></div><div><strong>5</strong><span>Operating sectors</span></div><div><strong>4</strong><span>Prose-led decision lenses per case</span></div></div>
         </div>
         <HeroMechanism compact/>
       </section>
@@ -29,4 +29,3 @@ export default function Cases() {
     </>
   );
 }
-

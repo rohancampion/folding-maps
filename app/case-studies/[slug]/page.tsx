@@ -2,8 +2,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
-import { BarExhibit, BaselineMatrix, BlueprintExhibit, CodeExhibit, MetricStrip, OperatingTable, ProcessExhibit, ResearchEvidence, RiskRegister, ScorecardExhibit } from '@/components/ConsultingExhibits';
+import { BlueprintExhibit, CodeExhibit, MetricStrip, ProcessExhibit, ResearchEvidence } from '@/components/ConsultingExhibits';
+import { CaseAnalysisNarrative, EditorialConclusion, NarrativeOpening } from '@/components/EditorialNarrative';
+import { InteractiveEvidence } from '@/components/InteractiveEvidence';
 import { MechanicalMark } from '@/components/MechanicalVisuals';
+import { caseEditorial } from '@/lib/caseEditorial';
 import { caseDecisionRows, caseResearch, cases } from '@/lib/content';
 import { caseDepth } from '@/lib/paperDepth';
 
@@ -15,6 +18,19 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
   const { slug } = await params;
   const study = cases.find((item) => item.slug === slug);
   if (!study) notFound();
+  const editorial = caseEditorial[study.slug];
+  const evidenceViews = [{
+    label: 'Operating evidence',
+    title: study.barTitle,
+    summary: study.barSubtitle,
+    source: study.barNote.replace(/^Source:\s*/i, '').replace(/\.$/, ''),
+    points: study.bars.map((bar) => ({
+      label: bar.label,
+      value: bar.value,
+      display: bar.display,
+      detail: `This value is part of the stated ${study.status.toLowerCase()} operating model and should be tested against live evidence before it supports an investment claim.`,
+    })),
+  }];
 
   return (
     <>
@@ -26,6 +42,8 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
         <div className="executive-brief"><span>Executive brief</span><p>{study.brief}</p></div>
         <MetricStrip metrics={study.metrics}/>
         <div className="detail-visual report-visual"><Image src={study.image} alt="" fill priority sizes="(max-width: 1200px) 100vw, 1030px"/><MechanicalMark label="System blueprint"/><div className="case-image-wash"/></div>
+
+        <NarrativeOpening label={editorial.sceneLabel} title={editorial.openingTitle} paragraphs={editorial.openingParagraphs} centralQuestion={editorial.centralQuestion}/>
 
         <div className="report-body">
           <nav className="report-contents" aria-label="Case study contents">
@@ -44,15 +62,14 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
           </div>
         </div>
 
-        <BaselineMatrix title="From current operating friction to a controlled target state" rows={caseDepth[study.slug].baseline}/>
+        <NarrativeOpening label="The analytical turning point" title={editorial.turningTitle} paragraphs={editorial.turningParagraphs}/>
+        <CaseAnalysisNarrative depth={caseDepth[study.slug]} decisions={caseDecisionRows[study.slug]}/>
         <ResearchEvidence title="External evidence sharpens the engagement hypothesis" findings={caseResearch[study.slug]}/>
         <BlueprintExhibit eyebrow="Delivery work packages" title="The engagement is organised around four evidence-producing work packages" steps={caseDepth[study.slug].workPackages}/>
-        <OperatingTable title="Each operational decision has evidence, control and a measure" rows={caseDecisionRows[study.slug]}/>
-        <RiskRegister title="Risks are designed into the operating model before launch" rows={caseDepth[study.slug].risks}/>
-        <ScorecardExhibit title="Acceptance links the release to observable operating performance" rows={caseDepth[study.slug].acceptance}/>
-        <BarExhibit number="1" title={study.barTitle} subtitle={study.barSubtitle} bars={study.bars} note={study.barNote}/>
+        <InteractiveEvidence eyebrow="Interactive case evidence" views={evidenceViews}/>
         <ProcessExhibit number="2" title="Delivery follows a controlled progression from evidence to operation" steps={study.phases}/>
         <CodeExhibit title={study.code.title} eyebrow="System blueprint" lines={study.code.lines} nodes={study.code.nodes}/>
+        <EditorialConclusion title={editorial.closingTitle} paragraphs={editorial.closingParagraphs}/>
 
         <section className="next-step-panel">
           <span>Recommended next steps</span>
@@ -66,4 +83,3 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
     </>
   );
 }
-

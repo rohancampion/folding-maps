@@ -1,8 +1,11 @@
 import { describe, expect, it } from 'vitest';
+import { caseEditorial } from '@/lib/caseEditorial';
 import { articleDecisionRows, articleResearch, articles, caseDecisionRows, caseResearch, cases } from '@/lib/content';
+import { newsEvidenceViews } from '@/lib/editorialGraphics';
 import { articleDepth, caseDepth } from '@/lib/paperDepth';
 import { firstConversation, serviceJourney, servicePathways } from '@/lib/serviceModel';
 import { newsEditorial } from '@/lib/newsEditorial';
+import { newsNarrative } from '@/lib/newsNarrative';
 
 describe('editorial content', () => {
   it('has unique routes for all case studies and articles', () => {
@@ -28,6 +31,15 @@ describe('editorial content', () => {
     expect(articles.every((item) => newsEditorial[item.slug]?.sections.length === 5 && newsEditorial[item.slug]?.takeaways.length === 3)).toBe(true);
   });
 
+  it('gives every report a narrative arc and an analyst conclusion', () => {
+    expect(articles.every((item) => newsNarrative[item.slug]?.sceneParagraphs.length >= 2 && newsNarrative[item.slug]?.conclusionParagraphs.length >= 2)).toBe(true);
+    expect(cases.every((item) => caseEditorial[item.slug]?.openingParagraphs.length >= 2 && caseEditorial[item.slug]?.turningParagraphs.length >= 2 && caseEditorial[item.slug]?.closingParagraphs.length >= 2)).toBe(true);
+  });
+
+  it('provides multiple sourced interactive evidence views for every news report', () => {
+    expect(articles.every((item) => newsEvidenceViews[item.slug]?.length >= 2 && newsEvidenceViews[item.slug].every((view) => view.points.length >= 2 && view.source.length > 0))).toBe(true);
+  });
+
   it('spells out the client service and first-conversation pipeline', () => {
     expect(serviceJourney).toHaveLength(6);
     expect(servicePathways).toHaveLength(3);
@@ -35,6 +47,6 @@ describe('editorial content', () => {
   });
 
   it('does not use em dashes in published content', () => {
-    expect(JSON.stringify({ cases, articles, caseResearch, articleResearch, articleDepth, caseDepth, serviceJourney, servicePathways, newsEditorial })).not.toContain('—');
+    expect(JSON.stringify({ cases, articles, caseResearch, articleResearch, articleDepth, caseDepth, serviceJourney, servicePathways, newsEditorial, newsNarrative, caseEditorial, newsEvidenceViews })).not.toContain('—');
   });
 });

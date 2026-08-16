@@ -13,8 +13,8 @@ export default function News() {
       <section className="page-hero report-hero insight-hero report-hero-layout">
         <div className="report-hero-copy"><span className="kicker">News and analysis</span>
           <h1>Evidence for better<br/><em>technology decisions.</em></h1>
-          <p>Argument-led analysis for leaders navigating AI, automation and operating-model change. Each report develops a clear contention, tests it against external evidence, considers where it can fail and ends with practical management action.</p>
-          <div className="section-proof"><div><strong>{articles.length}</strong><span>Long-form analyses</span></div><div><strong>{articles.reduce((total, article) => total + article.sources.length + articleResearch[article.slug].length, 0)}</strong><span>Linked research references</span></div><div><strong>5</strong><span>Reported sections per analysis</span></div></div>
+          <p>Narrative, evidence-led analysis for leaders navigating AI, automation and operating-model change. Each report opens with a recognisable management problem, develops a clear argument, tests the downside and lets readers explore the underlying data.</p>
+          <div className="section-proof"><div><strong>{articles.length}</strong><span>Long-form analyses</span></div><div><strong>{articles.reduce((total, article) => total + article.sources.length + articleResearch[article.slug].length, 0)}</strong><span>Linked research references</span></div><div><strong>2</strong><span>Interactive evidence views per analysis</span></div></div>
         </div>
         <HeroMechanism compact/>
       </section>
