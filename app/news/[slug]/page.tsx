@@ -2,11 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight, Check } from 'lucide-react';
-import { BarExhibit, CodeExhibit, MetricStrip, ResearchEvidence } from '@/components/ConsultingExhibits';
+import { CodeExhibit, MetricStrip, ResearchEvidence } from '@/components/ConsultingExhibits';
+import { AnalystLens, EditorialConclusion, NarrativeOpening } from '@/components/EditorialNarrative';
+import { InteractiveEvidence } from '@/components/InteractiveEvidence';
 import { MechanicalMark } from '@/components/MechanicalVisuals';
 import { NewsAnalysisProse } from '@/components/NewsAnalysisProse';
 import { articleResearch, articles } from '@/lib/content';
+import { newsEvidenceViews } from '@/lib/editorialGraphics';
 import { newsEditorial } from '@/lib/newsEditorial';
+import { newsNarrative } from '@/lib/newsNarrative';
 import { articleDepth } from '@/lib/paperDepth';
 
 export function generateStaticParams() {
@@ -18,6 +22,7 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
   const article = articles.find((item) => item.slug === slug);
   if (!article) notFound();
   const editorial = newsEditorial[article.slug];
+  const narrative = newsNarrative[article.slug];
 
   return (
     <article className="article-detail insight-report prose-first-report">
@@ -35,6 +40,8 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
         <div>{editorial.takeaways.map((takeaway, index) => <p key={takeaway}><b>{String(index + 1).padStart(2, '0')}</b>{takeaway}</p>)}</div>
       </section>
 
+      <NarrativeOpening label={narrative.sceneLabel} title={narrative.sceneTitle} paragraphs={narrative.sceneParagraphs}/>
+
       <div className="report-body article-report-body">
         <nav className="report-contents" aria-label="Analysis contents">
           <span>In this analysis</span>
@@ -51,10 +58,12 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
         </div>
       </div>
 
+      <AnalystLens lens={narrative.analystLens}/>
+      <InteractiveEvidence views={newsEvidenceViews[article.slug]}/>
       <ResearchEvidence title="What the wider evidence says" findings={articleResearch[article.slug]}/>
       <NewsAnalysisProse depth={articleDepth[article.slug]}/>
-      <BarExhibit number="1" title={article.exhibit.title} subtitle={article.exhibit.subtitle} bars={article.exhibit.bars} note={article.exhibit.note}/>
       <CodeExhibit title={article.code.title} eyebrow="Implementation pattern" lines={article.code.lines} nodes={article.code.nodes}/>
+      <EditorialConclusion title={narrative.conclusionTitle} paragraphs={narrative.conclusionParagraphs}/>
 
       <section className="next-step-panel article-actions">
         <span>Leadership agenda</span>
