@@ -1,4 +1,4 @@
-import { industries } from '../lib/industries.ts';
+import { industries } from '../lib/industries';
 
 const fail = (message: string): never => {
   throw new Error(message);
