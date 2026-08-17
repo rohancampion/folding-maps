@@ -9,6 +9,11 @@ export type EvidenceView = {
   label: string;
   title: string;
   summary: string;
+  interpretation?: {
+    establishes: string;
+    doesNotEstablish: string;
+    management: string;
+  };
   source: string;
   href?: string;
   points: EvidencePoint[];
@@ -20,6 +25,11 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
       label: 'Adoption context',
       title: 'Use has spread further than operating integration',
       summary: 'These figures use different respondent bases. The contrast is useful as context, not as a conversion funnel.',
+      interpretation: {
+        establishes: 'Reported AI use is widespread in a digitally active survey population, while reported connection to business systems is less common.',
+        doesNotEstablish: 'The bars do not share one denominator and do not measure a progression from adoption to value.',
+        management: 'Treat usage as evidence of experimentation, then evaluate value at the level of a defined workflow.',
+      },
       source: 'UK Business Data Survey 2026',
       href: 'https://www.gov.uk/government/statistics/uk-business-data-survey-2026/uk-business-data-survey-2026',
       points: [
@@ -32,6 +42,11 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
       label: 'Integration by size',
       title: 'Scale still buys an integration advantage',
       summary: 'Among businesses already using AI, larger firms report materially higher integration with existing systems.',
+      interpretation: {
+        establishes: 'Larger AI-using businesses report system integration more frequently than smaller adopters.',
+        doesNotEstablish: 'The survey does not prove that size caused integration or that every reported connection changed operating performance.',
+        management: 'Smaller firms should budget for data, ownership and workflow work rather than assuming the connector arrives with the model.',
+      },
       source: 'UK Business Data Survey 2026',
       href: 'https://www.gov.uk/government/statistics/uk-business-data-survey-2026/uk-business-data-survey-2026',
       points: [
@@ -48,6 +63,11 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
       label: 'Query economics',
       title: 'Equivalent-capability inference became dramatically cheaper',
       summary: 'The comparison uses the lowest-priced model exceeding a GPT-3.5-level MMLU threshold in each period.',
+      interpretation: {
+        establishes: 'The price of querying a model above one historical benchmark threshold fell sharply between November 2022 and October 2024.',
+        doesNotEstablish: 'A shared MMLU threshold does not imply equivalent quality, reliability or total cost on a business workflow.',
+        management: 'Use lower prices to broaden representative testing, not to weaken acceptance standards.',
+      },
       source: 'Stanford HAI, AI Index 2025',
       href: 'https://hai.stanford.edu/news/ai-index-2025-state-of-ai-in-10-charts',
       points: [
@@ -59,6 +79,11 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
       label: 'Open-weight gap',
       title: 'Open-weight models narrowed part of the benchmark gap',
       summary: 'A smaller benchmark gap expands buyer choice, but it does not remove deployment, evaluation or licensing obligations.',
+      interpretation: {
+        establishes: 'Open-weight candidates became more competitive on selected benchmarks during the reported period.',
+        doesNotEstablish: 'The comparison does not demonstrate parity across tasks or account for the cost of operating an open-weight service.',
+        management: 'Benchmark the actual task and price the responsibilities that move from supplier to buyer.',
+      },
       source: 'Stanford HAI, AI Index 2025',
       href: 'https://hai.stanford.edu/assets/files/hai_ai_index_report_2025.pdf',
       points: [
@@ -72,6 +97,11 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
       label: 'Productivity evidence',
       title: 'The empirical record is positive, negative and highly task-specific',
       summary: 'Results come from different studies, tasks and populations. They should not be averaged or treated as a forecast for another workflow.',
+      interpretation: {
+        establishes: 'Observed AI effects vary materially across occupations, tasks and operating contexts.',
+        doesNotEstablish: 'The studies are not a league table of models and cannot be combined into an expected return for agent deployment.',
+        management: 'Require representative workflow tests before granting broader authority or importing a productivity assumption.',
+      },
       source: 'OECD research synthesis and METR, 2025',
       href: 'https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/',
       points: [
@@ -85,6 +115,11 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
       label: 'Adoption maturity',
       title: 'Agentic systems remain a minority use case',
       summary: 'Language use dominates current adoption, while agentic systems remain relatively uncommon in the UK research sample.',
+      interpretation: {
+        establishes: 'Reported agentic AI use is much less common than text and language use among current UK adopters.',
+        doesNotEstablish: 'Low adoption does not prove that agents are ineffective, unsafe or unsuitable for a particular mature workflow.',
+        management: 'Treat deployment as an emerging operating-model decision and demand stronger evidence for consequential tool access.',
+      },
       source: 'DSIT, AI Adoption Research 2026',
       href: 'https://www.gov.uk/government/publications/ai-adoption-research/ai-adoption-research',
       points: [
@@ -98,6 +133,11 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
       label: 'Evidence model',
       title: 'A useful exception combines signal and operating context',
       summary: 'This is an illustrative design weighting. It shows how a case can become more decision-ready without pretending that every input is equally important.',
+      interpretation: {
+        establishes: 'The proposed design needs more than a temperature number to support a reviewable operating decision.',
+        doesNotEstablish: 'The weights are not measured contributions to food safety, response quality or financial value.',
+        management: 'Test the evidence model against historical and live cases before using it to set severity.',
+      },
       source: 'Quiet Gears illustrative service design informed by FSA and NCSC guidance',
       points: [
         { label: 'Temperature and duration', value: 100, display: 'Core', detail: 'The observed excursion and its duration establish the initial operational question.' },
@@ -110,6 +150,11 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
       label: 'Control sequence',
       title: 'The value chain fails if any control stage is skipped',
       summary: 'An illustrative control profile based on the article thesis. Equal weighting reflects dependency, not measured contribution.',
+      interpretation: {
+        establishes: 'The proposed exception route depends on signal validation, contextual classification, ownership and evidenced closure.',
+        doesNotEstablish: 'Equal bars do not mean the stages contribute equally to risk reduction or economic value.',
+        management: 'Evaluate the complete route in parallel with current controls rather than optimising one stage in isolation.',
+      },
       source: 'Quiet Gears synthesis of FSA, NCSC and NIST guidance',
       points: [
         { label: 'Validate signal', value: 100, display: 'Required', detail: 'Missing, stale or implausible readings must remain visible.' },
@@ -124,6 +169,11 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
       label: 'SME workforce',
       title: 'Adoption is meaningful, while labour effects remain nuanced',
       summary: 'The OECD survey spans seven countries. Each measure has its own respondent base and should be read separately.',
+      interpretation: {
+        establishes: 'Generative AI is used by a material share of surveyed SMEs and is often associated with reported performance or skills benefits.',
+        doesNotEstablish: 'The survey does not measure the size of productivity gains or show that smaller firms outperform larger organisations.',
+        management: 'Use the evidence to justify a focused test, not a general labour-reduction or competitive-advantage claim.',
+      },
       source: 'OECD, Generative AI and the SME Workforce, 2025',
       href: 'https://www.oecd.org/en/publications/generative-ai-and-the-sme-workforce_2d08b99d-en/full-report.html',
       points: [
@@ -136,6 +186,11 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
       label: 'UK readiness',
       title: 'Interest exceeds implementation readiness',
       summary: 'Readiness is a management capability question, not simply a technology-purchasing question.',
+      interpretation: {
+        establishes: 'Many current and prospective adopters do not report being ready to implement or scale AI.',
+        doesNotEstablish: 'Self-reported readiness does not identify which delivery model will work or predict project success.',
+        management: 'Concentrate scarce ownership, data and evaluation capacity on one bounded workflow.',
+      },
       source: 'DSIT, AI Adoption Research 2026',
       href: 'https://www.gov.uk/government/publications/ai-adoption-research/ai-adoption-research',
       points: [
@@ -150,6 +205,11 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
       label: 'Observed outcomes',
       title: 'Productivity effects can point in opposite directions',
       summary: 'The two studies cover different occupations, tasks and operating contexts. The comparison demonstrates heterogeneity, not relative model quality.',
+      interpretation: {
+        establishes: 'Credible studies have found both positive and negative productivity effects in different settings.',
+        doesNotEstablish: 'The results cannot be averaged, compared as model performance or imported into another business case.',
+        management: 'Measure the target workflow with its own baseline, adoption, review and exception costs.',
+      },
       source: 'Quarterly Journal of Economics, 2025 and METR, 2025',
       href: 'https://academic.oup.com/qje/article/140/2/889/7990658',
       points: [
@@ -161,6 +221,11 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
       label: 'Value bridge',
       title: 'Gross time released contracts before it becomes financial value',
       summary: 'An illustrative bridge showing why adoption, exceptions and redeployment must be observed before a cash claim is made.',
+      interpretation: {
+        establishes: 'A benefits case needs separate stages between theoretical task time, usable capacity and financial consequence.',
+        doesNotEstablish: 'The values are illustrative assumptions and do not predict a typical conversion rate.',
+        management: 'Name the owner and evidence required at each stage before reporting realised value.',
+      },
       source: 'Quiet Gears illustrative benefits model',
       points: [
         { label: 'Gross task time released', value: 100, display: '100 hours', detail: 'The theoretical saving before real operating friction is counted.' },

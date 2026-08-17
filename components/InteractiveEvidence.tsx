@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState, type CSSProperties } from 'react';
+import { useEffect, useId, useMemo, useState, type CSSProperties } from 'react';
 import { ArrowUpRight, CircleDot, Cog } from 'lucide-react';
 import type { EvidenceView } from '@/lib/editorialGraphics';
 
@@ -11,6 +11,7 @@ export function InteractiveEvidence({
   eyebrow?: string;
   views: EvidenceView[];
 }) {
+  const headingId = useId();
   const [viewIndex, setViewIndex] = useState(0);
   const [pointIndex, setPointIndex] = useState(0);
   const view = views[viewIndex];
@@ -20,11 +21,11 @@ export function InteractiveEvidence({
   useEffect(() => setPointIndex(0), [viewIndex]);
 
   return (
-    <section className="interactive-evidence" aria-labelledby={`interactive-${viewIndex}`}>
+    <section className="interactive-evidence" aria-labelledby={headingId}>
       <div className="interactive-evidence-heading">
         <div>
           <span>{eyebrow}</span>
-          <h2 id={`interactive-${viewIndex}`}>{view.title}</h2>
+          <h2 id={headingId}>{view.title}</h2>
           <p>{view.summary}</p>
         </div>
         <div className="evidence-gear" aria-hidden="true" style={{ transform: `rotate(${pointIndex * 28}deg)` }}><Cog/><CircleDot/></div>
@@ -50,6 +51,7 @@ export function InteractiveEvidence({
                 onClick={() => setPointIndex(index)}
                 onFocus={() => setPointIndex(index)}
                 onMouseEnter={() => setPointIndex(index)}
+                aria-pressed={pointIndex === index}
                 aria-label={`${point.label}: ${point.display}. ${point.detail}`}
               >
                 <span className="evidence-bar-label">{point.label}</span>
@@ -68,8 +70,16 @@ export function InteractiveEvidence({
         </aside>
       </div>
 
+      {view.interpretation && (
+        <div className="evidence-interpretation">
+          <p><strong>What this establishes.</strong> {view.interpretation.establishes}</p>
+          <p><strong>What it does not establish.</strong> {view.interpretation.doesNotEstablish}</p>
+          <p><strong>Why management should care.</strong> {view.interpretation.management}</p>
+        </div>
+      )}
+
       <p className="evidence-source">
-        Source: {view.href ? <a href={view.href} target="_blank" rel="noreferrer">{view.source} <ArrowUpRight size={13}/></a> : view.source}.
+        Source: {view.href ? <a href={view.href} target="_blank" rel="noreferrer">{view.source} <ArrowUpRight size={13}/></a> : view.source}
       </p>
     </section>
   );
