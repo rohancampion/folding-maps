@@ -1,17 +1,16 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowUpRight, Check } from 'lucide-react';
-import { CodeExhibit, MetricStrip, ResearchEvidence } from '@/components/ConsultingExhibits';
-import { AnalystLens, EditorialConclusion, NarrativeOpening } from '@/components/EditorialNarrative';
+import { ArrowLeft } from 'lucide-react';
+import { CodeExhibit } from '@/components/ConsultingExhibits';
+import { NarrativeOpening } from '@/components/EditorialNarrative';
 import { InteractiveEvidence } from '@/components/InteractiveEvidence';
 import { MechanicalMark } from '@/components/MechanicalVisuals';
-import { NewsAnalysisProse } from '@/components/NewsAnalysisProse';
+import { NarrativeSections, ReportActionAgenda, ReportReferences } from '@/components/NarrativeReport';
 import { articleResearch, articles } from '@/lib/content';
 import { newsEvidenceViews } from '@/lib/editorialGraphics';
-import { newsEditorial } from '@/lib/newsEditorial';
-import { newsNarrative } from '@/lib/newsNarrative';
-import { articleDepth } from '@/lib/paperDepth';
+import { newsEditorial, type NewsExhibitPlacement } from '@/lib/newsEditorial';
+import { dedupeSources } from '@/lib/reportNarrative';
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
@@ -22,7 +21,14 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
   const article = articles.find((item) => item.slug === slug);
   if (!article) notFound();
   const editorial = newsEditorial[article.slug];
-  const narrative = newsNarrative[article.slug];
+  const references = dedupeSources([
+    ...article.sources,
+    ...articleResearch[article.slug].map(({ source, href, finding }) => ({ label: source, href, detail: finding })),
+    ...editorial.sections.flatMap((section) => section.paragraphs.flatMap((paragraph) => paragraph.sources ?? [])),
+  ]);
+  const renderExhibit = (placement: NewsExhibitPlacement) => placement.kind === 'evidence'
+    ? <InteractiveEvidence key={`evidence-${placement.view}`} views={[newsEvidenceViews[article.slug][placement.view]]}/>
+    : <CodeExhibit key="system" title={article.code.title} eyebrow="Implementation pattern" lines={article.code.lines} nodes={article.code.nodes}/>;
 
   return (
     <article className="article-detail insight-report prose-first-report">
@@ -32,50 +38,14 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
       <p className="lede">{editorial.standfirst}</p>
       <div className="article-hero-image"><Image src={article.image} alt="" fill priority sizes="(max-width: 1000px) 100vw, 860px"/><span>{article.artLabel}</span><MechanicalMark label="Evidence briefing"/></div>
 
+      <NarrativeOpening label={editorial.sceneLabel} title={editorial.sceneTitle} paragraphs={editorial.sceneParagraphs}/>
       <section className="thesis-panel"><span>Central contention</span><p>{editorial.thesis}</p></section>
-      <MetricStrip metrics={article.metrics}/>
 
-      <section className="key-findings">
-        <span>The argument in brief</span>
-        <div>{editorial.takeaways.map((takeaway, index) => <p key={takeaway}><b>{String(index + 1).padStart(2, '0')}</b>{takeaway}</p>)}</div>
-      </section>
+      <NarrativeSections sections={editorial.sections} className="editorial-report-sections continuous-report-sections" contentsLabel="In this analysis" renderExhibit={renderExhibit}/>
 
-      <NarrativeOpening label={narrative.sceneLabel} title={narrative.sceneTitle} paragraphs={narrative.sceneParagraphs}/>
+      <ReportActionAgenda eyebrow="Leadership agenda" title="Decisions arising from the analysis" actions={article.actions}/>
 
-      <div className="report-body article-report-body">
-        <nav className="report-contents" aria-label="Analysis contents">
-          <span>In this analysis</span>
-          {editorial.sections.map((section, index) => <a href={`#section-${index + 1}`} key={section.heading}>{String(index + 1).padStart(2, '0')} {section.heading}</a>)}
-        </nav>
-        <div className="report-sections editorial-report-sections">
-          {editorial.sections.map((section, index) => (
-            <section id={`section-${index + 1}`} key={section.heading}>
-              <span className="section-number">{String(index + 1).padStart(2, '0')}</span>
-              <h2>{section.heading}</h2>
-              {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-            </section>
-          ))}
-        </div>
-      </div>
-
-      <AnalystLens lens={narrative.analystLens}/>
-      <InteractiveEvidence views={newsEvidenceViews[article.slug]}/>
-      <ResearchEvidence title="What the wider evidence says" findings={articleResearch[article.slug]}/>
-      <NewsAnalysisProse depth={articleDepth[article.slug]}/>
-      <CodeExhibit title={article.code.title} eyebrow="Implementation pattern" lines={article.code.lines} nodes={article.code.nodes}/>
-      <EditorialConclusion title={narrative.conclusionTitle} paragraphs={narrative.conclusionParagraphs}/>
-
-      <section className="next-step-panel article-actions">
-        <span>Leadership agenda</span>
-        <h2>Translate the analysis into an operating decision.</h2>
-        <ol>{article.actions.map((action) => <li key={action}><Check size={16}/>{action}</li>)}</ol>
-      </section>
-
-      <aside className="references">
-        <h2>Sources and further reading</h2>
-        <p>External evidence is used for context. Quiet Gears analysis and illustrative charts are identified separately.</p>
-        <ol>{article.sources.map((source) => <li key={source.href}><a href={source.href} target="_blank" rel="noreferrer">{source.label} <ArrowUpRight size={14}/></a></li>)}</ol>
-      </aside>
+      <ReportReferences id="news-references" title="Sources and further reading" introduction="External evidence is used for context. Quiet Gears analysis and illustrative charts are identified separately." sources={references}/>
     </article>
   );
 }

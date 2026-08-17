@@ -356,7 +356,6 @@ export const articles: Article[] = [
 ];
 
 export type ResearchFinding = { statistic: string; finding: string; implication: string; source: string; href: string };
-export type DecisionRow = { decision: string; evidence: string; control: string; measure: string };
 
 export const caseResearch: Record<string, ResearchFinding[]> = {
   'yacht-operations': [
@@ -388,39 +387,6 @@ export const caseResearch: Record<string, ResearchFinding[]> = {
     { statistic: 'Known good', finding: 'NCSC recommends schema-based validation at operational trust boundaries', implication: 'Jobs, resource data and telemetry should be validated before they influence a daily plan.', source: 'NCSC, Standardised and secure OT protocols, 2026', href: 'https://www.ncsc.gov.uk/collection/operational-technology/secure-connectivity/principle-4' },
     { statistic: 'Lifecycle', finding: 'NIST risk guidance expects measurement and management throughout operation', implication: 'Overrides, actual durations and plan failures should feed a continuing review rather than a one-off model assessment.', source: 'NIST AI Risk Management Framework', href: 'https://www.nist.gov/itl/ai-risk-management-framework' },
     { statistic: '21%', finding: 'Only a minority of AI-using UK businesses report integration into existing systems', implication: 'Planning value depends on validated work orders, resource records and dispatch workflow integration, not a standalone recommendation screen.', source: 'UK Business Data Survey 2026', href: 'https://www.gov.uk/government/statistics/uk-business-data-survey-2026/uk-business-data-survey-2026' },
-  ],
-};
-
-export const caseDecisionRows: Record<string, DecisionRow[]> = {
-  'yacht-operations': [
-    { decision: 'Is the enquiry qualified?', evidence: 'Need, timing, fit and source', control: 'Required fields plus owner review', measure: 'Time to qualification' },
-    { decision: 'What happens next?', evidence: 'Current state, commitments and availability', control: 'State policy with named owner', measure: 'Overdue next actions' },
-    { decision: 'Can communication be sent?', evidence: 'Approved facts and customer context', control: 'Human approval before release', measure: 'Corrections after drafting' },
-    { decision: 'Where is management attention needed?', evidence: 'Age, exceptions and commercial value', control: 'Transparent priority rules', measure: 'Risks identified before impact' },
-  ],
-  'cold-chain': [
-    { decision: 'Is the signal trustworthy?', evidence: 'Reading, heartbeat and calibration state', control: 'Data-quality policy', measure: 'Invalid signals detected' },
-    { decision: 'Is this an operational exception?', evidence: 'Duration, threshold, asset and product context', control: 'Versioned threshold policy', measure: 'Alert precision' },
-    { decision: 'What response is required?', evidence: 'Severity, prior action and operating procedure', control: 'Human triage and escalation matrix', measure: 'Time to accountable action' },
-    { decision: 'Can the event close?', evidence: 'Corrective action and confirmed recovery', control: 'Required closure evidence', measure: 'Complete exception records' },
-  ],
-  'property-pipeline': [
-    { decision: 'Can the transaction enter the pipeline?', evidence: 'Parties, objective, authority and fit', control: 'Qualification gate', measure: 'Unqualified work admitted' },
-    { decision: 'Can the stage advance?', evidence: 'Minimum data set and required documents', control: 'Evidence-backed stage gate', measure: 'Stage reversals' },
-    { decision: 'What needs escalation?', evidence: 'Deadline, missing evidence and dependency', control: 'Exception policy with owner', measure: 'Late risks identified' },
-    { decision: 'Is completion ready?', evidence: 'Approval, documents and outstanding actions', control: 'Professional sign-off', measure: 'Completion defects' },
-  ],
-  'professional-services-intake': [
-    { decision: 'Is the enquiry complete?', evidence: 'Structured facts and supporting documents', control: 'Mandatory field validation', measure: 'Requests for missing information' },
-    { decision: 'Do controls permit review?', evidence: 'Identity, conflict and eligibility results', control: 'Deterministic stop gates', measure: 'Control exceptions' },
-    { decision: 'Which service route applies?', evidence: 'Matter type, urgency and complexity', control: 'Approved triage taxonomy', measure: 'Reclassified matters' },
-    { decision: 'Will the firm accept?', evidence: 'Original evidence, controls and professional assessment', control: 'Named professional approval', measure: 'Time to first decision' },
-  ],
-  'field-service-planning': [
-    { decision: 'Is the job schedulable?', evidence: 'Scope, location, duration, parts and eligibility', control: 'Hard constraint validation', measure: 'Failed assignments' },
-    { decision: 'Which option is preferred?', evidence: 'Service level, priority, travel and stability', control: 'Visible balanced score', measure: 'Plan objective performance' },
-    { decision: 'Should the plan change?', evidence: 'New event and impact on committed work', control: 'Minimum-change policy', measure: 'In-day plan churn' },
-    { decision: 'What should the model learn?', evidence: 'Actuals and coded override reason', control: 'Weekly operational review', measure: 'Assumption error by category' },
   ],
 };
 
@@ -462,11 +428,3 @@ export const articleResearch: Record<string, ResearchFinding[]> = {
     { statistic: 'Productivity, not revenue', finding: 'Most UK adopters report productivity improvement while most report no revenue change', implication: 'Business cases should distinguish operating performance from realised financial value and make the conversion mechanism explicit.', source: 'DSIT, AI Adoption Research, 2026', href: 'https://www.gov.uk/government/publications/ai-adoption-research/ai-adoption-research' },
   ],
 };
-
-export const articleDecisionRows: Record<string, DecisionRow[]> = Object.fromEntries(articles.map((article) => [article.slug, [
-  { decision: 'What business result should change?', evidence: 'Baseline volume, quality, delay and cost', control: 'Named operational owner', measure: 'Observed change against baseline' },
-  { decision: 'Where may AI contribute?', evidence: 'Task variation, judgement and failure modes', control: 'Bounded use-case definition', measure: 'Accepted output and exception rate' },
-  { decision: 'Can authority expand?', evidence: 'Evaluation, live performance and incident record', control: 'Explicit approval threshold', measure: 'Performance by risk category' },
-  { decision: 'Should investment continue?', evidence: 'Adoption, total cost, realised value and risk', control: 'Quarterly value review', measure: 'Realised benefit with confidence range' },
-]]));
-
