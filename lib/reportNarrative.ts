@@ -18,6 +18,24 @@ export type ReportSection<TExhibit> = {
   exhibits?: TExhibit[];
 };
 
+export type ReadingMode = 'simple' | 'advanced';
+
+export type ReportOpening = {
+  label: string;
+  title: string;
+  paragraphs: string[];
+  centralQuestion?: string;
+};
+
+export type ReportVariant<TExhibit> = {
+  standfirst: string;
+  thesis: string;
+  opening?: ReportOpening;
+  sections: ReportSection<TExhibit>[];
+  actionAgenda: string[];
+  estimatedReadingTime: string;
+};
+
 export function dedupeSources(sources: ReportSource[]) {
   const registry = new Map<string, ReportSource>();
   sources.forEach((source) => {

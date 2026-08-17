@@ -5,9 +5,13 @@ import { articleResearch, articles, caseResearch, cases } from '@/lib/content';
 import { newsEvidenceViews } from '@/lib/editorialGraphics';
 import { firstConversation, serviceJourney, servicePathways } from '@/lib/serviceModel';
 import { newsEditorial } from '@/lib/newsEditorial';
+import { getCaseVariants, getNewsVariants } from '@/lib/reportVariants';
+import { advancedCaseDepth, advancedCaseExtensionSections, advancedCaseSections, advancedNewsDepth, advancedNewsExtensionSections, advancedNewsSections } from '@/lib/advancedDepth';
 
 describe('editorial content', () => {
   it('has unique routes for all case studies and articles', () => {
+    expect(articles).toHaveLength(8);
+    expect(cases).toHaveLength(5);
     const slugs = [...cases, ...articles].map((item) => item.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
   });
@@ -32,13 +36,56 @@ describe('editorial content', () => {
     })).toBe(true);
   });
 
-  it('gives all 11 reports explicit causal transitions', () => {
+  it('gives all 13 advanced reports explicit causal transitions', () => {
     const reports = [
       ...articles.map((item) => newsEditorial[item.slug]),
       ...cases.map((item) => caseEditorial[item.slug]),
     ];
-    expect(reports).toHaveLength(11);
+    expect(reports).toHaveLength(13);
     expect(reports.every((report) => !report.sections[0].transition && report.sections.slice(1).every((section) => section.transition && section.transition.length > 40))).toBe(true);
+  });
+
+  it('provides independently structured Simple and Advanced variants for every report', () => {
+    const newsVariants = articles.map((article) => getNewsVariants(article, newsEditorial[article.slug]));
+    const caseVariants = cases.map((study) => getCaseVariants(study, caseResearch[study.slug]));
+    const allVariants = [...newsVariants, ...caseVariants];
+    expect(allVariants).toHaveLength(13);
+    expect(allVariants.every((variants) => ['simple', 'advanced'].every((mode) => {
+      const variant = variants[mode as 'simple' | 'advanced'];
+      return variant.thesis.length > 0
+        && variant.opening
+        && variant.sections.length >= 4
+        && variant.sections.filter((section) => section.role === 'conclusion').length === 1
+        && variant.actionAgenda.length >= 3
+        && variant.estimatedReadingTime.length > 0;
+    }))).toBe(true);
+    expect(newsVariants.every((variants) => variants.simple.standfirst !== variants.advanced.standfirst && variants.simple.opening?.title !== variants.advanced.opening?.title)).toBe(true);
+  });
+
+  it('keeps each Advanced News report technically complete', () => {
+    expect(articles.every((article) => {
+      const variant = getNewsVariants(article, newsEditorial[article.slug]).advanced;
+      const placements = variant.sections.flatMap((section) => section.exhibits ?? []);
+      return variant.sections.length >= 5
+        && variant.sections.length <= 8
+        && variant.sections.filter((section) => section.role === 'counterargument').length === 1
+        && placements.filter((placement) => placement.kind === 'evidence').length === 2
+        && placements.filter((placement) => placement.kind === 'system').length === 1;
+    })).toBe(true);
+  });
+
+  it('adds report-specific technical depth to every Advanced section', () => {
+    expect(articles.every((article) => advancedNewsDepth[article.slug]?.length === newsEditorial[article.slug].sections.length && advancedNewsDepth[article.slug].every((paragraphs) => paragraphs.length >= 2))).toBe(true);
+    expect(cases.every((study) => advancedCaseDepth[study.slug]?.length === caseEditorial[study.slug].sections.length && advancedCaseDepth[study.slug].every((paragraphs) => paragraphs.length >= 2))).toBe(true);
+    expect(articles.every((article) => advancedNewsSections[article.slug]?.length >= 1)).toBe(true);
+    expect(cases.every((study) => advancedCaseSections[study.slug]?.length >= 2)).toBe(true);
+    expect(Object.keys(advancedNewsExtensionSections)).toHaveLength(6);
+    expect(Object.keys(advancedCaseExtensionSections)).toHaveLength(4);
+    const variants = [
+      ...articles.map((article) => getNewsVariants(article, newsEditorial[article.slug]).advanced),
+      ...cases.map((study) => getCaseVariants(study, caseResearch[study.slug]).advanced),
+    ];
+    expect(variants.every((variant) => variant.sections.reduce((total, section) => total + section.paragraphs.length, 0) >= 25)).toBe(true);
   });
 
   it('gives every case study one decision-led operating narrative', () => {
@@ -136,6 +183,53 @@ describe('editorial content', () => {
     expect(chart).toContain('onFocus');
   });
 
+  it('implements persistent, keyboard-operable reading controls with Advanced as the no-script default', () => {
+    const layout = readFileSync('app/layout.tsx', 'utf8');
+    const control = readFileSync('components/ReadingModeSwitch.tsx', 'utf8');
+    const newsPage = readFileSync('app/news/[slug]/page.tsx', 'utf8');
+    const casePage = readFileSync('app/case-studies/[slug]/page.tsx', 'utf8');
+    expect(layout).toContain('data-reading-mode="advanced"');
+    expect(layout).toContain('quiet-gears-reading-mode');
+    expect(control).toContain('localStorage.setItem');
+    expect(control).toContain('aria-pressed');
+    expect(control).toContain('aria-controls');
+    expect(control).toContain('<button');
+    expect(newsPage).toContain('idPrefix={`${mode}-news-${article.slug}`}');
+    expect(casePage).toContain('idPrefix={`${mode}-case-${study.slug}`}');
+  });
+
+  it('keeps headings and paragraph openings report-specific', () => {
+    const reports = [
+      ...articles.map((article) => ({ slug: article.slug, variants: getNewsVariants(article, newsEditorial[article.slug]) })),
+      ...cases.map((study) => ({ slug: study.slug, variants: getCaseVariants(study, caseResearch[study.slug]) })),
+    ];
+    const headingOwners = new Map<string, Set<string>>();
+    const openingOwners = new Map<string, Set<string>>();
+    reports.forEach(({ slug, variants }) => {
+      (['simple', 'advanced'] as const).forEach((mode) => variants[mode].sections.forEach((section) => {
+        const heading = section.heading.toLowerCase();
+        headingOwners.set(heading, (headingOwners.get(heading) ?? new Set()).add(slug));
+        section.paragraphs.forEach(({ text }) => {
+          const opening = text.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(/\s+/).slice(0, 7).join(' ');
+          openingOwners.set(opening, (openingOwners.get(opening) ?? new Set()).add(slug));
+        });
+      }));
+    });
+    expect([...headingOwners.values()].every((owners) => owners.size === 1)).toBe(true);
+    expect([...openingOwners.values()].every((owners) => owners.size === 1)).toBe(true);
+  });
+
+  it('contains no tables or prohibited editorial templates in published report data', () => {
+    const corpus = JSON.stringify({ cases, articles, newsEditorial, caseEditorial, newsEvidenceViews, advancedNewsDepth, advancedCaseDepth, advancedNewsSections, advancedCaseSections, advancedNewsExtensionSections, advancedCaseExtensionSections }).toLowerCase();
+    expect(corpus).not.toContain('rather than');
+    expect(corpus).not.toContain('instead of');
+    expect(corpus).not.toContain('the graphic establishes');
+    expect(corpus).not.toContain('the unresolved question');
+    expect(corpus).not.toContain('ai-powered transformation');
+    expect(readFileSync('app/news/[slug]/page.tsx', 'utf8')).not.toContain('<table');
+    expect(readFileSync('app/case-studies/[slug]/page.tsx', 'utf8')).not.toContain('<table');
+  });
+
   it('places source links inside the news argument', () => {
     expect(articles.every((item) => newsEditorial[item.slug].sections.some((section) => section.paragraphs.some((paragraph) => paragraph.sources?.length)))).toBe(true);
   });
@@ -147,6 +241,6 @@ describe('editorial content', () => {
   });
 
   it('does not use em dashes in published content', () => {
-    expect(JSON.stringify({ cases, articles, caseResearch, articleResearch, serviceJourney, servicePathways, newsEditorial, caseEditorial, newsEvidenceViews })).not.toContain('—');
+    expect(JSON.stringify({ cases, articles, caseResearch, articleResearch, serviceJourney, servicePathways, newsEditorial, caseEditorial, newsEvidenceViews, advancedNewsDepth, advancedCaseDepth, advancedNewsSections, advancedCaseSections, advancedNewsExtensionSections, advancedCaseExtensionSections })).not.toContain('—');
   });
 });

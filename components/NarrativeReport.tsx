@@ -6,23 +6,25 @@ export function NarrativeSections<TExhibit extends { afterParagraph: number }>({
   sections,
   className,
   contentsLabel,
+  idPrefix,
   renderExhibit,
 }: {
   sections: ReportSection<TExhibit>[];
   className: string;
   contentsLabel: string;
+  idPrefix: string;
   renderExhibit: (exhibit: TExhibit) => ReactNode;
 }) {
   return (
     <div className="report-body">
       <nav className="report-contents" aria-label={`${contentsLabel} contents`}>
         <span>{contentsLabel}</span>
-        {sections.map((section, index) => <a href={`#section-${index + 1}`} key={section.heading}>{String(index + 1).padStart(2, '0')} {section.heading}</a>)}
+        {sections.map((section, index) => <a href={`#${idPrefix}-section-${index + 1}`} key={section.heading}>{String(index + 1).padStart(2, '0')} {section.heading}</a>)}
       </nav>
       <div className={`report-sections narrative-report-sections ${className}`}>
         {sections.map((section, sectionIndex) => (
-          <section id={`section-${sectionIndex + 1}`} key={section.heading} data-section-role={section.role ?? 'analysis'}>
-            {section.transition && <p className="section-transition"><span>Transition</span>{section.transition}</p>}
+          <section id={`${idPrefix}-section-${sectionIndex + 1}`} key={section.heading} data-section-role={section.role ?? 'analysis'}>
+            {section.transition && <p className="section-transition">{section.transition}</p>}
             <span className="section-number">{String(sectionIndex + 1).padStart(2, '0')}</span>
             <span className="section-purpose">{section.purpose}</span>
             <h2>{section.heading}</h2>

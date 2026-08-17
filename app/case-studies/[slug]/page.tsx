@@ -7,10 +7,12 @@ import { NarrativeOpening } from '@/components/EditorialNarrative';
 import { InteractiveEvidence } from '@/components/InteractiveEvidence';
 import { MechanicalMark } from '@/components/MechanicalVisuals';
 import { NarrativeSections, ReportActionAgenda, ReportReferences } from '@/components/NarrativeReport';
+import { ReadingModeSwitch } from '@/components/ReadingModeSwitch';
 import type { CaseExhibitPlacement } from '@/lib/caseEditorial';
 import { caseEditorial } from '@/lib/caseEditorial';
 import { caseResearch, cases } from '@/lib/content';
 import { dedupeSources } from '@/lib/reportNarrative';
+import { getCaseVariants } from '@/lib/reportVariants';
 
 export function generateStaticParams() {
   return cases.map((item) => ({ slug: item.slug }));
@@ -22,18 +24,8 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
   if (!study) notFound();
   const editorial = caseEditorial[study.slug];
   const research = caseResearch[study.slug];
+  const variants = getCaseVariants(study, research);
   const references = dedupeSources(research.map(({ source, href, finding }) => ({ label: source, href, detail: finding })));
-  const sections = editorial.sections.map((section) => ({
-    ...section,
-    paragraphs: section.paragraphs.map((paragraph) => ({
-      text: paragraph.text,
-      sources: paragraph.sources?.map((sourceIndex) => ({
-        label: research[sourceIndex].source,
-        href: research[sourceIndex].href,
-        detail: research[sourceIndex].finding,
-      })),
-    })),
-  }));
   const evidenceViews = [{
     label: 'Operating evidence',
     title: editorial.evidenceTitle,
@@ -61,16 +53,23 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
         <Link className="back" href="/case-studies"><ArrowLeft size={16}/> All case studies</Link>
         <div className="report-meta"><span className="badge">{study.status}</span><span>{study.sector}</span><span>Operating case</span></div>
         <h1>{study.title}</h1>
-        <p className="lede">{study.summary}</p>
-        <div className="executive-brief"><span>Engagement thesis</span><p>{editorial.thesis}</p></div>
         <p className="case-status-note"><strong>Evidence status.</strong> {editorial.statusStatement}</p>
         <div className="detail-visual report-visual"><Image src={study.image} alt="" fill priority sizes="(max-width: 1200px) 100vw, 1030px"/><MechanicalMark label="Operating decision map"/><div className="case-image-wash"/></div>
 
-        <NarrativeOpening label={editorial.sceneLabel} title={editorial.openingTitle} paragraphs={editorial.openingParagraphs} centralQuestion={editorial.centralQuestion}/>
-
-        <NarrativeSections sections={sections} className="continuous-case-sections" contentsLabel="Decision narrative" renderExhibit={renderExhibit}/>
-
-        <ReportActionAgenda eyebrow="Release agenda" title="Decisions required before the next release" actions={study.nextSteps}/>
+        <ReadingModeSwitch simplePanelId={`simple-case-${study.slug}`} advancedPanelId={`advanced-case-${study.slug}`}/>
+        {(['simple', 'advanced'] as const).map((mode) => {
+          const variant = variants[mode];
+          return (
+            <section className="report-mode-panel" id={`${mode}-case-${study.slug}`} data-report-mode={mode} aria-label={`${mode} reading level`} key={mode}>
+              <p className="mode-read-estimate">Estimated reading time: {variant.estimatedReadingTime}</p>
+              <p className="lede">{variant.standfirst}</p>
+              <div className="executive-brief"><span>Engagement thesis</span><p>{variant.thesis}</p></div>
+              {variant.opening && <NarrativeOpening label={variant.opening.label} title={variant.opening.title} paragraphs={variant.opening.paragraphs} centralQuestion={variant.opening.centralQuestion}/>}
+              <NarrativeSections sections={variant.sections} className="continuous-case-sections" contentsLabel={mode === 'simple' ? 'Executive case' : 'Technical case'} idPrefix={`${mode}-case-${study.slug}`} renderExhibit={renderExhibit}/>
+              <ReportActionAgenda eyebrow="Release agenda" title="Decisions required before the next release" actions={variant.actionAgenda}/>
+            </section>
+          );
+        })}
 
         <ReportReferences id="case-references" title="Sources informing the design hypothesis" introduction="These publications provide external context. Their findings do not convert this engagement or illustrative design into a measured client result." sources={references}/>
 
