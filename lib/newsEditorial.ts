@@ -31,13 +31,13 @@ const qjeStudy = { label: 'Quarterly Journal of Economics, Generative AI at Work
 export const newsEditorial: Record<string, NewsEditorial> = {
   'ai-integration-gap': {
     title: 'The AI integration gap is now a management problem',
-    standfirst: 'Access to artificial intelligence has spread faster than the operating discipline required to make it useful. The next phase will be decided by workflow design, data ownership and management attention rather than another round of software licences.',
+    standfirst: 'Access to artificial intelligence has spread faster than the operating discipline required to make it useful. Workflow design, data ownership and sustained management attention will decide whether the next wave of spending produces operating value.',
     thesis: 'The competitive divide is shifting from who can obtain an AI tool to who can connect it to a material workflow, govern its decisions and improve it with evidence.',
     sceneLabel: 'Composite management vignette',
     sceneTitle: 'The licence dashboard is green. The operating dashboard has not moved',
     sceneParagraphs: [
       'At the monthly review of a 120-person services firm, the technology dashboard looks encouraging. Most employees can use an AI assistant and weekly activity is rising. The operating dashboard is less persuasive. Customer-response time, first-time quality and work in progress look much as they did six months earlier. The chief financial officer asks where the return has gone.',
-      'Employees have not done nothing. They have improved drafts, summarised calls and accelerated research. Yet those personal gains have not changed the route by which an enquiry becomes an accepted outcome. The question facing the meeting is therefore not whether AI can help an individual. It is what must change before individual assistance becomes repeatable operating performance.',
+      'Employees have improved drafts, summarised calls and accelerated research. Those personal gains have left the route from enquiry to accepted outcome largely unchanged. The meeting therefore needs to identify the organisational changes that would turn individual assistance into repeatable operating performance.',
     ],
     sections: [
       {
@@ -56,8 +56,8 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         purpose: 'Show why reported system integration is a more useful, but still incomplete, indicator.',
         paragraphs: [
           { text: 'That narrower question exposes a genuine gap. Among businesses in the UK Business Data Survey that already used AI, 21 percent reported that their tools were integrated with an existing business system. The rate rose from 18 percent among sole traders to 57 percent among large businesses. The result suggests that resources and digital maturity matter, although the survey definition includes relatively light forms of integration such as an assistant embedded in office software.', sources: [ukBusinessData] },
-          { text: 'The figure therefore establishes that formal connection is less common than use, but it does not prove that only one fifth of adopters have achieved operational value. Nor does it show that integration caused better performance. It does, however, direct management towards the work hidden behind the connector: reliable inputs, permissions, business rules, exceptions and a named owner when the result is wrong.' },
-          { text: 'Back in the monthly review, this changes the diagnosis. The firm does not have a licence problem. It has not chosen the customer or operating decision that the technology is expected to improve. The next question is what, exactly, should be designed once that decision is selected.' },
+          { text: 'Formal connection remains much less common than tool use. The figure says nothing about the value achieved by the other adopters, and it cannot establish causation between integration and performance. Its practical force lies elsewhere: a connector brings inputs, permissions, business rules, exceptions and accountability into the investment decision.' },
+          { text: 'That evidence changes the monthly review. Licence counts reveal activity while leaving the intended customer or operating decision undefined. Management must choose that decision before it can design the surrounding workflow.' },
         ],
         exhibits: [{ kind: 'evidence', view: 1, afterParagraph: 0 }],
       },
@@ -76,9 +76,9 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         heading: 'Limits of informal use',
         role: 'counterargument',
         transition: 'Formal workflow creates cost and control obligations, so the argument must test when informal assistance remains sufficient.',
-        purpose: 'Address the strongest counterargument without weakening the central thesis.',
+        purpose: 'Test whether disciplined experimentation can succeed before full integration.',
         paragraphs: [
-          { text: 'The serious counterargument is that formal integration can be disproportionate. A researcher who drafts faster or a manager who prepares a meeting more efficiently may create real value without a new system of record. OECD respondents most often identified improved employee performance as a benefit of generative AI, and the survey explicitly warns that it did not measure the size of that improvement.', sources: [oecdWorkforce] },
+          { text: 'Formal integration can be disproportionate. A researcher who drafts faster or a manager who prepares a meeting more efficiently may create real value without a new system of record. OECD respondents most often identified improved employee performance as a benefit of generative AI, although the survey did not measure the size of that improvement.', sources: [oecdWorkforce] },
           { text: 'Management should not suppress these gains merely because they are difficult to aggregate. Personal tools are sensible where consequences are low, context is local and the employee can judge the output. The case for integration begins when work crosses people or systems, when the decision recurs at meaningful volume, or when failure requires an accountable response.' },
           { text: 'That boundary resolves the apparent conflict. Informal assistance can remain a useful productivity layer, while investment discipline is reserved for workflows where repeatability, traceability and scale matter. The monthly review can now ask which activities belong on each side of that boundary.' },
         ],
@@ -87,10 +87,10 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         heading: 'CFO decision threshold',
         role: 'conclusion',
         transition: 'Having separated low-risk personal use from recurring operational work, the monthly review can now set an investment threshold.',
-        purpose: 'Resolve the opening dilemma as a concrete management decision.',
+        purpose: 'Turn the monthly licence review into a bounded workflow decision.',
         paragraphs: [
           { text: 'The chief financial officer will not find the return by examining prompts or active users more closely. The next credible unit of analysis is one eligible workflow. Management should name its owner, record its baseline, define the accepted outcome and identify the data and authority required to move work safely.' },
-          { text: 'A bounded release can then answer the question the licence dashboard could not. If cycle time, quality or capacity improves after review and exception effort are counted, the firm has evidence for expansion. If activity rises but the operating result does not, the programme should change scope or stop.' },
+          { text: 'A bounded release supplies the evidence missing from the licence dashboard. Improvement in cycle time, quality or capacity must survive the inclusion of review and exception effort. Without that improvement, higher activity supports a change of scope or an end to the programme.' },
           { text: 'The original dashboard was not wrong. It was incomplete. It showed that colleagues were willing to experiment. The management task is to convert that willingness into one governed route from input to outcome, and to fund the next route only when the first has produced evidence.' },
         ],
       },
@@ -99,19 +99,19 @@ export const newsEditorial: Record<string, NewsEditorial> = {
   'open-weight-price-war': {
     title: 'Cheaper AI models will not make implementation cheap',
     standfirst: 'The price of machine intelligence is falling quickly, widening the range of viable experiments. But inference is only one line in the cost of dependable automation. Review, integration and operational control will decide which apparent bargains create value.',
-    thesis: 'Lower model prices increase strategic choice, but the winning architecture will minimise the cost of accepted work rather than the cost of generating an answer.',
+    thesis: 'Lower model prices increase strategic choice. The decisive economic measure is the full cost of work that meets the required standard and can be accepted into operations.',
     sceneLabel: 'Composite procurement vignette',
     sceneTitle: 'The model bill falls by 90 percent and the project still misses its budget',
     sceneParagraphs: [
       'A buyer replaces an expensive model in a document-processing service with a cheaper alternative. The inference invoice falls almost exactly as promised. The next operating review is less comfortable. Exception queues are longer, quality sampling has expanded and engineers have spent several weeks reproducing a feature that existed inside the former provider.',
-      'The result does not invalidate the price decline. It reveals that the organisation was measuring the wrong unit. Models generate outputs; businesses pay for accepted tasks. The question for procurement is how much cost survives between those two events.',
+      'The price decline remains real; the unit of analysis was wrong. Models generate outputs, while businesses incur the full cost of producing an accepted task. Procurement needs to measure every expense between those two events.',
     ],
     sections: [
       {
         heading: 'Inference price compression',
         purpose: 'Establish the scale and limits of the historical price decline.',
         paragraphs: [
-          { text: 'The fall in headline inference prices is substantial. Stanford reports that the cost of querying a model above a stated GPT-3.5-level MMLU threshold fell from about $20 per million tokens in November 2022 to $0.07 by October 2024. This is a historical benchmark comparison, not a guarantee of equivalent performance on a live workflow, but it changes the economics of testing.', sources: [stanfordIndex] },
+          { text: 'The fall in headline inference prices is substantial. Stanford reports that the cost of querying a model above a stated GPT-3.5-level MMLU threshold fell from about $20 per million tokens in November 2022 to $0.07 by October 2024. The comparison is historical and offers no guarantee of equivalent performance in a live workflow. Even with that caveat, it materially lowers the cost of testing.', sources: [stanfordIndex] },
           { text: 'For a smaller firm, the immediate benefit is option value. Tasks that could not justify an expensive experiment can now be benchmarked against representative documents, messages or decisions. Lower prices also make it practical to compare several model families before signing a long contract.' },
           { text: 'The procurement team in the opening scene captured this input saving correctly. Its mistake was assuming that the input represented the whole service. What else belongs in the cost of an accepted task?' },
         ],
@@ -132,7 +132,7 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         transition: 'Once accepted-task cost is visible, open weights can be assessed as an exchange between supplier expense and internal responsibility.',
         purpose: 'Explain where open-weight control is economically valuable and where it is not.',
         paragraphs: [
-          { text: 'Open-weight models can improve control over data location, latency, capacity and model choice. Benchmark gaps on selected measures have also narrowed, expanding the credible set of candidates. The evidence does not establish parity on every task, but it makes automatic dependence on one frontier supplier harder to justify.', sources: [stanfordIndex] },
+          { text: 'Open-weight models can improve control over data location, latency, capacity and model choice. Benchmark gaps on selected measures have also narrowed, expanding the credible set of candidates. Performance still varies by task, so parity cannot be assumed. Even so, automatic dependence on one frontier supplier now requires a stronger justification.', sources: [stanfordIndex] },
           { text: 'The control comes with obligations. Licensing, provenance, security, patching, monitoring, hardware capacity and service continuity now sit with the deployer or its infrastructure partner. NIST treats risk as a lifecycle concern because a satisfactory release can deteriorate as models, data and use patterns change.', sources: [nistGenAi] },
           { text: 'The management test should begin with a constraint. Local deployment may be justified by a data boundary, latency requirement or resilience need. Avoiding a usage fee alone is a weak reason if the organisation lacks the people to operate the resulting service. The next complication is that managed providers may offer capabilities worth paying for.' },
         ],
@@ -141,12 +141,12 @@ export const newsEditorial: Record<string, NewsEditorial> = {
       {
         heading: 'Rational supplier lock-in',
         role: 'counterargument',
-        transition: 'Self-hosting is not automatically superior, so the next section tests when managed dependency is economically rational.',
-        purpose: 'Consider the strongest case for provider-specific architecture.',
+        transition: 'Control carries its own engineering and operating cost. The next section identifies the conditions under which a managed supplier remains the sounder economic choice.',
+        purpose: 'Examine where managed platforms earn their premium.',
         paragraphs: [
           { text: 'A rigid demand for portability can itself destroy value. Managed platforms may combine strong models with retrieval, security, observability and support that would be costly to reproduce. If those services materially improve accepted-task economics, a degree of dependency can be a rational commercial choice.' },
           { text: 'The discipline is to make that dependency visible. Business rules, representative test cases and acceptance criteria should remain controlled by the buyer even when execution uses proprietary features. A stable evaluation set is more important than a universal adapter because it allows the firm to determine whether a second provider can satisfy the same business standard.' },
-          { text: 'In the opening procurement case, the hidden engineering effort was evidence that dependency had never been priced. The answer is not to eliminate every dependency, but to decide which ones produce a measurable advantage and what it would cost to leave them.' },
+          { text: 'In the opening procurement case, hidden engineering effort showed that dependency had never been priced. Buyers should retain dependencies that produce a measurable advantage and calculate the cost of leaving each one before signing.' },
         ],
         exhibits: [{ kind: 'system', afterParagraph: 1 }],
       },
@@ -154,11 +154,11 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         heading: 'Model-sourcing decision',
         role: 'conclusion',
         transition: 'The trade-off between control and managed service leads to a sourcing rule that must remain valid as model prices move.',
-        purpose: 'Resolve the budget problem with a repeatable procurement decision.',
+        purpose: 'Reframe the delayed procurement decision around accepted-task cost.',
         paragraphs: [
-          { text: 'The lower invoice is still valuable. It should fund a broader benchmark, better evaluation and a realistic account of review and exceptions rather than a larger volume of unchecked output. Procurement, technology and the workflow owner should agree one denominator: accepted tasks at the required level of quality and consequence.' },
+          { text: 'The lower invoice remains valuable when the saving finances broader benchmarks, stronger evaluation and a realistic account of review and exceptions. Procurement, technology and the workflow owner should agree one denominator: accepted tasks at the required level of quality and consequence.' },
           { text: 'The organisation can then reserve expensive capability for tasks where it changes acceptance, use smaller models where evidence supports them and choose open-weight deployment where control solves a genuine constraint. The same test can be rerun as the market moves.' },
-          { text: 'The project in the opening scene missed its budget because it changed a model before understanding the service around it. Its next sourcing decision should begin with that service. Falling prices create leverage only for buyers able to compare complete outcomes rather than attractive inputs.' },
+          { text: 'The project in the opening scene missed its budget because it changed a model before understanding the service around it. Its next sourcing decision should begin with that service. Falling prices create leverage only when buyers compare complete outcomes and resist the distraction of an attractive input price.' },
         ],
       },
     ],
@@ -176,10 +176,10 @@ export const newsEditorial: Record<string, NewsEditorial> = {
     sections: [
       {
         heading: 'Demonstration-to-production gap',
-        purpose: 'Explain why apparent capability does not establish production readiness.',
+        purpose: 'Trace the gap between a fluent demonstration and dependable production work.',
         paragraphs: [
           { text: 'The smooth demonstration is attractive because its input is complete, its policy is consistent and its successful ending has been selected in advance. Production work is less cooperative. Customers change their minds, records conflict and exceptions cross departmental boundaries. Employees resolve these cases through informal routes that a process map may never have captured.' },
-          { text: 'Current adoption data supports caution about treating agency as a mature default. In DSIT research, agentic AI was the least used technology among AI adopters at 7 percent, compared with 85 percent using natural-language or text-generation tools. The figures measure reported use, not safety or value, but they show that operational experience remains relatively limited.', sources: [ukAdoption] },
+          { text: 'Current adoption data supports caution about treating agency as a mature default. In DSIT research, agentic AI was the least used technology among AI adopters at 7 percent, compared with 85 percent using natural-language or text-generation tools. Reported use reveals neither safety nor value. It does show that operational experience remains relatively limited.', sources: [ukAdoption] },
           { text: 'The failed enquiry therefore needs to be observed as work, not reconstructed as a better demonstration. Follow the case from arrival to completion and record states, evidence, decisions, waiting and ownership. The next question is which parts of that route require intelligence at all.' },
         ],
         exhibits: [{ kind: 'evidence', view: 1, afterParagraph: 1 }],
@@ -189,7 +189,7 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         transition: 'The demonstration fails because it omits ordinary constraints, so the first design task is to repair the deterministic path.',
         purpose: 'Show how ordinary software reduces ambiguity before an agent is introduced.',
         paragraphs: [
-          { text: 'That observation usually reveals work that should be removed, standardised or validated. Required fields do not need a language model. Fixed calculations should remain deterministic. Known notifications and state changes belong in ordinary workflow software. These controls reduce the number of situations in which a model must infer what the organisation meant.' },
+          { text: 'That observation usually exposes work that can be removed, standardised or validated. Ordinary workflow software should handle required fields, fixed calculations, known notifications and state changes. With those controls in place, the model faces fewer occasions on which it must infer what the organisation meant.' },
           { text: 'In the customer enquiry, address validation can expose the conflict, the current policy can be versioned and the credit hold can become a controlled field. AI may still help interpret free text or prepare a response, but it no longer has to invent the process while executing it.' },
           { text: 'This combined design is less theatrical than a general agent and more dependable. Once the workflow has a stable state and explicit exceptions, management can address the consequential question the demonstration avoided: what authority should the model receive?' },
         ],
@@ -200,7 +200,7 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         purpose: 'Connect task-specific evidence to draft, recommend and act permissions.',
         paragraphs: [
           { text: 'Drafting an internal summary, recommending a route and changing a customer record are not points on one technical scale. They create different consequences and require different evidence. A practical authority model separates draft, recommend and act, then gives each level the minimum tools and permissions it needs.' },
-          { text: 'Research reinforces the need for task-level evaluation. One randomised METR study found experienced open-source developers took 19 percent longer with early-2025 AI tools on familiar repositories, while other studies have found substantial gains in different occupations and tasks. The result is not that AI makes experts slower. It is that performance cannot be imported from a benchmark or another workflow.', sources: [metrStudy, jaggedFrontier] },
+          { text: 'Research reinforces the need for task-level evaluation. One randomised METR study found experienced open-source developers took 19 percent longer with early-2025 AI tools on familiar repositories, while other studies found substantial gains in different occupations and tasks. The combined evidence rejects any universal effect for experts. Performance has to be established inside the relevant workflow.', sources: [metrStudy, jaggedFrontier] },
           { text: 'For the enquiry, a representative test set should include duplicate addresses, outdated attachments, credit holds and ambiguous requests. Safe completion, correction and rescue effort matter together. The authority gate can then expand only when those cases show that the system understands when to proceed and when to stop.' },
         ],
         exhibits: [{ kind: 'evidence', view: 0, afterParagraph: 1 }, { kind: 'system', afterParagraph: 2 }],
@@ -209,18 +209,18 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         heading: 'Conditions for earlier autonomy',
         role: 'counterargument',
         transition: 'Consequence-based authority is conservative by design, so the argument must examine the strongest case for moving faster.',
-        purpose: 'Address the case that workflow repair can become excessive ceremony.',
+        purpose: 'Keep governance proportional to consequence and exception risk.',
         paragraphs: [
           { text: 'The strongest counterargument is that some organisations already have clean records, stable policies and reversible actions. Requiring a long redesign before every release would waste that maturity. A bounded agent can remove real coordination work when the tools, inputs and fallback route are already dependable.' },
-          { text: 'The answer is proportionality, not delay. A low-consequence internal task with strong observability may move quickly from recommendation to action. A financial, regulated or customer-facing commitment requires a higher evidence threshold. Human review is useful only when the reviewer sees the source, proposed action and reason the case deserves attention.' },
-          { text: 'This is also where nominal oversight can fail. If review volume is relentless or evidence is weak, approval becomes a reflex. The system should therefore measure meaningful challenges and rescue effort, not simply count the presence of a human click.' },
+          { text: 'Controls should rise with consequence. A low-consequence internal task with strong observability may move quickly from recommendation to action. A financial, regulated or customer-facing commitment requires a higher evidence threshold. Human review adds value when the reviewer sees the source, proposed action and reason the case deserves attention.' },
+          { text: 'Nominal oversight can still fail at this point. Relentless review volume or weak evidence turns approval into a reflex. Useful control measures include meaningful challenges, corrections and rescue effort; the presence of a human click carries little information by itself.' },
         ],
       },
       {
         heading: 'Controlled-pause decision',
         role: 'conclusion',
         transition: 'The case for earlier autonomy survives only under narrow conditions, which now define the release decision for the failed enquiry.',
-        purpose: 'Return to the failed enquiry and resolve it with an evidence-based authority decision.',
+        purpose: 'Revisit the failed enquiry with explicit authority and escalation rules.',
         paragraphs: [
           { text: 'When the original enquiry returns, the repaired workflow detects the address conflict, retrieves the current policy and exposes the credit hold. The agent can prepare a response, but the case routes to the finance owner before any external commitment is made. The pause that once depended on tacit knowledge has become an explicit control.' },
           { text: 'Management can now decide whether to expand authority using observed evidence: correct completion by risk category, material corrections, manual rescue, incidents and unresolved exception age. Greater autonomy is justified only when it improves the whole route without weakening recovery.' },
@@ -237,7 +237,7 @@ export const newsEditorial: Record<string, NewsEditorial> = {
     sceneTitle: 'A temperature excursion lasts eight minutes. The commercial consequence could last much longer',
     sceneParagraphs: [
       'An overnight operator sees a threshold breach. The number alone cannot explain whether a loading door opened, a unit entered defrost, a probe lost calibration or sensitive product faced a genuine excursion. Several systems hold fragments of the answer, while the response expectation depends on severity that has not yet been established.',
-      'The decision clock starts before the evidence has assembled itself. The value of the proposed collaboration therefore rests not on producing another alert, but on creating a trustworthy path from physical signal to owned response and recorded recovery.',
+      'The decision clock starts before the evidence has assembled itself. The proposed collaboration creates value by building a trustworthy path from physical signal to owned response and recorded recovery; another alert would add little.',
     ],
     sections: [
       {
@@ -262,11 +262,11 @@ export const newsEditorial: Record<string, NewsEditorial> = {
       },
       {
         heading: 'Exception-case operating model',
-        transition: 'Validated telemetry still does not allocate action, so the next section assembles signal and context into an owned exception case.',
+        transition: 'Validation clarifies the signal yet leaves ownership unresolved. The next section shows how context and responsibility turn that signal into an exception case.',
         purpose: 'Explain how evidence becomes accountable action and closure.',
         paragraphs: [
-          { text: 'An alert records that a rule fired. An exception case assembles the validated signal, duration, operating context, applicable policy, assigned owner, corrective action and evidence of recovery. Missing information remains visible. This gives the reviewer a decision object rather than another isolated notification.' },
-          { text: 'Every stage is necessary, but the equal weighting in the control graphic expresses dependency rather than measured economic contribution. Validation without ownership leaves work unassigned; ownership without closure leaves the assurance record incomplete. Food-safety guidance similarly connects monitoring with effective corrective action, while leaving responsibility with the operator.', sources: [foodStandards] },
+          { text: 'An alert records that a rule fired. An exception case assembles the validated signal, duration, operating context, applicable policy, assigned owner, corrective action and evidence of recovery. Missing information remains visible. The reviewer receives a decision object with enough context to act.' },
+          { text: 'Every stage is necessary. Equal weighting in the control graphic denotes dependency and carries no claim about economic contribution. Validation without ownership leaves work unassigned; ownership without closure leaves the assurance record incomplete. Food-safety guidance likewise connects monitoring with effective corrective action while leaving responsibility with the operator.', sources: [foodStandards] },
           { text: 'For the eight-minute excursion, closure might record a loading event, stable subsequent readings and the operator’s inspection. Repeated cases can then reveal equipment or policy patterns. Before adopting this model, however, management should consider whether the additional structure risks overengineering routine monitoring.' },
         ],
         exhibits: [{ kind: 'evidence', view: 1, afterParagraph: 1 }, { kind: 'system', afterParagraph: 1 }],
@@ -275,9 +275,9 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         heading: 'Monitoring without intervention',
         role: 'counterargument',
         transition: 'The exception case improves accountability, but the control case must still distinguish observation from equipment intervention.',
-        purpose: 'Address compliance, trend analysis and the risk of excessive exception machinery.',
+        purpose: 'Balance operational response, compliance evidence and analytical reuse.',
         paragraphs: [
-          { text: 'The serious counterargument is that cold-chain data can create value without changing an immediate operating decision. Routine records support assurance, trend analysis, maintenance and retrospective investigation. A service that forces every minor movement into an elaborate case could increase workload and distract from material events.' },
+          { text: 'Cold-chain data can create value without changing an immediate operating decision. Routine records support assurance, trend analysis, maintenance and retrospective investigation. A service that forces every minor movement into an elaborate case could increase workload and distract from material events.' },
           { text: 'The design should therefore distinguish routine evidence from qualifying exceptions. Continuous records can remain available for reporting and analysis, while a case is created only when signal quality, duration and context meet an agreed policy. Historical replay can test that policy before live escalation.' },
           { text: 'This narrower claim is stronger than saying data is useful only when it changes a decision. The collaboration should be judged by whether it improves attention and evidence where action is required without making ordinary monitoring harder.' },
         ],
@@ -286,7 +286,7 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         heading: 'Parallel-pilot decision',
         role: 'conclusion',
         transition: 'Once monitoring is separated from control, a parallel pilot becomes the appropriate test of attention quality and missed-event risk.',
-        purpose: 'Resolve the excursion through a controlled delivery sequence.',
+        purpose: 'Carry the 02:13 excursion from detection to verified closure.',
         paragraphs: [
           { text: 'The eight-minute event should be replayed through the proposed service. The pilot would test whether the signal is validated correctly, whether the context changes severity, whether the right owner receives the case and whether closure preserves enough evidence for later review.' },
           { text: 'Management should compare the service with current practice using signal coverage, alert precision, unassigned exception age, response time, closure completeness and reporting effort. The proposed targets remain hypotheses until representative live and historical cases have been observed.' },
@@ -296,22 +296,22 @@ export const newsEditorial: Record<string, NewsEditorial> = {
     ],
   },
   'small-teams-ai-advantage': {
-    title: 'The AI advantage of a smaller firm is managerial, not automatic',
+    title: 'Management speed can give smaller firms an AI advantage',
     standfirst: 'SMEs rarely possess the largest technology budgets or datasets. They may nevertheless move faster because operational knowledge, customer context and decision authority sit closer together. That advantage survives only if leadership concentrates its attention.',
     thesis: 'Short decision lines can produce faster AI learning, but only when a smaller firm concentrates on one material workflow and converts each release into reusable capability.',
     sceneLabel: 'Composite SME vignette',
     sceneTitle: 'Five people around one table can resolve a question that takes five committees elsewhere',
     sceneParagraphs: [
       'A customer-service lead describes a recurring exception. The managing director understands its commercial cost, the operations manager owns the process and the technical specialist can test a change that afternoon. Nobody needs to translate the problem through several layers before a decision is made.',
-      'Proximity alone is not an advantage. The same firm may lack clean data, spare management capacity and specialist engineering. The meeting matters only if it concentrates those scarce resources on a question that can produce operating evidence.',
+      'Proximity can shorten decisions, although the same firm may lack clean data, spare management capacity and specialist engineering. The meeting matters when it concentrates those scarce resources on a question capable of producing operating evidence.',
     ],
     sections: [
       {
         heading: 'Management proximity hypothesis',
         purpose: 'State the managerial advantage without presenting it as an empirical fact.',
         paragraphs: [
-          { text: 'A smaller firm can place the process expert, user, sponsor and builder in one decision loop. That arrangement may reduce translation loss and shorten the time between observing an exception and testing a change. It is a management interpretation, not a conclusion established by the adoption surveys cited in this report.' },
-          { text: 'Large organisations retain important advantages: capital, specialist teams, data, procurement leverage and formal controls. Smaller firms compete only when leadership proximity produces faster, better decisions rather than informal changes with weak evidence.' },
+          { text: 'A smaller firm can place the process expert, user, sponsor and builder in one decision loop. That arrangement may reduce translation loss and shorten the interval between observing an exception and testing a change. This interpretation comes from operating logic; the adoption surveys cited here neither confirm nor refute it.' },
+          { text: 'Large organisations retain important advantages: capital, specialist teams, data, procurement leverage and formal controls. Smaller firms compete when leadership proximity produces faster, better decisions and those decisions remain supported by evidence.' },
           { text: 'The group in the opening scene therefore needs more than permission to experiment. It needs to know whether AI is already producing measurable benefits in comparable firms and what those findings do, and do not, imply for its own workflow.' },
         ],
       },
@@ -321,8 +321,8 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         purpose: 'Use the strongest SME evidence to define the opportunity and its limits.',
         paragraphs: [
           { text: 'An OECD survey across seven countries found generative AI in use at 31 percent of SMEs. Among users, 65 percent reported improved employee performance and 39 percent of those with a recent skills gap said the technology helped compensate. At the same time, 83 percent reported no change in overall staffing need. These are reported experiences, not measured productivity magnitudes.', sources: [oecdWorkforce] },
-          { text: 'The evidence establishes that AI is accessible to smaller firms and is often perceived as useful. It does not establish that small firms outperform large firms, that jobs will disappear or that a particular workflow will produce a positive return. Management should read the findings as permission to test a focused hypothesis, not as a forecast.' },
-          { text: 'For the five-person group, the implication is augmentation rather than abstract transformation. The next task is to identify one recurring constraint where better preparation, interpretation or coordination would release visible capacity or quality.' },
+          { text: 'The evidence shows that smaller firms can access AI and often perceive it as useful. It offers no basis for claims that they outperform large firms, that jobs will disappear or that a particular workflow will earn a positive return. Management can use the findings to justify a focused test, with no presumption about its result.' },
+          { text: 'For the five-person group, the practical agenda is augmentation tied to a visible constraint. Better preparation, interpretation or coordination should release capacity or improve quality in one recurring part of the work.' },
         ],
         exhibits: [{ kind: 'evidence', view: 0, afterParagraph: 0 }],
       },
@@ -332,7 +332,7 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         purpose: 'Explain why portfolio concentration is the mechanism behind the thesis.',
         paragraphs: [
           { text: 'A broad tool rollout distributes attention across functions and produces little shared learning. A focused portfolio begins with one constraint that is frequent, material and measurable. Leadership must also state what will not be pursued, because every additional pilot competes for the same process expertise, data ownership and review capacity.' },
-          { text: 'UK research reinforces the readiness problem. Just over half of current AI users said they felt ready to scale, while roughly one third of prospective adopters felt ready to implement. The figures do not prescribe a delivery model, but they show that access to tools has moved faster than organisational confidence.', sources: [ukAdoption] },
+          { text: 'UK research reinforces the readiness problem. Just over half of current AI users said they felt ready to scale, while roughly one third of prospective adopters felt ready to implement. These figures leave delivery design open while showing that access to tools has moved faster than organisational confidence.', sources: [ukAdoption] },
           { text: 'The opening group should therefore define an outcome, create a baseline and release the smallest complete workflow that can test it. A short decision line is useful only when each decision leaves evidence for the next one.' },
         ],
         exhibits: [{ kind: 'evidence', view: 1, afterParagraph: 1 }, { kind: 'system', afterParagraph: 2 }],
@@ -343,20 +343,20 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         transition: 'A focused workflow may exploit proximity, but the analysis must account for scarce capacity, weak controls and concentration risk.',
         purpose: 'Test the thesis against the strongest constraints facing smaller firms.',
         paragraphs: [
-          { text: 'The counterargument is substantial. Smaller firms often have weaker data, fewer specialist reviewers and little redundancy when one person becomes a bottleneck. Close customer knowledge may remain in memory rather than records. Speed can also bypass privacy, security or acceptance decisions that a larger organisation is forced to formalise.' },
-          { text: 'The answer is not to imitate enterprise bureaucracy. It is to name the minimum owners before build: a sponsor for the result, a process owner for the work, a data owner for permitted context and a technical owner for the service. Each release should end with an expand, adjust, hold or stop decision.' },
-          { text: 'If the same technical specialist must rescue every exception, the pilot has not created leverage. It has concentrated operational risk. Reusable evaluation cases, access patterns, logging and training are therefore part of the first product, not administrative work left for later.' },
+          { text: 'Scale still confers protection. Smaller firms often have weaker data, fewer specialist reviewers and little redundancy when one person becomes a bottleneck. Close customer knowledge may remain in memory, and rapid changes can bypass privacy, security or acceptance decisions that a larger organisation is forced to formalise.' },
+          { text: 'A smaller firm needs a minimum set of owners before build: a sponsor for the result, a process owner for the work, a data owner for permitted context and a technical owner for the service. This provides accountability without importing enterprise bureaucracy. Each release should end with an expand, adjust, hold or stop decision.' },
+          { text: 'A pilot that sends every exception to the same technical specialist concentrates operational risk and creates little leverage. Reusable evaluation cases, access patterns, logging and training belong in the first release because they determine whether the work can survive ordinary operations.' },
         ],
       },
       {
         heading: 'Repeatable decision cell',
         role: 'conclusion',
-        transition: 'Once capacity and governance constraints are included, the small-firm advantage can be stated as a repeatable operating process rather than a size claim.',
-        purpose: 'Resolve the opening meeting as a disciplined operating choice.',
+        transition: 'Capacity and governance constraints narrow the claim. Any durable advantage must appear in a repeatable operating process that converts proximity into disciplined decisions.',
+        purpose: 'Convert the five-person meeting into an owned operating experiment.',
         paragraphs: [
           { text: 'The five people around the table should leave with one selected workflow, one accountable outcome and one not-now list. They should agree the evidence required for a bounded release and the conditions that would stop it. That is a more defensible advantage than merely being able to approve software quickly.' },
           { text: 'If the release improves the outcome, its evaluation cases, data decisions, controls and operating lessons should be reused. If it fails, the same decision process should redirect attention without defending sunk cost. Learning speed includes the ability to stop.' },
-          { text: 'A smaller firm does not win because its organisation chart is short. It wins when proximity produces a dense cycle of evidence and decision, while delivery becomes systematic enough to repeat. The meeting in the opening scene creates value only when that discipline survives after everyone leaves the room.' },
+          { text: 'A short organisation chart creates no value on its own. Advantage appears when proximity produces a dense cycle of evidence and decision, supported by delivery routines that can be repeated. The meeting in the opening scene matters only if that discipline survives after everyone leaves the room.' },
         ],
       },
     ],
@@ -387,7 +387,7 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         purpose: 'Trace the conversion from theoretical saving to operating and financial consequence.',
         paragraphs: [
           { text: 'The value bridge begins with eligible volume actually completed through the new process. Review, exception handling, support and workarounds reduce gross time released. The remainder is capacity, not cash. It becomes financial value only when cost is removed or avoided, or when the capacity is deliberately redirected to work with a measured contribution.' },
-          { text: 'The graphic illustrates that logic using 100 theoretical hours. Its deductions are assumptions, not observed conversion rates. It establishes why management needs separate stages in the ledger; it does not predict that another project will convert 20 percent of gross time into cash.' },
+          { text: 'The graphic illustrates that logic using 100 theoretical hours. Every deduction is an assumption, so the result carries no predictive claim about another project or a 20 percent conversion into cash. Its value lies in separating the stages that management must record in the ledger.' },
           { text: 'In the opening case, finance could not find the saving because nobody owned the movement from released time to budget or output. Before assigning an owner, however, the committee must ask whether the original productivity assumption is credible for the target work.' },
         ],
         exhibits: [{ kind: 'evidence', view: 1, afterParagraph: 1 }],
@@ -398,7 +398,7 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         purpose: 'Use conflicting field evidence to reject imported benefit percentages.',
         paragraphs: [
           { text: 'A large field study of customer-support agents found AI assistance increased issues resolved per hour by about 15 percent on average, with substantial differences between workers. A separate randomised study found experienced open-source developers took 19 percent longer with early-2025 tools on familiar repositories. The occupations, systems and research designs differ, so the figures should not be averaged or treated as competing model scores.', sources: [qjeStudy, metrStudy] },
-          { text: 'Together they establish heterogeneity. AI can accelerate a well-matched workflow and impede work where context, verification or interruption outweighs assistance. They do not establish an expected return for the programme in the opening scene. That return must be measured in its own operating environment.' },
+          { text: 'Taken together, the studies show wide variation. AI can accelerate a well-matched workflow and impede work where context, verification or interruption overwhelms the assistance. No imported study supplies the expected return for the programme in the opening scene; its own operating environment must provide that evidence.' },
           { text: 'The committee should therefore replace the borrowed productivity percentage with observed eligible volume, accepted output, net effort and correction demand. Yet a narrow focus on cash could still miss legitimate reasons to invest.' },
         ],
         exhibits: [{ kind: 'evidence', view: 0, afterParagraph: 1 }],
@@ -406,11 +406,11 @@ export const newsEditorial: Record<string, NewsEditorial> = {
       {
         heading: 'Non-cash value conversion',
         role: 'counterargument',
-        transition: 'Conflicting productivity studies limit imported savings claims, but they do not eliminate value that converts through quality, capacity or risk.',
-        purpose: 'Address the strongest counterargument to a strict financial conversion test.',
+        transition: 'Conflicting productivity studies weaken imported savings claims. They also direct attention to value that may convert through quality, capacity or risk.',
+        purpose: 'Recognise quality, capacity and risk without blurring the value ledger.',
         paragraphs: [
           { text: 'Quality, service, resilience and risk can matter even when headcount or budget does not change. Faster response may improve conversion; fewer errors may reduce remediation; stronger evidence may lower the probability or consequence of control failure. Rejecting these effects because they are not immediate cash would produce an artificially narrow investment case.' },
-          { text: 'The discipline is to keep benefit types separate. DSIT found 56 percent of current AI users reporting higher employee productivity while 77 percent reported no revenue change. These self-reported findings do not prove that productivity failed to create value, but they illustrate why an operating improvement and a financial result should not be treated as the same event.', sources: [ukAdoption] },
+          { text: 'Benefit types need separate treatment. DSIT found 56 percent of current AI users reporting higher employee productivity while 77 percent reported no revenue change. The self-reported findings leave the value of that productivity unresolved. They still show why an operating improvement and a financial result belong to different points in the causal chain.', sources: [ukAdoption] },
           { text: 'Each material benefit needs a mechanism, an owner and disconfirming evidence. A service claim should identify the customer measure expected to move. A risk claim should identify the exposure and control. Management can then value the benefit without disguising it as salary removed.' },
         ],
         exhibits: [{ kind: 'system', afterParagraph: 2 }],
@@ -419,7 +419,7 @@ export const newsEditorial: Record<string, NewsEditorial> = {
         heading: 'Investment continuation threshold',
         role: 'conclusion',
         transition: 'Once cash and non-cash benefits share an explicit causal chain, the benefits ledger can support a continuation decision.',
-        purpose: 'Resolve the missing financial result through an owned review cadence.',
+        purpose: 'Give the finance director an evidence-based continuation decision.',
         paragraphs: [
           { text: 'The programme’s 100 hours should be restated as a hypothesis. Finance and the process owner should review the baseline, eligible adoption, net effort, quality, service and the named destination of any released capacity. Confidence should rise only as observed evidence replaces assumptions.' },
           { text: 'The review should conclude with one of four decisions: expand where the causal chain is working, adjust where a bottleneck is visible, hold where observation is insufficient, or stop where the result no longer justifies the operating cost. Measurement earns its cost when it changes that choice.' },
