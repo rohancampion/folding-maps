@@ -24,7 +24,7 @@ export default function News() {
           const editorial = newsEditorial[article.slug];
           return <Link className={`article-card ${index === 0 ? 'featured' : ''}`} href={`/news/${article.slug}`} key={article.slug}>
             <div className={`article-art art-${index % 4}`}><Image src={article.image} alt="" fill sizes={index === 0 ? '(max-width: 800px) 100vw, 55vw' : '(max-width: 800px) 100vw, 45vw'}/><span>{article.artLabel}</span><MechanicalMark label="Research system"/></div>
-            <div className="article-copy"><div><span>{article.tag}</span><span>{article.date} · {article.read}</span></div><h2>{editorial.title}</h2><p>{editorial.standfirst}</p><div className="article-thesis"><span>Central contention</span>{editorial.thesis}</div><b>Read the analysis <ArrowUpRight size={15}/></b></div>
+            <div className="article-copy"><div><span>{article.tag}</span><span>{article.date} · {article.read}</span></div><span className="reading-level-badge">Simple + Advanced</span><h2>{editorial.title}</h2><p>{editorial.standfirst}</p><div className="article-thesis"><span>Central contention</span>{editorial.thesis}</div><b>Read the analysis <ArrowUpRight size={15}/></b></div>
           </Link>;
         })}
       </section>

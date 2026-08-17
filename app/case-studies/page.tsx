@@ -22,7 +22,7 @@ export default function Cases() {
         {cases.map((study, index) => (
           <Link href={`/case-studies/${study.slug}`} className="case-card" key={study.slug}>
             <div className={`case-visual visual-${index % 3}`}><Image src={study.image} alt="" fill sizes="(max-width: 800px) 100vw, 50vw"/><span>{study.sector}</span><MechanicalMark label="Delivery system"/><div className="case-image-wash"/></div>
-            <div className="case-copy"><div><span className="badge">{study.status}</span><span>{study.sector}</span></div><h2>{study.title}</h2><p>{study.summary}</p><div className="card-facts">{study.metrics.slice(0, 2).map((metric) => <span key={metric.label}><strong>{metric.value}</strong>{metric.label}</span>)}</div><b>Read the full case <ArrowUpRight size={16}/></b></div>
+            <div className="case-copy"><div><span className="badge">{study.status}</span><span>{study.sector}</span></div><span className="reading-level-badge">Simple + Advanced</span><h2>{study.title}</h2><p>{study.summary}</p><div className="card-facts">{study.metrics.slice(0, 2).map((metric) => <span key={metric.label}><strong>{metric.value}</strong>{metric.label}</span>)}</div><b>Read the full case <ArrowUpRight size={16}/></b></div>
           </Link>
         ))}
       </section>

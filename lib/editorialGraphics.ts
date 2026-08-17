@@ -45,7 +45,7 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
       interpretation: {
         establishes: 'Larger AI-using businesses report system integration more frequently than smaller adopters.',
         doesNotEstablish: 'The survey does not prove that size caused integration or that every reported connection changed operating performance.',
-        management: 'Smaller firms should budget for data, ownership and workflow work rather than assuming the connector arrives with the model.',
+        management: 'Smaller firms should budget for data, ownership and workflow work because the connector rarely supplies those capabilities.',
       },
       source: 'UK Business Data Survey 2026',
       href: 'https://www.gov.uk/government/statistics/uk-business-data-survey-2026/uk-business-data-survey-2026',
@@ -153,7 +153,7 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
       interpretation: {
         establishes: 'The proposed exception route depends on signal validation, contextual classification, ownership and evidenced closure.',
         doesNotEstablish: 'Equal bars do not mean the stages contribute equally to risk reduction or economic value.',
-        management: 'Evaluate the complete route in parallel with current controls rather than optimising one stage in isolation.',
+        management: 'Evaluate the complete route in parallel with current controls; optimisation of one isolated stage is insufficient.',
       },
       source: 'Quiet Gears synthesis of FSA, NCSC and NIST guidance',
       points: [
@@ -232,6 +232,82 @@ export const newsEvidenceViews: Record<string, EvidenceView[]> = {
         { label: 'After adoption and exceptions', value: 72, display: '72 hours', detail: 'Capacity remaining after usage, review and rescue effort.' },
         { label: 'Redeployed to measured work', value: 48, display: '48 hours', detail: 'Capacity deliberately redirected to activity with an observed output.' },
         { label: 'Converted to cash impact', value: 20, display: '20 hours eq.', detail: 'Illustrative portion linked to cost removed, avoided or verified contribution.' },
+      ],
+    },
+  ],
+  'legal-ai-source-grounded-work': [
+    {
+      label: 'Validity chain',
+      title: 'Every accepted proposition needs four independent checks',
+      summary: 'This is an illustrative control sequence informed by professional guidance. Equal values express dependency and contain no measured legal-work result.',
+      interpretation: {
+        establishes: 'The proposed service treats authority, jurisdiction, date and textual support as separate conditions for professional review.',
+        doesNotEstablish: 'The exhibit provides no accuracy, productivity or risk-reduction evidence for a deployed legal system.',
+        management: 'Release criteria should test each failure class separately because one blended score could hide a consequential defect.',
+      },
+      source: 'Quiet Gears control design informed by Law Society and ICO guidance',
+      href: 'https://www.lawsociety.org.uk/topics/ai-and-lawtech/conducting-legal-research-in-the-age-of-ai',
+      points: [
+        { label: 'Authoritative source', value: 100, display: 'Required', detail: 'The source must belong to the approved hierarchy for the matter.' },
+        { label: 'Jurisdiction match', value: 100, display: 'Required', detail: 'The source must be relevant to the legal system and forum in question.' },
+        { label: 'Temporal validity', value: 100, display: 'Required', detail: 'The service must surface amendment, appeal and effective-date information for review.' },
+        { label: 'Proposition support', value: 100, display: 'Required', detail: 'The cited passage must support the claim made in the draft.' },
+      ],
+    },
+    {
+      label: 'Release evidence',
+      title: 'Legal evaluation must separate unlike failure classes',
+      summary: 'Illustrative evaluation priorities for a matter-scoped pilot. The values express control criticality and are not empirical weights.',
+      interpretation: {
+        establishes: 'Citation fabrication, weak support, omission, confidentiality and reviewer behavior require distinct evidence.',
+        doesNotEstablish: 'The bars do not predict defect frequency or assign financial value to any control.',
+        management: 'Set thresholds by consequence and keep professional review effort inside the economic denominator.',
+      },
+      source: 'Quiet Gears illustrative evaluation design',
+      points: [
+        { label: 'Citation existence', value: 100, display: 'Blocking', detail: 'A fabricated or inaccessible source prevents acceptance.' },
+        { label: 'Material proposition support', value: 100, display: 'Blocking', detail: 'A material claim without adequate authority prevents acceptance.' },
+        { label: 'Cross-matter disclosure', value: 100, display: 'Blocking', detail: 'Unauthorised disclosure is a release-stopping control failure.' },
+        { label: 'Material omission', value: 92, display: 'Critical', detail: 'The evaluation must detect missing issues that could change the legal conclusion.' },
+        { label: 'Reviewer inspection', value: 78, display: 'Monitor', detail: 'Source-opening behavior helps detect false reassurance during supervised use.' },
+      ],
+    },
+  ],
+  'hospitality-ai-guest-recovery': [
+    {
+      label: 'Case completeness',
+      title: 'Recovery depends on five reconciled records',
+      summary: 'Illustrative dependency model for a guest-recovery case. Equal values are requirements and contain no measured hotel outcome.',
+      interpretation: {
+        establishes: 'The proposed route needs identity, promise, property state, authority and closure evidence before it can support accountable recovery.',
+        doesNotEstablish: 'A complete case does not guarantee guest satisfaction, faster resolution or lower compensation.',
+        management: 'Test connector freshness and ownership before measuring generated communication quality.',
+      },
+      source: 'Quiet Gears illustrative hospitality operating design',
+      points: [
+        { label: 'Guest and booking identity', value: 100, display: 'Required', detail: 'The case must link the right guest, stay and channel reference.' },
+        { label: 'Entitlement and promise', value: 100, display: 'Required', detail: 'The booked product and policy determine the permitted remedy space.' },
+        { label: 'Live property state', value: 100, display: 'Required', detail: 'Room, housekeeping and maintenance state determine what can be fulfilled.' },
+        { label: 'Recovery authority', value: 100, display: 'Required', detail: 'A named colleague or approver must hold authority for the remedy.' },
+        { label: 'Action and closure evidence', value: 100, display: 'Required', detail: 'Commitments and outcomes must remain visible to the next colleague.' },
+      ],
+    },
+    {
+      label: 'Pilot measures',
+      title: 'Recovery quality cannot be reduced to compensation cost',
+      summary: 'Illustrative measurement priorities for a parallel pilot. Values show proposed decision relevance, not expected improvement.',
+      interpretation: {
+        establishes: 'The evaluation must cover ownership, feasibility, handoffs, policy and guest outcome across the complete recovery route.',
+        doesNotEstablish: 'The weights do not predict satisfaction, loyalty, revenue or operating savings.',
+        management: 'Use a balanced review so lower compensation cannot disguise slower or less humane recovery.',
+      },
+      source: 'Quiet Gears illustrative evaluation design',
+      points: [
+        { label: 'Time to named ownership', value: 90, display: 'Core', detail: 'Measure when one colleague becomes accountable for the case.' },
+        { label: 'Time to feasible option', value: 100, display: 'Core', detail: 'Measure when a deliverable remedy becomes available, not when text is generated.' },
+        { label: 'Repeat contacts and handoffs', value: 82, display: 'Material', detail: 'Repeated explanation is evidence of coordination failure.' },
+        { label: 'Policy and compensation control', value: 88, display: 'Material', detail: 'Track approved bands, overrides and escalation decisions.' },
+        { label: 'Guest outcome evidence', value: 78, display: 'Material', detail: 'Use feedback and subsequent behavior carefully because attribution is incomplete.' },
       ],
     },
   ],

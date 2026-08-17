@@ -22,7 +22,7 @@ export type CaseEditorial = {
 export const caseEditorial: Record<string, CaseEditorial> = {
   'yacht-operations': {
     statusStatement: 'This engagement is in progress. Discovery and architecture work are complete; the first operating release and its outcomes have not yet been evaluated.',
-    thesis: 'The first useful release is a trusted operating record that lets the team answer one customer enquiry, assign the next action and preserve human control of the relationship. Expanding the customer database before fixing that operating sequence would add volume without clarity.',
+    thesis: 'The first release must separate customer, vessel, enquiry and project identities, record every material event, derive a reviewable project state and route the next action to a named owner. Its acceptance test is whether colleagues can reconstruct one customer commitment from the audit history while duplicate identities, migration exceptions and client-facing approvals remain under human control.',
     sceneLabel: 'Representative item of work from an engagement in progress',
     openingTitle: 'One customer asks for an update, and the operating system has to reconstruct the answer',
     openingParagraphs: [
@@ -66,8 +66,8 @@ export const caseEditorial: Record<string, CaseEditorial> = {
         paragraphs: [
           { text: 'Moving the discussion away from tool selection allowed the design to follow the decisions attached to the enquiry. A change is captured, the shared record is updated, policy identifies the next permitted action, a role receives ownership and the decision enters an audit history. The process view defines a target sequence and makes no claim about benefit.' },
           { text: 'The sequence establishes and connects the record before automating it. A broad CRM rollout was rejected because it would add fields and migration effort before proving which decisions matter. Immediate autonomous drafting was rejected because a polished message assembled from incomplete context would increase relationship risk.' },
-          { text: 'An architectural view translates those decisions into enquiry channels, a customer record, workflow policy, a team workspace and a management view. It remains an illustrative implementation pattern. Vendor selection and source connectivity are open design decisions.' },
-          { text: 'Together, the graphics show why process and architecture cannot be separated. The workflow defines what the record must prove; the architecture makes each action, owner and customer-facing release traceable. External evidence that AI value depends on organisational capabilities reinforces the need for workflow clarity and feedback, while leaving the local hypothesis to be tested.', sources: [2] },
+          { text: 'An architectural view translates those decisions into enquiry channels, an identity registry, an append-only event history, derived workflow state, a team workspace and a management view. Identity resolution prevents one returning customer, vessel or project from fragmenting into duplicate records. State is derived from validated events so that the current view can be checked against the history that produced it. The pattern remains proposed; vendor selection and source connectivity are open decisions.' },
+          { text: 'The workflow defines what the record must prove. The architecture makes each state transition, owner change, exception and client-facing release traceable. External evidence linking AI value to organisational capabilities supports the need for workflow clarity and feedback, while leaving the local hypothesis to be tested.', sources: [2] },
         ],
         exhibits: [{ kind: 'process', afterParagraph: 0 }, { kind: 'system', afterParagraph: 2 }],
       },
@@ -78,7 +78,7 @@ export const caseEditorial: Record<string, CaseEditorial> = {
         paragraphs: [
           { text: 'The first release follows the representative enquiry only as far as a shared customer and project view, an explicit state, and one owned next action. Client-facing decisions retain human approval. This boundary sacrifices some immediate automation in exchange for a cleaner test of whether staff will maintain and rely on the record.' },
           { text: 'Acceptance rests on observable conditions. Sampled journeys must contain the agreed minimum context, every active item must have an owner and due point, and an accurate status review should require fewer reconciliations. Client communications must also avoid a material increase in correction. These criteria define proposed baseline measures; no result has yet been achieved.' },
-          { text: 'Weak migration could produce false confidence, optional maintenance could push work back into inboxes, and generic drafting could dilute the service. Source reconciliation, required workflow ownership and release approval address those risks, but cannot substitute for live adoption evidence. The pilot must observe use in the work itself.' },
+          { text: 'Migration runs by source cohort with reconciliation counts, duplicate review and an explicit rollback point. Weak matching could attach a commitment to the wrong customer or vessel; partial histories could create false confidence; optional maintenance could push work back into inboxes. Quarantine queues, required ownership and release approval address those risks, but cannot substitute for live adoption evidence. The pilot must observe the record during real work.' },
         ],
       },
       {

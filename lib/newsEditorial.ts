@@ -27,6 +27,14 @@ const ncscOt = { label: 'NCSC, Operational Technology guidance', href: 'https://
 const ncscProtocols = { label: 'NCSC, Secure OT protocols, 2026', href: 'https://www.ncsc.gov.uk/collection/operational-technology/secure-connectivity/principle-4' };
 const foodStandards = { label: 'Food Standards Agency, chilling guidance', href: 'https://www.food.gov.uk/business-guidance/chilling-food-correctly-in-your-business' };
 const qjeStudy = { label: 'Quarterly Journal of Economics, Generative AI at Work, 2025', href: 'https://academic.oup.com/qje/article/140/2/889/7990658' };
+const lawSocietyResearch = { label: 'Law Society, Conducting legal research in the age of AI', href: 'https://www.lawsociety.org.uk/topics/ai-and-lawtech/conducting-legal-research-in-the-age-of-ai' };
+const sraAi = { label: 'Solicitors Regulation Authority, Artificial intelligence', href: 'https://www.sra.org.uk/solicitors/resources-archived/artificial-intelligence/' };
+const icoAi = { label: 'ICO, Guidance on AI and data protection', href: 'https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/artificial-intelligence/guidance-on-ai-and-data-protection/about-this-guidance/' };
+const openAiIronclad = { label: 'OpenAI, Ironclad customer story', href: 'https://openai.com/index/ironclad/' };
+const googleRadisson = { label: 'Google Cloud, Radisson Hotel Group customer story', href: 'https://cloud.google.com/customers/radisson' };
+const googleTaua = { label: 'Google Cloud, Tauá Resorts customer story', href: 'https://cloud.google.com/customers/taua-resorts' };
+const microsoftSno = { label: 'Microsoft, SNÖ Hotels customer story', href: 'https://www.microsoft.com/en/customers/story/25861-sno-hotels-dynamics-365-business-central' };
+const openAiBooking = { label: 'OpenAI, Booking.com customer story', href: 'https://openai.com/index/booking-com/' };
 
 export const newsEditorial: Record<string, NewsEditorial> = {
   'ai-integration-gap': {
@@ -424,6 +432,170 @@ export const newsEditorial: Record<string, NewsEditorial> = {
           { text: 'The programme’s 100 hours should be restated as a hypothesis. Finance and the process owner should review the baseline, eligible adoption, net effort, quality, service and the named destination of any released capacity. Confidence should rise only as observed evidence replaces assumptions.' },
           { text: 'The review should conclude with one of four decisions: expand where the causal chain is working, adjust where a bottleneck is visible, hold where observation is insufficient, or stop where the result no longer justifies the operating cost. Measurement earns its cost when it changes that choice.' },
           { text: 'Finance could not find a pound because the original calculation ended at the automated task. A credible case follows the effect until it reaches an operating or financial consequence, then states honestly what remains unproven. A range supported by that chain is stronger than a precise saving that exists only on a slide.' },
+        ],
+      },
+    ],
+  },
+  'legal-ai-source-grounded-work': {
+    title: 'Legal AI earns trust one proposition at a time',
+    standfirst: 'Legal research and drafting can move faster without relaxing professional standards. The operating design must keep each proposition inside the matter boundary, attach it to valid authority and preserve a visible route to professional acceptance.',
+    thesis: 'A legal AI service becomes decision-useful when every material proposition is linked to an approved source, checked for jurisdiction and date, protected by matter-level access and accepted by an accountable legal professional.',
+    sceneLabel: 'Composite legal-operating vignette',
+    sceneTitle: 'The citation exists. It does not answer the matter',
+    sceneParagraphs: [
+      'A solicitor reviews a polished note prepared for an urgent client call. One citation leads to a genuine decision, but the passage concerns a different legal test. Another authority predates a material change. The draft reads confidently and has saved no time because the reviewer must reconstruct its research route.',
+      'This composite scene presents no real firm or client. It follows one proposition through matter scoping, retrieval, citation verification and sign-off to identify where assistance can shorten work without disguising uncertainty.',
+    ],
+    sections: [
+      {
+        heading: 'Proposition-level evidence',
+        purpose: 'Define the unit of legal work that the system must support and the reviewer must accept.',
+        paragraphs: [
+          { text: 'The draft failed at proposition level. A document can look coherent while individual claims rest on weak, irrelevant or outdated authority. Law Society guidance directs practitioners to verify generated legal material and citations, which places source inspection inside the operating route and ahead of release.', sources: [lawSocietyResearch] },
+          { text: 'Each material proposition needs a record of the question asked, the source passage retrieved, the authority and court or issuer, its effective date, jurisdiction and the model or workflow version that used it. The reviewer should see that record beside the draft. A bibliography at the end cannot show which authority supports which sentence.' },
+          { text: 'The opening note therefore becomes a set of reviewable claims. That change improves diagnosis: an unsupported proposition can be rejected without discarding useful work elsewhere, and evaluation can distinguish fabricated authority, weak support, stale law and material omission.' },
+          { text: 'Once the unit is defined, the next issue is the boundary around the evidence that a model may retrieve.' },
+        ],
+        exhibits: [{ kind: 'evidence', view: 0, afterParagraph: 1 }],
+      },
+      {
+        heading: 'Matter and source boundaries',
+        transition: 'Proposition-level review exposes the evidence requirement; matter and source boundaries determine which evidence may enter the draft.',
+        purpose: 'Specify authoritative sources, matter scope, access and temporal validity.',
+        paragraphs: [
+          { text: 'A matter workspace should begin with an authorised source manifest. It identifies matter documents, approved internal knowledge and external legal sources, then records the jurisdiction, effective period and access rules attached to each collection. Retrieval runs against that manifest, not an unrestricted pool assembled for convenience.' },
+          { text: 'Matter scoping has a confidentiality function and an analytical function. It reduces cross-client disclosure risk while preventing facts or conclusions from another file from entering the answer. Access control must be enforced before retrieval and repeated when a source is opened, exported or cited. Logs should record the identity and purpose associated with each request.' },
+          { text: 'Temporal validity requires more than document date. A source may have been superseded, amended, appealed or limited. The system can propose a validity flag from metadata and citator services, but professional review decides whether the authority remains applicable to the question.' },
+          { text: 'ICO guidance makes data protection a lifecycle obligation, while SRA material places technology use within existing professional duties. Together they require the service owner to document purpose, data flow, supervision and incident response before scaling access.', sources: [icoAi, sraAi] },
+        ],
+      },
+      {
+        heading: 'Controlled research architecture',
+        transition: 'The approved evidence boundary now allows the architecture to separate fixed controls from model-assisted interpretation.',
+        purpose: 'Explain retrieval, provenance, drafting, verification and professional decision rights.',
+        paragraphs: [
+          { text: 'The architecture begins with authenticated matter access and a source index that retains passage-level provenance. Retrieval returns candidate material under jurisdiction and date filters. A model may compare, summarise or draft from those candidates, but the generated text carries identifiers back to the passages used.' },
+          { text: 'A citation verifier then tests whether every cited source exists in the approved index and whether the quoted or paraphrased passage supports the associated proposition. This check is narrower than legal judgement. It can detect missing links or textual mismatch; it cannot decide the weight of competing authority or the answer to an unsettled question.' },
+          { text: 'Deterministic gates control matter access, source eligibility, required metadata and release permissions. Model assistance handles language, comparison and issue spotting within that envelope. The professional sees original evidence, generated proposition, counterauthority and open questions before accepting the work.' },
+          { text: 'The system diagram locates responsibility: software preserves provenance and tests formal conditions; the lawyer determines legal relevance, weight and advice. That boundary must survive time pressure, batch processing and downstream reuse.' },
+        ],
+        exhibits: [{ kind: 'system', afterParagraph: 2 }],
+      },
+      {
+        heading: 'Evaluation and economics',
+        transition: 'Architecture can preserve the route to evidence, but release depends on measured performance and the full cost of professional review.',
+        purpose: 'Design evaluation sets, failure analysis and a task-level economic test.',
+        paragraphs: [
+          { text: 'A representative evaluation set should contain ordinary research questions, ambiguous instructions, outdated sources, similar cases from another jurisdiction, conflicting authorities and prompts that attempt to cross matter boundaries. Legal reviewers label the required propositions, acceptable authorities, material omissions and reasons for rejection.' },
+          { text: 'The service should report proposition support, citation validity, material omission, confidentiality breach, correction category and professional review time. A single accuracy score would conceal the difference between a stylistic correction and a false authority. Release thresholds should be stricter where an error is harder to detect or more consequential.' },
+          { text: 'Vendor stories show that bounded legal tasks can compress. OpenAI reports that Ironclad reduced one contract-review activity from about forty minutes to two in its implementation. That customer-reported figure concerns a specified workflow and supplier context. It neither forecasts research productivity nor changes the professional acceptance standard.', sources: [openAiIronclad] },
+          { text: 'Economics should therefore use accepted propositions or completed matter tasks as the denominator. Retrieval, licences, data preparation, reviewer time, corrections, incidents and knowledge maintenance belong in the cost. The evidence view presents proposed release dimensions, not observed firm performance.' },
+        ],
+        exhibits: [{ kind: 'evidence', view: 1, afterParagraph: 3 }],
+      },
+      {
+        heading: 'Professional scepticism at scale',
+        role: 'counterargument',
+        transition: 'Evaluation can show acceptable average performance; the strongest objection concerns how routine use changes professional attention.',
+        purpose: 'Address automation bias, verification burden and the possibility that assistance creates little net benefit.',
+        paragraphs: [
+          { text: 'A source-grounded interface can make weak work look safer. Visible citations may encourage reviewers to inspect fewer sources, and a high rate of plausible outputs can reduce vigilance before a rare consequential error. Detailed provenance also adds interface and maintenance cost.' },
+          { text: 'Some matters will remain faster with direct professional research, especially where the question is novel, the source set is small or authority turns on subtle procedural history. A service should permit a direct-research route and should not treat low automated usage as failure when the matter does not fit the evaluated scope.' },
+          { text: 'The control response combines blind evaluation, sampled secondary review, error analysis by consequence and monitoring of inspection behavior. If reviewers stop opening primary sources or correction time offsets drafting gains, the service has failed its purpose even when formal citation checks pass.' },
+          { text: 'This objection narrows the recommendation. Assistance should expand by matter type and proposition class only after evidence shows that professional scepticism remains active.' },
+        ],
+      },
+      {
+        heading: 'Matter-scoped release decision',
+        role: 'conclusion',
+        transition: 'The risk of false reassurance makes the release boundary a professional operating decision, not a software availability decision.',
+        purpose: 'Resolve the opening note through an auditable, matter-scoped acceptance route.',
+        paragraphs: [
+          { text: 'The solicitor in the opening scene should be able to select each proposition, open the supporting passage, see jurisdiction and date, inspect counterauthority and record acceptance or rejection. A proposition without that route remains a drafting suggestion and cannot enter accepted work.' },
+          { text: 'The first release should cover one matter type, one approved source hierarchy and a defined set of professional users. It should stop on uncertain identity, inaccessible source, failed validity check or material evaluation regression. Expansion depends on support, omission, review-effort and confidentiality evidence from live supervised use.' },
+          { text: 'Legal AI does not earn trust through fluent output or a long reference list. It earns a bounded place in practice when evidence stays visible, professional authority stays attributable and the system makes weak support easier to detect.' },
+        ],
+      },
+    ],
+  },
+  'hospitality-ai-guest-recovery': {
+    title: 'Guest recovery begins with a shared operating state',
+    standfirst: 'A disrupted stay becomes harder when reservation, property, loyalty and maintenance systems tell different versions of the same journey. AI can help staff explain and coordinate recovery after identity, entitlement and authority are reconciled.',
+    thesis: 'A dependable guest-recovery service must reconcile guest identity, booking entitlement and live property state, then route feasible remedies through explicit compensation and escalation authority.',
+    sceneLabel: 'Composite hospitality-operating vignette',
+    sceneTitle: 'The guest has a confirmation and the room cannot be occupied',
+    sceneParagraphs: [
+      'After a delayed journey, a guest arrives with a valid confirmation. The property-management system shows the room assigned, a maintenance note marks it unavailable and the loyalty profile appears under a second email address. The front-desk colleague must resolve the stay while checking facts across several screens and waiting for authority to offer an alternative.',
+      'This composite scene describes no real property or guest. It follows one disruption from identification to closure to show where connected records, controlled automation and human judgement can shorten recovery.',
+    ],
+    sections: [
+      {
+        heading: 'Recovery case formation',
+        purpose: 'Turn the disrupted arrival into one owned item with a current operating state.',
+        paragraphs: [
+          { text: 'The confirmation proves a reservation, while leaving the feasible remedy unresolved. The colleague needs to know who the guest is, what was promised, which room and service alternatives exist now, what the policy permits and who can approve an exception.' },
+          { text: 'A recovery case should therefore preserve guest and booking identifiers, promised product, disruption type, live property state, entitlement, proposed options, owner, customer communications and closure evidence. Every source retains its timestamp because availability and maintenance facts can change during the conversation.' },
+          { text: 'The first evidence graphic treats all five record groups as required. Equal values express dependency and carry no measured contribution to satisfaction, speed or cost. A complete record will not guarantee a good recovery, but a missing identity or property state can make the proposed remedy invalid.' },
+          { text: 'The scene now has a unit of work. The next problem is reconciling multiple identifiers without joining the wrong guest or booking.' },
+        ],
+        exhibits: [{ kind: 'evidence', view: 0, afterParagraph: 2 }],
+      },
+      {
+        heading: 'Identity and entitlement',
+        transition: 'Once the recovery case is defined, identity resolution determines which promises and permissions legitimately belong inside it.',
+        purpose: 'Explain matching confidence, privacy boundaries and entitlement calculation.',
+        paragraphs: [
+          { text: 'A guest may appear under a booking reference, channel identifier, loyalty number, email and telephone number. Exact matches can be deterministic. Probabilistic matches need confidence, visible evidence and manual review. The system should never silently merge profiles because an incorrect match can expose personal data and apply another guest’s preferences or entitlement.' },
+          { text: 'Entitlement derives from the booked product, rate conditions, loyalty status, disruption and approved service policy. These inputs should be versioned and reviewable. A model may explain the result in natural language; it should not invent a benefit or reinterpret a failed eligibility rule.' },
+          { text: 'Purpose limitation matters when CRM history or inferred preferences enter the case. ICO guidance requires lawful and accountable processing across the lifecycle. The recovery owner needs only information that helps resolve the current service failure, with retention and access aligned to that purpose.', sources: [icoAi] },
+          { text: 'Identity and entitlement establish what may be offered. Live property state determines what can actually be delivered.' },
+        ],
+      },
+      {
+        heading: 'Property state and remedy options',
+        transition: 'Entitlement sets the permitted remedy space; current operational state narrows it to options the property can fulfil.',
+        purpose: 'Connect reservation, property, housekeeping and maintenance records to feasible recovery.',
+        paragraphs: [
+          { text: 'Reservation systems describe sold inventory and booking commitments. The property-management system carries room assignment and stay state. Housekeeping and maintenance records can make nominal inventory unavailable. Recovery logic must reconcile timestamps and source authority across those systems before proposing a room move, upgrade, external relocation or service credit.' },
+          { text: 'The architecture uses connectors to form a read model for the recovery case. It does not replace source systems. Each option records the facts and policy version used, its capacity reservation and any dependency such as transport or manager approval. A stale connector places the option on hold.' },
+          { text: 'First-party customer stories from Radisson, Tauá Resorts and SNÖ Hotels describe programmes built around more connected data and operating systems. They illustrate the feasibility of shared records in specific estates. The accounts do not establish a guest-recovery result for another group.', sources: [googleRadisson, googleTaua, microsoftSno] },
+          { text: 'The system diagram shows where data converges and where authority remains. The colleague chooses among feasible options within policy, while a manager handles exceptions above the delegated limit.' },
+        ],
+        exhibits: [{ kind: 'system', afterParagraph: 3 }],
+      },
+      {
+        heading: 'Authority and recovery economics',
+        transition: 'Feasible options still require a controlled decision, so the operating design must connect service judgement with compensation authority and measurement.',
+        purpose: 'Define delegated limits, escalation, closure and economic evidence.',
+        paragraphs: [
+          { text: 'Compensation policy should define bands by disruption, entitlement and local operating context. Front-desk colleagues need enough authority to resolve common cases during the interaction. Higher-cost, unusual or sensitive remedies move to a named approver with the same evidence view.' },
+          { text: 'A language model can draft a clear explanation from approved facts and remedies. The owner confirms tone, accuracy and commitment before sending. Accepted communications become events in the recovery history so another colleague can continue without asking the guest to repeat the story.' },
+          { text: 'Measurement begins with acknowledgement time, time to feasible option, handoffs, repeat contacts, policy adherence, compensation by band and closure completeness. Guest feedback and future behavior may add outcome evidence, with careful treatment of attribution and privacy. The second evidence view is an illustrative measurement architecture, not a predicted uplift.' },
+          { text: 'Booking.com describes AI use across travel planning and service contexts. Its first-party account shows the breadth of channel coordination at scale while supplying no forecast for the property-level recovery measures proposed here.', sources: [openAiBooking] },
+        ],
+        exhibits: [{ kind: 'evidence', view: 1, afterParagraph: 2 }],
+      },
+      {
+        heading: 'Human service can outrun integration',
+        role: 'counterargument',
+        transition: 'A controlled service can make evidence and authority clearer, but the strongest objection is that hospitality recovery depends on human discretion under local conditions.',
+        purpose: 'Test whether integration cost and scripted decision routes could impede recovery.',
+        paragraphs: [
+          { text: 'An experienced colleague can often resolve disruption through local knowledge and discretion faster than a new system can reconcile imperfect records. A rigid workflow may narrow empathy, delay a simple gesture or turn policy into a ceiling when an unusual situation warrants generosity.' },
+          { text: 'Integration can also create a fragile dependency. A central case that waits for every connector may be slower than direct inspection, and centralised identity increases privacy and security consequence. The right fallback is an explicit manual route with delegated authority, later reconciliation and no requirement to wait for generated text.' },
+          { text: 'The service earns its place on recurring cross-system failures where reconstruction and approval delay are material. It should stay out of a straightforward conversation that one colleague can resolve safely. Override reasons become evidence about where policy, data or interface design is too restrictive.' },
+          { text: 'This counterargument keeps the release focused on coordination. It does not ask software to substitute for judgement or care.' },
+        ],
+      },
+      {
+        heading: 'Recovery release threshold',
+        role: 'conclusion',
+        transition: 'The value of local discretion defines the release test: connected evidence must improve coordination while preserving the colleague’s ability to act.',
+        purpose: 'Resolve the disrupted arrival and state the evidence required for wider use.',
+        paragraphs: [
+          { text: 'For the guest in the opening scene, the service should reconcile identity, confirm the booking promise, surface the maintenance conflict, reserve a feasible alternative and show the colleague’s authority before a commitment is made. Uncertain identity, stale property state or an out-of-band remedy triggers review.' },
+          { text: 'A pilot should cover one disruption type at a small group of properties and run beside current escalation. Release requires fewer reconstructive handoffs, controlled policy exceptions, reliable connector health, no material privacy incident and staff evidence that the case helps them resolve the guest’s problem.' },
+          { text: 'The guest should experience one accountable conversation, not the architecture behind it. Connected systems matter when they give the colleague accurate options and authority at the moment recovery is still possible.' },
         ],
       },
     ],
