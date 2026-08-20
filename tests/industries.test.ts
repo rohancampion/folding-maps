@@ -1,6 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { industries } from '@/lib/industries';
+import { getIndustryServiceRecommendations, industryServiceRecommendations } from '@/lib/industry-services';
+import { getService } from '@/lib/services';
 
 describe('industry perspectives', () => {
   it('provides all 26 requested industry routes', () => {
@@ -27,10 +29,23 @@ describe('industry perspectives', () => {
   });
 
   it('contains no em dashes or table markup', () => {
-    const published = JSON.stringify(industries);
+    const published = JSON.stringify({ industries, industryServiceRecommendations });
     const page = readFileSync('app/industries/[slug]/page.tsx', 'utf8');
     expect(published).not.toContain('—');
     expect(`${published}${page}`.toLowerCase()).not.toContain('<table');
+  });
+
+  it('provides three valid service recommendations for every industry', () => {
+    industries.forEach((industry) => {
+      const recommendations = getIndustryServiceRecommendations(industry.slug);
+      expect(recommendations).toHaveLength(3);
+      expect(new Set(recommendations.map(({ slug }) => slug)).size).toBe(3);
+      recommendations.forEach(({ slug, rationale }) => {
+        expect(getService(slug)).toBeDefined();
+        expect(rationale.length).toBeGreaterThan(70);
+      });
+    });
+    expect(Object.keys(industryServiceRecommendations)).toHaveLength(industries.length);
   });
 
   it('provides a detailed visual system for every page', () => {
