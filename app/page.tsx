@@ -1,6 +1,6 @@
 import { getImageProps } from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, Cog } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
 import styles from './home.module.css';
 
@@ -38,23 +38,12 @@ function HeroImage() {
   );
 }
 
-function RotatingGears() {
-  return (
-    <div className={styles.rotatingGears} aria-hidden="true">
-      <span className={styles.gearOne}><Cog /></span>
-      <span className={styles.gearTwo}><Cog /></span>
-      <span className={styles.gearThree}><Cog /></span>
-    </div>
-  );
-}
-
 export default function Home() {
   return (
     <>
       <section className={styles.hero} aria-labelledby="home-title">
         <HeroImage />
         <div className={styles.heroShade} />
-        <RotatingGears />
         <div className={styles.heroContent}>
           <h1 id="home-title" className={styles.wordmark}><span>Quiet</span><span>Gears</span></h1>
           <p className={styles.heroHeadline}>Put AI to work. Keep moving.</p>

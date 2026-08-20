@@ -1,21 +1,40 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { HeroMechanism, MechanicalMark } from '@/components/MechanicalVisuals';
+import { MechanicalMark } from '@/components/MechanicalVisuals';
+import { ImageStreamHero } from '@/components/ui/image-stream-hero';
 import { cases } from '@/lib/content';
+import styles from './case-studies.module.css';
 
 export const metadata = { title: 'Case studies' };
+
+const streamImages = cases.map((study) => ({
+  src: study.image,
+  alt: study.title,
+}));
 
 export default function Cases() {
   return (
     <>
-      <section className="page-hero report-hero report-hero-layout">
-        <div className="report-hero-copy"><span className="kicker">Case studies</span>
-          <h1>From operational friction<br/><em>to working systems.</em></h1>
-          <p>Narrative engagement papers that begin with an operating moment, trace the commercial and control tension, then show how evidence becomes a bounded release. Illustrative work and in-progress outcomes are labelled clearly.</p>
-          <div className="section-proof"><div><strong>{cases.length}</strong><span>Detailed studies</span></div><div><strong>5</strong><span>Operating sectors</span></div><div><strong>4</strong><span>Prose-led decision lenses per case</span></div></div>
+      <ImageStreamHero
+        images={streamImages}
+        cards={10}
+        speed={20}
+        axis={57}
+        className={styles.hero}
+      >
+        <div className={styles.heroContent}>
+          <div className={styles.heroLead}>
+            <span className="kicker">Case studies</span>
+            <h1>From operational friction<br/><em>to working systems.</em></h1>
+          </div>
+          <p className={styles.heroSummary}>Narrative engagement papers that begin with an operating moment, trace the commercial and control tension, then show how evidence becomes a bounded release. Illustrative work and in-progress outcomes are labelled clearly.</p>
         </div>
-        <HeroMechanism compact/>
+      </ImageStreamHero>
+      <section className={styles.proof} aria-label="Case study collection at a glance">
+        <div><strong>{cases.length}</strong><span>Detailed studies</span></div>
+        <div><strong>5</strong><span>Operating sectors</span></div>
+        <div><strong>4</strong><span>Prose-led decision lenses per case</span></div>
       </section>
       <section className="case-list expanded-case-list">
         <div className="collection-heading"><span>Selected work</span><p>Each paper combines commercial context, operating detail and a technical blueprint.</p></div>
