@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import { Instrument_Serif, DM_Sans } from 'next/font/google';
+import { Instrument_Serif, IBM_Plex_Sans } from 'next/font/google';
 import './globals.css';
 import { Header, Footer } from '@/components/Shell';
 
 const display = Instrument_Serif({ subsets: ['latin'], variable: '--display', weight: '400' });
-const body = DM_Sans({ subsets: ['latin'], variable: '--body' });
+const body = IBM_Plex_Sans({ subsets: ['latin'], variable: '--body', weight: 'variable' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://quietgears.co.uk'),

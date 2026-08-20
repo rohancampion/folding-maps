@@ -1,10 +1,137 @@
 'use client';
+
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { useEffect, useEffectEvent, useState } from 'react';
+import styles from './Shell.module.css';
 
-const links = [['Home','/'],['About','/about'],['Services','/services'],['Industries','/industries'],['Case studies','/case-studies'],['News','/news'],['Contact','/contact']];
-export function Logo(){ return <Link className="logo" href="/" aria-label="Quiet Gears home"><span>q</span> Quiet Gears</Link> }
-export function Header(){ const [open,setOpen]=useState(false); const path=usePathname(); return <header><div className="nav-wrap"><Logo/><button className="menu" onClick={()=>setOpen(!open)} aria-expanded={open} aria-label="Toggle menu">{open?<X/>:<Menu/>}</button><nav className={open?'open':''} aria-label="Main navigation">{links.map(([label,href])=><Link key={href} onClick={()=>setOpen(false)} className={path===href||href!=='/'&&path.startsWith(href)?'active':''} href={href}>{label}</Link>)}<Link className="nav-cta" href="/contact">Start a conversation <ArrowUpRight size={15}/></Link></nav></div></header> }
-export function Footer(){return <footer><div className="footer-main"><div><Logo/><p>AI systems and software that keep<br/>ambitious British business moving.</p></div><div><b>Explore</b>{links.slice(1).map(([l,h])=><Link key={h} href={h}>{l}</Link>)}</div><div><b>Get in touch</b><a href="mailto:quietgearsai@gmail.com">quietgearsai@gmail.com</a><span>4 Foscote Mews, London · Servicing Nationwide</span></div></div><div className="footer-bottom"><span>© 2026 Quiet Gears Ltd</span><div><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/accessibility">Accessibility</Link></div></div></footer>}
+const mainLinks = [
+  ['Home', '/'],
+  ['About', '/about'],
+  ['Services', '/services'],
+  ['Industries', '/industries'],
+  ['Case studies', '/case-studies'],
+  ['News', '/news'],
+] as const;
+
+const footerLinks = [
+  ['About', '/about'],
+  ['Services', '/services'],
+  ['Case studies', '/case-studies'],
+  ['News', '/news'],
+] as const;
+
+export function Logo({ footer = false }: { footer?: boolean }) {
+  return (
+    <Link className={`${styles.logo} ${footer ? styles.footerLogo : ''}`} href="/" aria-label="Quiet Gears home">
+      <span aria-hidden="true">q</span>
+      Quiet Gears
+    </Link>
+  );
+}
+
+export function Header() {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const isHome = pathname === '/';
+
+  const updateScrollState = useEffectEvent(() => setScrolled(window.scrollY > 24));
+  const closeMenu = useEffectEvent(() => setOpen(false));
+
+  useEffect(() => {
+    updateScrollState();
+    window.addEventListener('scroll', updateScrollState, { passive: true });
+    return () => window.removeEventListener('scroll', updateScrollState);
+  }, []);
+
+  useEffect(() => {
+    closeMenu();
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [open]);
+
+  const headerClass = [
+    styles.header,
+    isHome ? styles.homeHeader : styles.innerHeader,
+    scrolled || open ? styles.scrolled : '',
+  ].filter(Boolean).join(' ');
+
+  return (
+    <header className={headerClass}>
+      <div className={styles.navWrap}>
+        <Logo />
+        <button
+          className={styles.menu}
+          type="button"
+          onClick={() => setOpen((current) => !current)}
+          aria-expanded={open}
+          aria-controls="primary-navigation"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+        >
+          {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+        </button>
+        <nav
+          id="primary-navigation"
+          className={`${styles.navigation} ${open ? styles.open : ''}`}
+          aria-label="Main navigation"
+        >
+          <div className={styles.navLinks}>
+            {mainLinks.map(([label, href]) => {
+              const active = pathname === href || (href !== '/' && pathname.startsWith(href));
+              return (
+                <Link key={href} className={active ? styles.active : ''} href={href} onClick={() => setOpen(false)}>
+                  {label}
+                </Link>
+              );
+            })}
+          </div>
+          <Link className={styles.navCta} href="/contact" onClick={() => setOpen(false)}>
+            Start a conversation <ArrowUpRight size={16} aria-hidden="true" />
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+export function Footer() {
+  return (
+    <footer className={styles.footer}>
+      <div className={styles.footerLead}>
+        <Logo footer />
+        <p>Practical AI and specialist software for ambitious British businesses.</p>
+      </div>
+      <div className={styles.footerDetails}>
+        <div className={styles.footerNav} role="navigation" aria-label="Footer navigation">
+          {footerLinks.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
+        </div>
+        <div className={styles.contact}>
+          <a href="mailto:quietgearsai@gmail.com">quietgearsai@gmail.com</a>
+          <span>London · Working nationwide</span>
+        </div>
+      </div>
+      <div className={styles.footerBottom}>
+        <span>© 2026 Quiet Gears Ltd</span>
+        <div>
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/terms">Terms</Link>
+          <Link href="/accessibility">Accessibility</Link>
+        </div>
+      </div>
+    </footer>
+  );
+}
