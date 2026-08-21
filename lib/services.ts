@@ -23,26 +23,7 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    slug: 'fractional-ai-officer', number: '01', group: 'Advise', title: 'Fractional Chief AI Officer', shortTitle: 'Fractional AI leadership',
-    promise: 'Senior AI leadership that turns scattered activity into one accountable programme.',
-    summary: 'We give leadership teams an experienced AI operator who can set direction, govern decisions and keep delivery connected to commercial priorities.',
-    explanation: 'A fractional AI officer works across the portfolio rather than owning one tool. The role maintains the decision system around AI, from opportunity intake and prioritisation to architecture principles, risk gates, supplier choices, benefit reviews and board reporting.',
-    technologies: ['Portfolio governance', 'Decision registers', 'Model evaluation', 'Benefits tracking'],
-    stages: [
-      { label: 'Signal', detail: 'Collect strategic objectives, workflow constraints and active experiments.' },
-      { label: 'Decide', detail: 'Score opportunities against value, feasibility, risk and readiness.' },
-      { label: 'Govern', detail: 'Assign ownership, controls, budgets and evidence requirements.' },
-      { label: 'Review', detail: 'Report outcomes, exceptions and the next portfolio decision.' },
-    ],
-    useCases: [
-      { title: 'AI portfolio control', problem: 'Teams are buying tools and launching pilots without shared standards or ownership.', example: 'A monthly portfolio forum evaluates every initiative against the same value, data, security and adoption gates.', path: ['Ideas', 'Scorecard', 'Decision forum', 'Portfolio action'] },
-      { title: 'Board-level AI oversight', problem: 'Directors need a decision-ready view of exposure, progress and value rather than product demonstrations.', example: 'A board pack links material use cases to accountable owners, control status and measured operational outcomes.', path: ['Programme data', 'Risk synthesis', 'Executive review', 'Board decision'] },
-    ],
-    provisions: ['AI strategy ownership and quarterly planning', 'Board papers and leadership decision support', 'Portfolio governance and benefits reviews', 'Vendor, platform and delivery partner oversight'],
-    safeguards: ['Named executive accountability', 'Documented decision rights', 'Independent value and risk challenge', 'Regular stop, continue and scale decisions'],
-  },
-  {
-    slug: 'ai-strategy', number: '02', group: 'Advise', title: 'AI Strategy & Readiness', shortTitle: 'Strategy and readiness',
+    slug: 'ai-strategy', number: '01', group: 'Advise', title: 'AI Strategy & Readiness', shortTitle: 'Strategy and readiness',
     promise: 'A prioritised AI direction grounded in what your organisation can support now.',
     summary: 'We connect AI opportunities to commercial outcomes, then assess the workflows, data, technology, governance and capability needed to deliver them.',
     explanation: 'Strategy and readiness belong in one decision process. We map valuable work, inspect the evidence behind current capability, compare opportunities using common value, feasibility and risk criteria, and sequence delivery around the gaps that must be resolved first.',
@@ -61,7 +42,7 @@ export const services: Service[] = [
     safeguards: ['Evidence before technology selection', 'Explicit assumptions and dependencies', 'Risk assessment at use-case level', 'Decision gates before material expansion'],
   },
   {
-    slug: 'ai-implementation', number: '03', group: 'Build', title: 'Custom AI Systems', shortTitle: 'Custom AI systems',
+    slug: 'ai-implementation', number: '02', group: 'Build', title: 'Custom AI Systems', shortTitle: 'Custom AI systems',
     promise: 'Bespoke AI systems engineered around real work, data and controls.',
     summary: 'We design, build, integrate and launch purpose-built AI solutions from a bounded first release through to operational handover.',
     explanation: 'A custom implementation connects models to the surrounding software system. It includes data preparation, retrieval, orchestration, authentication, evaluation, observability, exception handling and user experience, not only prompts or an off-the-shelf workspace.',
@@ -80,7 +61,7 @@ export const services: Service[] = [
     safeguards: ['Least-privilege system access', 'Representative acceptance tests', 'Logged model and tool activity', 'Fallback and incident paths before launch'],
   },
   {
-    slug: 'agentic-ai', number: '04', group: 'Build', title: 'Agentic AI', shortTitle: 'AI agents',
+    slug: 'agentic-ai', number: '03', group: 'Build', title: 'Agentic AI', shortTitle: 'AI agents',
     promise: 'Agents that act within explicit authority, with evidence and people kept in the loop.',
     summary: 'We build agents that plan, use tools and complete variable multi-step work within carefully designed boundaries.',
     explanation: 'An agent receives a goal, observes state, selects tools and iterates until it reaches a stop condition. Dependability comes from constrained tools, validated inputs, state management, approval gates, audit logs and tested recovery behaviour.',
@@ -99,7 +80,7 @@ export const services: Service[] = [
     safeguards: ['Explicit permitted actions', 'Human approval before material writes', 'Schema-validated tool inputs', 'Kill switch and bounded execution'],
   },
   {
-    slug: 'ai-chatbot', number: '05', group: 'Build', title: 'Conversational AI', shortTitle: 'Conversational AI',
+    slug: 'ai-chatbot', number: '04', group: 'Build', title: 'Conversational AI', shortTitle: 'Conversational AI',
     promise: 'Useful text and voice conversations that resolve requests and know when to hand over.',
     summary: 'We build customer and employee assistants across web, messaging and telephony, connected to approved knowledge, workflows and support teams.',
     explanation: 'Conversational AI uses the same core system whether a person types or speaks. Retrieval, permissions and business rules ground the answer, while channel-specific controls handle dialogue state, identity, consent, interruptions, confirmation and transfer to a person.',
@@ -118,7 +99,7 @@ export const services: Service[] = [
     safeguards: ['Source-grounded material answers', 'Role-aware knowledge access', 'Confirmation before material action', 'Immediate human transfer and recovery'],
   },
   {
-    slug: 'workflow-automation', number: '06', group: 'Build', title: 'AI Workflow Automation', shortTitle: 'Workflow automation',
+    slug: 'workflow-automation', number: '05', group: 'Build', title: 'AI Workflow Automation', shortTitle: 'Workflow automation',
     promise: 'Connected workflows that remove handoffs while keeping exceptions visible.',
     summary: 'We automate repeatable work across inboxes, documents, databases and business platforms, using AI only where interpretation is required.',
     explanation: 'Good automation separates predictable rules from probabilistic interpretation. Events trigger a workflow, validated data moves between systems, AI handles bounded classification or generation, and exceptions enter an owned review queue.',
@@ -137,7 +118,7 @@ export const services: Service[] = [
     safeguards: ['Deterministic rules where possible', 'Idempotent and retry-safe updates', 'Human review for uncertain cases', 'Complete processing and error logs'],
   },
   {
-    slug: 'secure-ai-systems', number: '07', group: 'Build', title: 'Secure AI Systems', shortTitle: 'Secure AI',
+    slug: 'secure-ai-systems', number: '06', group: 'Build', title: 'Secure AI Systems', shortTitle: 'Secure AI',
     promise: 'Specialised AI that keeps sensitive data inside a security boundary you control.',
     summary: 'We implement local and offline models for isolated environments, with controlled private or hybrid connections only where the risk case permits them.',
     explanation: 'Secure AI begins with the threat model and information classification. We decide whether a workload requires fully offline inference, local retrieval and network isolation, or can use a governed hybrid route with policy-based model selection, redaction and tightly scoped integrations.',
@@ -156,7 +137,7 @@ export const services: Service[] = [
     safeguards: ['No cloud route for isolated workloads', 'Network and identity segmentation', 'Encrypted storage and audited access', 'Controlled updates and removable-media procedures'],
   },
   {
-    slug: 'legacy-modernisation', number: '08', group: 'Build', title: 'Legacy System Modernisation', shortTitle: 'Legacy modernisation',
+    slug: 'legacy-modernisation', number: '07', group: 'Build', title: 'Legacy System Modernisation', shortTitle: 'Legacy modernisation',
     promise: 'Replace fragile legacy tools without losing the rules and data the business depends on.',
     summary: 'We turn spreadsheets, Access databases and ageing applications into supported systems with clearer workflows, reliable data and safer change.',
     explanation: 'Modernisation begins by recovering the true operating model from code, formulas, records and user practice. We separate valuable business rules from accidental complexity, design the target system, migrate through testable stages and keep a rollback route until acceptance.',
@@ -175,7 +156,7 @@ export const services: Service[] = [
     safeguards: ['Reconciled migration totals', 'Business-rule regression tests', 'Rollback and continuity plan', 'Documented ownership and support model'],
   },
   {
-    slug: 'claude-implementation', number: '09', group: 'Build', title: 'Enterprise AI Platform Implementation', shortTitle: 'AI platform implementation',
+    slug: 'claude-implementation', number: '08', group: 'Build', title: 'Enterprise AI Platform Implementation', shortTitle: 'AI platform implementation',
     promise: 'The right managed AI platform, configured and connected for the work your teams perform.',
     summary: 'We select and implement Claude, ChatGPT or Perplexity environments without forcing separate projects for each product.',
     explanation: 'Platform choice follows the workload, data boundary and user experience. We compare managed workspaces, APIs and research surfaces, then configure identity, retention, instructions, knowledge, connectors, evaluations and support around defined roles and tasks.',
@@ -195,7 +176,7 @@ export const services: Service[] = [
     safeguards: ['Managed identity and least privilege', 'Approved data-use and retention policy', 'Representative task evaluation', 'Human confirmation for external actions'],
   },
   {
-    slug: 'grant-funded-ai-implementation', number: '10', group: 'Build', title: 'Grant-Funded AI Implementation', shortTitle: 'Grant-funded AI',
+    slug: 'grant-funded-ai-implementation', number: '09', group: 'Build', title: 'Grant-Funded AI Implementation', shortTitle: 'Grant-funded AI',
     promise: 'A credible innovation case linked to a deliverable technical programme.',
     summary: 'We help eligible organisations shape fundable AI projects and act as a technical delivery partner where the programme fits.',
     explanation: 'A strong funded project connects genuine technical uncertainty to a market need, delivery method, measurable outcomes and capable consortium. We align the application narrative with the architecture, work packages, evidence plan and delivery responsibilities.',
@@ -214,7 +195,7 @@ export const services: Service[] = [
     safeguards: ['No guarantee of funding outcome', 'Claims tied to supportable evidence', 'Scope aligned with application commitments', 'Clear intellectual-property boundaries'],
   },
   {
-    slug: 'enterprise-ai', number: '11', group: 'Enable', title: 'AI Adoption & Operating Model', shortTitle: 'AI adoption',
+    slug: 'enterprise-ai', number: '10', group: 'Enable', title: 'AI Adoption & Operating Model', shortTitle: 'AI adoption',
     promise: 'A scale-appropriate way to adopt AI across people, workflows and control functions.',
     summary: 'We help growing teams and larger organisations embed useful AI without importing unnecessary complexity or losing local ownership.',
     explanation: 'The operating model should fit the organisation. A growing business may need one accountable owner and a focused release rhythm, while a larger organisation needs shared platforms, reusable controls and federated business ownership. Both require role change, adoption evidence and measured value.',
@@ -233,7 +214,7 @@ export const services: Service[] = [
     safeguards: ['Named outcome owners', 'Controls proportionate to organisation size', 'Value measured in target workflows', 'Portfolio-level incident management'],
   },
   {
-    slug: 'chatgpt-training-for-teams', number: '12', group: 'Enable', title: 'AI Training for Teams', shortTitle: 'AI training',
+    slug: 'chatgpt-training-for-teams', number: '11', group: 'Enable', title: 'AI Training for Teams', shortTitle: 'AI training',
     promise: 'Role-specific training that changes how real work is performed safely.',
     summary: 'We train leaders, general users, champions and technical teams using approved tools and representative organisational tasks.',
     explanation: 'Effective training combines conceptual understanding, task decomposition, context design, verification and policy. Participants practise on realistic work, compare weak and strong methods, and leave with repeatable workflows rather than prompt tricks.',
