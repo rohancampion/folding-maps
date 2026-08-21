@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Instrument_Serif, IBM_Plex_Sans } from 'next/font/google';
 import './globals.css';
+import './tailwind.css';
 import { Header, Footer } from '@/components/Shell';
 
 const display = Instrument_Serif({ subsets: ['latin'], variable: '--display', weight: '400' });
