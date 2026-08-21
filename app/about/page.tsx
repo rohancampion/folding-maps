@@ -3,8 +3,13 @@ import { ArrowRight } from 'lucide-react';
 import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { Reveal } from '@/components/Reveal';
 import styles from './about.module.css';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata = { title: 'About' };
+export const metadata = createPageMetadata({
+  title: 'About Quiet Gears',
+  description: 'Meet the senior-led London consultancy helping ambitious UK SMEs turn operational friction into useful AI systems and software.',
+  path: '/about',
+});
 
 const leanAdvantages = [
   {

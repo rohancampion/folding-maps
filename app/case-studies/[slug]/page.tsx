@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { CodeExhibit, ProcessExhibit } from '@/components/ConsultingExhibits';
@@ -8,14 +9,29 @@ import { InteractiveEvidence } from '@/components/InteractiveEvidence';
 import { MechanicalMark } from '@/components/MechanicalVisuals';
 import { NarrativeSections, ReportActionAgenda, ReportReferences } from '@/components/NarrativeReport';
 import { ReadingModeSwitch } from '@/components/ReadingModeSwitch';
+import { JsonLd } from '@/components/JsonLd';
 import type { CaseExhibitPlacement } from '@/lib/caseEditorial';
 import { caseEditorial } from '@/lib/caseEditorial';
 import { caseResearch, cases } from '@/lib/content';
 import { dedupeSources } from '@/lib/reportNarrative';
 import { getCaseVariants } from '@/lib/reportVariants';
+import { absoluteUrl, breadcrumbJsonLd, createPageMetadata, SITE_NAME, SITE_URL } from '@/lib/seo';
 
 export function generateStaticParams() {
   return cases.map((item) => ({ slug: item.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const study = cases.find((item) => item.slug === slug);
+  if (!study) return {};
+  return createPageMetadata({
+    title: study.title,
+    description: study.summary,
+    path: `/case-studies/${study.slug}`,
+    image: study.image,
+    type: 'article',
+  });
 }
 
 export default async function CaseDetail({ params }: { params: Promise<{ slug: string }> }) {
@@ -41,6 +57,24 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
         : 'This is an illustrative design value and requires testing before use in an investment claim.',
     })),
   }];
+  const pageUrl = absoluteUrl(`/case-studies/${study.slug}`);
+  const jsonLd = [
+    breadcrumbJsonLd([
+      { name: 'Case studies', path: '/case-studies' },
+      { name: study.title, path: `/case-studies/${study.slug}` },
+    ]),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: study.title,
+      description: study.summary,
+      image: absoluteUrl(study.image),
+      mainEntityOfPage: pageUrl,
+      author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+      publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+      articleSection: study.sector,
+    },
+  ];
   const renderExhibit = (placement: CaseExhibitPlacement) => {
     if (placement.kind === 'evidence') return <InteractiveEvidence key="evidence" eyebrow="Decision evidence" views={evidenceViews}/>;
     if (placement.kind === 'process') return <ProcessExhibit key="process" number="1" title={editorial.processTitle} steps={study.phases}/>;
@@ -49,6 +83,7 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
 
   return (
     <>
+      <JsonLd data={jsonLd} />
       <article className="detail consulting-detail case-narrative-detail">
         <Link className="back" href="/case-studies"><ArrowLeft size={16}/> All case studies</Link>
         <div className="report-meta"><span className="badge">{study.status}</span><span>{study.sector}</span><span>Operating case</span></div>

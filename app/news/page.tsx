@@ -5,8 +5,13 @@ import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { articles } from '@/lib/content';
 import { newsEditorial } from '@/lib/newsEditorial';
 import styles from './news.module.css';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata = { title: 'News and insights' };
+export const metadata = createPageMetadata({
+  title: 'AI news and analysis for UK business leaders',
+  description: 'Evidence-led analysis for leaders navigating AI, automation, governance and operating-model change.',
+  path: '/news',
+});
 
 export default function News() {
   return (

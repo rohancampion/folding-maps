@@ -3,16 +3,14 @@ import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { getService, serviceGroups, services } from '@/lib/services';
+import { createPageMetadata } from '@/lib/seo';
 import styles from './services.module.css';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: 'AI consulting and implementation services',
   description: 'AI strategy, governance, implementation, automation, enterprise platform deployment and training for UK organisations.',
-  openGraph: {
-    title: 'AI consulting and implementation services | Quiet Gears',
-    description: 'Senior advice, production engineering and adoption support delivered as one accountable programme.',
-  },
-};
+  path: '/services',
+});
 
 const groupCopy = {
   Advise: {

@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, Check, CircleDot, Cpu, Database, G
 import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { ServiceSystemLab } from '@/components/ServiceSystemLab';
 import { getService, services } from '@/lib/services';
+import { createPageMetadata } from '@/lib/seo';
 import styles from './service-detail.module.css';
 
 type PageProps = { params: Promise<{ slug: string }> };
@@ -16,14 +17,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const service = getService(slug);
   if (!service) return {};
-  const title = service.title;
-  const description = service.summary;
-  return {
-    title,
-    description,
-    openGraph: { title: `${title} | Quiet Gears`, description, images: [] },
-    twitter: { title: `${title} | Quiet Gears`, description, images: [] },
-  };
+  return createPageMetadata({
+    title: service.title,
+    description: service.summary,
+    path: `/services/${service.slug}`,
+    image: null,
+  });
 }
 
 export default async function ServiceDetailPage({ params }: PageProps) {
