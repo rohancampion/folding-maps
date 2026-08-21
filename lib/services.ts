@@ -196,7 +196,7 @@ export const services: Service[] = [
   {
     slug: 'private-ai-concierge', number: '10', group: 'Build', title: 'Private AI Concierge', shortTitle: 'Private AI',
     promise: 'Useful AI assistance with sensitive information kept inside an architecture you control.',
-    summary: 'We deploy private or hybrid assistants for professionals who need stronger confidentiality, data-location and access controls.',
+    summary: 'We deploy private or hybrid assistants for professionals who need stronger confidentiality while retaining carefully controlled access to selected cloud services.',
     explanation: 'Private AI runs selected models and retrieval services on dedicated infrastructure. A policy router decides which tasks stay local and whether any approved requests may use an external model, with sensitive fields removed or blocked.',
     technologies: ['Local inference', 'Encrypted retrieval', 'Policy routing', 'Private gateways'],
     stages: [
@@ -213,7 +213,26 @@ export const services: Service[] = [
     safeguards: ['Default-deny external routing', 'Encryption and device hardening', 'Document-level permissions', 'Auditable policy and model decisions'],
   },
   {
-    slug: 'legacy-modernisation', number: '11', group: 'Build', title: 'Legacy Software Modernisation', shortTitle: 'Legacy modernisation',
+    slug: 'secure-ai-systems', number: '11', group: 'Build', title: 'Secure AI Systems', shortTitle: 'Secure AI',
+    promise: 'Specialised AI that operates inside your controlled environment without routine cloud exposure.',
+    summary: 'We deploy local and offline models for sensitive or specialised work, keeping prompts, source data, embeddings and outputs within infrastructure you control.',
+    explanation: 'A Secure AI System runs model inference, retrieval and application services on dedicated local or private infrastructure. The architecture can operate without internet access, including segmented or air-gapped environments, with model files, updates, identities and audit evidence managed through an explicit security process.',
+    technologies: ['Local model inference', 'Offline RAG', 'Private GPU infrastructure', 'Network isolation'],
+    stages: [
+      { label: 'Threat model', detail: 'Classify the data, users, adversaries and connectivity constraints.' },
+      { label: 'Specialise', detail: 'Select and evaluate a model against the vocabulary and tasks that matter.' },
+      { label: 'Isolate', detail: 'Deploy inference, retrieval and interfaces inside the approved security boundary.' },
+      { label: 'Assure', detail: 'Test leakage, access, updates, recovery and operating evidence before release.' },
+    ],
+    useCases: [
+      { title: 'Sensitive document analysis', problem: 'A regulated or security-conscious team needs model assistance on restricted records that cannot be submitted to an external AI provider.', example: 'An offline retrieval and inference service analyses approved document stores inside the organisation’s network and returns source-grounded findings to authorised reviewers.', path: ['Restricted records', 'Local retrieval', 'Offline model', 'Authorised review'] },
+      { title: 'Specialist operational model', problem: 'A domain team needs reliable support for technical language and proprietary procedures while keeping its knowledge base disconnected from public services.', example: 'A locally hosted model is evaluated and adapted for the team’s terminology, then exposed through a role-controlled interface with no internet route.', path: ['Specialist corpus', 'Local evaluation', 'Isolated service', 'Controlled workflow'] },
+    ],
+    provisions: ['Security and workload threat model', 'Model selection, evaluation and specialisation', 'Local, private or air-gapped deployment', 'Offline update, monitoring and recovery procedures'],
+    safeguards: ['No routine cloud model or telemetry dependency', 'Network segmentation or air gap where required', 'Encrypted storage and role-based access', 'Signed model and software update process'],
+  },
+  {
+    slug: 'legacy-modernisation', number: '12', group: 'Build', title: 'Legacy Software Modernisation', shortTitle: 'Legacy modernisation',
     promise: 'Replace fragile operational software without losing the knowledge embedded inside it.',
     summary: 'We rebuild ageing databases, spreadsheets and bespoke applications as secure, maintainable systems with carefully chosen AI capabilities.',
     explanation: 'Modernisation begins by recovering the real operating model from code, data, workarounds and user behaviour. We separate essential rules from accidental complexity, migrate data in controlled stages and use parallel running where continuity matters.',
@@ -232,7 +251,7 @@ export const services: Service[] = [
     safeguards: ['Reconciled migration totals', 'Business-rule regression tests', 'Rollback and continuity plan', 'Documented ownership and support model'],
   },
   {
-    slug: 'claude-implementation', number: '12', group: 'Build', title: 'Claude Implementation', shortTitle: 'Claude implementation',
+    slug: 'claude-implementation', number: '13', group: 'Build', title: 'Claude Implementation', shortTitle: 'Claude implementation',
     promise: 'Claude configured, connected and evaluated for the work your teams actually perform.',
     summary: 'We implement Claude workspaces, knowledge structures, reusable skills, integrations and API services with governance built in.',
     explanation: 'A Claude implementation combines organisation-level instructions, role context, projects, knowledge, skills and connectors. Technical deployments can use the API and Model Context Protocol to provide tools while preserving least privilege and human approval.',
@@ -251,7 +270,7 @@ export const services: Service[] = [
     safeguards: ['Least-privilege connectors', 'Approved source and instruction ownership', 'Evaluation against representative tasks', 'Human confirmation for external actions'],
   },
   {
-    slug: 'chatgpt-implementation', number: '13', group: 'Build', title: 'ChatGPT Implementation', shortTitle: 'ChatGPT implementation',
+    slug: 'chatgpt-implementation', number: '14', group: 'Build', title: 'ChatGPT Implementation', shortTitle: 'ChatGPT implementation',
     promise: 'A governed ChatGPT environment connected to useful work, not isolated experimentation.',
     summary: 'We deploy ChatGPT for teams and build OpenAI-powered applications that integrate with approved organisational knowledge and systems.',
     explanation: 'Implementation may use a managed workspace for human collaboration, the OpenAI API for embedded workflows, or both. We configure identity, retention, instructions, knowledge, tools, evaluations and support around defined roles.',
@@ -270,7 +289,7 @@ export const services: Service[] = [
     safeguards: ['Managed identity and access', 'Approved data-use policy', 'Schema and output validation', 'Task-specific human review'],
   },
   {
-    slug: 'perplexity-implementation', number: '14', group: 'Build', title: 'Perplexity Enterprise Implementation', shortTitle: 'Perplexity implementation',
+    slug: 'perplexity-implementation', number: '15', group: 'Build', title: 'Perplexity Enterprise Implementation', shortTitle: 'Perplexity implementation',
     promise: 'Cited, current research workflows with clear source and verification discipline.',
     summary: 'We configure Perplexity for research-intensive teams, develop repeatable methods and integrate outputs into controlled decisions.',
     explanation: 'Perplexity combines web retrieval and model synthesis. A strong implementation defines source domains, research templates, verification steps, sensitive-data boundaries and the downstream workflow for accepting or challenging findings.',
@@ -289,7 +308,7 @@ export const services: Service[] = [
     safeguards: ['Primary sources preferred for material claims', 'Citation and publication-date checks', 'Sensitive prompts kept within approved routes', 'Expert acceptance separated from generated synthesis'],
   },
   {
-    slug: 'grant-funded-ai-implementation', number: '15', group: 'Build', title: 'Grant-Funded AI Implementation', shortTitle: 'Grant-funded AI',
+    slug: 'grant-funded-ai-implementation', number: '16', group: 'Build', title: 'Grant-Funded AI Implementation', shortTitle: 'Grant-funded AI',
     promise: 'A credible innovation case linked to a deliverable technical programme.',
     summary: 'We help eligible organisations shape fundable AI projects and act as a technical delivery partner where the programme fits.',
     explanation: 'A strong funded project connects a genuine technical uncertainty to a market need, delivery method, measurable outcomes and capable consortium. We align the application narrative with the architecture, work packages, evidence plan and delivery responsibilities.',
@@ -308,7 +327,7 @@ export const services: Service[] = [
     safeguards: ['No guarantee of funding outcome', 'Claims tied to supportable evidence', 'Delivery scope aligned with application commitments', 'Clear intellectual-property and partner boundaries'],
   },
   {
-    slug: 'ai-for-smes', number: '16', group: 'Enable', title: 'AI for SMEs', shortTitle: 'AI for SMEs',
+    slug: 'ai-for-smes', number: '17', group: 'Enable', title: 'AI for SMEs', shortTitle: 'AI for SMEs',
     promise: 'Focused AI adoption that fits the reality of a growing business.',
     summary: 'We help small and medium-sized businesses improve priority work without importing unnecessary enterprise complexity.',
     explanation: 'SME adoption works best when leadership proximity, narrow scope and fast user feedback are treated as advantages. We identify one material constraint, configure the smallest dependable system and expand only after evidence shows value.',
@@ -327,7 +346,7 @@ export const services: Service[] = [
     safeguards: ['No unnecessary platform estate', 'Owner assigned before launch', 'Value measured in the target workflow', 'Support model sized to internal capacity'],
   },
   {
-    slug: 'enterprise-ai', number: '17', group: 'Enable', title: 'Enterprise AI', shortTitle: 'Enterprise AI',
+    slug: 'enterprise-ai', number: '18', group: 'Enable', title: 'Enterprise AI', shortTitle: 'Enterprise AI',
     promise: 'Coordinated AI adoption across systems, departments and control functions.',
     summary: 'We help larger organisations create shared architecture, governance and delivery patterns without losing local business ownership.',
     explanation: 'Enterprise adoption needs a federated model. Central teams provide standards, approved platforms, evaluation and assurance, while business units own outcomes and workflow change. Common interfaces and telemetry make the portfolio governable.',
@@ -346,7 +365,7 @@ export const services: Service[] = [
     safeguards: ['Separation of platform and outcome ownership', 'Reusable control and evaluation patterns', 'Identity and data boundaries enforced centrally', 'Portfolio-level incident and model-change management'],
   },
   {
-    slug: 'ai-london', number: '18', group: 'Enable', title: 'AI Consultancy in London', shortTitle: 'London AI consultancy',
+    slug: 'ai-london', number: '19', group: 'Enable', title: 'AI Consultancy in London', shortTitle: 'London AI consultancy',
     promise: 'Senior, hands-on AI support for London teams and organisations across the UK.',
     summary: 'We combine in-person working sessions with focused remote delivery for leadership, operational and technical teams.',
     explanation: 'Complex AI work benefits from direct observation and rapid alignment. On-site sessions let us follow real workflows, inspect decision points and build shared understanding. Delivery then continues through short, documented cycles with regular working reviews.',
@@ -365,7 +384,7 @@ export const services: Service[] = [
     safeguards: ['Workshop outputs converted into decisions', 'Operational evidence captured with consent', 'Remote work documented between sessions', 'Named client ownership throughout delivery'],
   },
   {
-    slug: 'chatgpt-training-for-teams', number: '19', group: 'Enable', title: 'AI Training for Teams', shortTitle: 'AI training',
+    slug: 'chatgpt-training-for-teams', number: '20', group: 'Enable', title: 'AI Training for Teams', shortTitle: 'AI training',
     promise: 'Role-specific training that changes how real work is performed safely.',
     summary: 'We train leaders, general users, champions and technical teams using approved tools and representative organisational tasks.',
     explanation: 'Effective training combines conceptual understanding, task decomposition, context design, verification and policy. Participants practise on realistic work, compare weak and strong methods, and leave with repeatable workflows rather than prompt tricks.',
