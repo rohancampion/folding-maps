@@ -35,7 +35,7 @@ export default function ServicesPage() {
     <>
       <section className="services-hero services-hero-corporate">
         <div className="services-hero-copy">
-          <PrecisionLabel index="QG–SV" label="Services" detail="Advise / build / enable" />
+          <PrecisionLabel index="QG-SV" label="Services" detail="Advise / build / enable" />
           <h1>One clear view of<br /><em>what we offer.</em></h1>
           <p>Every service sits in one of three groups. Start with the kind of help you need, then open any offering for its scope, delivery stages, safeguards and example applications.</p>
           <div className="hero-actions">

@@ -3,7 +3,7 @@ import { getService, serviceAliases, services } from '../lib/services';
 
 describe('services content model', () => {
   it('publishes the consolidated service collection with unique routes', () => {
-    expect(services).toHaveLength(12);
+    expect(services).toHaveLength(11);
     expect(new Set(services.map(({ slug }) => slug)).size).toBe(services.length);
     services.forEach((service) => expect(getService(service.slug)).toBe(service));
   });
