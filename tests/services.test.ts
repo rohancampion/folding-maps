@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { getService, services } from '../lib/services';
+import { getService, serviceAliases, services } from '../lib/services';
 
 describe('services content model', () => {
-  it('publishes the complete service collection with unique routes', () => {
-    expect(services).toHaveLength(20);
+  it('publishes the consolidated service collection with unique routes', () => {
+    expect(services).toHaveLength(12);
     expect(new Set(services.map(({ slug }) => slug)).size).toBe(services.length);
     services.forEach((service) => expect(getService(service.slug)).toBe(service));
   });
@@ -24,12 +24,20 @@ describe('services content model', () => {
     });
   });
 
+  it('keeps retired service routes mapped to their consolidated service', () => {
+    expect(Object.keys(serviceAliases)).toHaveLength(8);
+    Object.entries(serviceAliases).forEach(([legacySlug, canonicalSlug]) => {
+      expect(getService(legacySlug)).toBeUndefined();
+      expect(getService(canonicalSlug)).toBeDefined();
+    });
+  });
+
   it('publishes Secure AI Systems as a local and offline build capability', () => {
     const secureAI = getService('secure-ai-systems');
     expect(secureAI?.group).toBe('Build');
     expect(secureAI?.summary).toMatch(/local and offline models/i);
     expect(secureAI?.technologies).toContain('Network isolation');
-    expect(secureAI?.safeguards).toContain('No routine cloud model or telemetry dependency');
+    expect(secureAI?.safeguards).toContain('No cloud route for isolated workloads');
   });
 
   it('contains no pricing or em dashes in the service catalogue', () => {
