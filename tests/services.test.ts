@@ -3,7 +3,19 @@ import { getService, serviceAliases, services } from '../lib/services';
 
 describe('services content model', () => {
   it('publishes the consolidated service collection with unique routes', () => {
-    expect(services).toHaveLength(11);
+    expect(services).toHaveLength(10);
+    expect(services.map(({ slug }) => slug)).toEqual([
+      'ai-strategy',
+      'workflow-automation',
+      'claude-implementation',
+      'chatgpt-training-for-teams',
+      'ai-chatbot',
+      'ai-implementation',
+      'secure-ai-systems',
+      'enterprise-ai',
+      'agentic-ai',
+      'legacy-modernisation',
+    ]);
     expect(new Set(services.map(({ slug }) => slug)).size).toBe(services.length);
     services.forEach((service) => expect(getService(service.slug)).toBe(service));
   });

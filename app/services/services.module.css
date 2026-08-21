@@ -9,29 +9,19 @@
 }
 
 .directoryIntro,
-.serviceGroups { width: 100%; max-width: 1320px; margin-right: auto; margin-left: auto; }
+.serviceList { width: 100%; max-width: 1320px; margin-right: auto; margin-left: auto; }
 .directoryIntro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .42fr); gap: 1.5rem 7vw; align-items: end; }
 .directoryIntro :global(.precision-label) { grid-column: 1 / -1; color: #d8bc8e; }
 .directoryIntro h2 { max-width: 920px; margin: 0; font-size: clamp(3.2rem, 6vw, 6.2rem); font-weight: 400; line-height: .92; }
 .directoryIntro h2 em { color: #d8bc8e; font-weight: 400; }
 .directoryIntro > p { max-width: 430px; margin: 0; color: rgba(247, 240, 229, .62); }
 
-.serviceGroups { margin-top: clamp(4rem, 8vw, 7rem); border-top: 1px solid rgba(247, 240, 229, .24); }
-.serviceGroup { padding: clamp(3rem, 6vw, 5rem) 0; border-bottom: 1px solid rgba(247, 240, 229, .24); }
-.serviceGroup > header { display: grid; grid-template-columns: 70px minmax(0, 1fr) auto; gap: 1.5rem; align-items: start; }
-.serviceGroup > header > span,
-.serviceGroup > header small { color: #d8bc8e; font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
-.serviceGroup > header > span { padding-top: .35rem; }
-.serviceGroup > header h3 { max-width: 760px; margin: .7rem 0 .65rem; font-size: clamp(2.3rem, 4vw, 4.2rem); font-weight: 400; line-height: .98; }
-.serviceGroup > header p { max-width: 650px; margin: 0; color: rgba(247, 240, 229, .58); }
-.serviceGroup > header > b { padding-top: .35rem; color: rgba(247, 240, 229, .52); font-size: .63rem; letter-spacing: .1em; text-transform: uppercase; }
-
-.serviceList { margin: clamp(2.5rem, 5vw, 4rem) 0 0 70px; border-top: 1px solid rgba(247, 240, 229, .14); }
-.serviceList a { display: grid; padding: 1.5rem 0; grid-template-columns: 60px minmax(0, 1fr) 30px; gap: 1rem; border-bottom: 1px solid rgba(247, 240, 229, .12); align-items: start; }
+.serviceList { margin-top: clamp(4rem, 8vw, 7rem); border-top: 1px solid rgba(247, 240, 229, .24); }
+.serviceList a { display: grid; padding: 1.8rem 0; grid-template-columns: 60px minmax(0, 1fr) 30px; gap: 1rem; border-bottom: 1px solid rgba(247, 240, 229, .14); align-items: start; }
 .serviceList a:last-child { border-bottom: 0; }
 .serviceList a > span { padding-top: .35rem; color: #d8bc8e; font-size: .58rem; font-weight: 700; letter-spacing: .12em; }
 .serviceTitle { display: flex; gap: .8rem; align-items: center; flex-wrap: wrap; }
-.serviceTitle h4 { margin: 0; font-size: clamp(1.35rem, 2.2vw, 2.05rem); font-weight: 400; line-height: 1.05; }
+.serviceTitle h3 { margin: 0; font-size: clamp(1.35rem, 2.2vw, 2.05rem); font-weight: 400; line-height: 1.05; }
 .serviceTitle small { padding: .35rem .55rem; border: 1px solid rgba(216, 188, 142, .45); border-radius: 999px; color: #d8bc8e; font-size: .54rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
 .serviceList p { max-width: 820px; margin: .6rem 0 0; color: rgba(247, 240, 229, .58); font-size: .86rem; }
 .serviceList svg { margin-top: .35rem; color: #d8bc8e; transition: transform .2s ease; }
@@ -42,9 +32,6 @@
   :global(.services-hero-corporate) { padding-bottom: 6rem; }
   .directory { padding: 5.5rem 24px; }
   .directoryIntro { grid-template-columns: 1fr; }
-  .serviceGroup > header { grid-template-columns: 42px minmax(0, 1fr); gap: .8rem; }
-  .serviceGroup > header > b { display: none; }
-  .serviceList { margin-left: 0; }
   .serviceList a { grid-template-columns: 40px minmax(0, 1fr) 20px; gap: .7rem; }
 }
 
