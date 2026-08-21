@@ -4,11 +4,13 @@ import { HeroMechanism } from '@/components/MechanicalVisuals';
 import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { industries, industryFamilies } from '@/lib/industries';
 import styles from './industries-index.module.css';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata = {
+export const metadata = createPageMetadata({
   title: 'Industries',
   description: 'Practical AI integration for ambitious SMEs across 26 industries.',
-};
+  path: '/industries',
+});
 
 export default function IndustriesPage() {
   return (

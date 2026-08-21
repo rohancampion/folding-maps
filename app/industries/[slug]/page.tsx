@@ -7,6 +7,7 @@ import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { getIndustry, industries } from '@/lib/industries';
 import { getIndustryServiceRecommendations } from '@/lib/industry-services';
 import { getService } from '@/lib/services';
+import { createPageMetadata } from '@/lib/seo';
 import styles from './industry-detail.module.css';
 
 export function generateStaticParams() {
@@ -17,11 +18,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const industry = getIndustry(slug);
   if (!industry) return {};
-  return {
+  return createPageMetadata({
     title: `${industry.name} AI consulting`,
     description: industry.lead,
-    alternates: { canonical: `/industries/${industry.slug}` },
-  };
+    path: `/industries/${industry.slug}`,
+    image: null,
+  });
 }
 
 export default async function IndustryDetail({ params }: { params: Promise<{ slug: string }> }) {

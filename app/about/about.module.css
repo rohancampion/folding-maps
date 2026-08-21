@@ -12,6 +12,7 @@
 .story,
 .leanModel,
 .doctrine,
+.consultants,
 .careers {
   background-color: var(--paper);
   background-image:
@@ -84,6 +85,17 @@
 .doctrineCopy p { margin: 0; color: var(--muted); font-size: 1rem; }
 .doctrineCopy strong { display: block; margin-bottom: .7rem; color: var(--ink); font: 400 clamp(2rem, 3vw, 3.2rem)/1 var(--display); }
 
+.consultants { padding: clamp(7rem, 11vw, 11rem) 7vw; color: #f7f0e5; background-color: var(--machine); }
+.consultants > :global(.precision-label),
+.consultantList { max-width: 1350px; margin-left: auto; margin-right: auto; }
+.consultants > :global(.precision-label) { color: #d8bc8e; }
+.consultantList { display: grid; margin-top: clamp(4rem, 8vw, 7rem); grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(247, 240, 229, .25); }
+.consultantList article { padding: clamp(2rem, 4vw, 4rem) 0; }
+.consultantList article + article { padding-left: clamp(2rem, 5vw, 6rem); border-left: 1px solid rgba(247, 240, 229, .25); }
+.consultantList span { color: #d8bc8e; font-size: .66rem; font-weight: 700; letter-spacing: .14em; }
+.consultantList h2 { margin: 2.5rem 0 .8rem; font-size: clamp(3rem, 5vw, 5.8rem); font-weight: 400; line-height: .92; }
+.consultantList p { margin: 0; color: rgba(247, 240, 229, .62); font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+
 .careers { padding: clamp(7rem, 11vw, 11rem) 7vw; background-color: var(--cream); }
 .careers > * { max-width: 920px; }
 .careers h2 { margin: 2rem 0; font-size: clamp(3.8rem, 7vw, 7.2rem); font-weight: 400; line-height: .9; }
@@ -94,6 +106,7 @@
   .instrumentPlate { max-width: 520px; }
   .leanModel,
   .doctrine,
+  .consultants,
   .careers { padding: 6rem 24px; }
   .leanHeading { grid-template-columns: 1fr; gap: 2rem; }
   .advantageField { row-gap: 5rem; }
@@ -101,4 +114,6 @@
   .advantageField article:nth-child(even) { grid-column: 3 / 13; margin-top: 0; }
   .advantageField article { min-height: 260px; }
   .doctrineCopy { grid-template-columns: 1fr; gap: 3rem; }
+  .consultantList { grid-template-columns: 1fr; }
+  .consultantList article + article { padding-left: 0; border-top: 1px solid rgba(247, 240, 229, .25); border-left: 0; }
 }

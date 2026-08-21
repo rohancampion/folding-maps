@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ArrowLeft } from 'lucide-react';
 import { CodeExhibit } from '@/components/ConsultingExhibits';
@@ -8,14 +9,31 @@ import { InteractiveEvidence } from '@/components/InteractiveEvidence';
 import { MechanicalMark } from '@/components/MechanicalVisuals';
 import { NarrativeSections, ReportActionAgenda, ReportReferences } from '@/components/NarrativeReport';
 import { ReadingModeSwitch } from '@/components/ReadingModeSwitch';
+import { JsonLd } from '@/components/JsonLd';
 import { articleResearch, articles } from '@/lib/content';
 import { newsEvidenceViews } from '@/lib/editorialGraphics';
 import { newsEditorial, type NewsExhibitPlacement } from '@/lib/newsEditorial';
 import { dedupeSources } from '@/lib/reportNarrative';
 import { getNewsVariants } from '@/lib/reportVariants';
+import { absoluteUrl, breadcrumbJsonLd, createPageMetadata, SITE_NAME, SITE_URL, toIsoDate } from '@/lib/seo';
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const article = articles.find((item) => item.slug === slug);
+  if (!article) return {};
+  const editorial = newsEditorial[article.slug];
+  return createPageMetadata({
+    title: editorial.title,
+    description: editorial.standfirst,
+    path: `/news/${article.slug}`,
+    image: article.image,
+    type: 'article',
+    publishedTime: toIsoDate(article.date),
+  });
 }
 
 export default async function Article({ params }: { params: Promise<{ slug: string }> }) {
@@ -29,12 +47,34 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
     ...articleResearch[article.slug].map(({ source, href, finding }) => ({ label: source, href, detail: finding })),
     ...editorial.sections.flatMap((section) => section.paragraphs.flatMap((paragraph) => paragraph.sources ?? [])),
   ]);
+  const pageUrl = absoluteUrl(`/news/${article.slug}`);
+  const publishedTime = toIsoDate(article.date);
+  const jsonLd = [
+    breadcrumbJsonLd([
+      { name: 'News and analysis', path: '/news' },
+      { name: editorial.title, path: `/news/${article.slug}` },
+    ]),
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: editorial.title,
+      description: editorial.standfirst,
+      image: absoluteUrl(article.image),
+      datePublished: publishedTime,
+      dateModified: publishedTime,
+      mainEntityOfPage: pageUrl,
+      author: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+      publisher: { '@type': 'Organization', name: SITE_NAME, url: SITE_URL },
+      articleSection: article.tag,
+    },
+  ];
   const renderExhibit = (placement: NewsExhibitPlacement) => placement.kind === 'evidence'
     ? <InteractiveEvidence key={`evidence-${placement.view}`} views={[newsEvidenceViews[article.slug][placement.view]]}/>
     : <CodeExhibit key="system" title={article.code.title} eyebrow="Implementation pattern" lines={article.code.lines} nodes={article.code.nodes}/>;
 
   return (
     <article className="article-detail insight-report prose-first-report">
+      <JsonLd data={jsonLd} />
       <Link className="back" href="/news"><ArrowLeft size={16}/> All analysis</Link>
       <div className="report-meta"><span>{article.tag}</span><span>{article.date}</span><span>{article.read}</span></div>
       <h1>{editorial.title}</h1>

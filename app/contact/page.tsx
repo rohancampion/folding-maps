@@ -2,8 +2,13 @@ import { Clock3, Mail, MapPin } from 'lucide-react';
 import { ContactForm } from '@/components/ContactForm';
 import { PrecisionLabel } from '@/components/PrecisionLabel';
 import styles from './contact.module.css';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata = { title: 'Contact' };
+export const metadata = createPageMetadata({
+  title: 'Contact Quiet Gears',
+  description: 'Discuss an AI strategy, implementation or workflow challenge with Quiet Gears. Initial consultations are practical and confidential.',
+  path: '/contact',
+});
 
 export default function Contact() {
   return <>

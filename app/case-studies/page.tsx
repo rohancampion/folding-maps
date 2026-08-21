@@ -5,8 +5,13 @@ import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { ImageStreamHero } from '@/components/ui/image-stream-hero';
 import { cases } from '@/lib/content';
 import styles from './case-studies.module.css';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata = { title: 'Case studies' };
+export const metadata = createPageMetadata({
+  title: 'AI implementation case studies',
+  description: 'Decision papers showing how Quiet Gears connects operational problems, control models and delivery architecture for UK SMEs.',
+  path: '/case-studies',
+});
 
 const caseImagery: Record<string, string> = {
   'yacht-operations': '/images/cases/yacht-operations.webp',

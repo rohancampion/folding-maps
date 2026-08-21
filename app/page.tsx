@@ -1,9 +1,41 @@
 import { getImageProps } from 'next/image';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { Reveal } from '@/components/Reveal';
 import styles from './home.module.css';
+import { JsonLd } from '@/components/JsonLd';
+import { absoluteUrl, createPageMetadata, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo';
+
+export const metadata: Metadata = createPageMetadata({
+  title: 'AI systems for ambitious SMEs',
+  description: SITE_DESCRIPTION,
+  path: '/',
+});
+
+const homeJsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': `${SITE_URL}/#organization`,
+    name: SITE_NAME,
+    url: SITE_URL,
+    email: 'quietgearsai@gmail.com',
+    description: SITE_DESCRIPTION,
+    image: absoluteUrl('/og.png'),
+    address: { '@type': 'PostalAddress', addressLocality: 'London', addressCountry: 'GB' },
+    areaServed: { '@type': 'Country', name: 'United Kingdom' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': `${SITE_URL}/#website`,
+    name: SITE_NAME,
+    url: SITE_URL,
+    publisher: { '@id': `${SITE_URL}/#organization` },
+  },
+];
 
 const services = [
   { n: '01', title: 'AI strategy', slug: 'ai-strategy', text: 'Prioritise investable use cases, define the operating model and establish accountable governance.' },
@@ -42,6 +74,7 @@ function HeroImage() {
 export default function Home() {
   return (
     <>
+      <JsonLd data={homeJsonLd} />
       <section className={styles.hero} aria-labelledby="home-title">
         <HeroImage />
         <div className={styles.heroShade} />

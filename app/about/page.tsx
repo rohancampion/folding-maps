@@ -3,8 +3,13 @@ import { ArrowRight } from 'lucide-react';
 import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { Reveal } from '@/components/Reveal';
 import styles from './about.module.css';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata = { title: 'About' };
+export const metadata = createPageMetadata({
+  title: 'About Quiet Gears',
+  description: 'Meet the senior-led London consultancy helping ambitious UK SMEs turn operational friction into useful AI systems and software.',
+  path: '/about',
+});
 
 const leanAdvantages = [
   {
@@ -28,6 +33,8 @@ const leanAdvantages = [
     copy: 'Lean working practices concentrate investment on evidence, useful software and adoption instead of ceremony or unnecessary coordination.',
   },
 ];
+
+const leadConsultants = ['Luc Balonwu', 'Rohan Campion'];
 
 export default function About() {
   return (
@@ -93,8 +100,21 @@ export default function About() {
         </div>
       </section>
 
+      <section className={styles.consultants}>
+        <PrecisionLabel index="04" label="Lead consultants" detail="Strategy / engineering / adoption" />
+        <div className={styles.consultantList}>
+          {leadConsultants.map((name, index) => (
+            <article key={name}>
+              <span aria-hidden="true">0{index + 1}</span>
+              <h2>{name}</h2>
+              <p>Lead consultant</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className={styles.careers}>
-        <PrecisionLabel index="04" label="Work with us" />
+        <PrecisionLabel index="05" label="Work with us" />
         <h2>Exceptional specialists.<br />Direct client responsibility.</h2>
         <p>
           We are building a focused network of strategic thinkers and practical makers who value excellent craft, direct collaboration and measurable outcomes. We have no open roles today, but we welcome thoughtful introductions from experienced specialists.
