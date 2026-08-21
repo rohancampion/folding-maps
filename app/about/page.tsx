@@ -29,6 +29,8 @@ const leanAdvantages = [
   },
 ];
 
+const leadConsultants = ['Luc Balonwu', 'Rohan Campion'];
+
 export default function About() {
   return (
     <>
@@ -93,8 +95,21 @@ export default function About() {
         </div>
       </section>
 
+      <section className={styles.consultants}>
+        <PrecisionLabel index="04" label="Lead consultants" detail="Strategy / engineering / adoption" />
+        <div className={styles.consultantList}>
+          {leadConsultants.map((name, index) => (
+            <article key={name}>
+              <span aria-hidden="true">0{index + 1}</span>
+              <h2>{name}</h2>
+              <p>Lead consultant</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className={styles.careers}>
-        <PrecisionLabel index="04" label="Work with us" />
+        <PrecisionLabel index="05" label="Work with us" />
         <h2>Exceptional specialists.<br />Direct client responsibility.</h2>
         <p>
           We are building a focused network of strategic thinkers and practical makers who value excellent craft, direct collaboration and measurable outcomes. We have no open roles today, but we welcome thoughtful introductions from experienced specialists.
