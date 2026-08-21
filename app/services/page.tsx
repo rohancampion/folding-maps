@@ -1,13 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import {
-  ArrowRight, ArrowUpRight, Bot, BrainCircuit, Building2, Cable,
-  ChartNoAxesCombined, ClipboardCheck, CloudCog, GraduationCap,
-  Headphones, Landmark, LockKeyhole, MessagesSquare, Network,
-  RefreshCw, Route, Sparkles, Workflow,
-} from 'lucide-react';
-import { Reveal } from '@/components/Reveal';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { getService, serviceGroups, services } from '@/lib/services';
+import styles from './services.module.css';
 
 export const metadata: Metadata = {
   title: 'AI consulting and implementation services',
@@ -17,8 +13,6 @@ export const metadata: Metadata = {
     description: 'Senior advice, production engineering and adoption support delivered as one accountable programme.',
   },
 };
-
-const icons = [Landmark, Route, ClipboardCheck, BrainCircuit, CloudCog, Network, MessagesSquare, Headphones, Workflow, LockKeyhole, RefreshCw, Sparkles, Bot, Cable, ChartNoAxesCombined, Building2, CloudCog, Headphones, GraduationCap];
 
 const groupCopy = {
   Advise: {
@@ -68,9 +62,9 @@ export default function ServicesPage() {
   return <>
     <section className="services-hero services-hero-corporate">
       <div className="services-hero-copy">
-        <span className="kicker">AI consulting and implementation</span>
+        <PrecisionLabel index="QG–SV" label="AI consulting and implementation" detail="Strategy / engineering / adoption" />
         <h1>AI services built around <em>business outcomes.</em></h1>
-        <p>Quiet Gears brings strategy, engineering and adoption into one delivery model. We help organisations make sound investment decisions, implement production systems and build the capability to operate them responsibly.</p>
+        <p>Quiet Gears brings strategy, engineering and adoption into one accountable delivery model. We help leadership teams make sound investment decisions, implement production systems and build the capability to operate them responsibly.</p>
         <div className="hero-actions">
           <Link className="button lime" href="/contact">Discuss your requirements <ArrowRight size={17}/></Link>
           <a className="text-link" href="#service-catalogue">View the service catalogue <ArrowUpRight size={16}/></a>
@@ -82,37 +76,37 @@ export default function ServicesPage() {
       </div>
     </section>
 
-    <section className="services-model" aria-labelledby="services-model-title">
-      <div className="services-model-heading">
-        <span className="kicker">How we engage</span>
+    <section className={styles.model} aria-labelledby="services-model-title">
+      <div className={styles.modelHeading}>
+        <PrecisionLabel index="01" label="How we engage" />
         <h2 id="services-model-title">A structured route from decision to <em>operational value.</em></h2>
         <p>Engagements can begin at any stage. Each stage has a defined purpose, practical outputs and clear ownership.</p>
       </div>
-      <div className="services-model-grid">
+      <div className={styles.modelChapters}>
         {serviceGroups.map((group) => {
           const detail = groupCopy[group];
           return <article key={group}>
-            <div><span>{detail.number}</span><b>{group}</b></div>
+            <PrecisionLabel index={detail.number} label={group} />
             <h3>{detail.heading}</h3>
             <p>{detail.copy}</p>
-            <small>Typical outcome</small>
-            <strong>{detail.outcome}</strong>
+            <blockquote><span>Typical outcome</span>{detail.outcome}</blockquote>
           </article>;
         })}
       </div>
     </section>
 
-    <section className="services-decision-routes">
-      <div className="services-decision-heading">
-        <span className="kicker">Start with the requirement</span>
+    <section className={styles.routes}>
+      <div className={styles.routesHeading}>
+        <PrecisionLabel index="02" label="Decision routes" />
         <h2>Choose the route that reflects your current priority.</h2>
-        <p>These common entry points connect a business requirement to the services most likely to support it.</p>
+        <p>Begin with the operating requirement. The appropriate service mix follows from the decision, workflow or capability that needs to improve.</p>
       </div>
-      <div className="decision-route-list">
+      <div className={styles.compass}>
         {decisionRoutes.map((route, index) => <article key={route.label}>
-          <span>{String(index + 1).padStart(2, '0')}</span>
-          <div><h3>{route.label}</h3><p>{route.description}</p></div>
-          <div className="decision-route-links">
+          <PrecisionLabel index={String(index + 1).padStart(2, '0')} label="Requirement" />
+          <h3>{route.label}</h3>
+          <p>{route.description}</p>
+          <div className={styles.routeLinks}>
             {route.services.map((slug) => {
               const service = getService(slug);
               return service ? <Link key={slug} href={`/services/${slug}`}>{service.shortTitle}<ArrowUpRight size={14}/></Link> : null;
@@ -122,42 +116,42 @@ export default function ServicesPage() {
       </div>
     </section>
 
-    <div id="service-catalogue" className="service-collection">
-      <div className="service-collection-intro">
-        <span className="kicker">Service catalogue</span>
+    <section id="service-catalogue" className={styles.catalogue}>
+      <div className={styles.catalogueIntro}>
+        <PrecisionLabel index="03" label="Capabilities" />
         <h2>Specialist support across the full AI lifecycle.</h2>
-        <p>Select a service to review its scope, delivery stages, technical provisions, safeguards and representative use cases.</p>
+        <p>Each capability page defines scope, delivery stages, technical provisions, safeguards and representative use cases.</p>
       </div>
       {serviceGroups.map((group) => {
         const detail = groupCopy[group];
-        return <section className="service-group" key={group}>
-          <div className="service-group-heading">
-            <div><span>{detail.number} / {group}</span><h2>{detail.heading}</h2></div>
+        return <section className={styles.capabilityField} key={group}>
+          <div className={styles.capabilityHeading}>
+            <PrecisionLabel index={detail.number} label={group} />
+            <h2>{detail.heading}</h2>
             <p>{detail.copy}</p>
           </div>
-          <div className="service-catalogue">
-            {services.filter((service) => service.group === group).map((service) => {
-              const Icon = icons[Number(service.number) - 1] ?? Sparkles;
-              return <Reveal className="service-catalogue-card" key={service.slug}>
-                <Link href={`/services/${service.slug}`} aria-label={`Explore ${service.title}`}>
-                  <div className="catalogue-card-top"><span>{service.number}</span><Icon/></div>
-                  <div><small>{service.group}</small><h3>{service.title}</h3><p>{service.summary}</p></div>
-                  <b>View service details <ArrowUpRight size={15}/></b>
+          <div className={styles.capabilityCloud} role="navigation" aria-label={`${group} services`}>
+            {services.filter((service) => service.group === group).map((service) => (
+                <Link href={`/services/${service.slug}`} key={service.slug} aria-label={`Explore ${service.title}`}>
+                  <span>{service.number}</span>
+                  <h3>{service.title}</h3>
+                  <p>{service.summary}</p>
+                  <ArrowUpRight size={16}/>
                 </Link>
-              </Reveal>;
-            })}
+            ))}
           </div>
         </section>;
       })}
-    </div>
+    </section>
 
-    <section className="services-principles">
-      <div><span className="kicker">Delivery standards</span><h2>Disciplined delivery from <em>first assessment to handover.</em></h2></div>
-      <div className="principle-grid">
-        <article><span>01</span><h3>Business case first</h3><p>Every engagement begins with the workflow, decision or service outcome that needs to improve.</p></article>
-        <article><span>02</span><h3>Controls by design</h3><p>Identity, data boundaries, human authority and evidence requirements are defined in the solution architecture.</p></article>
-        <article><span>03</span><h3>Evidence before scale</h3><p>Representative work and agreed acceptance criteria determine whether a release should expand.</p></article>
-        <article><span>04</span><h3>Operational ownership</h3><p>Teams receive the documentation, training and support model required to manage ongoing performance.</p></article>
+    <section className={styles.standards}>
+      <PrecisionLabel index="QG–04" label="Delivery standard" detail="Applied to every engagement" />
+      <h2>Disciplined delivery from <em>first assessment to handover.</em></h2>
+      <div className={styles.standardStatement}>
+        <p><strong>Business case first.</strong> Begin with the workflow, decision or service outcome that needs to improve.</p>
+        <p><strong>Controls by design.</strong> Define identity, data boundaries, human authority and evidence in the architecture.</p>
+        <p><strong>Evidence before scale.</strong> Use representative work and agreed acceptance criteria to determine expansion.</p>
+        <p><strong>Operational ownership.</strong> Transfer the documentation, training and support model required for ongoing performance.</p>
       </div>
     </section>
 

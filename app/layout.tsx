@@ -1,16 +1,17 @@
 import type { Metadata } from 'next';
-import { Instrument_Serif, DM_Sans } from 'next/font/google';
+import { Instrument_Serif, IBM_Plex_Sans } from 'next/font/google';
 import './globals.css';
+import './tailwind.css';
 import { Header, Footer } from '@/components/Shell';
 
 const display = Instrument_Serif({ subsets: ['latin'], variable: '--display', weight: '400' });
-const body = DM_Sans({ subsets: ['latin'], variable: '--body' });
+const body = IBM_Plex_Sans({ subsets: ['latin'], variable: '--body', weight: 'variable' });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://quietgears.co.uk'),
   title: { default: 'Quiet Gears | AI systems for ambitious SMEs', template: '%s | Quiet Gears' },
-  description: 'London-based AI consulting, automation and software for UK SMEs.',
-  openGraph: { title: 'Quiet Gears', description: 'AI systems that keep business moving.', type: 'website' },
+  description: 'Senior AI advisory, production engineering and adoption support for ambitious UK SMEs.',
+  openGraph: { title: 'Quiet Gears', description: 'Accountable AI strategy, engineering and adoption.', type: 'website' },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

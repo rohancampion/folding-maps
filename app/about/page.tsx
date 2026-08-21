@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { ArrowRight, Check } from 'lucide-react';
-import { GearSystem } from '@/components/GearSystem';
+import { ArrowRight } from 'lucide-react';
+import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { Reveal } from '@/components/Reveal';
-import { ServiceJourney, ServicePathways } from '@/components/ServiceJourney';
+import styles from './about.module.css';
 
 export const metadata = { title: 'About' };
 
@@ -29,13 +29,6 @@ const leanAdvantages = [
   },
 ];
 
-const principles = [
-  ['01', 'Think beyond the launch', 'A system only succeeds if it is adopted, maintained and still valuable a year from now.'],
-  ['02', 'Quality pays its way', 'Thoughtful architecture and careful execution cost less than fragile shortcuts in the long run.'],
-  ['03', 'Move with intent', 'Speed matters. We use it to test reality sooner, never as an excuse for careless work.'],
-  ['04', 'Be easy to work with', 'Clear language, direct access and an honest view of what technology can and cannot do.'],
-];
-
 export default function About() {
   return (
     <>
@@ -45,33 +38,23 @@ export default function About() {
           10&nbsp;&nbsp;CONNECT → AUTOMATE → LEARN<br />
           11&nbsp;&nbsp;HUMAN.IN.THE.LOOP&nbsp;&nbsp;01&nbsp;&nbsp;SHIP
         </div>
-        <span className="kicker">About Quiet Gears</span>
+        <PrecisionLabel index="QG–AB" label="About Quiet Gears" detail="London / strategy / engineering" />
         <h1>Specialist thinking.<br /><em>Lean delivery.</em></h1>
         <p>
           Quiet Gears is a London consultancy helping ambitious UK SMEs turn operational friction into useful AI systems and software. Lean by design, senior-led and accountable from the first decision to a working release.
         </p>
       </section>
 
-      <section className="partners">
-        <span>Companies we work with</span>
-        <div className="logo-grid">
-          <div className="partner-logo transkold"><i>◫</i>TRANSKOLD</div>
-          <div className="partner-logo ocean"><i>≈</i><strong>ocean to ocean</strong></div>
-          <div className="partner-logo placeholder"><i>◒</i>NORTHSTAR</div>
-          <div className="partner-logo placeholder"><i>✦</i>FIELDWORK</div>
-          <div className="partner-logo placeholder"><i>///</i>PARALLEL</div>
-        </div>
-      </section>
-
-      <section className="split-story">
-        <Reveal>
-          <div className="abstract-panel gear-panel">
-            <GearSystem />
-            <span>Established<br /><b>2026 · London</b></span>
+      <section className={styles.story}>
+        <Reveal className={styles.instrumentWrap}>
+          <div className={styles.instrumentPlate} aria-hidden="true">
+            <i/><i/><i/>
+            <span>QG / DATUM 2026</span>
+            <b>51.5072° N<br/>0.1276° W</b>
           </div>
         </Reveal>
-        <Reveal>
-          <span className="kicker">Why we exist</span>
+        <Reveal className={styles.storyCopy}>
+          <PrecisionLabel index="01" label="Why we exist" />
           <h2>Good technology should make work feel lighter.</h2>
           <p>
             Established businesses often know exactly where friction lives: the spreadsheet passed between teams, the enquiry that waits too long, or the repetitive task that consumes a skilled person&apos;s day. What they lack is protected capacity to solve it well.
@@ -82,18 +65,18 @@ export default function About() {
         </Reveal>
       </section>
 
-      <section className="lean-model">
-        <div className="section-heading">
+      <section className={styles.leanModel}>
+        <div className={styles.leanHeading}>
           <div>
-            <span className="kicker">The lean specialist model</span>
+            <PrecisionLabel index="02" label="The lean specialist model" />
             <h2>Less distance between<br /><em>insight and impact.</em></h2>
           </div>
           <p>A deliberately focused operating model gives clients more direct expertise, faster learning and clearer accountability.</p>
         </div>
-        <div className="lean-grid">
-          {leanAdvantages.map((item) => (
+        <div className={styles.advantageField}>
+          {leanAdvantages.map((item, index) => (
             <article key={item.number}>
-              <div className="lean-card-top"><span>{item.number}</span><Check size={17} /></div>
+              <PrecisionLabel index={item.number} label={index % 2 === 0 ? 'Delivery principle' : 'Operating principle'} />
               <h3>{item.title}</h3>
               <p>{item.copy}</p>
             </article>
@@ -101,32 +84,20 @@ export default function About() {
         </div>
       </section>
 
-      <ServiceJourney />
-      <ServicePathways />
-
-      <section className="values">
-        <div className="section-heading">
-          <div>
-            <span className="kicker">What guides us</span>
-            <h2>Principles built<br /><em>for the long run.</em></h2>
-          </div>
-        </div>
-        <div className="value-grid">
-          {principles.map((item) => (
-            <div className="value" key={item[0]}>
-              <span>{item[0]}</span>
-              <h3>{item[1]}</h3>
-              <p>{item[2]}</p>
-            </div>
-          ))}
+      <section className={styles.doctrine}>
+        <PrecisionLabel index="03" label="What guides us" detail="Quality / intent / ownership" />
+        <h2>Principles built<br /><em>for the long run.</em></h2>
+        <div className={styles.doctrineCopy}>
+          <p><strong>Think beyond the launch.</strong> A system only succeeds if it is adopted, maintained and still valuable a year from now. Thoughtful architecture and careful execution cost less than fragile shortcuts in the long run.</p>
+          <p><strong>Move with intent.</strong> Speed matters because it brings evidence forward. We use it to test reality sooner—supported by clear language, direct access and an honest view of what technology can and cannot do.</p>
         </div>
       </section>
 
-      <section className="careers">
-        <span className="kicker">Work with us</span>
-        <h2>Exceptional specialists.<br />No big-firm baggage.</h2>
+      <section className={styles.careers}>
+        <PrecisionLabel index="04" label="Work with us" />
+        <h2>Exceptional specialists.<br />Direct client responsibility.</h2>
         <p>
-          We are building a focused network of strategic thinkers and practical makers who value excellent craft, direct collaboration and measurable outcomes. We have no open roles today, but always welcome a thoughtful introduction.
+          We are building a focused network of strategic thinkers and practical makers who value excellent craft, direct collaboration and measurable outcomes. We have no open roles today, but we welcome thoughtful introductions from experienced specialists.
         </p>
         <a className="button outline" href="mailto:quietgearsai@gmail.com?subject=Working%20with%20Quiet%20Gears">
           Introduce yourself <ArrowRight size={17} />

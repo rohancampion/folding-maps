@@ -1,28 +1,68 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import { HeroMechanism, MechanicalMark } from '@/components/MechanicalVisuals';
+import { PrecisionLabel } from '@/components/PrecisionLabel';
+import { ImageStreamHero } from '@/components/ui/image-stream-hero';
 import { cases } from '@/lib/content';
+import styles from './case-studies.module.css';
 
 export const metadata = { title: 'Case studies' };
+
+const caseImagery: Record<string, string> = {
+  'yacht-operations': '/images/cases/yacht-operations.webp',
+  'cold-chain': '/images/cases/cold-chain.webp',
+  'property-pipeline': '/images/cases/property-pipeline.webp',
+  'professional-services-intake': '/images/cases/professional-services-intake.webp',
+  'field-service-planning': '/images/cases/field-service-planning.webp',
+};
+
+const streamImages = cases.map((study) => ({
+  src: caseImagery[study.slug] ?? study.image,
+  alt: study.title,
+}));
 
 export default function Cases() {
   return (
     <>
-      <section className="page-hero report-hero report-hero-layout">
-        <div className="report-hero-copy"><span className="kicker">Case studies</span>
-          <h1>From operational friction<br/><em>to working systems.</em></h1>
-          <p>Narrative engagement papers that begin with an operating moment, trace the commercial and control tension, then show how evidence becomes a bounded release. Illustrative work and in-progress outcomes are labelled clearly.</p>
-          <div className="section-proof"><div><strong>{cases.length}</strong><span>Detailed studies</span></div><div><strong>5</strong><span>Operating sectors</span></div><div><strong>4</strong><span>Prose-led decision lenses per case</span></div></div>
+      <ImageStreamHero
+        images={streamImages}
+        cards={10}
+        speed={20}
+        axis={57}
+        className={styles.hero}
+      >
+        <div className={styles.heroContent}>
+          <div className={styles.heroLead}>
+            <PrecisionLabel index="QG–CS" label="Case studies" detail="Operational evidence / controlled delivery" />
+            <h1>From operational friction<br/><em>to working systems.</em></h1>
+          </div>
+          <p className={styles.heroSummary}>Engagement papers that connect the operating problem, control model and delivery architecture. Illustrative work and in-progress outcomes are labelled clearly.</p>
         </div>
-        <HeroMechanism compact/>
-      </section>
-      <section className="case-list expanded-case-list">
-        <div className="collection-heading"><span>Selected work</span><p>Each paper combines commercial context, operating detail and a technical blueprint.</p></div>
+      </ImageStreamHero>
+      <section className={styles.collection} aria-labelledby="selected-work-title">
+        <div className={styles.collectionHeading}>
+          <PrecisionLabel index="01–05" label="Selected work" />
+          <h2 id="selected-work-title">Evidence, architecture<br/><em>and accountable delivery.</em></h2>
+          <p>Each study is structured as a decision paper: situation, design response, control position and the evidence required before expansion.</p>
+        </div>
         {cases.map((study, index) => (
-          <Link href={`/case-studies/${study.slug}`} className="case-card" key={study.slug}>
-            <div className={`case-visual visual-${index % 3}`}><Image src={study.image} alt="" fill sizes="(max-width: 800px) 100vw, 50vw"/><span>{study.sector}</span><MechanicalMark label="Delivery system"/><div className="case-image-wash"/></div>
-            <div className="case-copy"><div><span className="badge">{study.status}</span><span>{study.sector}</span></div><span className="reading-level-badge">Simple + Advanced</span><h2>{study.title}</h2><p>{study.summary}</p><div className="card-facts">{study.metrics.slice(0, 2).map((metric) => <span key={metric.label}><strong>{metric.value}</strong>{metric.label}</span>)}</div><b>Read the full case <ArrowUpRight size={16}/></b></div>
+          <Link href={`/case-studies/${study.slug}`} className={styles.caseStudy} key={study.slug}>
+            <div className={styles.caseVisual}>
+              <Image
+                src={caseImagery[study.slug] ?? study.image}
+                alt=""
+                fill
+                sizes="(max-width: 800px) 100vw, 58vw"
+                className={styles.caseImage}
+              />
+              <span className={styles.caseIndex}>{String(index + 1).padStart(2, '0')}</span>
+            </div>
+            <div className={styles.caseCopy}>
+              <PrecisionLabel index={study.status === 'Illustrative' ? 'CONCEPT' : 'ACTIVE'} label={study.sector} />
+              <h3>{study.title}</h3>
+              <p>{study.summary}</p>
+              <span className={styles.caseAction}>Read the decision paper <ArrowUpRight size={16}/></span>
+            </div>
           </Link>
         ))}
       </section>
