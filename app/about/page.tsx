@@ -11,12 +11,6 @@ export const metadata = createPageMetadata({
   path: '/about',
 });
 
-const principles = [
-  { number: '01', title: 'Stay close to the work', copy: 'The people framing the problem remain involved through design, build and handover. Context does not disappear between teams.' },
-  { number: '02', title: 'Make progress visible', copy: 'Short working cycles produce something concrete to inspect. Evidence, constraints and trade-offs stay in plain view.' },
-  { number: '03', title: 'Leave a system that lasts', copy: 'Documentation, controls and internal ownership are part of the work, so the result remains useful after we step away.' },
-];
-
 const leadConsultants = ['Luc Balonwu', 'Rohan Campion'];
 
 export default function About() {
@@ -50,28 +44,9 @@ export default function About() {
         </Reveal>
       </section>
 
-      <section className={styles.principles}>
-        <div className={styles.sectionHeading}>
-          <PrecisionLabel index="02" label="How we work" />
-          <h2>Small team.<br /><em>Clear ownership.</em></h2>
-          <p>Three habits keep the work direct, legible and grounded in the client&apos;s operating reality.</p>
-        </div>
-        <div className={styles.principleList}>
-          {principles.map((principle) => (
-            <article key={principle.number}>
-              <span>{principle.number}</span>
-              <div>
-                <h3>{principle.title}</h3>
-                <p>{principle.copy}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section className={styles.people}>
         <div className={styles.sectionHeading}>
-          <PrecisionLabel index="03" label="People" detail="Strategy / engineering / adoption" />
+          <PrecisionLabel index="02" label="People" detail="Strategy / engineering / adoption" />
           <h2>The people you meet<br /><em>do the work.</em></h2>
           <p>Quiet Gears is led by two consultants and supported by a focused network of specialists when the brief calls for it.</p>
         </div>

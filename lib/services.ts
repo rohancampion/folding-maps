@@ -21,7 +21,20 @@ export type Service = {
   safeguards: string[];
 };
 
-export const services: Service[] = [
+const serviceDemandOrder = [
+  'ai-strategy',
+  'workflow-automation',
+  'claude-implementation',
+  'chatgpt-training-for-teams',
+  'ai-chatbot',
+  'ai-implementation',
+  'secure-ai-systems',
+  'enterprise-ai',
+  'agentic-ai',
+  'legacy-modernisation',
+] as const;
+
+const serviceCatalogue: Service[] = [
   {
     slug: 'ai-strategy', number: '01', group: 'Advise', title: 'AI Strategy & Readiness', shortTitle: 'Strategy and readiness',
     promise: 'A prioritised AI direction grounded in what your organisation can support now.',
@@ -176,25 +189,6 @@ export const services: Service[] = [
     safeguards: ['Managed identity and least privilege', 'Approved data-use and retention policy', 'Representative task evaluation', 'Human confirmation for external actions'],
   },
   {
-    slug: 'grant-funded-ai-implementation', number: '09', group: 'Build', title: 'Grant-Funded AI Implementation', shortTitle: 'Grant-funded AI',
-    promise: 'A credible innovation case linked to a deliverable technical programme.',
-    summary: 'We help eligible organisations shape fundable AI projects and act as a technical delivery partner where the programme fits.',
-    explanation: 'A strong funded project connects genuine technical uncertainty to a market need, delivery method, measurable outcomes and capable consortium. We align the application narrative with the architecture, work packages, evidence plan and delivery responsibilities.',
-    technologies: ['Technical work packages', 'Innovation evidence', 'Consortium design', 'Delivery assurance'],
-    stages: [
-      { label: 'Fit', detail: 'Test organisational, project and programme eligibility.' },
-      { label: 'Frame', detail: 'Define the innovation, user need and technical uncertainty.' },
-      { label: 'Plan', detail: 'Build work packages, evidence, risks and partner responsibilities.' },
-      { label: 'Deliver', detail: 'Execute the technical programme and preserve claim evidence.' },
-    ],
-    useCases: [
-      { title: 'Applied AI feasibility project', problem: 'A company has proprietary data and a promising idea but lacks a testable technical programme.', example: 'The concept becomes a set of hypotheses, data work, prototypes and evaluation gates with named owners.', path: ['Market need', 'Technical uncertainty', 'Evidence plan', 'Feasibility decision'] },
-      { title: 'Collaborative innovation bid', problem: 'Several partners have complementary strengths but no coherent system architecture or delivery plan.', example: 'Shared interfaces, work packages and acceptance evidence turn separate contributions into one programme.', path: ['Partner assets', 'System design', 'Work packages', 'Integrated demonstrator'] },
-    ],
-    provisions: ['Programme fit and technical eligibility', 'Innovation narrative and solution architecture', 'Work-package, risk and evidence design', 'Technical delivery and reporting support'],
-    safeguards: ['No guarantee of funding outcome', 'Claims tied to supportable evidence', 'Scope aligned with application commitments', 'Clear intellectual-property boundaries'],
-  },
-  {
     slug: 'enterprise-ai', number: '10', group: 'Enable', title: 'AI Adoption & Operating Model', shortTitle: 'AI adoption',
     promise: 'A scale-appropriate way to adopt AI across people, workflows and control functions.',
     summary: 'We help growing teams and larger organisations embed useful AI without importing unnecessary complexity or losing local ownership.',
@@ -234,6 +228,11 @@ export const services: Service[] = [
   },
 ];
 
+export const services: Service[] = serviceDemandOrder.flatMap((slug, index) => {
+  const service = serviceCatalogue.find((item) => item.slug === slug);
+  return service ? [{ ...service, number: String(index + 1).padStart(2, '0') }] : [];
+});
+
 export const serviceAliases: Record<string, string> = {
   'ai-readiness': 'ai-strategy',
   'claude-consulting': 'claude-implementation',
@@ -244,8 +243,6 @@ export const serviceAliases: Record<string, string> = {
   'ai-for-smes': 'enterprise-ai',
   'ai-london': 'enterprise-ai',
 };
-
-export const serviceGroups = ['Advise', 'Build', 'Enable'] as const;
 
 export function getService(slug: string) {
   return services.find((service) => service.slug === slug);
