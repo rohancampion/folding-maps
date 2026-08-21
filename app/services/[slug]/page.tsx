@@ -2,8 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, CircleDot, Cpu, Database, GitBranch, ShieldCheck } from 'lucide-react';
+import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { ServiceSystemLab } from '@/components/ServiceSystemLab';
 import { getService, services } from '@/lib/services';
+import styles from './service-detail.module.css';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -32,11 +34,11 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   const next = services[(currentIndex + 1) % services.length];
 
   return <>
-    <article className="service-detail-page">
+    <article className={`service-detail-page ${styles.corporateDetail}`}>
       <section className="service-detail-hero">
         <div className="service-detail-copy">
           <Link className="back" href="/services"><ArrowLeft size={15}/> All services</Link>
-          <span className="kicker">{service.group} / Service {service.number}</span>
+          <PrecisionLabel index={service.number} label={service.group} detail="Service specification" />
           <h1>{service.title}</h1>
           <p className="service-promise">{service.promise}</p>
           <p>{service.summary}</p>

@@ -10,8 +10,8 @@ const body = IBM_Plex_Sans({ subsets: ['latin'], variable: '--body', weight: 'va
 export const metadata: Metadata = {
   metadataBase: new URL('https://quietgears.co.uk'),
   title: { default: 'Quiet Gears | AI systems for ambitious SMEs', template: '%s | Quiet Gears' },
-  description: 'London-based AI consulting, automation and software for UK SMEs.',
-  openGraph: { title: 'Quiet Gears', description: 'AI systems that keep business moving.', type: 'website' },
+  description: 'Senior AI advisory, production engineering and adoption support for ambitious UK SMEs.',
+  openGraph: { title: 'Quiet Gears', description: 'Accountable AI strategy, engineering and adoption.', type: 'website' },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

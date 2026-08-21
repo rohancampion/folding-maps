@@ -3,9 +3,11 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, ShieldCheck } from 'lucide-react';
 import { IndustrySignal } from '@/components/IndustrySignal';
+import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { getIndustry, industries } from '@/lib/industries';
 import { getIndustryServiceRecommendations } from '@/lib/industry-services';
 import { getService } from '@/lib/services';
+import styles from './industry-detail.module.css';
 
 export function generateStaticParams() {
   return industries.map((industry) => ({ slug: industry.slug }));
@@ -36,11 +38,11 @@ export default async function IndustryDetail({ params }: { params: Promise<{ slu
 
   return (
     <>
-      <article className={`industry-detail industry-layout-${index % 4} motif-${industry.motif}`} style={style}>
+      <article className={`industry-detail industry-layout-${index % 4} motif-${industry.motif} ${styles.corporateDetail}`} style={style}>
         <section className="industry-hero">
           <div className="industry-hero-copy">
             <Link className="back" href="/industries"><ArrowLeft size={16}/> All industries</Link>
-            <span className="kicker">{industry.family} · {industry.eyebrow}</span>
+            <PrecisionLabel index={String(index + 1).padStart(2, '0')} label={industry.family} detail={industry.eyebrow} />
             <h1>{industry.name}</h1>
             <h2>{industry.headline}</h2>
             <p>{industry.lead}</p>

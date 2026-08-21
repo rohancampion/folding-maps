@@ -1,0 +1,104 @@
+:global(.code-waterfall) > :global(.precision-label) { position: relative; z-index: 2; color: var(--machine); }
+:global(.code-waterfall) {
+  background:
+    radial-gradient(circle at 78% 28%, rgba(183, 137, 69, .2), transparent 24%),
+    linear-gradient(112deg, rgba(18, 30, 27, .99), rgba(36, 61, 56, .93));
+}
+:global(.code-waterfall)::after {
+  background: repeating-linear-gradient(90deg, transparent 0 58px, rgba(183, 137, 69, .12) 59px 60px);
+}
+:global(.code-waterfall .code-rain) { color: rgba(247, 240, 229, .38); text-shadow: 0 0 12px rgba(183, 137, 69, .35); }
+
+.story,
+.leanModel,
+.doctrine,
+.careers {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(73, 106, 102, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(73, 106, 102, .045) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.story {
+  display: grid;
+  padding: clamp(7rem, 11vw, 11rem) 7vw;
+  grid-template-columns: minmax(360px, .9fr) minmax(0, 1.1fr);
+  gap: 10vw;
+  align-items: center;
+}
+
+.instrumentWrap { min-width: 0; }
+.instrumentPlate {
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(73, 106, 102, .28);
+  border-radius: 50%;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, transparent 49.8%, rgba(73, 106, 102, .18) 50%, transparent 50.2%),
+    linear-gradient(transparent 49.8%, rgba(73, 106, 102, .18) 50%, transparent 50.2%),
+    repeating-conic-gradient(from 0deg, rgba(183, 137, 69, .24) 0 .35deg, transparent .35deg 4deg),
+    radial-gradient(circle at center, rgba(183, 137, 69, .12), transparent 55%);
+}
+
+.instrumentPlate i { position: absolute; border: 1px solid rgba(73, 106, 102, .4); border-radius: 50%; }
+.instrumentPlate i:nth-child(1) { inset: 12%; }
+.instrumentPlate i:nth-child(2) { inset: 30%; border-color: var(--brass); }
+.instrumentPlate i:nth-child(3) { inset: 46%; background: var(--machine); box-shadow: 0 0 0 10px rgba(73, 106, 102, .08); }
+.instrumentPlate span,
+.instrumentPlate b { position: absolute; color: var(--machine); font-size: .56rem; font-weight: 700; letter-spacing: .13em; }
+.instrumentPlate span { left: 13%; bottom: 18%; }
+.instrumentPlate b { right: 13%; top: 17%; line-height: 1.65; text-align: right; }
+
+.storyCopy h2 { max-width: 720px; margin: 2rem 0 2.5rem; font-size: clamp(3.4rem, 6vw, 6.4rem); font-weight: 400; line-height: .92; }
+.storyCopy p { max-width: 680px; color: var(--muted); font-size: 1rem; }
+
+.leanModel { padding: clamp(7rem, 11vw, 11rem) 7vw; color: #f7f0e5; background-color: var(--ink); background-image: linear-gradient(rgba(247, 240, 229, .035) 1px, transparent 1px), linear-gradient(90deg, rgba(247, 240, 229, .035) 1px, transparent 1px); }
+.leanHeading { display: grid; max-width: 1400px; margin: 0 auto clamp(6rem, 11vw, 10rem); grid-template-columns: 1.2fr .55fr; gap: 8vw; align-items: end; }
+.leanHeading :global(.precision-label) { color: #d8bc8e; }
+.leanHeading h2 { margin: 2rem 0 0; font-size: clamp(3.8rem, 7vw, 7.2rem); font-weight: 400; line-height: .88; }
+.leanHeading h2 em { color: #d8bc8e; font-weight: 400; }
+.leanHeading > p { margin: 0; color: rgba(247, 240, 229, .62); }
+
+.advantageField { display: grid; max-width: 1350px; margin: 0 auto; grid-template-columns: repeat(12, minmax(0, 1fr)); row-gap: 7rem; }
+.advantageField article { position: relative; min-height: 300px; padding-top: 1.5rem; }
+.advantageField article::before { content: ''; position: absolute; top: 0; left: 0; width: 58px; height: 1px; background: #d8bc8e; }
+.advantageField article:nth-child(1) { grid-column: 1 / 6; }
+.advantageField article:nth-child(2) { grid-column: 7 / 12; margin-top: 6rem; }
+.advantageField article:nth-child(3) { grid-column: 2 / 7; }
+.advantageField article:nth-child(4) { grid-column: 8 / 13; margin-top: 5rem; }
+.advantageField :global(.precision-label) { color: #d8bc8e; }
+.advantageField h3 { margin: 2.8rem 0 1rem; font-size: clamp(2.5rem, 4vw, 4.6rem); font-weight: 400; line-height: .94; }
+.advantageField p { max-width: 520px; margin: 0; color: rgba(247, 240, 229, .62); }
+
+.doctrine { padding: clamp(7rem, 11vw, 11rem) 7vw; }
+.doctrine > :global(.precision-label),
+.doctrine > h2,
+.doctrineCopy { max-width: 1350px; margin-left: auto; margin-right: auto; }
+.doctrine h2 { margin-top: 2rem; font-size: clamp(3.8rem, 7vw, 7.2rem); font-weight: 400; line-height: .88; }
+.doctrine h2 em { color: var(--machine); font-weight: 400; }
+.doctrineCopy { display: grid; margin-top: clamp(4rem, 8vw, 7rem); grid-template-columns: 1fr 1fr; gap: 8vw; }
+.doctrineCopy p { margin: 0; color: var(--muted); font-size: 1rem; }
+.doctrineCopy strong { display: block; margin-bottom: .7rem; color: var(--ink); font: 400 clamp(2rem, 3vw, 3.2rem)/1 var(--display); }
+
+.careers { padding: clamp(7rem, 11vw, 11rem) 7vw; background-color: var(--cream); }
+.careers > * { max-width: 920px; }
+.careers h2 { margin: 2rem 0; font-size: clamp(3.8rem, 7vw, 7.2rem); font-weight: 400; line-height: .9; }
+.careers p { max-width: 650px; margin-bottom: 2.5rem; color: var(--muted); }
+
+@media (max-width: 800px) {
+  .story { padding: 6rem 24px; grid-template-columns: 1fr; gap: 5rem; }
+  .instrumentPlate { max-width: 520px; }
+  .leanModel,
+  .doctrine,
+  .careers { padding: 6rem 24px; }
+  .leanHeading { grid-template-columns: 1fr; gap: 2rem; }
+  .advantageField { row-gap: 5rem; }
+  .advantageField article:nth-child(odd) { grid-column: 1 / 11; }
+  .advantageField article:nth-child(even) { grid-column: 3 / 13; margin-top: 0; }
+  .advantageField article { min-height: 260px; }
+  .doctrineCopy { grid-template-columns: 1fr; gap: 3rem; }
+}

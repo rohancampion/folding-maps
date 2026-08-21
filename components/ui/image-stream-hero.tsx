@@ -88,7 +88,7 @@ export function ImageStreamHero({
   const css = React.useMemo(
     () =>
       `${keyframes(1, right, p)}${keyframes(-1, left, p)}` +
-      `@media(prefers-reduced-motion:reduce){.${card}{animation-play-state:paused}}`,
+      `@media(prefers-reduced-motion:reduce){.${card}{animation-name:var(--ish-animation)!important;animation-duration:var(--ish-speed)!important;animation-timing-function:linear!important;animation-iteration-count:infinite!important;animation-play-state:paused!important}}`,
     [right, left, card, p],
   );
 
@@ -120,6 +120,8 @@ export function ImageStreamHero({
                   key={`${name}-${i}`}
                   className={cn(card, "absolute overflow-hidden")}
                   style={{
+                    '--ish-animation': name,
+                    '--ish-speed': `${speed}s`,
                     left: "50%",
                     top: `${axis}%`,
                     width: `${p.cardWidth}cqw`,
@@ -130,7 +132,7 @@ export function ImageStreamHero({
                     animation: `${name} ${speed}s linear infinite`,
                     animationDelay: `${-(i * speed) / cards}s`,
                     backfaceVisibility: "hidden",
-                  }}
+                  } as React.CSSProperties}
                 >
                   {img ? (
                     <img

@@ -113,7 +113,7 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.footerLead}>
         <Logo footer />
-        <p>Practical AI and specialist software for ambitious British businesses.</p>
+        <p>Senior AI advisory, production engineering and adoption support for ambitious British businesses.</p>
       </div>
       <div className={styles.footerDetails}>
         <div className={styles.footerNav} role="navigation" aria-label="Footer navigation">

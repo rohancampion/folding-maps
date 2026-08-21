@@ -1,27 +1,21 @@
 import { Clock3, Mail, MapPin } from 'lucide-react';
 import { ContactForm } from '@/components/ContactForm';
-import { MechanicalMark } from '@/components/MechanicalVisuals';
-import { ServiceJourney, ServicePathways } from '@/components/ServiceJourney';
-import { firstConversation } from '@/lib/serviceModel';
+import { PrecisionLabel } from '@/components/PrecisionLabel';
+import styles from './contact.module.css';
 
 export const metadata = { title: 'Contact' };
 
 export default function Contact() {
   return <>
-    <section className="contact-page contact-page-expanded">
+    <section className={`contact-page contact-page-expanded ${styles.contact}`}>
       <div className="contact-intro">
-        <span className="kicker">Start a conversation</span>
+        <PrecisionLabel index="QG–CO" label="Start a conversation" detail="Initial consultation / no obligation" />
         <h1>What could move<br/><em>more smoothly?</em></h1>
-        <p>Tell us where work slows down, what you want to build or what decision you are trying to make. The first consultation is free, practical and designed to leave you with a clearer next step.</p>
-        <MechanicalMark label="A clear route forward"/>
+        <p>Tell us where work slows down, what you need to build or which investment decision needs evidence. The first consultation is practical, confidential and designed to establish a clear next step.</p>
         <div className="contact-facts">
           <div><Mail/><span>Email us<a href="mailto:quietgearsai@gmail.com">quietgearsai@gmail.com</a></span></div>
           <div><MapPin/><span>Based in<b>4 Foscote Mews, London · Servicing Nationwide</b></span></div>
           <div><Clock3/><span>We usually reply<b>Within one working day</b></span></div>
-        </div>
-        <div className="first-conversation">
-          <span className="kicker">After you press send</span>
-          {firstConversation.map((step) => <article key={step.number}><b>{step.number}</b><div><h3>{step.title}</h3><p>{step.detail}</p></div></article>)}
         </div>
       </div>
       <div className="form-wrap contact-form-panel">
@@ -29,8 +23,6 @@ export default function Contact() {
         <ContactForm/>
       </div>
     </section>
-    <ServicePathways/>
-    <ServiceJourney compact/>
   </>;
 }
 
