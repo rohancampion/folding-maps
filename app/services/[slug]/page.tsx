@@ -1,21 +1,24 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Check, CircleDot, Cpu, Database, GitBranch, ShieldCheck } from 'lucide-react';
 import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { ServiceSystemLab } from '@/components/ServiceSystemLab';
-import { getService, services } from '@/lib/services';
+import { getService, serviceAliases, services } from '@/lib/services';
 import { createPageMetadata } from '@/lib/seo';
 import styles from './service-detail.module.css';
 
 type PageProps = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return services.map(({ slug }) => ({ slug }));
+  return [
+    ...services.map(({ slug }) => ({ slug })),
+    ...Object.keys(serviceAliases).map((slug) => ({ slug })),
+  ];
 }
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const service = getService(slug);
+  const service = getService(serviceAliases[slug] ?? slug);
   if (!service) return {};
   return createPageMetadata({
     title: service.title,
@@ -27,6 +30,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function ServiceDetailPage({ params }: PageProps) {
   const { slug } = await params;
+  const canonicalSlug = serviceAliases[slug];
+  if (canonicalSlug) permanentRedirect(`/services/${canonicalSlug}`);
   const service = getService(slug);
   if (!service) notFound();
   const currentIndex = services.findIndex((item) => item.slug === service.slug);
