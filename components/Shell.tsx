@@ -7,19 +7,19 @@ import { useEffect, useEffectEvent, useState } from 'react';
 import styles from './Shell.module.css';
 
 const mainLinks = [
-  ['Home', '/'],
-  ['About', '/about'],
   ['Services', '/services'],
   ['Industries', '/industries'],
-  ['Case studies', '/case-studies'],
-  ['News', '/news'],
+  ['Work', '/case-studies'],
+  ['Insights', '/news'],
+  ['About', '/about'],
 ] as const;
 
 const footerLinks = [
-  ['About', '/about'],
   ['Services', '/services'],
-  ['Case studies', '/case-studies'],
-  ['News', '/news'],
+  ['Industries', '/industries'],
+  ['Work', '/case-studies'],
+  ['Insights', '/news'],
+  ['About', '/about'],
 ] as const;
 
 export function Logo({ footer = false }: { footer?: boolean }) {
@@ -91,7 +91,7 @@ export function Header() {
         >
           <div className={styles.navLinks}>
             {mainLinks.map(([label, href]) => {
-              const active = pathname === href || (href !== '/' && pathname.startsWith(href));
+              const active = pathname === href || pathname.startsWith(`${href}/`);
               return (
                 <Link key={href} className={active ? styles.active : ''} href={href} onClick={() => setOpen(false)}>
                   {label}
@@ -113,7 +113,7 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.footerLead}>
         <Logo footer />
-        <p>Senior AI advisory, production engineering and adoption support for ambitious British businesses.</p>
+        <p>AI advisory and engineering for ambitious UK SMEs.</p>
       </div>
       <div className={styles.footerDetails}>
         <div className={styles.footerNav} role="navigation" aria-label="Footer navigation">
@@ -121,7 +121,7 @@ export function Footer() {
         </div>
         <div className={styles.contact}>
           <a href="mailto:quietgearsai@gmail.com">quietgearsai@gmail.com</a>
-          <span>London · Working nationwide</span>
+          <span>London · UK-wide</span>
         </div>
       </div>
       <div className={styles.footerBottom}>
