@@ -59,7 +59,7 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
         label: bar.label,
         value: bar.value,
         display: bar.display,
-        detail: 'A priority agreed in discovery. It is a design target, not a measured operating result.',
+        detail: 'A priority agreed in discovery. The figure is a design target and has not yet been measured in operation.',
       })),
     },
   ];
@@ -107,12 +107,12 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
 
       <article className="report">
         <Link className="back" href="/case-studies">
-          <ArrowLeft size={15} aria-hidden="true" /> All work
+          <ArrowLeft size={15} aria-hidden="true" /> All projects
         </Link>
 
         <div className="report-meta">
           <span>{study.sector}</span>
-          <span>Engagement account</span>
+          <span>Project</span>
         </div>
 
         <h1>{study.title}</h1>
@@ -196,7 +196,7 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
             <h2>Tell us where the work is getting stuck.</h2>
             <p>
               If this account resembles your operation, the useful first step is a
-              conversation about the differences, not the similarities.
+              conversation about the differences.
             </p>
           </div>
           <Link className="button" href="/contact">
