@@ -84,7 +84,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
               ))}
             </ul>
             <p className="small">
-              Named for transparency, not preference. The right components depend on your
+              These are named so you can check them. The right components depend on your
               data, your existing systems and what your team can maintain. Where the honest
               answer is a tool you already own, we will say so.
             </p>
@@ -96,7 +96,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             <div className="page-head">
               <div>
                 <span className="kicker">How the work runs</span>
-                <h2 id="stages-title">The stages, and what each one produces.</h2>
+                <h2 id="stages-title">What happens at each stage.</h2>
               </div>
               <p className="lede">
                 Each stage ends in something you can read and challenge. Nothing moves to
@@ -120,11 +120,11 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <div className="page-head">
             <div>
               <span className="kicker">Applied</span>
-              <h2 id="cases-title">Where this is applied.</h2>
+              <h2 id="cases-title">Where this is used.</h2>
             </div>
             <p className="lede">
-              Each pattern begins with an operating constraint, not a technology, and keeps a
-              traceable route from source information to accountable action.
+              Each pattern begins with an operating constraint. The technology follows from
+              it, and the route from source information to the action taken stays traceable.
             </p>
           </div>
 
@@ -164,7 +164,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
             <div className={styles.columns}>
               <div>
                 <span className="kicker">What we provide</span>
-                <h3>Everything needed to run it, not just to demonstrate it.</h3>
+                <h3>Everything needed to run it in production.</h3>
                 <ul className={styles.checkList}>
                   {service.provisions.map((item) => (
                     <li key={item}>{item}</li>
@@ -180,9 +180,8 @@ export default async function ServiceDetailPage({ params }: PageProps) {
                   ))}
                 </ul>
                 <p className={styles.controlNote}>
-                  These are conditions of the engagement, not options within it. A
-                  system without them is cheaper to build and considerably more expensive to
-                  own.
+                  These are conditions of the engagement. A system without them is cheaper
+                  to build and considerably more expensive to run.
                 </p>
               </div>
             </div>
@@ -207,10 +206,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <div className="container inner">
           <div>
             <span className="kicker">Enquiries</span>
-            <h2>Constraints like this one are where we start.</h2>
+            <h2>Tell us about a constraint like one of these.</h2>
             <p>
-              Send the situation, not a specification. The first response will tell you what we
-              would need to know to scope it properly.
+              Send the situation as it stands. The first response will tell you what we would
+              need to know to scope it properly.
             </p>
           </div>
           <Link className="button" href="/contact">

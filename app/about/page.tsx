@@ -38,7 +38,7 @@ export default function About() {
     <>
       <section className="page-hero container">
         <span className="kicker">About</span>
-        <h1>A small firm, deliberately.</h1>
+        <h1>A two-person firm with a specialist network.</h1>
         <p className="lede">
           Quiet Gears advises UK companies on where AI is worth using and builds the systems
           that follow. Two lead consultants, a network of specialists when a brief needs
@@ -50,7 +50,7 @@ export default function About() {
         <div className="page-head">
           <div>
             <span className="kicker">Why we exist</span>
-            <h2 id="why-title">The gap is between seeing a problem and having time to fix it.</h2>
+            <h2 id="why-title">Most companies already know what their problem is.</h2>
           </div>
           <p className="lede">
             Most companies we meet have already diagnosed their own problem. What they lack
@@ -76,7 +76,7 @@ export default function About() {
           <p>
             That is the gap we work in. Our job is to understand the operating detail well
             enough to decide what genuinely deserves to change, then take responsibility for
-            a focused release, not a programme. Sometimes AI belongs in the answer.
+            one focused release. Sometimes AI belongs in the answer.
             Often the honest answer is simpler software, better data, or a process change
             that costs nothing at all. We would sooner say so and be trusted next time.
           </p>
@@ -91,8 +91,9 @@ export default function About() {
               <h2 id="refusals-title">Four things we will not do.</h2>
             </div>
             <p className="lede">
-              Capability lists are interchangeable. Constraints are not: they tell you what
-              happens when the commercially convenient answer and the correct one diverge.
+              Every firm's capability list reads the same. A constraint tells you something
+              a list cannot: what happens when the commercially convenient answer and the
+              correct one diverge.
             </p>
           </div>
 
@@ -154,7 +155,7 @@ export default function About() {
         <div className="container inner">
           <div>
             <span className="kicker">Enquiries</span>
-            <h2>The problems worth calling us about have outlasted two attempts to fix them.</h2>
+            <h2>Most clients call us after two attempts have failed.</h2>
             <p>
               Tell us what has already been tried and why it did not hold. That history is
               usually the most informative thing in a first conversation.
