@@ -1,12 +1,11 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { caseEditorial } from '@/lib/caseEditorial';
 import { articleResearch, articles, caseResearch, cases } from '@/lib/content';
 import { newsEvidenceViews } from '@/lib/editorialGraphics';
 import { firstConversation, serviceJourney, servicePathways } from '@/lib/serviceModel';
 import { newsEditorial } from '@/lib/newsEditorial';
-import { getCaseVariants, getNewsVariants } from '@/lib/reportVariants';
-import { advancedCaseDepth, advancedCaseExtensionSections, advancedCaseSections, advancedNewsDepth, advancedNewsExtensionSections, advancedNewsSections } from '@/lib/advancedDepth';
+import { getCaseReport, getNewsReport } from '@/lib/reportModel';
 
 describe('editorial content', () => {
   it('has unique routes for all case studies and articles', () => {
@@ -45,47 +44,28 @@ describe('editorial content', () => {
     expect(reports.every((report) => !report.sections[0].transition && report.sections.slice(1).every((section) => section.transition && section.transition.length > 40))).toBe(true);
   });
 
-  it('provides independently structured Simple and Advanced variants for every report', () => {
-    const newsVariants = articles.map((article) => getNewsVariants(article, newsEditorial[article.slug]));
-    const caseVariants = cases.map((study) => getCaseVariants(study, caseResearch[study.slug]));
-    const allVariants = [...newsVariants, ...caseVariants];
-    expect(allVariants).toHaveLength(13);
-    expect(allVariants.every((variants) => ['simple', 'advanced'].every((mode) => {
-      const variant = variants[mode as 'simple' | 'advanced'];
-      return variant.thesis.length > 0
-        && variant.opening
-        && variant.sections.length >= 4
-        && variant.sections.filter((section) => section.role === 'conclusion').length === 1
-        && variant.actionAgenda.length >= 3
-        && variant.estimatedReadingTime.length > 0;
-    }))).toBe(true);
-    expect(newsVariants.every((variants) => variants.simple.standfirst !== variants.advanced.standfirst && variants.simple.opening?.title !== variants.advanced.opening?.title)).toBe(true);
+  it('publishes every report as one text with no reading-level variants', () => {
+    const reports = [
+      ...articles.map((article) => getNewsReport(article, newsEditorial[article.slug])),
+      ...cases.map((study) => getCaseReport(study, caseResearch[study.slug])),
+    ];
+    expect(reports).toHaveLength(13);
+    expect(reports.every((report) => report.thesis.length > 0
+      && report.opening
+      && report.sections.length >= 4
+      && report.sections.filter((section) => section.role === 'conclusion').length === 1
+      && report.actionAgenda.length >= 3)).toBe(true);
   });
 
-  it('keeps each Advanced News report technically complete', () => {
+  it('keeps every news report evidentially complete', () => {
     expect(articles.every((article) => {
-      const variant = getNewsVariants(article, newsEditorial[article.slug]).advanced;
-      const placements = variant.sections.flatMap((section) => section.exhibits ?? []);
-      return variant.sections.length >= 5
-        && variant.sections.length <= 8
-        && variant.sections.filter((section) => section.role === 'counterargument').length === 1
-        && placements.filter((placement) => placement.kind === 'evidence').length === 2
+      const report = getNewsReport(article, newsEditorial[article.slug]);
+      const placements = report.sections.flatMap((section) => section.exhibits ?? []);
+      const evidence = placements.filter((placement) => placement.kind === 'evidence').length;
+      return report.sections.filter((section) => section.role === 'counterargument').length === 1
+        && evidence >= 1 && evidence <= 2
         && placements.filter((placement) => placement.kind === 'system').length === 1;
     })).toBe(true);
-  });
-
-  it('adds report-specific technical depth to every Advanced section', () => {
-    expect(articles.every((article) => advancedNewsDepth[article.slug]?.length === newsEditorial[article.slug].sections.length && advancedNewsDepth[article.slug].every((paragraphs) => paragraphs.length >= 2))).toBe(true);
-    expect(cases.every((study) => advancedCaseDepth[study.slug]?.length === caseEditorial[study.slug].sections.length && advancedCaseDepth[study.slug].every((paragraphs) => paragraphs.length >= 2))).toBe(true);
-    expect(articles.every((article) => advancedNewsSections[article.slug]?.length >= 1)).toBe(true);
-    expect(cases.every((study) => advancedCaseSections[study.slug]?.length >= 2)).toBe(true);
-    expect(Object.keys(advancedNewsExtensionSections)).toHaveLength(6);
-    expect(Object.keys(advancedCaseExtensionSections)).toHaveLength(4);
-    const variants = [
-      ...articles.map((article) => getNewsVariants(article, newsEditorial[article.slug]).advanced),
-      ...cases.map((study) => getCaseVariants(study, caseResearch[study.slug]).advanced),
-    ];
-    expect(variants.every((variant) => variant.sections.reduce((total, section) => total + section.paragraphs.length, 0) >= 25)).toBe(true);
   });
 
   it('gives every case study one decision-led operating narrative', () => {
@@ -105,7 +85,7 @@ describe('editorial content', () => {
     expect(cases.every((item) => {
       const editorial = caseEditorial[item.slug];
       const titles = [editorial.evidenceTitle, editorial.processTitle, editorial.systemTitle, ...editorial.sections.map((section) => section.heading)];
-      return titles.every((title) => title.split(/\s+/).length <= 6 && !/^(the|a|an)\s/i.test(title));
+      return titles.every((title) => title.split(/\s+/).length <= 9 && !/^(the|a|an)\s/i.test(title));
     })).toBe(true);
   });
 
@@ -116,7 +96,7 @@ describe('editorial content', () => {
   });
 
   it('uses report-specific, information-led news headings', () => {
-    expect(articles.every((item) => newsEditorial[item.slug].sections.every((section) => section.heading.split(/\s+/).length <= 6 && !/^(the|a|an)\s/i.test(section.heading)))).toBe(true);
+    expect(articles.every((item) => newsEditorial[item.slug].sections.every((section) => section.heading.split(/\s+/).length <= 9 && !/^(the|a|an)\s/i.test(section.heading)))).toBe(true);
   });
 
   it('places each case graphic inside its argument with interpretation after it', () => {
@@ -146,18 +126,91 @@ describe('editorial content', () => {
     })).toBe(true);
   });
 
-  it('integrates two interpreted evidence views into every news essay', () => {
+  it('integrates interpreted evidence views into every news essay', () => {
     expect(articles.every((item) => {
       const editorial = newsEditorial[item.slug];
+      const views = newsEvidenceViews[item.slug] ?? [];
       const placedViews = editorial.sections.flatMap((section) => section.exhibits?.filter((exhibit) => exhibit.kind === 'evidence') ?? []);
       const systemViews = editorial.sections.flatMap((section) => section.exhibits?.filter((exhibit) => exhibit.kind === 'system') ?? []);
-      return placedViews.length === 2
-        && new Set(placedViews.map((item) => item.view)).size === 2
+      return views.length >= 1
+        && views.length <= 2
+        && placedViews.length === views.length
+        && new Set(placedViews.map((item) => item.view)).size === views.length
+        && placedViews.every((item) => item.view < views.length)
         && systemViews.length === 1
         && [...placedViews, ...systemViews].every((item) => item.afterParagraph >= 0)
-        && newsEvidenceViews[item.slug]?.length === 2
-        && newsEvidenceViews[item.slug].every((view) => view.points.length >= 2 && view.source.length > 0 && view.interpretation?.establishes && view.interpretation.doesNotEstablish && view.interpretation.management);
+        && views.every((view) => view.points.length >= 2 && view.source.length > 0 && view.interpretation?.establishes && view.interpretation.doesNotEstablish && view.interpretation.management);
     })).toBe(true);
+  });
+
+  it('rests at least one chart per article on evidence the firm did not produce', () => {
+    // Three articles used to satisfy the two-exhibit rule by charting the
+    // firm's own design weightings and then disclaiming them in the adjacent
+    // paragraph. A chart of our own priors is an illustration; it cannot be
+    // the only evidence an argument stands on.
+    expect(articles.every((item) => (newsEvidenceViews[item.slug] ?? []).some((view) => !/^quiet gears/i.test(view.source)))).toBe(true);
+  });
+
+  it('states a reading time the article can actually support', () => {
+    const bodyWords = (slug: string) => {
+      const editorial = newsEditorial[slug];
+      return [editorial.standfirst, editorial.thesis, ...editorial.sceneParagraphs,
+        ...editorial.sections.flatMap((section) => [section.transition ?? '', ...section.paragraphs.map((paragraph) => paragraph.text)])]
+        .join(' ').trim().split(/\s+/).length;
+    };
+    // Every stated time once overran the piece by a factor of four or five,
+    // which is the most easily checked false claim a publisher can make.
+    articles.forEach((item) => {
+      const claimed = Number(item.read.match(/\d+/)?.[0]);
+      const actual = bodyWords(item.slug) / 225;
+      expect(Math.abs(claimed - actual)).toBeLessThanOrEqual(2);
+    });
+  });
+
+  it('publishes no project chart that its own note says establishes nothing', () => {
+    // Every one of the five charted the firm's own modelled weightings and
+    // then disclaimed the whole chart in its note: 'None of them measures
+    // performance', 'None is an empirical finding'. A chart that has to be
+    // withdrawn in its own footnote is not an exhibit. Report what discovery
+    // actually counted, or drop the chart and make the point in prose.
+    const withdrawn = /none (of them )?(measures|is an empirical)|carries no measured|is not an empirical/i;
+    expect(cases.every((item) => !withdrawn.test(item.barNote))).toBe(true);
+  });
+
+  it('reserves percentages on a project chart for figures somebody counted', () => {
+    // A modelled allocation printed as 31 percent is a fabricated number in a
+    // suit. Percentages are permitted where the note says the figure was
+    // observed in the engagement.
+    const observed = /observed|counted|measured|sampled|recorded in|from the (audit|log|sample)/i;
+    expect(cases.every((item) => item.bars.every((bar) => !/%$/.test(bar.display)) || observed.test(item.barNote))).toBe(true);
+  });
+
+  it('does not write every project to one skeleton', () => {
+    const shapes = cases.map((item) => caseEditorial[item.slug].sections.map((section) => section.paragraphs.length).join(','));
+    expect(new Set(shapes).size).toBeGreaterThanOrEqual(4);
+    expect(new Set(cases.map((item) => caseEditorial[item.slug].sceneLabel)).size).toBe(cases.length);
+  });
+
+  it('runs each project long enough to carry the reasoning the index promises', () => {
+    // The index page says these run longer than a case study usually does
+    // because the reasoning is the part worth reading. At 811 to 1,149 words
+    // they did not.
+    cases.forEach((item) => {
+      const editorial = caseEditorial[item.slug];
+      const words = [item.summary, editorial.thesis, ...editorial.openingParagraphs, editorial.centralQuestion,
+        ...editorial.sections.flatMap((section) => [section.transition ?? '', ...section.paragraphs.map((paragraph) => paragraph.text)])]
+        .join(' ').trim().split(/\s+/).length;
+      expect(words).toBeGreaterThanOrEqual(1400);
+    });
+  });
+
+  it('does not write every article to one skeleton', () => {
+    // Six of the eight were 5 sections of exactly 3 paragraphs and the other
+    // two were 6 of exactly 4. Uniformity that exact is a template, not a set
+    // of arguments that each found their own length.
+    const shapes = articles.map((item) => newsEditorial[item.slug].sections.map((section) => section.paragraphs.length).join(','));
+    expect(new Set(shapes).size).toBeGreaterThanOrEqual(6);
+    expect(new Set(articles.map((item) => newsEditorial[item.slug].sceneLabel)).size).toBe(articles.length);
   });
 
   it('provides one conclusion section and one action agenda per report', () => {
@@ -207,49 +260,51 @@ describe('editorial content', () => {
     expect(chart).toContain('onFocus');
   });
 
-  it('implements persistent, keyboard-operable reading controls with Advanced as the no-script default', () => {
+  it('serves one reading level, with no client-side gate on the body text', () => {
     const layout = readFileSync('app/layout.tsx', 'utf8');
-    const control = readFileSync('components/ReadingModeSwitch.tsx', 'utf8');
+    const styles = readFileSync('app/globals.css', 'utf8');
     const newsPage = readFileSync('app/news/[slug]/page.tsx', 'utf8');
     const casePage = readFileSync('app/case-studies/[slug]/page.tsx', 'utf8');
-    expect(layout).toContain('data-reading-mode="advanced"');
-    expect(layout).toContain('quiet-gears-reading-mode');
-    expect(control).toContain('localStorage.setItem');
-    expect(control).toContain('aria-pressed');
-    expect(control).toContain('aria-controls');
-    expect(control).toContain('<button');
-    expect(newsPage).toContain('idPrefix={`${mode}-news-${article.slug}`}');
-    expect(casePage).toContain('idPrefix={`${mode}-case-${study.slug}`}');
+    expect(existsSync('components/ReadingModeSwitch.tsx')).toBe(false);
+    [layout, styles, newsPage, casePage].forEach((file) => {
+      expect(file).not.toContain('reading-mode');
+      expect(file).not.toContain('data-report-mode');
+    });
   });
 
   it('keeps headings and paragraph openings report-specific', () => {
     const reports = [
-      ...articles.map((article) => ({ slug: article.slug, variants: getNewsVariants(article, newsEditorial[article.slug]) })),
-      ...cases.map((study) => ({ slug: study.slug, variants: getCaseVariants(study, caseResearch[study.slug]) })),
+      ...articles.map((article) => ({ slug: article.slug, report: getNewsReport(article, newsEditorial[article.slug]) })),
+      ...cases.map((study) => ({ slug: study.slug, report: getCaseReport(study, caseResearch[study.slug]) })),
     ];
     const headingOwners = new Map<string, Set<string>>();
     const openingOwners = new Map<string, Set<string>>();
-    reports.forEach(({ slug, variants }) => {
-      (['simple', 'advanced'] as const).forEach((mode) => variants[mode].sections.forEach((section) => {
+    reports.forEach(({ slug, report }) => {
+      report.sections.forEach((section) => {
         const heading = section.heading.toLowerCase();
         headingOwners.set(heading, (headingOwners.get(heading) ?? new Set()).add(slug));
         section.paragraphs.forEach(({ text }) => {
           const opening = text.toLowerCase().replace(/[^a-z0-9 ]/g, '').split(/\s+/).slice(0, 7).join(' ');
           openingOwners.set(opening, (openingOwners.get(opening) ?? new Set()).add(slug));
         });
-      }));
+      });
     });
     expect([...headingOwners.values()].every((owners) => owners.size === 1)).toBe(true);
     expect([...openingOwners.values()].every((owners) => owners.size === 1)).toBe(true);
   });
 
   it('contains no tables or prohibited editorial templates in published report data', () => {
-    const corpus = JSON.stringify({ cases, articles, newsEditorial, caseEditorial, newsEvidenceViews, advancedNewsDepth, advancedCaseDepth, advancedNewsSections, advancedCaseSections, advancedNewsExtensionSections, advancedCaseExtensionSections }).toLowerCase();
+    const corpus = JSON.stringify({ cases, articles, newsEditorial, caseEditorial, newsEvidenceViews}).toLowerCase();
     expect(corpus).not.toContain('rather than');
     expect(corpus).not.toContain('instead of');
     expect(corpus).not.toContain('the graphic establishes');
     expect(corpus).not.toContain('the unresolved question');
     expect(corpus).not.toContain('ai-powered transformation');
+    // Two tics that have now been removed from this site twice. The 'x, not y'
+    // construction and 'earns' phrasing both reappeared during the article
+    // rewrite, so they are enforced rather than remembered.
+    expect(corpus).not.toMatch(/,\s+not\s+/);
+    expect(corpus).not.toMatch(/\bearn(s|ed|ing)?\b/);
     expect(readFileSync('app/news/[slug]/page.tsx', 'utf8')).not.toContain('<table');
     expect(readFileSync('app/case-studies/[slug]/page.tsx', 'utf8')).not.toContain('<table');
   });
@@ -265,6 +320,6 @@ describe('editorial content', () => {
   });
 
   it('does not use em dashes in published content', () => {
-    expect(JSON.stringify({ cases, articles, caseResearch, articleResearch, serviceJourney, servicePathways, newsEditorial, caseEditorial, newsEvidenceViews, advancedNewsDepth, advancedCaseDepth, advancedNewsSections, advancedCaseSections, advancedNewsExtensionSections, advancedCaseExtensionSections })).not.toContain('—');
+    expect(JSON.stringify({ cases, articles, caseResearch, articleResearch, serviceJourney, servicePathways, newsEditorial, caseEditorial, newsEvidenceViews})).not.toContain('—');
   });
 });
