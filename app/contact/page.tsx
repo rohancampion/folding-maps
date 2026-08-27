@@ -67,14 +67,14 @@ export default function Contact() {
               <div>
                 <dt>Email</dt>
                 <dd>
-                  <a className="text-link" href="mailto:quietgearsai@gmail.com">
-                    quietgearsai@gmail.com
+                  <a className="text-link" href="mailto:enquiries@quietgears.xyz">
+                    enquiries@quietgears.xyz
                   </a>
                 </dd>
               </div>
               <div>
-                <dt>Office</dt>
-                <dd>4 Foscote Mews, London. Working UK-wide.</dd>
+                <dt>Location</dt>
+                <dd>London. Working UK-wide.</dd>
               </div>
               <div>
                 <dt>Confidentiality</dt>
