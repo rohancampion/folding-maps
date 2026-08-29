@@ -23,7 +23,8 @@ describe('botanical-industrial rebrand', () => {
     expect(home).toContain("import { PrismaHero } from '@/components/ui/prisma-hero'");
     expect(home).toContain('<PrismaHero />');
     expect(hero).toContain('Quiet Gears: AI Consulting & Engineering');
-    expect(hero).toContain('Senior advice and working software for UK SMEs.');
+    expect(hero).toContain('AI Consulting &amp; Engineering for SMEs');
+    expect(hero).toContain('<WordsPullUp text="Quiet Gears" />');
     expect(home).not.toMatch(/How we work|styles\.process|processGrid/);
   });
 

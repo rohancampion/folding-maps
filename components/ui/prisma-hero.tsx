@@ -148,7 +148,7 @@ const PrismaHero = () => {
 
         <div className={styles.content}>
           <h1 id="home-title" aria-label="Quiet Gears: AI Consulting & Engineering" className={styles.title}>
-            <WordsPullUp text="Quiet Gears" showAsterisk />
+            <WordsPullUp text="Quiet Gears" />
           </h1>
 
           <div className={styles.supportingCopy}>
@@ -157,7 +157,7 @@ const PrismaHero = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: reduceMotion ? 0 : 0.45, ease: EASE }}
             >
-              Senior advice and working software for UK SMEs.
+              AI Consulting &amp; Engineering for SMEs
             </motion.p>
 
             <motion.div
