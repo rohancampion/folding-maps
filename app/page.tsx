@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { JsonLd } from '@/components/JsonLd';
 import { ResponsiveBackground } from '@/components/ResponsiveBackground';
-import { ScrollScrubHero } from '@/components/ui/scroll-scrub-hero';
+import { PrismaHero } from '@/components/ui/prisma-hero';
 import { absoluteUrl, createPageMetadata, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo';
 import styles from './home.module.css';
 
@@ -17,12 +17,6 @@ export const metadata: Metadata = createPageMetadata({
 const homeJsonLd = [
   { '@context': 'https://schema.org', '@type': 'Organization', '@id': `${SITE_URL}/#organization`, name: SITE_NAME, url: SITE_URL, email: 'enquiries@quietgears.xyz', description: SITE_DESCRIPTION, image: absoluteUrl('/og.png'), address: { '@type': 'PostalAddress', addressLocality: 'London', addressCountry: 'GB' }, areaServed: { '@type': 'Country', name: 'United Kingdom' } },
   { '@context': 'https://schema.org', '@type': 'WebSite', '@id': `${SITE_URL}/#website`, name: SITE_NAME, url: SITE_URL, publisher: { '@id': `${SITE_URL}/#organization` } },
-];
-
-const frames = [
-  { desktopSrc: '/images/rebrand/hero-gears-desktop.webp', mobileSrc: '/images/rebrand/hero-gears-mobile.webp', alt: 'Brass gears among wet ferns in a glasshouse workshop', focalPosition: '50% 53%' },
-  { desktopSrc: '/images/rebrand/hero-workshop-desktop.webp', mobileSrc: '/images/rebrand/hero-workshop-mobile.webp', alt: 'A fern-lined timber workshop with restrained machinery', focalPosition: '50% 50%' },
-  { desktopSrc: '/images/rebrand/hero-doorway-desktop.webp', mobileSrc: '/images/rebrand/hero-doorway-mobile.webp', alt: 'An open workshop doorway framed by lush greenery', focalPosition: '50% 48%' },
 ];
 
 const serviceGroups = [
@@ -39,16 +33,7 @@ const selectedWork = [
 export default function Home() {
   return <>
     <JsonLd data={homeJsonLd} />
-    <ScrollScrubHero
-      frames={frames}
-      title="Quiet Gears: AI Consulting & Engineering"
-      tagline="Senior advice and working software for UK SMEs."
-      actions={[
-        { label: 'Start a conversation', href: '/contact' },
-        { label: 'See our work', href: '/case-studies', variant: 'text' },
-      ]}
-      scrubScreens={2.6}
-    />
+    <PrismaHero />
 
     <section className={styles.services} aria-labelledby="services-title">
       <div className={styles.sectionHeading}>
