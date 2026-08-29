@@ -1,15 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { GroundBand } from '@/components/GroundBand';
+import { ArrowUpRight } from 'lucide-react';
+import { FullBleedHero } from '@/components/FullBleedHero';
+import { PrecisionLabel } from '@/components/PrecisionLabel';
 import { cases } from '@/lib/content';
 import styles from './case-studies.module.css';
 import { createPageMetadata } from '@/lib/seo';
 
 export const metadata = createPageMetadata({
-  title: 'Work',
-  description:
-    'Five projects described in full: what the client asked for, what discovery found, what got built, the controls around it and how it is being measured.',
+  title: 'AI implementation case studies',
+  description: 'Decision papers showing how Quiet Gears connects operational problems, control models and delivery architecture for UK SMEs.',
   path: '/case-studies',
 });
 
@@ -24,60 +24,39 @@ const caseImagery: Record<string, string> = {
 export default function Cases() {
   return (
     <>
-      <section className="page-hero page-hero-index container">
-        <span className="kicker">{cases.length} projects</span>
-        <h1>Work</h1>
-        <p className="lede">
-          What the client asked for, what discovery found, what got built and how it is
-          being measured. Clients are unnamed where they asked to be.
-        </p>
-      </section>
-
-      <section className="section container" aria-labelledby="selected-work-title">
-        <h2 id="selected-work-title" className="sr-only">
-          Selected work
-        </h2>
-
-        <div className={styles.list}>
-          {cases.map((study, index) => (
-            <Link href={`/case-studies/${study.slug}`} className={styles.item} key={study.slug}>
-              <div className={styles.visual}>
-                <Image
-                  src={caseImagery[study.slug] ?? study.image}
-                  alt=""
-                  fill
-                  sizes="(max-width: 900px) 100vw, 40vw"
-                  className={styles.image}
-                />
-              </div>
-              <div className={styles.copy}>
-                <span className={styles.meta}>
-                  <span className={styles.num}>{String(index + 1).padStart(2, '0')}</span>
-                  {study.sector}
-                </span>
-                <h3>{study.title}</h3>
-                <p>{study.summary}</p>
-                <span className="text-link">
-                  Read the project <ArrowRight size={15} aria-hidden="true" />
-                </span>
-              </div>
-            </Link>
-          ))}
+      <FullBleedHero
+        desktopSrc="/images/rebrand/hero-doorway-desktop.webp"
+        mobileSrc="/images/rebrand/hero-doorway-mobile.webp"
+        eyebrow="Selected work"
+        title="Working systems, documented clearly."
+        summary="Decision papers from operational problem to controlled delivery."
+        focalPosition="50% 48%"
+      />
+      <section className={styles.collection} aria-labelledby="selected-work-title">
+        <div className={styles.collectionHeading}>
+          <PrecisionLabel index="01–05" label="Case studies" />
+          <h2 id="selected-work-title">Read the work.</h2>
         </div>
-      </section>
-
-      <GroundBand ground="work" plate="Selected work" />
-
-      <section className="contact-band">
-        <div className="container inner">
-          <div>
-            <span className="kicker">Enquiries</span>
-            <h2>The same problems recur across industries.</h2>
-          </div>
-          <Link className="button" href="/contact">
-            Start an enquiry <ArrowRight size={17} aria-hidden="true" />
+        {cases.map((study, index) => (
+          <Link href={`/case-studies/${study.slug}`} className={styles.caseStudy} key={study.slug}>
+            <div className={styles.caseVisual}>
+              <Image
+                src={caseImagery[study.slug] ?? study.image}
+                alt=""
+                fill
+                sizes="(max-width: 800px) 100vw, 58vw"
+                className={styles.caseImage}
+              />
+              <span className={styles.caseIndex}>{String(index + 1).padStart(2, '0')}</span>
+            </div>
+            <div className={styles.caseCopy}>
+              <PrecisionLabel index={study.status === 'In progress' ? 'ACTIVE' : 'ANONYMISED'} label={study.sector} />
+              <h3>{study.title}</h3>
+              <p>{study.summary}</p>
+              <span className={styles.caseAction}>Read the decision paper <ArrowUpRight size={16}/></span>
+            </div>
           </Link>
-        </div>
+        ))}
       </section>
     </>
   );
