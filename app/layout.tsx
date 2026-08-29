@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
-import { Instrument_Serif, IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google';
+import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google';
 import './globals.css';
 import './tailwind.css';
-import './rebrand.css';
 import { Header, Footer } from '@/components/Shell';
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo';
 
@@ -11,7 +10,6 @@ import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo';
 // where the layout shows its own scaffolding rather than hiding it.
 const body = IBM_Plex_Sans({ subsets: ['latin'], variable: '--body', weight: ['400', '500', '600'], display: 'swap' });
 const mono = IBM_Plex_Mono({ subsets: ['latin'], variable: '--mono-font', weight: ['400', '500'], display: 'swap' });
-const display = Instrument_Serif({ subsets: ['latin'], variable: '--font-serif', weight: '400', display: 'swap' });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -40,5 +38,5 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   // --display from --body at :root, and a custom property set on <body> is not
   // visible to its own ancestor. Setting it here served the whole site in the
   // browser default serif.
-  return <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}><body><a className="skip-link" href="#main">Skip to content</a><Header/><main id="main">{children}</main><Footer/></body></html>;
+  return <html lang="en" className={`${body.variable} ${mono.variable}`}><body><a className="skip-link" href="#main">Skip to content</a><Header/><main id="main">{children}</main><Footer/></body></html>;
 }

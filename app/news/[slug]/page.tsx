@@ -2,7 +2,6 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { FullBleedHero } from '@/components/FullBleedHero';
 import { SystemExhibit } from '@/components/ConsultingExhibits';
 import { NarrativeOpening } from '@/components/EditorialNarrative';
 import { InteractiveEvidence } from '@/components/InteractiveEvidence';
@@ -70,19 +69,13 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
     ? <InteractiveEvidence key={`evidence-${placement.view}`} views={[newsEvidenceViews[article.slug][placement.view]]}/>
     : <SystemExhibit key="system" title={article.code.title} eyebrow="Implementation pattern" lines={article.code.lines} nodes={article.code.nodes}/>;
 
-  return (<>
-    <JsonLd data={jsonLd} />
-    <FullBleedHero
-      desktopSrc="/images/rebrand/research-fern-desktop.webp"
-      mobileSrc="/images/rebrand/research-fern-mobile.webp"
-      eyebrow={`${article.tag} · ${article.date} · ${article.read}`}
-      title={editorial.title}
-      focalPosition="50% 46%"
-    >
+  return (
+    <article className="report">
+      <JsonLd data={jsonLd} />
       <Link className="back" href="/news"><ArrowLeft size={15} aria-hidden="true"/> All insights</Link>
-    </FullBleedHero>
+      <div className="report-meta"><span>{article.tag}</span><span>{article.date}</span><span>{article.read}</span></div>
+      <h1>{editorial.title}</h1>
 
-    <article className="report rebrand-report-body">
       <p className="lede">{report.standfirst}</p>
       {report.opening && <NarrativeOpening label={report.opening.label} title={report.opening.title} paragraphs={report.opening.paragraphs} centralQuestion={report.opening.centralQuestion}/>}
       <section className="thesis-panel"><span>The contention</span><p>{report.thesis}</p></section>
@@ -101,6 +94,5 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
         </Link>
       </div>
     </article>
-  </>
   );
 }

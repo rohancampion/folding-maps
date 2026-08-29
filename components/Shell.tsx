@@ -8,6 +8,7 @@ import styles from './Shell.module.css';
 
 const mainLinks = [
   ['Services', '/services'],
+  ['Industries', '/industries'],
   ['Work', '/case-studies'],
   ['Insights', '/news'],
   ['About', '/about'],
@@ -27,6 +28,7 @@ const footerColumns = [
     heading: 'Capabilities',
     links: [
       ['Services', '/services'],
+      ['Industries', '/industries'],
       ['AI strategy', '/services/ai-strategy'],
       ['Workflow automation', '/services/workflow-automation'],
     ],
@@ -49,8 +51,6 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const hasImageHero = pathname === '/' || ['/services', '/case-studies', '/news', '/about', '/contact']
-    .some((route) => pathname === route || pathname.startsWith(`${route}/`));
 
   const updateScrollState = useEffectEvent(() => setScrolled(window.scrollY > 8));
   const closeMenu = useEffectEvent(() => setOpen(false));
@@ -80,7 +80,7 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className={`${styles.header} ${hasImageHero ? styles.imageHeader : ''} ${scrolled || open ? styles.scrolled : ''}`}>
+    <header className={`${styles.header} ${scrolled || open ? styles.scrolled : ''}`}>
       <div className={styles.navWrap}>
         <Logo />
         <button
@@ -130,7 +130,9 @@ export function Footer() {
         <div className={styles.footerLead}>
           <Logo footer />
           <p>
-            AI consulting and engineering for UK SMEs.
+            An independent AI advisory and engineering firm working with UK small and
+            mid-sized companies. We advise on where AI is worth using, build the systems
+            that follow, and hand them over to the people who run them.
           </p>
         </div>
 

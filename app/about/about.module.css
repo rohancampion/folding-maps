@@ -1,13 +1,75 @@
-.studio,.people{padding:clamp(75px,10vw,150px) max(22px,calc((100vw - 1380px)/2));background:var(--paper)}
-.studio{display:grid;grid-template-columns:minmax(150px,.35fr) 1fr;gap:30px;border-bottom:1px solid var(--line)}
-.studio>p,.peopleHeading>p,.consultantList span,.consultantList article>p{margin:0;text-transform:uppercase;letter-spacing:.15em;font-size:.7rem;font-weight:700}
-.studio h2{max-width:1100px;margin:0;font-family:var(--font-serif),serif;font-size:clamp(2.4rem,5vw,5.8rem);font-weight:400;line-height:1;letter-spacing:-.04em}
-.people{background:var(--cream)}
-.peopleHeading{display:grid;grid-template-columns:minmax(150px,.35fr) 1fr;gap:30px;align-items:end;margin-bottom:clamp(45px,7vw,90px)}
-.peopleHeading h2{max-width:950px;margin:0;font-family:var(--font-serif),serif;font-size:clamp(2.8rem,5.6vw,6.2rem);font-weight:400;line-height:.95;letter-spacing:-.04em}
-.consultantList{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.consultantList article{padding:clamp(30px,5vw,65px) 0}.consultantList article+article{padding-left:clamp(28px,5vw,70px);border-left:1px solid var(--line)}
-.consultantList span{color:var(--green)}.consultantList h3{margin:55px 0 12px;font-family:var(--font-serif),serif;font-size:clamp(2.8rem,5.5vw,6rem);font-weight:400;line-height:.95}.consultantList article>p{color:var(--muted)}
-.cta{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:clamp(60px,8vw,105px) max(22px,calc((100vw - 1380px)/2));color:#f7f4e9;background:#102019}
-.cta h2{margin:0;font-family:var(--font-serif),serif;font-size:clamp(2.8rem,5.5vw,6.2rem);font-weight:400;line-height:.95}.cta a{display:inline-flex;align-items:center;gap:10px;flex:none;padding:14px 18px;border:1px solid rgba(247,244,233,.55);text-decoration:none}.cta a:hover{color:var(--ink);background:#f7f4e9}
-@media(max-width:760px){.studio,.peopleHeading{grid-template-columns:1fr}.consultantList{grid-template-columns:1fr}.consultantList article+article{padding-left:0;border-left:0;border-top:1px solid var(--line)}.cta{align-items:flex-start;flex-direction:column}}
+.prose {
+  margin-top: var(--s-8);
+  max-width: 70ch;
+}
+.prose p {
+  max-width: none;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--ink-90);
+}
+
+.refusals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-7) var(--s-9);
+  margin-top: var(--s-9);
+}
+.refusals article {
+  padding-top: var(--s-5);
+  border-top: 2px solid var(--ink);
+}
+.refusals span {
+  display: block;
+  margin-bottom: var(--s-4);
+  font-size: var(--step--1);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+.refusals h3 { margin-bottom: var(--s-4); font-size: var(--step-2); }
+.refusals p { margin: 0; font-size: 0.9375rem; line-height: 1.7; color: var(--ink-90); }
+
+.people {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: var(--s-9);
+  border-top: 1px solid var(--line);
+}
+.people article {
+  padding: var(--s-6) var(--s-6) var(--s-6) 0;
+  border-right: 1px solid var(--line);
+}
+.people article:last-child { border-right: 0; }
+.people span {
+  display: block;
+  margin-bottom: var(--s-4);
+  font-size: var(--step--1);
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+.people h3 { margin-bottom: var(--s-2); font-size: var(--step-2); }
+.people p { margin: 0; font-size: 0.9375rem; color: var(--muted); }
+
+.network {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--s-7);
+  margin-top: var(--s-8);
+  padding: var(--s-6) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.network p {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ink-90);
+}
+
+@media (max-width: 900px) {
+  .refusals { grid-template-columns: 1fr; gap: var(--s-6); margin-top: var(--s-7); }
+  .people article { border-right: 0; border-bottom: 1px solid var(--line); }
+  .network { flex-direction: column; align-items: flex-start; gap: var(--s-5); }
+}
