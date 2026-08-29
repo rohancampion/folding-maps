@@ -18,9 +18,12 @@ describe('botanical-industrial rebrand', () => {
 
   it('publishes the approved homepage message without a process section', () => {
     const home = read('app/page.tsx');
+    const hero = read('components/ui/prisma-hero.tsx');
 
-    expect(home).toContain('Quiet Gears: AI Consulting & Engineering');
-    expect(home).toContain('Senior advice and working software for UK SMEs.');
+    expect(home).toContain("import { PrismaHero } from '@/components/ui/prisma-hero'");
+    expect(home).toContain('<PrismaHero />');
+    expect(hero).toContain('Quiet Gears: AI Consulting & Engineering');
+    expect(hero).toContain('Senior advice and working software for UK SMEs.');
     expect(home).not.toMatch(/How we work|styles\.process|processGrid/);
   });
 
