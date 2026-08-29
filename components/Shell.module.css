@@ -206,15 +206,3 @@
   .footerInner { grid-template-columns: 1fr; gap: var(--s-8); }
   .footerNav { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-6); }
 }
-
-/* Image-led rebrand: the header sits over full-bleed heroes, then resolves to paper. */
-.header { position: fixed; inset: 0 0 auto; background: rgba(242, 240, 232, .96); backdrop-filter: blur(14px); }
-.imageHeader:not(.scrolled) { color: #f7f4e9; background: transparent; border-bottom-color: transparent; backdrop-filter: none; }
-.imageHeader:not(.scrolled) .navLinks a { color: inherit; }
-.imageHeader:not(.scrolled) .navCta { color: inherit; border-color: rgba(247,244,233,.6); }
-.imageHeader:not(.scrolled) .menu { color: inherit; }
-.footer { background: #0b1a13; }
-
-@media (max-width: 900px) {
-  .imageHeader .navigation.open { color: var(--ink); background: var(--paper); }
-}

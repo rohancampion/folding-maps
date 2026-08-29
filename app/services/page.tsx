@@ -1,42 +1,97 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { FullBleedHero } from '@/components/FullBleedHero';
+import { ArrowRight } from 'lucide-react';
+import { GroundBand } from '@/components/GroundBand';
+import { ServiceDirectory } from '@/components/ServiceDirectory';
 import { services } from '@/lib/services';
 import { createPageMetadata } from '@/lib/seo';
 import styles from './services.module.css';
 
 export const metadata: Metadata = createPageMetadata({
-  title: 'AI consulting and engineering services',
-  description: 'Senior advice, working AI software and practical adoption support for UK SMEs.',
+  title: 'Services',
+  description:
+    'Advisory, engineering and adoption services for UK companies putting AI into operational use: strategy and readiness, custom systems, automation, secure deployment and training.',
   path: '/services',
 });
 
-export default function ServicesPage() {
-  return <>
-    <FullBleedHero
-      desktopSrc="/images/rebrand/services-workbench-desktop.webp"
-      mobileSrc="/images/rebrand/services-workbench-mobile.webp"
-      eyebrow="Services"
-      title="From a hard decision to working software."
-      summary="Choose focused advice, hands-on engineering or support for the team that will run it."
-      focalPosition="50% 53%"
-    >
-      <Link className={styles.heroAction} href="/contact">Discuss a project <ArrowRight size={17} /></Link>
-    </FullBleedHero>
+/* Three sentences an enquiry usually arrives as, each pointing at the service
+   that answers it. The answers ran to a short essay apiece; they now run to a
+   sentence, because the detail belongs on the service page they link to and
+   was being written twice. */
+const routes = [
+  {
+    question: '“We think AI could help, but we cannot tell where.”',
+    answer:
+      'A diagnostic problem before a technical one. The work measures where effort goes, which usually contradicts the process map.',
+    service: 'Strategy and readiness',
+    slug: 'ai-strategy',
+  },
+  {
+    question: '“We know what we want built, and we need it to survive contact with the business.”',
+    answer:
+      'The risk is integration with systems never designed to be integrated with, and an operating model that does not yet exist.',
+    service: 'Custom AI systems',
+    slug: 'ai-implementation',
+  },
+  {
+    question: '“We bought the tools and nothing changed.”',
+    answer:
+      'Licences are not adoption. Usage stalls when the tool sits beside the work, and that is fixable without buying anything else.',
+    service: 'AI adoption and operating model',
+    slug: 'enterprise-ai',
+  },
+];
 
-    <section className={styles.directory} aria-labelledby="services-title">
-      <div className={styles.directoryHeading}>
-        <p>Capabilities</p>
-        <h2 id="services-title">Choose where to start.</h2>
-      </div>
-      <div className={styles.serviceGrid}>
-        {services.map((service) => <Link href={`/services/${service.slug}`} className={styles.service} key={service.slug}>
-          <span className={styles.number}>{service.number}</span>
-          <div><small>{service.group}</small><h3>{service.title}</h3><p>{service.summary}</p></div>
-          <ArrowUpRight size={18} aria-hidden="true" />
-        </Link>)}
-      </div>
-    </section>
-  </>;
+export default function ServicesPage() {
+  return (
+    <>
+      <section className="page-hero page-hero-index container">
+        <span className="kicker">{services.length} services</span>
+        <h1>Services</h1>
+        <p className="lede">
+          Advice, delivery, and embedding what gets delivered in how a team already works.
+        </p>
+      </section>
+
+      <section className="section container" aria-labelledby="directory-title">
+        <h2 id="directory-title" className="sr-only">
+          Service directory
+        </h2>
+        <ServiceDirectory services={services} />
+      </section>
+
+      <GroundBand ground="services" plate="Services" />
+
+      <section className="section section-surface" aria-labelledby="routes-title">
+        <div className="container">
+          <span className="kicker">Starting points</span>
+          <h2 id="routes-title">Most enquiries arrive as one of three sentences.</h2>
+
+          <div className={styles.routes}>
+            {routes.map((route) => (
+              <article className={styles.route} key={route.slug}>
+                <h3>{route.question}</h3>
+                <p>{route.answer}</p>
+                <Link className="text-link" href={`/services/${route.slug}`}>
+                  {route.service} <ArrowRight size={15} aria-hidden="true" />
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="contact-band">
+        <div className="container inner">
+          <div>
+            <span className="kicker">Enquiries</span>
+            <h2>Assessment precedes proposal.</h2>
+          </div>
+          <Link className="button" href="/contact">
+            Start an enquiry <ArrowRight size={17} aria-hidden="true" />
+          </Link>
+        </div>
+      </section>
+    </>
+  );
 }
