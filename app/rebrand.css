@@ -1,0 +1,25 @@
+:root {
+  --ink: #102019;
+  --paper: #f2f0e8;
+  --cream: #e1e4d7;
+  --lime: #c6d59b;
+  --green: #315b45;
+  --signal: #c6d59b;
+  --machine: #66866b;
+  --brass: #a8894e;
+  --muted: #5f665f;
+  --line: rgba(16, 32, 25, .18);
+  --display: var(--font-serif);
+  --font-body: var(--body);
+}
+
+h1, h2, h3, h4 { font-family: var(--display), Georgia, serif; font-weight: 400; }
+
+.rebrand-report-body { padding-top: clamp(62px, 8vw, 108px); }
+.case-rebrand-hero img { filter: saturate(.78) sepia(.12) hue-rotate(74deg) contrast(1.04); }
+
+::selection { color: #f7f4e9; background: #315b45; }
+
+@media (max-width: 800px) {
+  .rebrand-report-body { padding-top: 58px; }
+}

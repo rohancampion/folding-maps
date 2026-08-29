@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { FullBleedHero } from '@/components/FullBleedHero';
 import { ProcessExhibit, SystemExhibit } from '@/components/ConsultingExhibits';
 import { NarrativeOpening } from '@/components/EditorialNarrative';
 import { InteractiveEvidence } from '@/components/InteractiveEvidence';
@@ -110,20 +111,21 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
   return (
     <>
       <JsonLd data={jsonLd} />
-
-      <article className="report">
+      <FullBleedHero
+        className="case-rebrand-hero"
+        desktopSrc={study.image}
+        mobileSrc={study.image}
+        eyebrow={`${study.sector} · Project`}
+        title={study.title}
+        summary={study.brief}
+        focalPosition="50% 50%"
+      >
         <Link className="back" href="/case-studies">
           <ArrowLeft size={15} aria-hidden="true" /> All projects
         </Link>
+      </FullBleedHero>
 
-        <div className="report-meta">
-          <span>{study.sector}</span>
-          <span>Project</span>
-        </div>
-
-        <h1>{study.title}</h1>
-        <p className="lede">{study.brief}</p>
-
+      <article className="report rebrand-report-body">
         <div className="metric-strip">
           {study.metrics.map((metric) => (
             <div className="metric-item" key={metric.label}>
