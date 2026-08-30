@@ -8,8 +8,8 @@ import styles from './case-studies.module.css';
 import { createPageMetadata } from '@/lib/seo';
 
 export const metadata = createPageMetadata({
-  title: 'AI implementation case studies',
-  description: 'Decision papers showing how Quiet Gears connects operational problems, control models and delivery architecture for UK SMEs.',
+  title: 'AI consulting and engineering case studies',
+  description: 'Business problems, practical interventions and clearly stated results from Quiet Gears engagements with UK SMEs.',
   path: '/case-studies',
 });
 
@@ -28,14 +28,14 @@ export default function Cases() {
         desktopSrc="/images/rebrand/hero-doorway-desktop.webp"
         mobileSrc="/images/rebrand/hero-doorway-mobile.webp"
         eyebrow="Selected work"
-        title="Working systems, documented clearly."
-        summary="Decision papers from operational problem to controlled delivery."
+        title="Business problems and the test for success."
+        summary="Each case sets out the business constraint, the management decision and the result used to judge the work."
         focalPosition="50% 48%"
       />
       <section className={styles.collection} aria-labelledby="selected-work-title">
         <div className={styles.collectionHeading}>
           <PrecisionLabel index="01–05" label="Case studies" />
-          <h2 id="selected-work-title">Read the work.</h2>
+          <h2 id="selected-work-title">Five current engagements.</h2>
         </div>
         {cases.map((study, index) => (
           <Link href={`/case-studies/${study.slug}`} className={styles.caseStudy} key={study.slug}>
@@ -53,7 +53,7 @@ export default function Cases() {
               <PrecisionLabel index={study.status === 'In progress' ? 'ACTIVE' : 'ANONYMISED'} label={study.sector} />
               <h3>{study.title}</h3>
               <p>{study.summary}</p>
-              <span className={styles.caseAction}>Read the decision paper <ArrowUpRight size={16}/></span>
+              <span className={styles.caseAction}>Read the case study <ArrowUpRight size={16}/></span>
             </div>
           </Link>
         ))}

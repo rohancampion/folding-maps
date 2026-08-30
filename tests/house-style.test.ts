@@ -45,7 +45,6 @@ const sentences = collectStrings(PUBLISHED).filter((s) => s.length > 25 && !s.st
 const headings = [
   ...articles.flatMap((item) => newsEditorial[item.slug].sections.map((section) => section.heading)),
   ...cases.flatMap((item) => caseEditorial[item.slug].sections.map((section) => section.heading)),
-  ...cases.flatMap((item) => [caseEditorial[item.slug].processTitle, caseEditorial[item.slug].systemTitle, caseEditorial[item.slug].evidenceTitle]),
   ...industries.flatMap((item) => [item.contextTitle, item.opportunitiesTitle, item.decisionsTitle, item.controlTitle, item.roadmapTitle]),
   ...services.map((item) => item.title),
 ].filter((value): value is string => typeof value === 'string');

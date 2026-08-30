@@ -1,4 +1,3 @@
-import type { CaseExhibitPlacement } from '@/lib/caseEditorial';
 import { caseEditorial } from '@/lib/caseEditorial';
 import type { Article, CaseStudy, ResearchFinding } from '@/lib/content';
 import type { NewsEditorial, NewsExhibitPlacement } from '@/lib/newsEditorial';
@@ -20,7 +19,7 @@ export function getNewsReport(article: Article, editorial: NewsEditorial): Repor
   };
 }
 
-export function getCaseReport(study: CaseStudy, research: ResearchFinding[]): Report<CaseExhibitPlacement> {
+export function getCaseReport(study: CaseStudy, research: ResearchFinding[]): Report<never> {
   const editorial = caseEditorial[study.slug];
   const sources = research.map(({ source, href, finding }) => ({ label: source, href, detail: finding }));
 

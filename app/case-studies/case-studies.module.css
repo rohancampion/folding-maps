@@ -92,8 +92,8 @@
   pointer-events: none;
 }
 
-.caseImage { object-fit: cover; filter: saturate(.78) sepia(.12) hue-rotate(74deg) contrast(1.04); transition: transform .8s cubic-bezier(.2, .72, .2, 1), filter .5s ease; }
-.caseStudy:hover .caseImage { transform: scale(1.025); filter: saturate(.9) sepia(.08) hue-rotate(74deg) contrast(1.04); }
+.caseImage { object-fit: cover; transition: transform .8s cubic-bezier(.2, .72, .2, 1); }
+.caseStudy:hover .caseImage { transform: scale(1.025); }
 .caseIndex {
   position: absolute;
   z-index: 2;

@@ -16,8 +16,6 @@
 h1, h2, h3, h4 { font-family: var(--display), Georgia, serif; font-weight: 400; }
 
 .rebrand-report-body { padding-top: clamp(62px, 8vw, 108px); }
-.case-rebrand-hero img { filter: saturate(.78) sepia(.12) hue-rotate(74deg) contrast(1.04); }
-
 ::selection { color: #f7f4e9; background: #315b45; }
 
 @media (max-width: 800px) {

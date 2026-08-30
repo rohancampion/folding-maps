@@ -28,15 +28,30 @@ describe('botanical-industrial rebrand', () => {
     expect(home).not.toMatch(/How we work|styles\.process|processGrid/);
   });
 
-  it('keeps service marketing pages free of workflow and blueprint components', () => {
+  it('publishes the catalogue depth on every service page', () => {
     const page = read('app/services/[slug]/page.tsx');
 
     expect(page).not.toContain('ServiceSystemLab');
-    expect(page).not.toContain('service-provision-section');
-    expect(page).not.toContain('blueprint-stack');
-    expect(page).not.toContain('technical-blueprint');
-    expect(page).not.toContain('useCase.path');
-    expect(page).not.toContain('<ul>');
-    expect(page).not.toContain('<ol>');
+    expect(page).not.toContain('Operational ownership');
+    expect(page).toContain('service.useCases.map');
+    expect(page).toContain('useCase.path.map');
+    expect(page).toContain('service.stages.map');
+    expect(page).toContain('service.provisions.map');
+    expect(page).toContain('service.technologies.map');
+    expect(page).toContain('service.safeguards.map');
+    expect(page).toContain('service.idealFor.map');
+    expect(page).toContain('service.clientInputs.map');
+    expect(page).toContain('service.measures.map');
+  });
+
+  it('shows case-study photography without a colour treatment', () => {
+    const listing = read('app/case-studies/case-studies.module.css');
+    const detail = read('app/rebrand.css');
+    const home = read('app/home.module.css');
+
+    expect(listing).not.toMatch(/\.caseImage\s*\{[^}]*filter:/);
+    expect(listing).not.toMatch(/\.caseStudy:hover \.caseImage\s*\{[^}]*filter:/);
+    expect(detail).not.toContain('.case-rebrand-hero img');
+    expect(home).not.toContain('.workPanel img{z-index:-2;filter');
   });
 });

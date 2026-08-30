@@ -20,7 +20,7 @@ describe('services content model', () => {
     services.forEach((service) => expect(getService(service.slug)).toBe(service));
   });
 
-  it('gives every service technical depth and at least two concrete use cases', () => {
+  it('gives every service decision depth and at least two concrete use cases', () => {
     services.forEach((service) => {
       expect(service.explanation.length).toBeGreaterThan(120);
       expect(service.technologies.length).toBeGreaterThanOrEqual(4);
@@ -28,6 +28,10 @@ describe('services content model', () => {
       expect(service.useCases.length).toBeGreaterThanOrEqual(2);
       expect(service.provisions.length).toBeGreaterThanOrEqual(4);
       expect(service.safeguards.length).toBeGreaterThanOrEqual(4);
+      expect(service.idealFor.length).toBeGreaterThanOrEqual(2);
+      expect(service.poorFit.length).toBeGreaterThan(50);
+      expect(service.clientInputs.length).toBeGreaterThanOrEqual(4);
+      expect(service.measures.length).toBeGreaterThanOrEqual(4);
       service.useCases.forEach((useCase) => {
         expect(useCase.problem.length).toBeGreaterThan(50);
         expect(useCase.example.length).toBeGreaterThan(70);
@@ -47,7 +51,7 @@ describe('services content model', () => {
   it('publishes Secure AI Systems as a local and offline build capability', () => {
     const secureAI = getService('secure-ai-systems');
     expect(secureAI?.group).toBe('Build');
-    expect(secureAI?.summary).toMatch(/local and offline models/i);
+    expect(secureAI?.summary).toMatch(/local or offline models/i);
     expect(secureAI?.technologies).toContain('Network isolation');
     expect(secureAI?.safeguards).toContain('No cloud route for isolated workloads');
   });
@@ -56,5 +60,23 @@ describe('services content model', () => {
     const content = JSON.stringify(services);
     expect(content).not.toMatch(/£|GBP|pricing/i);
     expect(content).not.toContain('—');
+  });
+
+  it('uses direct service titles and avoids stock ownership language', () => {
+    const titles = services.flatMap((service) => [
+      service.title,
+      ...service.useCases.map((useCase) => useCase.title),
+      ...service.stages.map((stage) => stage.label),
+    ]);
+    expect(titles.join(' ')).not.toMatch(/\b(where|why)\b/i);
+    expect(JSON.stringify(services)).not.toMatch(/take ownership/i);
+  });
+
+  it('keeps service extensions focused on problems and results', () => {
+    const content = JSON.stringify(services).toLowerCase();
+    expect(content).not.toMatch(/\brecords?\b/);
+    expect(content).not.toMatch(/\bpipelines?\b/);
+    expect(content).not.toMatch(/\bdata flows?\b/);
+    expect(content).not.toMatch(/\bevidence\b/);
   });
 });

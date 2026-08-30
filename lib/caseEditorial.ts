@@ -6,9 +6,8 @@ import { editorial as field_service_planning } from '@/lib/cases/field-service-p
 
 import type { ReportSection } from '@/lib/reportNarrative';
 
-export type CaseExhibitPlacement = { kind: 'evidence' | 'process' | 'system'; afterParagraph: number };
 export type CaseEditorialParagraph = { text: string; sources?: number[] };
-export type CaseEditorialSection = Omit<ReportSection<CaseExhibitPlacement>, 'paragraphs'> & {
+export type CaseEditorialSection = Omit<ReportSection<never>, 'paragraphs' | 'exhibits'> & {
   paragraphs: CaseEditorialParagraph[];
 };
 export type CaseEditorial = {
@@ -18,10 +17,6 @@ export type CaseEditorial = {
   openingTitle: string;
   openingParagraphs: string[];
   centralQuestion: string;
-  evidenceTitle?: string;
-  processTitle: string;
-  systemTitle: string;
-  evidenceInterpretation?: { establishes: string; doesNotEstablish: string; management: string };
   sections: CaseEditorialSection[];
 };
 

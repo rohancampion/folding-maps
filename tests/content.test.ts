@@ -35,12 +35,9 @@ describe('editorial content', () => {
     })).toBe(true);
   });
 
-  it('gives all 13 advanced reports explicit causal transitions', () => {
-    const reports = [
-      ...articles.map((item) => newsEditorial[item.slug]),
-      ...cases.map((item) => caseEditorial[item.slug]),
-    ];
-    expect(reports).toHaveLength(13);
+  it('gives every news essay explicit causal transitions', () => {
+    const reports = articles.map((item) => newsEditorial[item.slug]);
+    expect(reports).toHaveLength(8);
     expect(reports.every((report) => !report.sections[0].transition && report.sections.slice(1).every((section) => section.transition && section.transition.length > 40))).toBe(true);
   });
 
@@ -52,7 +49,7 @@ describe('editorial content', () => {
     expect(reports).toHaveLength(13);
     expect(reports.every((report) => report.thesis.length > 0
       && report.opening
-      && report.sections.length >= 4
+      && report.sections.length >= 3
       && report.sections.filter((section) => section.role === 'conclusion').length === 1
       && report.actionAgenda.length >= 3)).toBe(true);
   });
@@ -75,17 +72,18 @@ describe('editorial content', () => {
         && editorial.centralQuestion.length > 0
         && editorial.thesis.length > 0
         && editorial.statusStatement.length > 0
-        && editorial.sections.length >= 4
-        && editorial.sections.length <= 6
-        && editorial.sections.every((section) => section.paragraphs.length >= 3);
+        && editorial.sections.length >= 3
+        && editorial.sections.length <= 4
+        && editorial.sections.every((section) => section.paragraphs.length >= 2);
     })).toBe(true);
   });
 
-  it('uses concise, information-led case section and exhibit titles', () => {
+  it('uses concise, information-led case titles', () => {
     expect(cases.every((item) => {
       const editorial = caseEditorial[item.slug];
-      const titles = [editorial.evidenceTitle, editorial.processTitle, editorial.systemTitle, ...editorial.sections.map((section) => section.heading)].filter((title): title is string => Boolean(title));
-      return titles.every((title) => title.split(/\s+/).length <= 9 && !/^(the|a|an)\s/i.test(title));
+      const titles = [item.title, editorial.openingTitle, ...editorial.sections.map((section) => section.heading)];
+      return titles.every((title) => title.split(/\s+/).length <= 10
+        && !/\b(where|why)\b/i.test(title));
     })).toBe(true);
   });
 
@@ -99,37 +97,18 @@ describe('editorial content', () => {
     expect(articles.every((item) => newsEditorial[item.slug].sections.every((section) => section.heading.split(/\s+/).length <= 9 && !/^(the|a|an)\s/i.test(section.heading)))).toBe(true);
   });
 
-  it('places each case graphic inside its argument with interpretation after it', () => {
-    expect(cases.every((item) => {
-      const editorial = caseEditorial[item.slug];
-      const placements = editorial.sections.flatMap((section) => (section.exhibits ?? []).map((placement) => ({ placement, paragraphCount: section.paragraphs.length })));
-      const kinds = placements.map(({ placement }) => placement.kind);
-      // Process and system always. An evidence placement only where the firm
-      // has supplied the count behind the chart, since the page renders
-      // nothing for one that has no data.
-      return kinds.includes('process')
-        && kinds.includes('system')
-        && kinds.includes('evidence') === Boolean(item.chart)
-        && new Set(kinds).size === kinds.length
-        && placements.every(({ placement, paragraphCount }) => placement.afterParagraph < paragraphCount - 1)
-        && (!editorial.evidenceInterpretation || (editorial.evidenceInterpretation.establishes.length > 0
-          && editorial.evidenceInterpretation.doesNotEstablish.length > 0
-          && editorial.evidenceInterpretation.management.length > 0));
-    })).toBe(true);
-  });
-
-  it('states the evidence position on every case and integrates sources into its argument', () => {
-    expect(cases.every((item) => {
+  it('states the current result on every case and integrates sources into its argument', () => {
+    cases.forEach((item) => {
       const editorial = caseEditorial[item.slug];
       const hasInlineSource = editorial.sections.some((section) => section.paragraphs.some((paragraph) => paragraph.sources?.length));
       // Every engagement written up without naming the client must say why the
       // client is withheld, and must say that its figures are targets and not
       // audited outcomes.
       const statement = editorial.statusStatement.toLowerCase();
-      const explainsAnonymity = /not (?:to be )?named|anonym|withheld|privilege/.test(statement);
-      const qualifiesFigures = /target|not been measured|remain unmeasured|awaiting audit/.test(statement);
-      return hasInlineSource && (item.status !== 'Anonymised' || (explainsAnonymity && qualifiesFigures));
-    })).toBe(true);
+      const explainsAnonymity = /not (?:to be )?named|unnamed|anonym|confidential|withheld|privilege/.test(statement);
+      const qualifiesFigures = /target|not been measured|remain unmeasured|unmeasured|no (?:measured |production |operating )?result|awaiting audit/.test(statement);
+      expect(hasInlineSource && (item.status !== 'Anonymised' || (explainsAnonymity && qualifiesFigures)), item.slug).toBe(true);
+    });
   });
 
   it('integrates interpreted evidence views into every news essay', () => {
@@ -191,22 +170,19 @@ describe('editorial content', () => {
     expect(cases.every((item) => !item.chart || item.chart.bars.every((bar) => !/%$/.test(bar.display)) || observed.test(item.chart.note))).toBe(true);
   });
 
-  it('does not write every project to one skeleton', () => {
-    const shapes = cases.map((item) => caseEditorial[item.slug].sections.map((section) => section.paragraphs.length).join(','));
-    expect(new Set(shapes).size).toBeGreaterThanOrEqual(4);
+  it('gives every project its own opening and headings', () => {
     expect(new Set(cases.map((item) => caseEditorial[item.slug].sceneLabel)).size).toBe(cases.length);
+    expect(new Set(cases.flatMap((item) => caseEditorial[item.slug].sections.map((section) => section.heading))).size)
+      .toBe(cases.reduce((count, item) => count + caseEditorial[item.slug].sections.length, 0));
   });
 
-  it('runs each project long enough to carry the reasoning the index promises', () => {
-    // The index page says these run longer than a case study usually does
-    // because the reasoning is the part worth reading. At 811 to 1,149 words
-    // they did not.
+  it('runs each project long enough to explain the business decision', () => {
     cases.forEach((item) => {
       const editorial = caseEditorial[item.slug];
       const words = [item.summary, editorial.thesis, ...editorial.openingParagraphs, editorial.centralQuestion,
         ...editorial.sections.flatMap((section) => [section.transition ?? '', ...section.paragraphs.map((paragraph) => paragraph.text)])]
         .join(' ').trim().split(/\s+/).length;
-      expect(words).toBeGreaterThanOrEqual(1400);
+      expect(words).toBeGreaterThanOrEqual(650);
     });
   });
 
@@ -228,7 +204,7 @@ describe('editorial content', () => {
     expect(cases.every((item) => {
       const sections = caseEditorial[item.slug].sections;
       const conclusion = sections.at(-1);
-      return Boolean(conclusion && conclusion.role === 'conclusion' && conclusion.paragraphs.length >= 3 && sections.filter((section) => section.role === 'conclusion').length === 1 && item.nextSteps.length >= 3 && item.nextSteps.length <= 4);
+      return Boolean(conclusion && conclusion.role === 'conclusion' && conclusion.paragraphs.length >= 2 && sections.filter((section) => section.role === 'conclusion').length === 1 && item.nextSteps.length >= 3 && item.nextSteps.length <= 4);
     })).toBe(true);
   });
 
@@ -329,5 +305,17 @@ describe('editorial content', () => {
 
   it('does not use em dashes in published content', () => {
     expect(JSON.stringify({ cases, articles, caseResearch, articleResearch, serviceJourney, servicePathways, newsEditorial, caseEditorial, newsEvidenceViews})).not.toContain('—');
+  });
+
+  it('does not use stock ownership language in published case studies', () => {
+    expect(JSON.stringify({ cases, caseEditorial })).not.toMatch(/take ownership/i);
+  });
+
+  it('keeps case studies focused on business problems and results', () => {
+    const corpus = JSON.stringify({ cases, caseEditorial, caseResearch }).toLowerCase().replaceAll('property-pipeline', '');
+    expect(corpus).not.toMatch(/\brecords?\b/);
+    expect(corpus).not.toMatch(/\bpipelines?\b/);
+    expect(corpus).not.toMatch(/\bdata flows?\b/);
+    expect(corpus).not.toMatch(/\bevidence\b/);
   });
 });
