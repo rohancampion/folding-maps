@@ -1,5 +1,27 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { getService, serviceAliases, services } from '../lib/services';
+
+const publishedStrings = services.flatMap((service) => [
+  service.title,
+  service.shortTitle,
+  service.promise,
+  service.summary,
+  service.explanation,
+  ...service.applications.flatMap((item) => [item.title, item.detail]),
+  ...service.serviceSections.flatMap((section) => [section.title, ...section.paragraphs]),
+  ...service.decisions.flatMap((item) => [item.title, item.detail]),
+  ...service.results.flatMap((item) => [item.title, item.detail]),
+  ...service.expertise,
+]);
+
+const titles = services.flatMap((service) => [
+  service.title,
+  ...service.applications.map((item) => item.title),
+  ...service.serviceSections.map((section) => section.title),
+  ...service.decisions.map((item) => item.title),
+  ...service.results.map((item) => item.title),
+]);
 
 describe('services content model', () => {
   it('publishes the consolidated service collection with unique routes', () => {
@@ -20,24 +42,24 @@ describe('services content model', () => {
     services.forEach((service) => expect(getService(service.slug)).toBe(service));
   });
 
-  it('gives every service decision depth and at least two concrete use cases', () => {
+  it('gives every service substantial applications, service detail, decisions and results', () => {
     services.forEach((service) => {
-      expect(service.explanation.length).toBeGreaterThan(120);
-      expect(service.technologies.length).toBeGreaterThanOrEqual(4);
-      expect(service.stages).toHaveLength(4);
-      expect(service.useCases.length).toBeGreaterThanOrEqual(2);
-      expect(service.provisions.length).toBeGreaterThanOrEqual(4);
-      expect(service.safeguards.length).toBeGreaterThanOrEqual(4);
-      expect(service.idealFor.length).toBeGreaterThanOrEqual(2);
-      expect(service.poorFit.length).toBeGreaterThan(50);
-      expect(service.clientInputs.length).toBeGreaterThanOrEqual(4);
-      expect(service.measures.length).toBeGreaterThanOrEqual(4);
-      service.useCases.forEach((useCase) => {
-        expect(useCase.problem.length).toBeGreaterThan(50);
-        expect(useCase.example.length).toBeGreaterThan(70);
-        expect(useCase.path).toHaveLength(4);
+      expect(service.explanation.length).toBeGreaterThan(240);
+      expect(service.applications.length).toBeGreaterThanOrEqual(3);
+      expect(service.serviceSections.length).toBeGreaterThanOrEqual(3);
+      expect(service.serviceSections.length).toBeLessThanOrEqual(4);
+      expect(service.decisions).toHaveLength(4);
+      expect(service.results).toHaveLength(4);
+      expect(service.expertise.length).toBeGreaterThanOrEqual(4);
+      service.applications.forEach((item) => expect(item.detail.length).toBeGreaterThan(120));
+      service.serviceSections.forEach((section) => {
+        expect(section.paragraphs).toHaveLength(2);
+        expect(section.paragraphs.join(' ').length).toBeGreaterThan(220);
       });
+      service.decisions.forEach((item) => expect(item.detail.length).toBeGreaterThanOrEqual(60));
+      service.results.forEach((item) => expect(item.detail.length).toBeGreaterThanOrEqual(60));
     });
+    expect(new Set(services.map((service) => service.serviceSections.length)).size).toBeGreaterThan(1);
   });
 
   it('keeps retired service routes mapped to their consolidated service', () => {
@@ -51,32 +73,39 @@ describe('services content model', () => {
   it('publishes Secure AI Systems as a local and offline build capability', () => {
     const secureAI = getService('secure-ai-systems');
     expect(secureAI?.group).toBe('Build');
-    expect(secureAI?.summary).toMatch(/local or offline models/i);
-    expect(secureAI?.technologies).toContain('Network isolation');
-    expect(secureAI?.safeguards).toContain('No cloud route for isolated workloads');
+    expect(secureAI?.summary).toMatch(/local, offline, private-cloud/i);
+    expect(secureAI?.serviceSections.map((section) => section.title)).toContain('Confidentiality and availability');
+    expect(secureAI?.results.map((result) => result.title)).toContain('Protected task volume');
   });
 
-  it('contains no pricing or em dashes in the service catalogue', () => {
-    const content = JSON.stringify(services);
-    expect(content).not.toMatch(/£|GBP|pricing/i);
-    expect(content).not.toContain('—');
+  it('uses direct titles without interrogative framing', () => {
+    expect(titles.join(' ')).not.toMatch(/\b(what|where|how|why|when|which|who|whether)\b/i);
   });
 
-  it('uses direct service titles and avoids stock ownership language', () => {
-    const titles = services.flatMap((service) => [
-      service.title,
-      ...service.useCases.map((useCase) => useCase.title),
-      ...service.stages.map((stage) => stage.label),
-    ]);
-    expect(titles.join(' ')).not.toMatch(/\b(where|why)\b/i);
-    expect(JSON.stringify(services)).not.toMatch(/take ownership/i);
+  it('keeps banned vocabulary and stock structures out of service copy', () => {
+    const copy = publishedStrings.join(' ');
+    expect(copy).not.toMatch(/\b(records?|pipelines?|workflows?|rollouts?|evidence)\b/i);
+    expect(copy).not.toMatch(/\bdata flows?\b/i);
+    expect(copy).not.toMatch(/\bown(?:s|ed|ing|ership)?\b/i);
+    expect(copy).not.toMatch(/\bearn(?:s|ed|ing)?\b/i);
+    expect(copy).not.toMatch(/take ownership/i);
+    expect(copy.toLowerCase()).not.toContain('rather than');
+    expect(copy.toLowerCase()).not.toContain('instead of');
+    expect(copy).not.toMatch(/,\s+not\s+/i);
+    expect(copy).not.toContain('—');
   });
 
-  it('keeps service extensions focused on problems and results', () => {
-    const content = JSON.stringify(services).toLowerCase();
-    expect(content).not.toMatch(/\brecords?\b/);
-    expect(content).not.toMatch(/\bpipelines?\b/);
-    expect(content).not.toMatch(/\bdata flows?\b/);
-    expect(content).not.toMatch(/\bevidence\b/);
+  it('shows services and results without staged delivery material or tables', () => {
+    const detailPage = readFileSync('app/services/[slug]/page.tsx', 'utf8');
+    const indexPage = readFileSync('app/services/page.tsx', 'utf8');
+    const shell = readFileSync('components/Shell.tsx', 'utf8');
+    const pages = `${detailPage}\n${indexPage}`;
+    expect(pages).not.toContain('<table');
+    expect(pages).not.toMatch(/service\.(stages|useCases|poorFit|clientInputs|path)/);
+    expect(pages).not.toMatch(/Four stages|delivery path|Poor fit|Example release/i);
+    expect(detailPage).toContain('service.serviceSections');
+    expect(detailPage).toContain('service.results');
+    expect(shell).toContain("['Process automation', '/services/workflow-automation']");
+    expect(shell).not.toContain("['Workflow automation', '/services/workflow-automation']");
   });
 });

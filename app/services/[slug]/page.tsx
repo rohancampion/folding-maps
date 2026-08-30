@@ -55,131 +55,81 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         <section className={styles.explanation} aria-labelledby="service-scope">
           <p>{service.promise}</p>
           <div>
-            <span className={styles.eyebrow}>Service scope</span>
-            <h2 id="service-scope">The operating problem and the result.</h2>
+            <span className={styles.eyebrow}>Service brief</span>
+            <h2 id="service-scope">The business case for this service.</h2>
             <p>{service.explanation}</p>
           </div>
         </section>
 
-        <section className={styles.fit} aria-labelledby="fit-title">
+        <section className={styles.applications} aria-labelledby="applications-title">
           <div className={styles.sectionHeading}>
-            <p>Fit</p>
-            <h2 id="fit-title">Suitable assignments and required input.</h2>
+            <p>Applications</p>
+            <h2 id="applications-title">Common business conditions.</h2>
           </div>
-          <div className={styles.fitGrid}>
-            <article>
-              <h3>Strong fit</h3>
-              {service.idealFor.map((item) => <p key={item}>{item}</p>)}
-            </article>
-            <article>
-              <h3>Poor fit</h3>
-              <p>{service.poorFit}</p>
-            </article>
-            <article>
-              <h3>Client input</h3>
-              {service.clientInputs.map((item) => <p key={item}>{item}</p>)}
-            </article>
+          <div className={styles.applicationGrid}>
+            {service.applications.map((application, index) => (
+              <article key={application.title}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <h3>{application.title}</h3>
+                <p>{application.detail}</p>
+              </article>
+            ))}
           </div>
         </section>
 
-        <section className={styles.useCases} aria-labelledby="use-cases-title">
+        <section className={styles.serviceContent} aria-labelledby="included-title">
           <div className={styles.sectionHeading}>
-            <p>Use cases</p>
-            <h2 id="use-cases-title">Problems this service addresses.</h2>
+            <p>Service</p>
+            <h2 id="included-title">Service scope.</h2>
           </div>
-          <div className={styles.cards}>
-            {service.useCases.map((useCase, index) => (
-              <article key={useCase.title}>
+          <div className={styles.serviceSections}>
+            {service.serviceSections.map((section, index) => (
+              <article key={section.title}>
                 <span>0{index + 1}</span>
-                <h3>{useCase.title}</h3>
-                <p>{useCase.problem}</p>
-                <strong>Example release</strong>
-                <small>{useCase.example}</small>
-                <div className={styles.path} aria-label={`${useCase.title} delivery path`}>
-                  {useCase.path.map((step) => <b key={step}>{step}</b>)}
+                <div>
+                  <h3>{section.title}</h3>
+                  {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                 </div>
               </article>
             ))}
           </div>
-        </section>
-
-        <section className={styles.delivery} aria-labelledby="delivery-title">
-          <div className={styles.sectionHeading}>
-            <p>Delivery</p>
-            <h2 id="delivery-title">Four stages to a working release.</h2>
-          </div>
-          <div className={styles.stages}>
-            {service.stages.map((stage, index) => (
-              <article key={stage.label}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <h3>{stage.label}</h3>
-                <p>{stage.detail}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.scope} aria-labelledby="included-title">
-          <div>
-            <p className={styles.eyebrow}>Named outputs</p>
-            <h2 id="included-title">Included in the engagement.</h2>
-          </div>
-          <div className={styles.outputList}>
-            {service.provisions.map((provision, index) => (
-              <div key={provision}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <p>{provision}</p>
-              </div>
-            ))}
-          </div>
-          <aside>
+          <div className={styles.expertise}>
             <p className={styles.eyebrow}>Supporting expertise</p>
-            <div className={styles.technologyList}>
-              {service.technologies.map((technology) => <span key={technology}>{technology}</span>)}
+            <div>
+              {service.expertise.map((item) => <span key={item}>{item}</span>)}
             </div>
-          </aside>
+          </div>
         </section>
 
-        <section className={styles.controls} aria-labelledby="controls-title">
+        <section className={styles.decisions} aria-labelledby="decisions-title">
           <div className={styles.sectionHeading}>
-            <p>Controls</p>
-            <h2 id="controls-title">Conditions for a safe release.</h2>
+            <p>Decisions</p>
+            <h2 id="decisions-title">Leadership decisions.</h2>
           </div>
-          <div className={styles.controlGrid}>
-            {service.safeguards.map((safeguard, index) => (
-              <article key={safeguard}>
+          <div className={styles.decisionGrid}>
+            {service.decisions.map((decision, index) => (
+              <article key={decision.title}>
                 <span>{String(index + 1).padStart(2, '0')}</span>
-                <p>{safeguard}</p>
+                <h3>{decision.title}</h3>
+                <p>{decision.detail}</p>
               </article>
             ))}
           </div>
         </section>
 
-        <section className={styles.measurement} aria-labelledby="measurement-title">
+        <section className={styles.results} aria-labelledby="results-title">
           <div className={styles.sectionHeading}>
-            <p>Measurement</p>
-            <h2 id="measurement-title">Measures for the business decision.</h2>
+            <p>Results</p>
+            <h2 id="results-title">Investment measures.</h2>
           </div>
-          <div className={styles.measureGrid}>
-            {service.measures.map((measure, index) => (
-              <div key={measure}>
+          <div className={styles.resultGrid}>
+            {service.results.map((result, index) => (
+              <article key={result.title}>
                 <span>{String(index + 1).padStart(2, '0')}</span>
-                <p>{measure}</p>
-              </div>
+                <h3>{result.title}</h3>
+                <p>{result.detail}</p>
+              </article>
             ))}
-          </div>
-        </section>
-
-        <section className={styles.startingBrief} aria-labelledby="brief-title">
-          <div>
-            <p className={styles.eyebrow}>Scoping input</p>
-            <h2 id="brief-title">Information needed to scope the work.</h2>
-          </div>
-          <div className={styles.briefGrid}>
-            <p><strong>Current work</strong>Show the real input, decision, handoff and accepted output.</p>
-            <p><strong>Working examples</strong>Bring examples, volumes, failure cases and the systems staff use now.</p>
-            <p><strong>Constraints</strong>Name deadlines, data boundaries, approval rules and service commitments.</p>
-            <p><strong>Decision</strong>Agree the result that would justify a pilot, release or stop decision.</p>
           </div>
         </section>
       </article>

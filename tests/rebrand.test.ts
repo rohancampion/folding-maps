@@ -33,15 +33,12 @@ describe('botanical-industrial rebrand', () => {
 
     expect(page).not.toContain('ServiceSystemLab');
     expect(page).not.toContain('Operational ownership');
-    expect(page).toContain('service.useCases.map');
-    expect(page).toContain('useCase.path.map');
-    expect(page).toContain('service.stages.map');
-    expect(page).toContain('service.provisions.map');
-    expect(page).toContain('service.technologies.map');
-    expect(page).toContain('service.safeguards.map');
-    expect(page).toContain('service.idealFor.map');
-    expect(page).toContain('service.clientInputs.map');
-    expect(page).toContain('service.measures.map');
+    expect(page).toContain('service.applications.map');
+    expect(page).toContain('service.serviceSections.map');
+    expect(page).toContain('service.expertise.map');
+    expect(page).toContain('service.decisions.map');
+    expect(page).toContain('service.results.map');
+    expect(page).not.toMatch(/service\.(useCases|stages|provisions|safeguards|idealFor|poorFit|clientInputs|measures)/);
   });
 
   it('shows case-study photography without a colour treatment', () => {

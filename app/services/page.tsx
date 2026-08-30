@@ -8,7 +8,7 @@ import styles from './services.module.css';
 
 export const metadata: Metadata = createPageMetadata({
   title: 'AI consulting and engineering services',
-  description: 'Senior advice, working AI software and practical adoption support for UK SMEs.',
+  description: 'AI consulting and engineering services for UK SMEs, each tied to a defined business problem and measurable result.',
   path: '/services',
 });
 
@@ -18,8 +18,8 @@ export default function ServicesPage() {
       desktopSrc="/images/rebrand/services-workbench-desktop.webp"
       mobileSrc="/images/rebrand/services-workbench-mobile.webp"
       eyebrow="Services"
-      title="From a hard decision to working software."
-      summary="Choose focused advice, hands-on engineering or support for the team that will run it."
+      title="AI services for measurable business results."
+      summary="Each service addresses a defined business problem and states the result the client will measure."
       focalPosition="50% 53%"
     >
       <Link className={styles.heroAction} href="/contact">Discuss a project <ArrowRight size={17} /></Link>
@@ -27,8 +27,8 @@ export default function ServicesPage() {
 
     <section className={styles.directory} aria-labelledby="services-title">
       <div className={styles.directoryHeading}>
-        <p>Capabilities</p>
-        <h2 id="services-title">Choose a starting point.</h2>
+        <p>Consulting and engineering</p>
+        <h2 id="services-title">Services tied to a business decision.</h2>
       </div>
       <div className={styles.serviceGrid}>
         {services.map((service) => <Link href={`/services/${service.slug}`} className={styles.service} key={service.slug}>
