@@ -100,8 +100,8 @@
   gap: 14px;
   padding: 5px 5px 5px 19px;
   border-radius: 0;
-  color: var(--ink);
-  background: var(--lime);
+  color: #f4f1e7;
+  background: var(--green);
   font-size: .82rem;
   font-weight: 700;
   transition: gap .2s ease, background-color .2s ease;
@@ -120,7 +120,7 @@
 }
 
 .cta svg { width: 17px; height: 17px; }
-.cta:hover { gap: 18px; background: #dbe6ba; }
+.cta:hover { gap: 18px; background: #274a38; }
 .cta:hover > span { transform: scale(1.06); }
 .cta:focus-visible { outline: 3px solid #f4f1e7; outline-offset: 4px; }
 
