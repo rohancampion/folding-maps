@@ -3,12 +3,9 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { FullBleedHero } from '@/components/FullBleedHero';
-import { ProcessExhibit, SystemExhibit } from '@/components/ConsultingExhibits';
 import { NarrativeOpening } from '@/components/EditorialNarrative';
-import { InteractiveEvidence } from '@/components/InteractiveEvidence';
 import { NarrativeSections, ReportActionAgenda, ReportReferences } from '@/components/NarrativeReport';
 import { JsonLd } from '@/components/JsonLd';
-import type { CaseExhibitPlacement } from '@/lib/caseEditorial';
 import { caseEditorial } from '@/lib/caseEditorial';
 import { caseResearch, cases } from '@/lib/content';
 import { dedupeSources } from '@/lib/reportNarrative';
@@ -48,27 +45,6 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
     research.map(({ source, href, finding }) => ({ label: source, href, detail: finding })),
   );
 
-  // Only a project whose count the firm has supplied carries an evidence
-  // chart. The others specify what they are measuring in the text, and the
-  // page shows the process and system exhibits alone.
-  const evidenceViews = study.chart && editorial.evidenceTitle && editorial.evidenceInterpretation
-    ? [
-        {
-          label: 'Operating evidence',
-          title: editorial.evidenceTitle,
-          summary: study.chart.subtitle,
-          source: study.chart.note.replace(/^Source:\s*/i, '').replace(/\.$/, ''),
-          interpretation: editorial.evidenceInterpretation,
-          points: study.chart.bars.map((bar) => ({
-            label: bar.label,
-            value: bar.value,
-            display: bar.display,
-            detail: bar.detail ?? 'A priority agreed in discovery. The figure is a design target and has not yet been measured in operation.',
-          })),
-        },
-      ]
-    : [];
-
   const pageUrl = absoluteUrl(`/case-studies/${study.slug}`);
   const jsonLd = [
     breadcrumbJsonLd([
@@ -87,26 +63,6 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
       articleSection: study.sector,
     },
   ];
-
-  const renderExhibit = (placement: CaseExhibitPlacement) => {
-    if (placement.kind === 'evidence')
-      return evidenceViews.length
-        ? <InteractiveEvidence key="evidence" eyebrow="Decision evidence" views={evidenceViews} />
-        : null;
-    if (placement.kind === 'process')
-      return (
-        <ProcessExhibit key="process" number="1" title={editorial.processTitle} steps={study.phases} />
-      );
-    return (
-      <SystemExhibit
-        key="system"
-        title={editorial.systemTitle}
-        eyebrow="System architecture"
-        lines={study.code.lines}
-        nodes={study.code.nodes}
-      />
-    );
-  };
 
   return (
     <>
@@ -137,14 +93,14 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
         </div>
 
         <p className="caveat">
-          <strong>Reading the figures on this page</strong>
+          <strong>Current result</strong>
           {editorial.statusStatement}
         </p>
 
         <p className="lede">{report.standfirst}</p>
 
         <div className="executive-brief">
-          <span>The argument</span>
+          <span>Result sought</span>
           <p>{report.thesis}</p>
         </div>
 
@@ -162,19 +118,19 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
           className="continuous-case-sections"
           contentsLabel="Contents"
           idPrefix={`case-${study.slug}`}
-          renderExhibit={renderExhibit}
+          renderExhibit={() => null}
         />
 
         <ReportActionAgenda
-          eyebrow="Next release"
-          title="Decisions required before the next release"
+          eyebrow="Next decision"
+          title="Next steps for this engagement"
           actions={report.actionAgenda}
         />
 
         <ReportReferences
           id="case-references"
           title="Sources"
-          introduction="External research informing the design. These findings provide context; they do not convert this engagement's design targets into measured results."
+          introduction="External sources provide context only. Client results are stated separately."
           sources={references}
         />
       </article>
@@ -183,7 +139,7 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
         <div className="container inner">
           <div>
             <span className="kicker">Enquiries</span>
-            <h2>Comparable engagements.</h2>
+            <h2>Discuss a business problem.</h2>
           </div>
           <Link className="button" href="/contact">
             Start an enquiry <ArrowRight size={17} aria-hidden="true" />

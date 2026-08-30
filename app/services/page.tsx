@@ -28,7 +28,7 @@ export default function ServicesPage() {
     <section className={styles.directory} aria-labelledby="services-title">
       <div className={styles.directoryHeading}>
         <p>Capabilities</p>
-        <h2 id="services-title">Choose where to start.</h2>
+        <h2 id="services-title">Choose a starting point.</h2>
       </div>
       <div className={styles.serviceGrid}>
         {services.map((service) => <Link href={`/services/${service.slug}`} className={styles.service} key={service.slug}>
