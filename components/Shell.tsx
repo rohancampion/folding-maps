@@ -28,7 +28,7 @@ const footerColumns = [
     links: [
       ['Services', '/services'],
       ['AI strategy', '/services/ai-strategy'],
-      ['Workflow automation', '/services/workflow-automation'],
+      ['Process automation', '/services/workflow-automation'],
     ],
   },
 ] as const;
