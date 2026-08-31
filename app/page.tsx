@@ -5,6 +5,7 @@ import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { JsonLd } from '@/components/JsonLd';
 import { ResponsiveBackground } from '@/components/ResponsiveBackground';
 import { PrismaHero } from '@/components/ui/prisma-hero';
+import { articles } from '@/lib/content';
 import { absoluteUrl, createPageMetadata, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo';
 import styles from './home.module.css';
 
@@ -21,14 +22,11 @@ const homeJsonLd = [
 
 const serviceGroups = [
   { title: 'Advise', text: 'Choose the right use, investment and controls.', href: '/services/ai-strategy', image: '/images/rebrand/research-fern-desktop.webp', mobile: '/images/rebrand/research-fern-mobile.webp', position: '50% 45%' },
-  { title: 'Build', text: 'Turn a bounded brief into software your team can run.', href: '/services/ai-implementation', image: '/images/rebrand/services-workbench-desktop.webp', mobile: '/images/rebrand/services-workbench-mobile.webp', position: '50% 54%' },
+  { title: 'Build', text: 'Build proprietary AI systems and software for your team', href: '/services/ai-implementation', image: '/images/rebrand/services-workbench-desktop.webp', mobile: '/images/rebrand/services-workbench-mobile.webp', position: '50% 54%' },
   { title: 'Enable', text: 'Give teams the skills and standards to use AI well.', href: '/services/enterprise-ai', image: '/images/rebrand/studio-table-desktop.webp', mobile: '/images/rebrand/studio-table-mobile.webp', position: '50% 49%' },
 ];
 
-const selectedWork = [
-  { title: 'Cold-chain exception control', sector: 'Logistics', href: '/case-studies/cold-chain', image: '/images/cases/cold-chain.webp', position: '50% 50%' },
-  { title: 'Property pipeline automation', sector: 'Property', href: '/case-studies/property-pipeline', image: '/images/cases/property-pipeline.webp', position: '50% 56%' },
-];
+const latestPublications = articles.slice(-2);
 
 export default function Home() {
   return <>
@@ -51,16 +49,16 @@ export default function Home() {
       <Link className={styles.inlineLink} href="/services">View all services <ArrowRight size={16} /></Link>
     </section>
 
-    <section className={styles.work} aria-labelledby="work-title">
+    <section className={styles.work} aria-labelledby="publications-title">
       <div className={styles.sectionHeading}>
-        <p>Selected work</p>
-        <h2 id="work-title">Systems used in the real world.</h2>
+        <p>Latest publications</p>
+        <h2 id="publications-title">Evidence for better technology decisions.</h2>
       </div>
       <div className={styles.workGrid}>
-        {selectedWork.map((item, index) => <Link className={styles.workPanel} href={item.href} key={item.href}>
-          <Image src={item.image} alt="" fill sizes="(min-width: 900px) 50vw, 100vw" style={{ objectFit: 'cover', objectPosition: item.position }} preload={index === 0} />
+        {latestPublications.map((article, index) => <Link className={styles.workPanel} href={`/news/${article.slug}`} key={article.slug}>
+          <Image src={article.image} alt="" fill sizes="(min-width: 900px) 50vw, 100vw" style={{ objectFit: 'cover' }} preload={index === 0} />
           <span className={styles.mediaShade} />
-          <div><p>{item.sector}</p><h3>{item.title}</h3></div>
+          <div><p>{article.tag} · {article.date}</p><h3>{article.title}</h3></div>
           <ArrowUpRight size={22} aria-hidden="true" />
         </Link>)}
       </div>

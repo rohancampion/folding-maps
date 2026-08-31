@@ -42,34 +42,13 @@
 .heroSummary { max-width: 680px; margin: 0; color: var(--muted); font-size: clamp(.88rem, 1.2vw, 1rem); line-height: 1.65; }
 
 .collection {
-  padding: clamp(7rem, 12vw, 12rem) 0 0;
+  padding: 0;
   background:
     linear-gradient(rgba(73, 106, 102, .04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(73, 106, 102, .04) 1px, transparent 1px),
     var(--paper);
   background-size: 52px 52px;
 }
-
-.collectionHeading {
-  display: grid;
-  max-width: 1400px;
-  margin: 0 auto clamp(5rem, 10vw, 9rem);
-  padding: 0 6vw;
-  grid-template-columns: 180px 1fr;
-  gap: 1rem 4vw;
-}
-
-.collectionHeading :global(.precision-label) { align-self: start; margin-top: .7rem; }
-.collectionHeading h2 {
-  max-width: 980px;
-  margin: 0;
-  font-size: clamp(3.6rem, 7vw, 7.2rem);
-  font-weight: 400;
-  line-height: .9;
-}
-
-.collectionHeading h2 em { color: var(--machine); font-weight: 400; }
-.collectionHeading p { grid-column: 2; max-width: 630px; margin: 1.2rem 0 0; color: var(--muted); }
 
 .caseStudy {
   display: grid;
@@ -123,8 +102,6 @@
   .heroContent { padding: 132px 24px 46px; }
   .heroLead h1 { margin-top: 1.5rem; font-size: clamp(3.25rem, 15.5vw, 5rem); line-height: .92; }
   .heroSummary { max-width: 360px; font-size: .84rem; }
-  .collectionHeading { grid-template-columns: 1fr; padding: 0 24px; }
-  .collectionHeading p { grid-column: 1; }
   .caseStudy,
   .caseStudy:nth-of-type(even) { min-height: 0; grid-template-columns: 1fr; }
   .caseStudy:nth-of-type(even) .caseVisual,

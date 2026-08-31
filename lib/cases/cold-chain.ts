@@ -4,11 +4,11 @@ import type { CaseStudy, ResearchFinding } from '@/lib/content';
 export const study: CaseStudy = {
   slug: 'cold-chain',
   image: '/images/case-cold-chain.svg',
-  sector: 'Cold storage',
-  title: 'From temperature alert to accountable response',
-  summary: 'A cold-chain operator is testing whether each important overnight alert reaches the right person and ends with a clear account of the action taken.',
+  sector: 'Refrigerated logistics',
+  title: 'Deploying AI Monitoring Services in Refrigerated Logistics',
+  summary: 'An AI-assisted monitoring service routes important temperature alerts to the right person and documents the action taken.',
   status: 'Anonymised',
-  brief: 'The operator requested anonymity. Discovery is comparing one month of alerts with maintenance and shift notes at one chilled site. The work is incomplete, so this case reports no response or safety result. The pilot will run beside current controls.',
+  brief: 'The operator requested anonymity. Discovery is preparing an AI-assisted monitoring service that compares alerts with asset, maintenance and shift context at one chilled site. The pilot will run beside current controls and reports no response or safety result yet.',
   metrics: [
     { value: '1 month', label: 'alert sample under review', detail: 'One chilled site' },
     { value: '<15 min', label: 'acknowledgement target', detail: 'Unmeasured pilot target' },
