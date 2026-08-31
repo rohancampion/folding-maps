@@ -44,7 +44,7 @@ const serviceCatalogue: Omit<Service, 'number'>[] = [
     title: 'AI Strategy & Readiness',
     shortTitle: 'AI strategy',
     promise: 'A board-ready choice between competing AI investments, with the result, cost limit and stop condition stated for each option.',
-    summary: 'Senior advice for leaders comparing AI investments, deciding the future of a stalled pilot or setting a budget across several proposals.',
+    summary: 'Strategic Advice and Planning on AI Exposure, Implementation, Risk and Costing',
     explanation: 'Leadership teams need a common commercial case for ideas that arrive with different claims and levels of support. Quiet Gears gives the board a comparable view of the business problem, proposed result, cost limit, practical constraints and exposure attached to each option. Directors choose the investment to fund and set the condition for continued spend.',
     applications: [
       {

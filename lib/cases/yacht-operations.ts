@@ -4,11 +4,11 @@ import type { CaseStudy, ResearchFinding } from '@/lib/content';
 export const study: CaseStudy = {
   slug: 'yacht-operations',
   image: '/images/case-yacht.svg',
-  sector: 'Marine',
-  title: 'Current answers for yacht customer commitments',
-  summary: 'A specialist sailing business is making customer updates faster and more dependable as its project load grows.',
+  sector: 'Yacht industry',
+  title: 'Improving market-making and customer services in Yacht industry',
+  summary: 'A shared commercial and service system connects enquiries, customer history, yacht projects and follow-up.',
   status: 'In progress',
-  brief: 'Discovery and design are complete. The team has not evaluated the first live release. The engagement will succeed only if staff can answer a customer status question with fewer searches and no loss of personal service.',
+  brief: 'Discovery and design are complete. The team is connecting market activity with customer service through one view of enquiries, customers, vessels and active projects. The first live release remains unevaluated.',
   metrics: [
     { value: '4', label: 'parts of the customer journey mapped', detail: 'Enquiry, customer, project and follow-up' },
     { value: '1', label: 'named colleague for each open action', detail: 'First-release rule' },
@@ -30,15 +30,15 @@ export const study: CaseStudy = {
 
 export const editorial: CaseEditorial = {
   statusStatement: 'This engagement is in progress. Discovery and design are complete. The team has not evaluated the first live release or its business result. The company remains unnamed, and this account contains no customer or vessel identifiers.',
-  thesis: 'Growth has made a routine customer update depend on repeated searches across email, job sheets, supplier messages and staff memory. A shared project view gives colleagues one current answer and one named next action. Four weeks of use will show whether that change saves coordination time without weakening customer care.',
+  thesis: 'Growth has made market follow-up and routine customer service depend on repeated searches across email, job sheets, supplier messages and staff memory. A shared project view gives colleagues one current answer and one named next action. Four weeks of use will test the result.',
   sceneLabel: 'A representative customer request',
-  openingTitle: 'One customer question sends the team to four places',
+  openingTitle: 'One customer question connects market activity with service delivery',
   openingParagraphs: [
     'A customer asks when their yacht will return to the water. The colleague handling the request checks the shared mailbox for the promised date, the job sheet for completed work, a supplier message for a delayed part and a colleague for the latest conversation with the rigger.',
     'The team gives a careful answer, but the search starts again when the customer calls later in the week. The assembled answer does not leave the next colleague with a current view. Growth has increased the number of projects and the number of times staff repeat this work.',
     'The engagement began with this customer question. It gives the business a direct test: can any colleague see the current commitment, understand what changed and know who acts next without rebuilding the story?',
   ],
-  centralQuestion: 'Can the business cut repeated status searches and late follow-up while preserving the personal attention customers expect?',
+  centralQuestion: 'Can the business improve market follow-up and customer service while preserving the personal attention yacht customers expect?',
   sections: [
     {
       heading: 'Growing demand turns updates into a capacity problem',
