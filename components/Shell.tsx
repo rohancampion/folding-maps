@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { useEffect, useEffectEvent, useState } from 'react';
@@ -40,6 +41,14 @@ export function Logo({ footer = false }: { footer?: boolean }) {
       href="/"
       aria-label="Quiet Gears home"
     >
+      <Image
+        className={styles.logoMark}
+        src="/brand/quiet-gears-logo.jpg"
+        width={400}
+        height={400}
+        alt=""
+        loading={footer ? 'lazy' : 'eager'}
+      />
       Quiet Gears
     </Link>
   );
