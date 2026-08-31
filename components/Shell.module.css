@@ -22,10 +22,19 @@
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
   font-size: 1.0625rem;
   font-weight: 600;
   letter-spacing: -0.02em;
   white-space: nowrap;
+}
+.logoMark {
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+  border-radius: 2px;
 }
 .logo:hover { color: var(--accent); }
 
@@ -148,6 +157,7 @@
 }
 
 .footerLogo { font-size: 1.25rem; color: var(--on-dark); }
+.footerLogo .logoMark { width: 2.25rem; height: 2.25rem; }
 .footerLogo:hover { color: var(--on-dark-accent); }
 
 .footerNav {
