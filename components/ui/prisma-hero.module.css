@@ -15,7 +15,7 @@
   overflow: hidden;
   border-radius: 0;
   color: #f4f1e7;
-  background: #07120d;
+  background: var(--surface-dark);
 }
 
 .poster,

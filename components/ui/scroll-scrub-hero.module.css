@@ -2,7 +2,7 @@
   --scrub-screens: 3;
   position: relative;
   height: calc(var(--scrub-screens) * 100svh);
-  background: #07120d;
+  background: var(--surface-dark);
 }
 
 .stage {
@@ -53,7 +53,7 @@
 .primaryAction,
 .secondaryAction { display: inline-flex; align-items: center; gap: 10px; font-size: .78rem; font-weight: 700; }
 .primaryAction { min-height: 48px; padding: 12px 17px; color: #102019; background: #c6d59b; }
-.primaryAction:hover { background: #dbe6ba; }
+.primaryAction:hover { background: var(--accent-hover); }
 .secondaryAction { padding: 10px 0; border-bottom: 1px solid currentColor; }
 .primaryAction:focus-visible,
 .secondaryAction:focus-visible { outline: 3px solid #f4f1e7; outline-offset: 4px; }

@@ -1,4 +1,14 @@
 :root {
+  /* Canonical botanical green scale. Use these tokens instead of local hex values. */
+  --green-950: #07120d;
+  --green-900: #102019;
+  --green-700: #315b45;
+  --green-500: #66866b;
+  --green-300: #c6d59b;
+  --green-200: #dbe6ba;
+  --green-100: #eff5dc;
+  --green-rgb: 49, 91, 69;
+  --green-soft-rgb: 198, 213, 155;
   --ink: #102019;
   --paper: #f2f0e8;
   --cream: #e1e4d7;
@@ -9,6 +19,18 @@
   --brass: #a8894e;
   --muted: #5f665f;
   --line: rgba(16, 32, 25, .18);
+  --surface-dark: var(--green-950);
+  --accent-hover: var(--green-200);
+  --accent-glow: rgba(var(--green-soft-rgb), .42);
+  --text-shimmer-duration: 7s;
+  --text-shimmer-gradient: linear-gradient(
+    105deg,
+    var(--green-500) 0%,
+    var(--green-300) 35%,
+    var(--green-100) 50%,
+    var(--green-300) 65%,
+    var(--green-500) 100%
+  );
   --display: var(--font-serif);
   --font-body: var(--body);
 }
@@ -16,7 +38,36 @@
 h1, h2, h3, h4 { font-family: var(--display), Georgia, serif; font-weight: 400; }
 
 .rebrand-report-body { padding-top: clamp(62px, 8vw, 108px); }
-::selection { color: #f7f4e9; background: #315b45; }
+::selection { color: #f7f4e9; background: var(--green); }
+
+/* One shared treatment for highlighted heading text on every route. */
+h1 em,
+h2 em,
+.text-shimmer {
+  color: var(--machine);
+  background-image: var(--text-shimmer-gradient);
+  background-position: 100% 50%;
+  background-size: 250% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer var(--text-shimmer-duration) ease-in-out infinite;
+}
+
+@keyframes text-shimmer {
+  0%, 20%, 100% { background-position: 100% 50%; }
+  55%, 70% { background-position: 0 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  h1 em,
+  h2 em,
+  .text-shimmer {
+    color: var(--machine);
+    background-image: none;
+    -webkit-text-fill-color: currentColor;
+  }
+}
 
 @media (max-width: 800px) {
   .rebrand-report-body { padding-top: 58px; }

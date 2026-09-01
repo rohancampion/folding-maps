@@ -26,7 +26,9 @@ const serviceGroups = [
   { title: 'Enable', text: 'Give teams the skills and standards to use AI well.', href: '/services/enterprise-ai', image: '/images/rebrand/studio-table-desktop.webp', mobile: '/images/rebrand/studio-table-mobile.webp', position: '50% 49%' },
 ];
 
-const latestPublications = articles.slice(-2);
+const latestPublications = [...articles]
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  .slice(0, 2);
 
 export default function Home() {
   return <>
@@ -52,7 +54,7 @@ export default function Home() {
     <section className={styles.work} aria-labelledby="publications-title">
       <div className={styles.sectionHeading}>
         <p>Latest publications</p>
-        <h2 id="publications-title">Evidence for better technology decisions.</h2>
+        <h2 id="publications-title">Recent Publications</h2>
       </div>
       <div className={styles.workGrid}>
         {latestPublications.map((article, index) => <Link className={styles.workPanel} href={`/news/${article.slug}`} key={article.slug}>
