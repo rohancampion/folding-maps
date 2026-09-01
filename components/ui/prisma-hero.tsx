@@ -113,9 +113,30 @@ const PrismaHero = () => {
       return;
     }
 
-    void video.play().catch(() => {
-      // The responsive poster remains visible if autoplay is unavailable.
-    });
+    const playVideo = () => {
+      if (document.visibilityState === 'hidden') return;
+      if (video.networkState === video.NETWORK_EMPTY) video.load();
+      void video.play().catch(() => {
+        // The responsive poster remains visible if autoplay is unavailable.
+      });
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') playVideo();
+    };
+
+    // A page restored from the back-forward cache does not remount React, so
+    // its autoplaying media must be resumed from the pageshow event.
+    playVideo();
+    video.addEventListener('loadeddata', playVideo);
+    window.addEventListener('pageshow', playVideo);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      video.removeEventListener('loadeddata', playVideo);
+      window.removeEventListener('pageshow', playVideo);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, [reduceMotion]);
 
   return (
@@ -136,7 +157,7 @@ const PrismaHero = () => {
           loop
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
           poster="/images/rebrand/hero-gears-desktop.webp"
           className={styles.video}
         >
