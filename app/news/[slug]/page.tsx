@@ -89,11 +89,11 @@ export default async function Article({ params }: { params: Promise<{ slug: stri
       <NarrativeSections sections={report.sections} className="editorial-report-sections continuous-report-sections" contentsLabel="Contents" idPrefix={`news-${article.slug}`} renderExhibit={renderExhibit}/>
       <ReportActionAgenda eyebrow="What follows" title="Decisions arising from the analysis" actions={report.actionAgenda}/>
 
-      <ReportReferences id="news-references" title="Sources" introduction="External evidence is used for context. Charts drawn from our own analysis are identified as such on the exhibit itself." sources={references}/>
+      <ReportReferences id="news-references" title="Sources" introduction="External evidence is used for context. Charts drawn from Quiet Gears analysis are identified as such on the exhibit itself." sources={references}/>
 
       <div className="article-foot">
         <p>
-          Written by Quiet Gears. If your own operating data contradicts the argument
+          Written by Quiet Gears. If your operating data contradicts the argument
           above, that is worth more than a defence of the piece.
         </p>
         <Link className="button light" href="/contact">

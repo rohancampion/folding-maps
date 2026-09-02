@@ -31,7 +31,7 @@ export type EmailConfigResult =
 /**
  * Mailbox providers do not let anyone verify their domain as a Resend sender,
  * so a CONTACT_FROM_EMAIL on one of these is guaranteed to be rejected at send
- * time. Catching it here turns a 502 nobody can diagnose into a named
+ * time. Catching it here turns a 502 nobody can diagnose into an identified
  * configuration error in the log.
  */
 const UNVERIFIABLE_SENDER_DOMAINS = [

@@ -1,12 +1,13 @@
-export type ServiceItem = {
+export type ServiceItem = { title: string; detail: string };
+
+export type ServiceOffering = {
   title: string;
   detail: string;
+  subservices: ServiceItem[];
 };
 
-export type ServiceSection = {
-  title: string;
-  paragraphs: string[];
-};
+export type ServiceSpecification = { term: string; detail: string };
+export type ServiceFaq = { question: string; answer: string };
 
 export type Service = {
   slug: string;
@@ -14,668 +15,484 @@ export type Service = {
   group: 'Advise' | 'Build' | 'Embed';
   title: string;
   shortTitle: string;
-  promise: string;
   summary: string;
-  explanation: string;
+  outcome: string;
+  offerings: ServiceOffering[];
   applications: ServiceItem[];
-  serviceSections: ServiceSection[];
-  decisions: ServiceItem[];
-  results: ServiceItem[];
-  expertise: string[];
+  deliverables: ServiceItem[];
+  technicalScope?: ServiceSpecification[];
+  faqs: ServiceFaq[];
 };
 
 const serviceDemandOrder = [
-  'ai-strategy',
-  'workflow-automation',
-  'claude-implementation',
-  'chatgpt-training-for-teams',
-  'ai-chatbot',
-  'ai-implementation',
-  'secure-ai-systems',
-  'enterprise-ai',
-  'agentic-ai',
-  'legacy-modernisation',
+  'ai-strategy', 'workflow-automation', 'claude-implementation',
+  'chatgpt-training-for-teams', 'ai-chatbot', 'ai-implementation',
+  'secure-ai-systems', 'enterprise-ai', 'agentic-ai', 'legacy-modernisation',
 ] as const;
 
 const serviceCatalogue: Omit<Service, 'number'>[] = [
   {
-    slug: 'ai-strategy',
-    group: 'Advise',
-    title: 'AI Strategy & Readiness',
-    shortTitle: 'AI strategy',
-    promise: 'A board-ready choice between competing AI investments, with the result, cost limit and stop condition stated for each option.',
-    summary: 'Strategic Advice and Planning on AI Exposure, Implementation, Risk and Costing',
-    explanation: 'Leadership teams need a common commercial case for ideas that arrive with different claims and levels of support. Quiet Gears gives the board a comparable view of the business problem, proposed result, cost limit, practical constraints and exposure attached to each option. Directors choose the investment to fund and set the condition for continued spend.',
+    slug: 'ai-strategy', group: 'Advise', title: 'AI Strategy & Readiness', shortTitle: 'AI strategy',
+    summary: 'Board-level investment choices, readiness findings and control requirements for a defined portfolio of AI services.',
+    outcome: 'A prioritised AI investment portfolio with stated costs, dependencies, control requirements and decision limits.',
+    offerings: [
+      { title: 'Investment case', detail: 'A board-ready commercial case for a proposed AI service, expressed through the business result, full cost range and material dependencies.', subservices: [
+        { title: 'Commercial assessment', detail: 'Comparison of capacity, service, quality and cash effects against the present operating position.' },
+        { title: 'Budget definition', detail: 'A stated range covering supplier charges, integration, internal capability and continuing service costs.' },
+      ] },
+      { title: 'Readiness and risk', detail: 'A practical view of the information, systems, permissions, supplier terms and staff capability attached to each proposed service.', subservices: [
+        { title: 'Readiness review', detail: 'A documented assessment of source quality, company access, system compatibility and operational support.' },
+        { title: 'Control requirements', detail: 'Approval, review, security and reporting requirements for the proposed business use.' },
+      ] },
+      { title: 'Portfolio and supplier decision', detail: 'A common basis for comparing competing projects, managed platforms and specialist suppliers before funds are committed.', subservices: [
+        { title: 'Portfolio prioritisation', detail: 'A ranked set of investments with a reason, dependency and budget position for each item.' },
+        { title: 'Platform assessment', detail: 'Comparison of managed products, private services and custom applications against the approved need.' },
+      ] },
+    ],
     applications: [
-      {
-        title: 'Competing investment choices',
-        detail: 'Several departments have credible proposals, but each uses different claims about cost, capacity and customer benefit. Leadership needs one comparison that exposes assumptions and directs limited funds towards the strongest commercial case.',
-      },
-      {
-        title: 'Stalled pilot decision',
-        detail: 'A demonstration has attracted support but has not settled the questions that matter to daily use. Leaders need to decide whether to fund a bounded release, revise the concept or close the work before further expense.',
-      },
-      {
-        title: 'Board investment case',
-        detail: 'A board wants a credible account of value, exposure and internal effort before approval. The case must separate capacity, cash, quality and service effects so directors can judge each claim on its merits.',
-      },
+      { title: 'Board funding decision', detail: 'Directors need a comparable investment case for several proposals with different cost, capability and risk assumptions.' },
+      { title: 'Stalled pilot review', detail: 'A trial has reached a funding decision without a settled service cost, operating requirement or accepted business result.' },
+      { title: 'Supplier comparison', detail: 'Procurement needs a clear comparison of managed platforms, custom applications and private deployment options.' },
     ],
-    serviceSections: [
-      {
-        title: 'Investment economics',
-        paragraphs: [
-          'Advisers state the current cost, delay, service failure or growth constraint in figures the business can defend. Leaders set a result and budget ceiling for each option.',
-          'Advisers assess capacity and cash separately from quality and revenue. Finance can distinguish lower expenditure from released staff time and benefits that depend on further commercial choices.',
-        ],
-      },
-      {
-        title: 'Comparative choices',
-        paragraphs: [
-          'Every proposal faces the same questions about task demand, business value, user need, source quality, company access and continuing cost. Directors can identify options that depend on generous assumptions or unresolved authority.',
-          'The board receives a ranked choice with the reason for each position. The comparison also identifies suitable service forms, including a managed platform, process automation or a focused custom application.',
-        ],
-      },
-      {
-        title: 'Constraints requiring budget',
-        paragraphs: [
-          'Advisers identify gaps in access, source quality, staff capability and control that need money or executive action. They place each constraint beside the affected investment and state its cost and decision impact.',
-          'This view prevents hidden preparation costs from appearing after approval. It also shows leadership which proposals can proceed under current capability and which depend on a separate company investment.',
-        ],
-      },
-      {
-        title: 'Board recommendation',
-        paragraphs: [
-          'For the recommended proposal, Quiet Gears states the budget limit and required business result. Directors and control functions can inspect the assumptions and supplier dependencies.',
-          'Advisers give each deferred or closed proposal a short decision reason. Procurement, finance and operating leaders can act on the board position without translating a vendor presentation.',
-        ],
-      },
+    deliverables: [
+      { title: 'Board investment paper', detail: 'A concise decision paper stating the business result, options, costs, dependencies and recommendation.' },
+      { title: 'Prioritised service portfolio', detail: 'A ranked catalogue of proposed services with approval, deferral or closure positions.' },
+      { title: 'Budget ranges', detail: 'A cost view covering subscriptions, implementation, infrastructure, internal effort and continuing support.' },
+      { title: 'Readiness register', detail: 'A service-by-service account of information, access, integration, capability and supplier dependencies.' },
+      { title: 'Control requirements', detail: 'A defined set of approval, review, reporting and information-handling requirements.' },
     ],
-    decisions: [
-      { title: 'Investment priority', detail: 'Choose the proposal with the strongest quantified business result within the available budget.' },
-      { title: 'Service form', detail: 'Select a managed platform, process automation or custom application against the task requirement.' },
-      { title: 'Constraint budget', detail: 'Fund the access, source quality, capability or control work required by the approved proposal.' },
-      { title: 'Stop condition', detail: 'Set the measured result and spending threshold that governs continuation, revision or closure.' },
+    technicalScope: [
+      { term: 'Reference frameworks', detail: 'Optional mapping to NIST AI RMF and ISO/IEC 42001 control themes. This does not provide certification or legal advice.' },
+      { term: 'Platform coverage', detail: 'Managed AI products, hosted model APIs, private-cloud services, local systems and custom applications.' },
+      { term: 'Cost coverage', detail: 'Licences, usage charges, integration, infrastructure, support, staff capability and supplier dependency.' },
     ],
-    results: [
-      { title: 'Spend tied to value', detail: 'Measure the share of proposed spend attached to a quantified benefit, budget limit and review date.' },
-      { title: 'Speculative spend avoided', detail: 'Count proposals closed or deferred before licence, supplier or build costs become material.' },
-      { title: 'Decision time', detail: 'Measure elapsed time from the first leadership review to an approved, deferred or closed proposal.' },
-      { title: 'Review discipline', detail: 'Compare each approved value claim with the measured change at the board review date.' },
+    faqs: [
+      { question: 'Is the recommendation vendor-neutral?', answer: 'Yes. Managed products, hosted services, private systems and custom applications are compared against the approved business requirement.' },
+      { question: 'Can existing pilots be assessed?', answer: 'Yes. Existing trials can be reviewed against their stated business result, cost position and unresolved dependencies.' },
+      { question: 'Does the service include budget ranges?', answer: 'Yes. The investment paper separates subscriptions, implementation, infrastructure, internal effort and continuing support.' },
+      { question: 'Can regulated uses be included?', answer: 'Yes. Relevant control requirements can be stated, with specialist legal or regulatory advice commissioned separately when required.' },
     ],
-    expertise: ['Commercial assessment', 'Investment appraisal', 'AI service design', 'Risk and readiness review'],
   },
   {
-    slug: 'workflow-automation',
-    group: 'Build',
-    title: 'AI Process Automation',
-    shortTitle: 'Process automation',
-    promise: 'Lower cost and shorter delay for high-volume administration.',
-    summary: 'Automation for repeated business tasks that consume staff time through routine checking, copying and assignment.',
-    explanation: 'Repeated administration becomes expensive as volume grows. Staff copy the same information, apply routine checks and search a mixed queue for the cases that need judgement. Quiet Gears automates the stable work, prepares exceptions for the authorised person and connects the company services needed for completion. The investment rests on cost per accepted item, elapsed time, staff touches and the age of unresolved exceptions.',
+    slug: 'workflow-automation', group: 'Build', title: 'AI Process Automation', shortTitle: 'Process automation',
+    summary: 'Production automation for repeated document, transaction and service tasks, with visible exceptions and controlled system access.',
+    outcome: 'Lower administration cost and shorter completion time for a defined, high-volume business task.',
+    offerings: [
+      { title: 'Document intake', detail: 'Automation for messages, forms, invoices, certificates and supporting files that arrive in varied formats.', subservices: [
+        { title: 'Classification and capture', detail: 'Structured case data prepared from approved email, document, image and form inputs.' },
+        { title: 'Document validation', detail: 'Required fields, reference values and supporting files checked against accepted business rules.' },
+      ] },
+      { title: 'Transactional administration', detail: 'Completion of repeated checks, calculations and system updates within stated financial and operating limits.', subservices: [
+        { title: 'Rules and calculations', detail: 'Consistent application of approved thresholds, reference values and calculation rules.' },
+        { title: 'System updates', detail: 'Controlled creation or amendment of entries in approved company applications.' },
+      ] },
+      { title: 'Service routing and exceptions', detail: 'Clear assignment of routine requests and a visible queue for cases that require staff judgement.', subservices: [
+        { title: 'Request routing', detail: 'Assignment by request type, customer category, urgency, location or responsible team.' },
+        { title: 'Exception console', detail: 'A staff view containing source material, the failed check and the permitted next action.' },
+      ] },
+    ],
     applications: [
-      {
-        title: 'Enquiry handling',
-        detail: 'Sales or service teams spend the start of each enquiry reading messages, identifying the request, copying details and assigning a colleague. Automation can prepare routine enquiries for a prompt response and reserve staff attention for ambiguous cases.',
-      },
-      {
-        title: 'Finance administration',
-        detail: 'Finance teams check high volumes of invoices, expenses or purchase requests that follow stable rules. The service can complete routine checks and present discrepancies to the person authorised to decide them.',
-      },
-      {
-        title: 'Document-led operations',
-        detail: 'Staff read forms, certificates or supplier documents to capture key facts and update business systems. Automation can prepare the required information, apply validation rules and separate uncertain material for review.',
-      },
+      { title: 'Enquiry administration', detail: 'Incoming requests require classification, detail capture, acknowledgement and assignment before a specialist response.' },
+      { title: 'Invoice and expense checks', detail: 'Finance teams handle repeated validation, coding and approval preparation across routine submissions.' },
+      { title: 'Forms and certificates', detail: 'Operations staff extract facts, check validity and update business systems from submitted documents.' },
     ],
-    serviceSections: [
-      {
-        title: 'Current task economics',
-        paragraphs: [
-          'Consultants quantify demand, staff effort, elapsed time, rework and the cost of common failures for one repeated task. Managers set a clear standard for accepted completion so labour savings cannot hide correction work in another team.',
-          'Management receives a baseline for cost per item and the age of outstanding work. The baseline distinguishes routine preparation from the judgement that still requires an authorised employee.',
-        ],
-      },
-      {
-        title: 'Routine completion',
-        paragraphs: [
-          'Managers approve stable rules for calculations, required information and approval limits. Quiet Gears uses bounded AI assistance for narrow interpretation of varied documents or incoming messages.',
-          'The automation completes approved updates across the company services involved in the task. Staff receive prepared exceptions with the material needed for a decision.',
-        ],
-      },
-      {
-        title: 'Exceptions and service cost',
-        paragraphs: [
-          'Managers can see the number, age and cause of items that need staff attention. This exposes transferred effort and helps the business decide whether a rule, source or service change will reduce cost.',
-          'Support from Quiet Gears covers interrupted requests and controlled rule changes under one service arrangement. Managers can see service interruptions, recovery effort and the effect of each change alongside the unit cost of accepted work.',
-        ],
-      },
+    deliverables: [
+      { title: 'Production automation service', detail: 'A supported application for the approved task, business rules and company systems.' },
+      { title: 'Exception console', detail: 'A staff interface for unresolved items, source material, failed checks and permitted decisions.' },
+      { title: 'System connectors', detail: 'Approved interfaces for email, document, finance, CRM or operating applications.' },
+      { title: 'Service reporting', detail: 'Reporting for completed items, exceptions, correction demand, elapsed time and availability.' },
+      { title: 'Administration documentation', detail: 'Configuration, access, support and business-rule documentation for the live service.' },
     ],
-    decisions: [
-      { title: 'Automation boundary', detail: 'Select the repeated cases that the service can complete and the exceptions that require staff judgement.' },
-      { title: 'Approval authority', detail: 'Set the financial, customer and operational choices that remain with a named role.' },
-      { title: 'Platform choice', detail: 'Choose a managed automation product, integration service or custom component against support and scale needs.' },
-      { title: 'Expansion test', detail: 'Use accepted completion, correction effort and service reliability to judge any broader use.' },
+    technicalScope: [
+      { term: 'Input formats', detail: 'Email, web forms, PDFs, office files, images, CSV files and structured application data.' },
+      { term: 'Interfaces', detail: 'REST APIs, webhooks, approved database interfaces and managed application connectors.' },
+      { term: 'Document services', detail: 'OCR, field extraction, classification and validation against approved reference data.' },
+      { term: 'Access and audit', detail: 'SSO, role-based permissions, service accounts and timestamped activity logs where supported.' },
     ],
-    results: [
-      { title: 'Shorter completion time', detail: 'Track elapsed time from receipt to accepted completion for the selected task.' },
-      { title: 'Fewer staff touches', detail: 'Count manual interventions per accepted item and separate review from material judgement.' },
-      { title: 'Smaller exception backlog', detail: 'Track the number, cause and age of items awaiting staff judgement or correction.' },
-      { title: 'Lower cost per accepted item', detail: 'Combine staff effort, correction, supplier use and support cost for completed work.' },
+    faqs: [
+      { question: 'Can existing systems remain in place?', answer: 'Yes. Supported interfaces can connect current finance, CRM, document and operating applications.' },
+      { question: 'Does the service include exception handling?', answer: 'Yes. Staff receive a visible queue containing the affected item, source material, failed check and permitted decision.' },
+      { question: 'Are document-heavy tasks supported?', answer: 'Yes. PDFs, office files, images, forms and email attachments can be included when source quality supports dependable capture.' },
+      { question: 'Is continuing support available?', answer: 'Yes. Support can cover availability, connector changes, access administration and approved rule amendments.' },
     ],
-    expertise: ['Business process analysis', 'Automation engineering', 'System integration', 'Service assurance'],
   },
   {
-    slug: 'claude-implementation',
-    group: 'Build',
-    title: 'Managed AI Platform',
-    shortTitle: 'Managed AI platforms',
-    promise: 'One company AI platform tied to useful work in defined staff roles.',
-    summary: 'Vendor-neutral selection and implementation of Claude, ChatGPT, Perplexity or a managed API service for specific business tasks.',
-    explanation: 'Personal accounts and scattered licences create inconsistent work and little basis for judging value. Quiet Gears compares managed platforms against representative tasks in commercial, finance, service and operating roles. The selected company service includes approved source material, controlled access and a support arrangement. Role-level task results and licence cost give leaders the basis for continued spend.',
+    slug: 'claude-implementation', group: 'Build', title: 'Managed AI Platform', shortTitle: 'Managed AI platforms',
+    summary: 'Selection and company configuration of Claude, ChatGPT, Microsoft Copilot, Perplexity or a managed model service.',
+    outcome: 'One approved company AI service with suitable access, knowledge connections, administration and licence controls.',
+    offerings: [
+      { title: 'Platform selection', detail: 'A product and subscription decision based on representative company tasks, administration needs and continuing cost.', subservices: [
+        { title: 'Product comparison', detail: 'Supported platforms compared against task quality, company terms, access and cost.' },
+        { title: 'Plan selection', detail: 'A licence recommendation tied to user roles, required features and administration responsibilities.' },
+      ] },
+      { title: 'Company tenant and access', detail: 'A managed company environment with central identity, role assignment and approved account settings.', subservices: [
+        { title: 'Identity integration', detail: 'Supported SSO and user provisioning linked to current company identity services.' },
+        { title: 'Administration controls', detail: 'Role groups, licence assignment, retention choices and permitted feature settings.' },
+      ] },
+      { title: 'Knowledge and role services', detail: 'Approved company sources and task-specific assistants made available to suitable staff groups.', subservices: [
+        { title: 'Knowledge connections', detail: 'Access to selected company documents, collaboration services and supported applications.' },
+        { title: 'Role assistant catalogue', detail: 'Listed assistants or task templates for commercial, finance, service, operating and technical roles.' },
+      ] },
+      { title: 'Licence administration', detail: 'A visible basis for allocating, reviewing and cancelling company subscriptions.', subservices: [
+        { title: 'Usage reporting', detail: 'Administration views connecting active accounts with approved role groups and task categories.' },
+        { title: 'Support service', detail: 'A company route for access requests, source issues, feature changes and supplier notices.' },
+      ] },
+    ],
     applications: [
-      {
-        title: 'Managed company access',
-        detail: 'Staff already use personal or departmental accounts for business tasks. A company platform can bring access, administration, retention choices and support under one approved arrangement.',
-      },
-      {
-        title: 'Role-specific staff support',
-        detail: 'Commercial, finance, service or operating teams have repeated tasks that suit a managed assistant. Task quality and correction effort provide the sound basis for platform choice.',
-      },
-      {
-        title: 'Company knowledge access',
-        detail: 'Staff need help finding and applying approved policy, product, client or technical material. A managed platform can give suitable groups access to the right sources under existing company permissions.',
-      },
+      { title: 'Company research and drafting', detail: 'Commercial, finance and service teams need an approved assistant for research, comparison, drafting and structured analysis.' },
+      { title: 'Company knowledge access', detail: 'Staff need direct access to approved policy, product, client or technical material within current permissions.' },
+      { title: 'Developer support', detail: 'Technical teams need company-managed coding assistance with central access and supported repository connections.' },
     ],
-    serviceSections: [
-      {
-        title: 'Role-level task value',
-        paragraphs: [
-          'Leaders select a small set of tasks for each intended role and state the present preparation time and accepted standard. Commercial research and finance commentary need different sources and quality checks.',
-          'Representative work provides the case for platform spend. Leaders can see which roles gain useful capacity and which tasks still demand the same level of staff correction.',
-        ],
-      },
-      {
-        title: 'Platform choice',
-        paragraphs: [
-          'The same staff tasks provide a direct test of Claude, ChatGPT, Perplexity and managed API options. Advisers compare accepted output, correction time, source support, company terms and continuing cost under the client\'s current plan choices.',
-          'Each proposed licence category links to a staff role and business task. Direct task performance, company terms and total cost determine the recommendation.',
-        ],
-      },
-      {
-        title: 'Company access and service assurance',
-        paragraphs: [
-          'Company administrators control access by staff role and approved source. Quiet Gears applies the client\'s retention and regional processing choices under the current supplier contract.',
-          'Administrators receive one support remit for access, licence assignment, source issues and supplier changes. Staff can report weak output or information concerns through a defined company route.',
-        ],
-      },
-      {
-        title: 'Licence economics',
-        paragraphs: [
-          'Managers compare active use with accepted task quality, preparation time and correction effort. This links licence cost to useful work and exposes seats that contribute no measurable staff capacity.',
-          'Leaders set review measures for each role and licence group. They can reassign or cancel unused capacity and reserve custom software spend for tasks that a managed platform cannot support.',
-        ],
-      },
+    deliverables: [
+      { title: 'Configured company tenant', detail: 'The selected platform with approved company settings, administrator roles and licence categories.' },
+      { title: 'Identity and provisioning', detail: 'Supported SSO, user provisioning and role-group configuration.' },
+      { title: 'Knowledge connectors', detail: 'Approved connections to selected file, collaboration and business services.' },
+      { title: 'Role assistant catalogue', detail: 'A documented set of assistants or task templates for approved staff groups.' },
+      { title: 'Administration reporting', detail: 'Views for licence allocation, active accounts, support demand and service changes.' },
     ],
-    decisions: [
-      { title: 'Platform and plan', detail: 'Select the product and subscription level that meets task, administration, information and cost requirements.' },
-      { title: 'Approved users and tasks', detail: 'Define the roles, business uses and source material covered by company approval.' },
-      { title: 'Connected services', detail: 'Approve company files and applications after access, action and support responsibilities are clear.' },
-      { title: 'Licence policy', detail: 'Set allocation, review, reassignment and cancellation criteria against useful task activity.' },
+    technicalScope: [
+      { term: 'Supported platforms', detail: 'Claude, ChatGPT, Microsoft Copilot, Perplexity and managed model APIs, subject to current plan features.' },
+      { term: 'Identity', detail: 'SAML 2.0, OpenID Connect, SCIM and role-based access where supported.' },
+      { term: 'Knowledge access', detail: 'Native connectors, approved file services, collaboration platforms and API-based sources.' },
+      { term: 'Administration', detail: 'Retention, regional processing, feature permissions, usage reporting and licence assignment.' },
     ],
-    results: [
-      { title: 'Lower task preparation time', detail: 'Compare staff time for the approved role tasks before and after platform use.' },
-      { title: 'Consistent task quality', detail: 'Measure accepted output, material errors and correction effort for each role.' },
-      { title: 'Licence cost per useful task', detail: 'Connect supplier spend with active use and accepted work in the approved task set.' },
-      { title: 'Manageable company support', detail: 'Track access administration, unresolved requests and source issues by role group.' },
+    faqs: [
+      { question: 'Can more than one platform be compared?', answer: 'Yes. Supported products can be compared against the same representative tasks, company requirements and cost categories.' },
+      { question: 'Does the service include SSO and user provisioning?', answer: 'Yes, when the selected product plan supports SAML, OpenID Connect or SCIM integration.' },
+      { question: 'Can company knowledge sources be connected?', answer: 'Yes. Selected document and collaboration services can be connected within current company permissions.' },
+      { question: 'Is licence administration included?', answer: 'Yes. The service can include role categories, allocation criteria, usage reporting, reassignment and cancellation controls.' },
     ],
-    expertise: ['Platform selection', 'Company access design', 'Knowledge preparation', 'Licence value review'],
   },
   {
-    slug: 'chatgpt-training-for-teams',
-    group: 'Embed',
-    title: 'AI Training for Teams',
-    shortTitle: 'AI training',
-    promise: 'Practical staff capability tied to the quality of real business tasks.',
-    summary: 'Role-specific training for leaders and staff using approved AI products in day-to-day business work.',
-    explanation: 'General demonstrations can raise interest without improving performance. Quiet Gears builds training around the tasks each role needs to complete, the source checks that protect quality and the information rules that govern use. Participants practise with realistic material, managers see the standard required for competent work and leaders receive a sound basis for further capability investment.',
+    slug: 'chatgpt-training-for-teams', group: 'Embed', title: 'AI Training for Teams', shortTitle: 'AI training',
+    summary: 'Role-specific AI training for leaders, managers, business teams and technical practitioners using approved company tools.',
+    outcome: 'Staff able to complete defined company tasks to an agreed quality and information-handling standard.',
+    offerings: [
+      { title: 'Executive briefings', detail: 'Focused sessions for leaders responsible for investment, supplier and risk decisions.', subservices: [
+        { title: 'Leadership briefing', detail: 'Current platform capability, commercial choices, material limitations and company responsibilities.' },
+        { title: 'Decision exercises', detail: 'Representative investment, supplier and information-handling decisions with a written response standard.' },
+      ] },
+      { title: 'Role-based team sessions', detail: 'Training based on approved tasks in finance, operations, commercial, customer service and professional roles.', subservices: [
+        { title: 'Task sessions', detail: 'Live practice using representative company material and the selected managed platform.' },
+        { title: 'Source and quality checks', detail: 'Direct checks for material errors, missing support, weak source use and sensitive information.' },
+      ] },
+      { title: 'Manager assessment', detail: 'A consistent basis for reviewing task quality, correction demand and suitable use within a team.', subservices: [
+        { title: 'Assessment standard', detail: 'Task-specific criteria covering accuracy, source use, completeness and information handling.' },
+        { title: 'Capability report', detail: 'Participant attainment, common errors and further support requirements.' },
+      ] },
+      { title: 'Technical practitioner training', detail: 'Product and API training for staff responsible for company assistants, integrations and technical support.', subservices: [
+        { title: 'Platform administration', detail: 'Tenant settings, role permissions, connectors, reporting and supported administration functions.' },
+        { title: 'Developer capability', detail: 'Model APIs, structured outputs, tool connections, evaluation and service diagnostics.' },
+      ] },
+    ],
     applications: [
-      {
-        title: 'Team task improvement',
-        detail: 'Staff have access to an approved product but use it with uneven results. Role-specific practice can improve drafting, analysis, research or preparation tasks that managers can inspect and measure.',
-      },
-      {
-        title: 'Leadership decision capability',
-        detail: 'Directors and senior managers need enough practical understanding to assess proposals, challenge benefit claims and set sensible limits. A decision-focused session uses the choices leaders face in the organisation.',
-      },
-      {
-        title: 'Manager review capability',
-        detail: 'Managers need a consistent standard for work completed with AI support. Practical marking guidance helps them assess quality, identify weak claims and direct staff development.',
-      },
+      { title: 'Finance and operations', detail: 'Teams need dependable support for comparison, commentary, document review, scheduling and routine analysis.' },
+      { title: 'Commercial and service teams', detail: 'Staff need stronger research, drafting, enquiry preparation and source-checking capability.' },
+      { title: 'Technical teams', detail: 'Developers and administrators need practical capability across managed platforms, APIs, connectors and quality evaluation.' },
     ],
-    serviceSections: [
-      {
-        title: 'Role-specific task lab',
-        paragraphs: [
-          'Each participant group receives a practical lab built around one or two approved business tasks. Finance may work on variance commentary, while a commercial group may prepare account research from permitted sources.',
-          'A baseline task establishes the starting quality and staff time. The lab concentrates on producing an acceptable result under the company\'s rules, with approved or synthetic material suited to the role.',
-        ],
-      },
-      {
-        title: 'Manager marking standard',
-        paragraphs: [
-          'Managers receive a concise standard for accuracy, source support, material omissions and information handling. It gives them a consistent means to assess AI-assisted work alongside existing professional expectations.',
-          'Completed participant tasks receive direct feedback against that standard. Correction minutes and material errors show the gap between confident product use and competent business work.',
-        ],
-      },
-      {
-        title: 'Leadership decision session',
-        paragraphs: [
-          'Directors and senior managers use current company proposals to assess capability, commercial claims, human judgement and control needs. They learn to challenge investment requests in the terms the board needs.',
-          'Leadership leaves with a practical question set for product, training and service proposals. Quiet Gears bases the material on decisions due during the next investment period.',
-        ],
-      },
-      {
-        title: 'Thirty-day capability check',
-        paragraphs: [
-          'Participants repeat a representative task after thirty days using the same accepted standard. Managers use the comparison to assess retained capability, current correction effort and support needs.',
-          'Quiet Gears provides focused clinics for gaps exposed by completed work. Product or policy changes enter the role guide after they affect an approved task.',
-        ],
-      },
+    deliverables: [
+      { title: 'Live training sessions', detail: 'In-person or remote sessions for the agreed staff roles, tools and company tasks.' },
+      { title: 'Role task packs', detail: 'Representative exercises, source material and accepted outputs for each participant group.' },
+      { title: 'Assessment criteria', detail: 'A manager-ready standard for accuracy, source use, completeness and information handling.' },
+      { title: 'Reference materials', detail: 'Concise company materials covering tasks, product features and permitted use.' },
+      { title: 'Capability report', detail: 'Participant attainment, common correction needs and recommended support priorities.' },
     ],
-    decisions: [
-      { title: 'Priority capability', detail: 'Select the roles and tasks with a useful, inspectable result that training can improve.' },
-      { title: 'Competence standard', detail: 'Define the quality, source checking and information handling expected from participants.' },
-      { title: 'Support structure', detail: 'Choose the manager and specialist support required for the tasks covered by training.' },
-      { title: 'Further investment', detail: 'Use demonstrated task improvement to decide whether to extend training to another role.' },
+    technicalScope: [
+      { term: 'Platform coverage', detail: 'Claude, ChatGPT, Microsoft Copilot, Perplexity and approved model APIs.' },
+      { term: 'Delivery formats', detail: 'In-person, remote or combined delivery for leadership, manager, business and technical groups.' },
+      { term: 'Assessment outputs', detail: 'Task criteria, participant results, correction themes and role-level capability findings.' },
     ],
-    results: [
-      { title: 'Task-standard attainment', detail: 'Measure the share of participants meeting the accepted standard after thirty days.' },
-      { title: 'Stronger error detection', detail: 'Count material errors and unsupported claims that participants identify before submission.' },
-      { title: 'Lower manager correction time', detail: 'Compare manager or specialist correction minutes for the tasks taught.' },
-      { title: 'Safe information handling', detail: 'Assess participant decisions on sensitive material and approved company sources.' },
+    faqs: [
+      { question: 'Can sessions use current company tools?', answer: 'Yes. Training can use approved managed platforms and company features already available to participants.' },
+      { question: 'Are programmes adapted by job role?', answer: 'Yes. Leadership, manager, business and technical groups receive task material suited to their responsibilities.' },
+      { question: 'Does management receive an assessment report?', answer: 'Yes. The report covers task-standard attainment, common errors, correction demand and further support priorities.' },
+      { question: 'Is remote delivery available?', answer: 'Yes. Programmes can be delivered remotely, in person or through a combination agreed for participant groups.' },
     ],
-    expertise: ['Role capability assessment', 'Practical facilitation', 'Quality review', 'Leadership briefings'],
   },
   {
-    slug: 'ai-chatbot',
-    group: 'Build',
-    title: 'Conversational AI',
-    shortTitle: 'Conversational AI',
-    promise: 'Useful text and voice support for repeated customer or staff requests.',
-    summary: 'Text, messaging and voice services that resolve bounded requests and transfer sensitive cases to staff with useful context.',
-    explanation: 'Support teams often answer the same policy, product, booking and service questions across several channels. Quiet Gears builds conversational services around maintained company sources, explicit action limits and a staffed transfer route. Managers judge the service through resolved requests, repeat contact, answer quality, successful transfers and customer effort.',
+    slug: 'ai-chatbot', group: 'Build', title: 'Conversational AI', shortTitle: 'Conversational AI',
+    summary: 'Text, messaging, voice and terminal-based services for customer requests, bookings, account actions and staff support.',
+    outcome: 'More routine requests completed through a supported conversational service, with clear transfer to staff when required.',
+    offerings: [
+      { title: 'Text and messaging services', detail: 'Branded conversational services for websites, customer portals and supported messaging channels.', subservices: [
+        { title: 'Web chat', detail: 'A responsive customer or staff interface embedded in the approved website or portal.' },
+        { title: 'Messaging channels', detail: 'Supported SMS or business messaging connections for defined service requests.' },
+      ] },
+      { title: 'Voice and terminal services', detail: 'Voice assistance and configured physical terminals for reception, service points and staff locations.', subservices: [
+        { title: 'Voice service', detail: 'Telephone or device interaction connected to approved service information and actions.' },
+        { title: 'Reception and kiosk terminals', detail: 'Configured touchscreen, microphone, speaker and network hardware with a branded interface.' },
+      ] },
+      { title: 'Business actions and transfer', detail: 'Controlled bookings, account requests and staff transfers with relevant conversation context.', subservices: [
+        { title: 'Service actions', detail: 'Approved bookings, status checks, request creation and account updates after required confirmation.' },
+        { title: 'Staff transfer', detail: 'Routing to the suitable team with identity status, request category and conversation summary.' },
+      ] },
+      { title: 'Administration and reporting', detail: 'A company view of supported requests, unresolved questions, transfers, service actions and channel demand.', subservices: [
+        { title: 'Knowledge administration', detail: 'Maintained service answers, source references, business rules and channel notices.' },
+        { title: 'Service analytics', detail: 'Reporting by request category, resolution status, transfer, repeated contact and action result.' },
+      ] },
+    ],
     applications: [
-      {
-        title: 'Customer support',
-        detail: 'A service team handles high volumes of repeated product, delivery or policy questions. Conversational support can answer bounded requests from approved company material and transfer ambiguous cases to a suitable colleague.',
-      },
-      {
-        title: 'Appointment services',
-        detail: 'Front desks receive repeated calls for booking, rescheduling and preparation information. A voice or messaging service can support approved appointment tasks with identity, consent and confirmation controls.',
-      },
-      {
-        title: 'Staff service desk',
-        detail: 'Employees ask repeated questions about policy, technology or internal services. A managed assistant can provide approved guidance and send cases that need judgement to the responsible support team.',
-      },
+      { title: 'Customer support', detail: 'Routine product, policy, delivery and account questions need prompt answers across text or voice channels.' },
+      { title: 'Bookings and reception', detail: 'Customers or visitors need appointment availability, confirmation, directions, check-in or notification.' },
+      { title: 'Staff service desk', detail: 'Employees need direct access to approved HR, IT, facilities or operating information.' },
     ],
-    serviceSections: [
-      {
-        title: 'Demand and answer quality',
-        paragraphs: [
-          'Contact reasons, demand volume, repeat contact and staff effort define the commercial case. Support leaders select bounded requests with an approved company answer and name a source specialist for updates.',
-          'Text, messaging and voice options reflect user need, accessibility and service hours. Voice support includes the consent, interruption and confirmation safeguards needed for a dependable customer exchange.',
-        ],
-      },
-      {
-        title: 'Identity and business actions',
-        paragraphs: [
-          'For each permitted action, support and security leaders set the identity proof and customer confirmation required. They can allow low-risk information requests with no sign-in and require stronger proof for booking changes or account actions.',
-          'Leaders grant access only to the calendars, support tools or customer services required for the approved request. Customers receive a clear confirmation after a completed action and an accurate response when another company service rejects the request.',
-        ],
-      },
-      {
-        title: 'Human service and contact economics',
-        paragraphs: [
-          'Contacts requiring judgement transfer to staff with the conversation and relevant context. Customers can request a person without navigating hidden menus or repeating the full enquiry.',
-          'Managers receive contact-level measures for resolution, repeat demand, answer quality, transfer success, wait time and cost per resolved contact. Quiet Gears also provides source upkeep and service support.',
-        ],
-      },
+    deliverables: [
+      { title: 'Branded conversation interface', detail: 'A responsive text, voice or combined interface for approved customer or staff channels.' },
+      { title: 'Configured terminal option', detail: 'Optional kiosk or desk hardware with touchscreen, audio, enclosure, network and accessibility configuration.' },
+      { title: 'Knowledge content', detail: 'Approved answers, source references, service notices and business-action rules.' },
+      { title: 'Channel and system integrations', detail: 'Supported connections for telephony, messaging, booking, CRM, ticketing or account services.' },
+      { title: 'Administration and analytics', detail: 'Controls and reporting for content, request categories, actions, transfers and unresolved questions.' },
     ],
-    decisions: [
-      { title: 'Supported requests', detail: 'Select the contact reasons with maintained answers, stable rules and a clear benefit to customers or staff.' },
-      { title: 'Channel choice', detail: 'Choose text, messaging, voice or a combination based on user need and service capacity.' },
-      { title: 'Permitted actions', detail: 'Set identity, consent and confirmation requirements for each customer or staff action.' },
-      { title: 'Transfer standard', detail: 'Define the cases that need a person and the context staff require for useful continuation.' },
+    technicalScope: [
+      { term: 'Channels', detail: 'Web chat, supported business messaging, SMS, SIP or cloud telephony, and configured touchscreen terminals.' },
+      { term: 'Business interfaces', detail: 'REST APIs, webhooks and managed connectors for booking, CRM, ticketing and account services.' },
+      { term: 'Identity and control', detail: 'SSO for staff services, customer verification options, role permissions and activity logs.' },
+      { term: 'Terminal options', detail: 'Touchscreen, microphone, speaker, optional camera, accessible controls, enclosure and managed network connection.' },
     ],
-    results: [
-      { title: 'Resolved routine requests', detail: 'Measure successful resolution by contact reason and exclude repeat contact for the same need.' },
-      { title: 'Useful staff transfers', detail: 'Track transfers that reach the suitable team with enough context to continue the service.' },
-      { title: 'Dependable answers and actions', detail: 'Measure unsupported material statements, incorrect actions and false confirmations.' },
-      { title: 'Customer effort and unit cost', detail: 'Compare wait time, abandonment, repeated explanation and cost per resolved contact.' },
+    faqs: [
+      { question: 'Can the service support voice and text?', answer: 'Yes. One service can support web chat, messaging, telephone and configured terminal channels.' },
+      { question: 'Does it transfer to a staff member?', answer: 'Yes. Defined requests can transfer with the request category, identity status and relevant conversation context.' },
+      { question: 'Can it complete bookings or account actions?', answer: 'Yes. Approved actions can be included with required identity, confirmation and system permissions.' },
+      { question: 'Are physical terminals available?', answer: 'Yes. Configured kiosk or desk terminals can include the interface, touchscreen, audio, enclosure and network connection.' },
     ],
-    expertise: ['Conversation design', 'Voice and messaging services', 'Company knowledge preparation', 'Customer service measurement'],
   },
   {
-    slug: 'ai-implementation',
-    group: 'Build',
-    title: 'Custom AI Systems',
-    shortTitle: 'Custom AI systems',
-    promise: 'Purpose-built software for repeated specialist work with a measurable quality standard and material expert cost.',
-    summary: 'Focused business applications for specialist document work and decisions that depend on company-specific rules.',
-    explanation: 'Specialists can spend substantial time assembling material before they apply professional judgement. Quiet Gears builds a focused application for a repeated task with an accepted quality standard and significant expert cost. The service prepares the relevant company material, supports the authorised decision and gives staff a practical correction view. The investment case uses turnaround, accepted work, specialist time and cost per result.',
+    slug: 'ai-implementation', group: 'Build', title: 'Custom AI Systems', shortTitle: 'Custom AI systems',
+    summary: 'Purpose-built AI applications for specialist document, knowledge and decision tasks that managed products cannot meet.',
+    outcome: 'A supported business application for a defined specialist task, with accepted quality, access and service requirements.',
+    offerings: [
+      { title: 'Document intelligence', detail: 'Applications for large, varied or specialist document sets requiring structured extraction, comparison and review.', subservices: [
+        { title: 'Document review application', detail: 'Authenticated search, comparison, extraction and issue identification across approved files.' },
+        { title: 'Structured drafting', detail: 'Draft documents, summaries or submissions in an accepted company format with source references.' },
+      ] },
+      { title: 'Specialist decision support', detail: 'Focused applications that prepare relevant material, calculations and options for an authorised professional decision.', subservices: [
+        { title: 'Case preparation', detail: 'A structured view of relevant source material, discrepancies, rules and outstanding information.' },
+        { title: 'Decision workspace', detail: 'An authenticated interface for professional review, comments, approval and final output.' },
+      ] },
+      { title: 'Company knowledge applications', detail: 'Search and assistance across approved company material with current permissions and visible source references.', subservices: [
+        { title: 'Knowledge portal', detail: 'A web or desktop application for policy, product, client or technical material.' },
+        { title: 'Knowledge API', detail: 'A supported interface for business applications to request sourced answers or structured results.' },
+      ] },
+      { title: 'Multimodal applications', detail: 'Applications that combine text, images, audio or structured business data for one defined task.', subservices: [
+        { title: 'Image and document analysis', detail: 'Combined review of diagrams, photographs, scans and associated written material.' },
+        { title: 'Speech and media services', detail: 'Approved transcription, classification, search and summary functions for audio or video material.' },
+      ] },
+    ],
     applications: [
-      {
-        title: 'Complex document work',
-        detail: 'Specialists spend substantial time reading varied contracts, submissions or technical documents before they can complete a business task. A custom application can prepare the relevant facts and direct uncertain material to a qualified reviewer.',
-      },
-      {
-        title: 'Specialist decision support',
-        detail: 'Staff assemble policy, case material and professional knowledge for repeated decisions. A focused application can present the relevant material and an explainable recommendation while the authorised person makes the decision.',
-      },
-      {
-        title: 'Regulated submission preparation',
-        detail: 'Professional teams assemble recurring technical or regulatory submissions from company material and expert input. A focused application can prepare the submission against a defined standard for qualified review.',
-      },
+      { title: 'Complex document work', detail: 'Specialists need faster comparison and structured preparation across contracts, technical files or case material.' },
+      { title: 'Regulated submission preparation', detail: 'Teams need a controlled application for source-backed drafting, completeness checks and professional approval.' },
+      { title: 'Authenticated internal tools', detail: 'Staff need a focused company application with current permissions and approved sources.' },
     ],
-    serviceSections: [
-      {
-        title: 'Specialist cost and delay',
-        paragraphs: [
-          'Specialists define the repeated task and state the expert time, elapsed delay and cost of correction. They assess representative cases to establish current quality and the business value of faster preparation.',
-          'Leadership receives a custom-build case tied to expert capacity and accepted work. The case also compares the proposed application with managed products that may cover part of the need at lower cost.',
-        ],
-      },
-      {
-        title: 'Decision quality',
-        paragraphs: [
-          'Qualified staff use approved company material and business rules for the specialist decision. They see relevant sources, proposed content and uncertainty in a form suited to inspection.',
-          'Representative cases test material omissions, unsupported statements and correction minutes. Accepted professional work sets the quality threshold. General supplier benchmarks provide one input to model selection.',
-        ],
-      },
-      {
-        title: 'Purpose-built user service',
-        paragraphs: [
-          'The application reflects the task specialists perform. Staff see only the cases and source material their company role permits.',
-          'Staff can amend weak content, inspect the supporting material and complete the authorised decision. The service agreement states the security, support and change responsibilities.',
-        ],
-      },
-      {
-        title: 'Accepted-work economics',
-        paragraphs: [
-          'Task preparation, specialist review and correction time contribute to the cost per accepted result. Leaders can compare that unit cost with the current service and the value of released expert capacity.',
-          'Leaders approve model, source and supplier changes after the new version meets the same case standard. Continuing investment depends on accepted work, stable correction effort and support cost proportionate to task value.',
-        ],
-      },
+    deliverables: [
+      { title: 'Production application', detail: 'A web, desktop, mobile or API service for approved users and the specialist task.' },
+      { title: 'Authenticated portal or API', detail: 'Company identity, role permissions and supported interfaces for users and connected applications.' },
+      { title: 'Evaluation report', detail: 'Quality results for representative cases, material errors, source support and professional correction demand.' },
+      { title: 'Deployment package', detail: 'Approved cloud, private-cloud or on-premises service configuration and release materials.' },
+      { title: 'Administration and support materials', detail: 'Access, source, configuration, service and issue-management documentation.' },
     ],
-    decisions: [
-      { title: 'Custom build case', detail: 'Confirm that the business value and task requirements justify software beyond a managed product.' },
-      { title: 'User and task boundary', detail: 'Define the staff roles, source material, business decisions and system access covered by the application.' },
-      { title: 'Quality threshold', detail: 'Set accepted completion, material error and reviewer correction limits for business use.' },
-      { title: 'Support commitment', detail: 'Agree the company and supplier capacity needed to maintain sources, integrations and service quality.' },
+    technicalScope: [
+      { term: 'AI services', detail: 'Hosted or private language and multimodal models, retrieval-augmented generation, model routing and structured outputs.' },
+      { term: 'Application interfaces', detail: 'Responsive web applications, desktop services, REST APIs, GraphQL and supported business connectors.' },
+      { term: 'Identity and audit', detail: 'SAML 2.0, OpenID Connect, RBAC, service accounts and timestamped activity logs.' },
+      { term: 'Deployment', detail: 'Public cloud, private cloud, on-premises or controlled hybrid configurations.' },
     ],
-    results: [
-      { title: 'Accepted task completion', detail: 'Measure completed work that meets the business standard without material correction.' },
-      { title: 'Reduced specialist effort', detail: 'Compare reviewer preparation and correction time against the current task.' },
-      { title: 'Shorter decision turnaround', detail: 'Measure time from source receipt to an accepted specialist decision.' },
-      { title: 'Defensible service cost', detail: 'Measure supplier, infrastructure and support cost per accepted business result.' },
+    faqs: [
+      { question: 'Can the application use existing systems?', answer: 'Yes. Supported APIs, databases and managed connectors can provide approved information and business actions.' },
+      { question: 'Does it support private deployment?', answer: 'Yes. Private-cloud, on-premises and controlled hybrid configurations are available.' },
+      { question: 'Is evaluation documentation included?', answer: 'Yes. The report covers representative cases, material errors, source support and correction demand.' },
+      { question: 'Is continuing support available?', answer: 'Yes. Support can cover availability, access, sources, integrations, model changes and approved feature amendments.' },
     ],
-    expertise: ['Product definition', 'Application engineering', 'Model quality assessment', 'Secure service design'],
   },
   {
-    slug: 'secure-ai-systems',
-    group: 'Build',
-    title: 'Secure AI Systems',
-    shortTitle: 'Secure AI systems',
-    promise: 'AI assistance for sensitive client, research or technical work without sending protected material to a general external service.',
-    summary: 'Local, offline, private-cloud and controlled hybrid services for sensitive business tasks with a defined quality standard.',
-    explanation: 'Specialists can use AI on protected company material inside an approved security boundary. Quiet Gears defines the business task, quality threshold, confidentiality need and availability requirement before comparing local or private options. The selected service combines suitable model performance with company access, controlled updates and practical support. Continued spend depends on specialist turnaround, correction time, protected volume and cost per accepted task.',
+    slug: 'secure-ai-systems', group: 'Build', title: 'Secure AI Systems', shortTitle: 'Secure AI systems',
+    summary: 'Private-cloud, on-premises and offline AI systems for confidential information and restricted operating environments.',
+    outcome: 'A private AI service operating inside the approved information and network boundary, with suitable hardware and access controls.',
+    offerings: [
+      { title: 'Private AI applications', detail: 'Authenticated knowledge, document and decision-support applications for confidential company material.', subservices: [
+        { title: 'Protected knowledge service', detail: 'Search and sourced assistance across approved confidential documents and specialist material.' },
+        { title: 'Protected document application', detail: 'Private extraction, comparison, drafting and review for defined professional tasks.' },
+      ] },
+      { title: 'Local and offline systems', detail: 'AI applications and model services hosted on configured company hardware without a public service dependency.', subservices: [
+        { title: 'GPU workstation', detail: 'A configured local workstation for individual or small-team model use and protected document tasks.' },
+        { title: 'Server or rack appliance', detail: 'A shared service with defined compute, memory, storage, network and backup configuration.' },
+      ] },
+      { title: 'Private-cloud deployment', detail: 'A dedicated cloud environment with company identity, network restrictions and approved model services.', subservices: [
+        { title: 'Private model service', detail: 'Dedicated model endpoints, application services and storage inside the approved cloud boundary.' },
+        { title: 'Company access controls', detail: 'Identity groups, role permissions, service accounts and administration access.' },
+      ] },
+      { title: 'Controlled hybrid services', detail: 'Separate local and hosted capabilities for information classes with different confidentiality and performance needs.', subservices: [
+        { title: 'Information routing controls', detail: 'Permitted service destinations stated by information class, user role and approved task.' },
+        { title: 'Secure model gateway', detail: 'A controlled interface for approved hosted models, usage limits and service logging.' },
+      ] },
+    ],
     applications: [
-      {
-        title: 'Restricted professional material',
-        detail: 'Legal, engineering, research or commercial specialists need assistance with material that company policy keeps outside general public services. A controlled system can support approved tasks inside a defined company boundary.',
-      },
-      {
-        title: 'Offline operating environment',
-        detail: 'Staff work in a location with prohibited, unreliable or absent internet access. A local service can provide bounded analysis or search without depending on an external model connection.',
-      },
-      {
-        title: 'Mixed sensitivity',
-        detail: 'A business uses several information classes with different processing restrictions. A controlled design can keep sensitive tasks local and allow approved external services for less restricted material.',
-      },
+      { title: 'Confidential professional material', detail: 'Legal, advisory, financial or client information requires a private service with restricted access and storage.' },
+      { title: 'Intellectual property', detail: 'Research, engineering and product teams need AI assistance without sending sensitive material to a general public service.' },
+      { title: 'Disconnected locations', detail: 'Sites with limited or prohibited internet access need local document, knowledge or decision-support capability.' },
     ],
-    serviceSections: [
-      {
-        title: 'Protected business task',
-        paragraphs: [
-          'Security and business leaders state the specialist task, protected material, intended users and potential harm from inappropriate access or external transfer. Sector duties and company classification rules set the business boundary.',
-          'Advisers compare offline hardware, a local company network, private cloud and a controlled hybrid arrangement against that boundary. Leadership receives a service choice grounded in the work specialists need to complete.',
-        ],
-      },
-      {
-        title: 'Specialist quality',
-        paragraphs: [
-          'Approved domain cases establish the task standard for the selected system. Reviewers assess material omissions, unsupported statements and correction minutes before leaders commit to hardware or hosting.',
-          'Smaller local models can offer control and prompt response, while some tasks need stronger model capability. The choice reflects accepted specialist work, protected volume and available company support.',
-        ],
-      },
-      {
-        title: 'Confidentiality and availability',
-        paragraphs: [
-          'Security leaders approve who may use the service, what material it may hold and which administrators can change access. Company policy governs supplier updates and imported material in offline environments.',
-          'Continuity and recovery reflect the cost of interruption to the specialist task. Security testing addresses known threats without promising perfect protection or attack-free operation.',
-        ],
-      },
-      {
-        title: 'Protected-service economics',
-        paragraphs: [
-          'Finance and operations leaders compare specialist time with infrastructure, power, administration and support cost. They can weigh local control against private hosting and the value of work completed inside the approved environment.',
-          'Leaders track accepted quality, turnaround, protected volume and cost per task. Continued spend depends on useful specialist work within the company security boundary.',
-        ],
-      },
+    deliverables: [
+      { title: 'Configured hardware option', detail: 'An optional GPU workstation, tower server or rack appliance defined for approved models and users.' },
+      { title: 'Private AI application', detail: 'A local, on-premises or private-cloud interface for the approved knowledge, document or specialist task.' },
+      { title: 'Encrypted storage and backup', detail: 'Defined storage, encryption and backup configuration for source material, indexes and service data.' },
+      { title: 'Identity and activity controls', detail: 'Company access groups, role permissions, administrator accounts and timestamped activity logs.' },
+      { title: 'Offline support media', detail: 'Approved software, model and configuration packages for environments without direct internet access.' },
+      { title: 'System documentation', detail: 'Hardware, network, access, backup, update and service documentation.' },
     ],
-    decisions: [
-      { title: 'Security boundary', detail: 'Choose an offline, local-network, private-cloud or controlled hybrid service against the client threat position.' },
-      { title: 'Information routes', detail: 'Set the permitted service for each information class and the company role authorised to approve exceptions.' },
-      { title: 'Capability trade-off', detail: 'Balance task quality, external transfer, response time, infrastructure cost and support capacity.' },
-      { title: 'Update authority', detail: 'Define who approves model, source and software changes inside the protected environment.' },
+    technicalScope: [
+      { term: 'Deployment boundaries', detail: 'Private cloud, company data centre, local network, individual workstation or air-gapped environment.' },
+      { term: 'Hardware specification', detail: 'CPU, GPU memory, system memory, encrypted NVMe storage, network, backup and power options stated in the client specification.' },
+      { term: 'Platform services', detail: 'Linux, supported container services, private model endpoints, local search and authenticated web interfaces.' },
+      { term: 'Identity and audit', detail: 'SSO where connected, local identity where isolated, RBAC, administrator separation and activity logs.' },
     ],
-    results: [
-      { title: 'Protected-work turnaround', detail: 'Report elapsed time for the approved specialist task inside the protected service.' },
-      { title: 'Specialist correction time', detail: 'Measure review minutes and material corrections across approved domain cases.' },
-      { title: 'Protected task volume', detail: 'Count accepted work completed inside the approved environment without external transfer.' },
-      { title: 'Cost per accepted task', detail: 'Combine infrastructure, power, administration, support and specialist effort.' },
+    faqs: [
+      { question: 'Can the system operate without internet access?', answer: 'Yes. Suitable applications can run on local or air-gapped hardware with approved offline packages.' },
+      { question: 'Are configured workstations or servers available?', answer: 'Yes. GPU workstations, tower servers and rack appliances can be supplied against an agreed specification.' },
+      { question: 'Does the service support SSO and audit logging?', answer: 'Yes. Connected environments can use supported company identity services, and isolated environments can use local role controls.' },
+      { question: 'Can hosted and local services be combined?', answer: 'Yes. A controlled hybrid service can separate information classes and approved tasks between local and hosted services.' },
     ],
-    expertise: ['Threat assessment', 'Local model services', 'Security architecture', 'Domain quality testing'],
   },
   {
-    slug: 'enterprise-ai',
-    group: 'Embed',
-    title: 'AI Investment & Spend Management',
-    shortTitle: 'AI investment management',
-    promise: 'AI spending concentrated on approved business tasks with measured value.',
-    summary: 'A management service for organisations coordinating AI proposals, product spend and result reviews across several teams.',
-    explanation: 'Teams can accumulate overlapping products, slow approval requests and weak benefit reports as AI use grows. Quiet Gears gives leaders a practical system for product and licence rationalisation, approval bands, named budget decisions and task-level value review. The service matches company size and sector duties, with clear authority for spend, access, quality and suspension.',
+    slug: 'enterprise-ai', group: 'Advise', title: 'AI Investment & Spend Management', shortTitle: 'AI spend management',
+    summary: 'Company-wide visibility and control for AI licences, API usage, suppliers, renewals and business-value reporting.',
+    outcome: 'A complete view of AI expenditure with clear allocation, renewal and supplier decisions for each service.',
+    offerings: [
+      { title: 'Licence and supplier catalogue', detail: 'A company view of subscriptions, account categories, suppliers, contract dates and responsible business areas.', subservices: [
+        { title: 'Licence inventory', detail: 'Listed products, plans, seat counts, allocation groups, renewal dates and administration contacts.' },
+        { title: 'Supplier catalogue', detail: 'Contracted services, commercial terms, usage commitments and material dependencies.' },
+      ] },
+      { title: 'Usage and cost controls', detail: 'Reporting for account activity, hosted model consumption and cost allocation across business areas.', subservices: [
+        { title: 'Subscription use', detail: 'Active accounts, allocated roles, supplier reporting and cost per approved user group.' },
+        { title: 'API consumption', detail: 'Usage charges, model categories, service limits, alerts and cost-centre allocation.' },
+      ] },
+      { title: 'Renewal and consolidation', detail: 'A basis for retaining, changing, combining or cancelling products and supplier services.', subservices: [
+        { title: 'Renewal planning', detail: 'Contract dates, notice periods, current demand, business dependency and recommendation.' },
+        { title: 'Supplier consolidation', detail: 'Overlapping platform, model, search, automation and support capabilities stated in one comparison.' },
+      ] },
+      { title: 'Budget and performance reporting', detail: 'Finance and leadership reporting connecting service cost with approved users, tasks and business measures.', subservices: [
+        { title: 'Budget allocation', detail: 'Costs allocated by company, cost centre, department, service, product or user group.' },
+        { title: 'Performance view', detail: 'Service-level reporting for use, accepted task activity, support demand and stated business measures.' },
+      ] },
+    ],
     applications: [
-      {
-        title: 'Growing company coordination',
-        detail: 'A growing business has several useful experiments but no consistent method for approving spend, handling sensitive information or reviewing results. A light operating model can give leaders control without creating a large central function.',
-      },
-      {
-        title: 'Multi-team adoption',
-        detail: 'Departments need different AI services while finance, security and legal teams need common standards. A shared model can reserve material decisions for central functions and leave routine choices with business leaders.',
-      },
-      {
-        title: 'Platform and licence rationalisation',
-        detail: 'Teams have bought overlapping products and cannot connect licence activity to useful work. A structured review can consolidate spend around approved tasks and remove products with no defensible business contribution.',
-      },
+      { title: 'Unused and misallocated licences', detail: 'Subscriptions have expanded without a consistent view of active accounts, approved roles or useful task activity.' },
+      { title: 'Overlapping platforms', detail: 'Several departments buy products with similar model, search, assistant or automation capability.' },
+      { title: 'Variable API expenditure', detail: 'Hosted model charges change by application, model and demand, while finance lacks service-level allocation.' },
     ],
-    serviceSections: [
-      {
-        title: 'Product and licence rationalisation',
-        paragraphs: [
-          'Advisers map current products, licences and supplier commitments to the business tasks they support. Leaders can see duplicate capability, inactive spend and tasks that need a different service or no further investment.',
-          'The recommendation covers product consolidation, reassignment and cancellation choices with their annual cost effect. Directors assign each retained licence group to an approved task and responsible business leader.',
-        ],
-      },
-      {
-        title: 'Approval bands',
-        paragraphs: [
-          'A small set of approval bands links review effort to potential harm, company authority and spend. Routine staff assistance can receive a short decision route, while material customer or financial actions receive stronger review.',
-          'Each band has a response time and named decision maker. Business teams know the information needed for approval, and control functions concentrate effort on proposals with material exposure.',
-        ],
-      },
-      {
-        title: 'Budget responsibility',
-        paragraphs: [
-          'The board, executive sponsor, business leaders and administrators receive explicit spending and access decisions. Quiet Gears states who can approve a service, assign licences, accept task quality and suspend company use.',
-          'A small firm may use one accountable executive and a concise review meeting. A larger group can apply the same standards through delegated business decisions and a shared product budget.',
-        ],
-      },
-      {
-        title: 'Task-level value review',
-        paragraphs: [
-          'Leaders assign each approved use a result in capacity, cash, quality, service or risk. They keep product activity separate from benefit so licence use cannot stand in for accepted business improvement.',
-          'Leadership reviews task quality, realised value, supplier cost, support demand and incidents. Directors use the figures to expand, revise, suspend or close each use.',
-        ],
-      },
+    deliverables: [
+      { title: 'AI spend register', detail: 'A catalogue of subscriptions, API services, suppliers, contracts, administrators and cost allocation.' },
+      { title: 'Renewal calendar', detail: 'Contract dates, notice periods, decision dates, responsible roles and current recommendation.' },
+      { title: 'Allocation model', detail: 'A consistent basis for assigning subscription and usage charges to services and business areas.' },
+      { title: 'Management dashboard', detail: 'Licence, usage, supplier, renewal and budget reporting for finance and leadership.' },
+      { title: 'Supplier comparison', detail: 'A comparison of overlapping capability, company terms, support and continuing cost.' },
+      { title: 'Procurement requirements', detail: 'Commercial, administration, reporting and usage-control requirements for future purchases.' },
     ],
-    decisions: [
-      { title: 'Product consolidation', detail: 'Choose the products and licence groups that merit continued company spend.' },
-      { title: 'Approval authority', detail: 'Assign proposal, access, quality, spending and suspension decisions to company roles.' },
-      { title: 'Review bands', detail: 'Set response times and review depth against task exposure and financial commitment.' },
-      { title: 'Investment concentration', detail: 'Direct licences, specialist support and training towards tasks with a defined business result.' },
+    technicalScope: [
+      { term: 'Source data', detail: 'Supplier administration exports, usage APIs, invoices, purchase data, contract schedules and service catalogues.' },
+      { term: 'Allocation fields', detail: 'Cost centre, department, product, service, application, environment and approved user group.' },
+      { term: 'Reporting outputs', detail: 'CSV exports, finance-ready schedules and supported BI dashboards.' },
+      { term: 'Usage controls', detail: 'Supplier budgets, model limits, account categories, alerts and application tags where supported.' },
     ],
-    results: [
-      { title: 'Proposal decision time', detail: 'Measure elapsed time from submission to approval, revision, deferral or closure.' },
-      { title: 'Duplicate spend removed', detail: 'Track overlapping products, inactive licences and annual supplier cost removed after review.' },
-      { title: 'Accepted work per active use', detail: 'Connect product activity with task quality and realised business value.' },
-      { title: 'Management effort per proposal', detail: 'Measure review time, access exceptions and incidents within each approval band.' },
+    faqs: [
+      { question: 'Can existing licences and API use be included?', answer: 'Yes. Current subscriptions, hosted model usage, invoices and supplier administration data can be included.' },
+      { question: 'Does the review cover multiple vendors?', answer: 'Yes. Managed platforms, model APIs, search services, automation products and support suppliers can sit in one catalogue.' },
+      { question: 'Are renewal and budget controls included?', answer: 'Yes. The service can include decision dates, notice periods, usage limits, alerts and cost allocation.' },
+      { question: 'Can results feed finance reporting?', answer: 'Yes. Outputs can include finance-ready schedules, CSV exports and supported BI dashboards.' },
     ],
-    expertise: ['Product rationalisation', 'Approval design', 'Budget responsibility', 'Benefit measurement'],
   },
   {
-    slug: 'agentic-ai',
-    group: 'Build',
-    title: 'AI Case Coordination',
-    shortTitle: 'AI case coordination',
-    promise: 'Lower staff effort and shorter waiting time for repeated cases that vary in the work required.',
-    summary: 'Supervised AI support for supplier onboarding, compliance research and complex service cases that need several company tools.',
-    explanation: 'Some repeated cases share an accepted result but require different material, checks and staff decisions. Quiet Gears builds a supervised service that assembles the case, prepares permitted work and presents the decision a staff member must make. Company access and action limits remain narrow. Case turnaround, staff hours, accepted completion and unit cost determine the commercial result.',
+    slug: 'agentic-ai', group: 'Build', title: 'AI Case Coordination', shortTitle: 'AI case coordination',
+    summary: 'Controlled AI services for cases that require preparation, cross-system actions, staff approvals and visible status.',
+    outcome: 'Shorter case completion time with staff authority retained for material decisions and exceptions.',
+    offerings: [
+      { title: 'Case intake and preparation', detail: 'A consistent case view assembled from approved messages, forms, documents and business applications.', subservices: [
+        { title: 'Case classification', detail: 'Case type, urgency, responsible team and required information prepared from approved inputs.' },
+        { title: 'Case brief', detail: 'Relevant facts, source references, missing information and applicable business rules presented together.' },
+      ] },
+      { title: 'Cross-system actions', detail: 'Bounded AI services completing permitted searches, updates, requests and notifications across approved applications.', subservices: [
+        { title: 'Connected actions', detail: 'Approved queries and updates through supported APIs, webhooks and managed connectors.' },
+        { title: 'Task services', detail: 'Separate bounded services for research, document preparation, calculations or customer communication.' },
+      ] },
+      { title: 'Approval and exception control', detail: 'Staff authority for financial, customer, compliance and operational decisions.', subservices: [
+        { title: 'Approval console', detail: 'A staff view of the proposed action, supporting material, permission limit and decision options.' },
+        { title: 'Exception queue', detail: 'Cases with missing information, conflicting results or failed actions presented for staff attention.' },
+      ] },
+      { title: 'Case status and reporting', detail: 'A current view of case position, outstanding actions, approvals, exceptions and completion results.', subservices: [
+        { title: 'Case workspace', detail: 'Case state, documents, tasks, approvals, comments and final result in one authenticated interface.' },
+        { title: 'Administration reporting', detail: 'Volumes, elapsed time, interventions, failed actions, exception age and availability.' },
+      ] },
+    ],
     applications: [
-      {
-        title: 'Supplier onboarding',
-        detail: 'Staff gather company details, commercial documents and internal approvals for each supplier. A supervised service can assemble the case, prepare routine checks and present exceptions to the authorised colleague.',
-      },
-      {
-        title: 'Recurring compliance research',
-        detail: 'Specialists repeat policy or regulatory research that requires several searches and source checks. A supervised service can prepare a cited research pack under an approved brief for expert review.',
-      },
-      {
-        title: 'Complex service cases',
-        detail: 'A service team handles cases with a common result but varied documents, correspondence and next decisions. AI support can prepare the case and bring the material decision to a suitable colleague.',
-      },
+      { title: 'Claims and service cases', detail: 'Each case needs information from several sources, routine checks, communication and an authorised decision.' },
+      { title: 'Procurement and compliance files', detail: 'Staff need a complete case brief, supporting documents, required approvals and outstanding information.' },
+      { title: 'Field operations', detail: 'Jobs require customer, asset, location, parts and scheduling information before dispatch.' },
     ],
-    serviceSections: [
-      {
-        title: 'Case cost and waiting time',
-        paragraphs: [
-          'Managers select one repeated case type, state its accepted result and name the staff decisions it requires. Quiet Gears measures current staff hours, elapsed delay, correction work and open-case age for the commercial baseline.',
-          'Leadership receives a direct case for assistance beyond fixed automation. The investment must reduce staff effort or waiting time without transferring repair work to another team.',
-        ],
-      },
-      {
-        title: 'Service contribution',
-        paragraphs: [
-          'The approved contribution covers case preparation such as gathering company material, checking required items or drafting correspondence. Staff can inspect the sources and proposed work in one view.',
-          'Managers restrict company access to the selected case and approved actions. Staff can interrupt or suspend the service after a material issue, and spending limits protect company authority.',
-        ],
-      },
-      {
-        title: 'Staff decision',
-        paragraphs: [
-          'Staff see the case position, relevant sources, completed preparation and the decision they need to make. The view identifies missing material or judgement without exposing technical messages.',
-          'Qualified staff retain sensitive and irreversible decisions. Their intervention and correction time form part of the service result, which prevents apparent completion from hiding frequent repair.',
-        ],
-      },
-      {
-        title: 'Accepted-case economics',
-        paragraphs: [
-          'Staff test representative cases for accepted completion, staff hours, elapsed time and supplier cost. Leaders can compare case capacity and waiting time with the current service before extending the case types covered.',
-          'Changes to company tools or AI suppliers receive the same case checks. Continued spend depends on stable completion, low correction effort and a unit cost that reflects useful case work.',
-        ],
-      },
+    deliverables: [
+      { title: 'Case workspace', detail: 'An authenticated interface for case information, documents, tasks, approvals, comments and completion status.' },
+      { title: 'Bounded agent services', detail: 'Listed AI services for approved research, preparation, calculation, communication or system actions.' },
+      { title: 'Approval and exception console', detail: 'A staff interface for material decisions, failed actions, conflicting information and permission limits.' },
+      { title: 'Integration endpoints', detail: 'Supported APIs, webhooks, managed connectors or MCP connectors for approved applications.' },
+      { title: 'Activity and administration reporting', detail: 'Timestamped action logs plus reporting for volumes, elapsed time, interventions and exception age.' },
     ],
-    decisions: [
-      { title: 'Selected case type', detail: 'Choose a repeated case with material staff effort, visible waiting time and an accepted result.' },
-      { title: 'Service contribution', detail: 'Define the preparation, checking and drafting completed before a staff decision.' },
-      { title: 'Staff decision', detail: 'Reserve sensitive, commercial and irreversible choices for a qualified colleague.' },
-      { title: 'Investment threshold', detail: 'Require lower case cost or waiting time before adding another case type.' },
+    technicalScope: [
+      { term: 'Connections', detail: 'REST APIs, webhooks, managed application connectors and optional MCP connectors.' },
+      { term: 'Authority controls', detail: 'RBAC, service accounts, action limits, staff approval gates and administrator separation.' },
+      { term: 'Action assurance', detail: 'Request identifiers, retry controls, duplicate-action protection, confirmation responses and timestamped logs.' },
+      { term: 'Case state', detail: 'Current status, tasks, source references, approvals, exceptions, comments and completion result.' },
     ],
-    results: [
-      { title: 'Shorter case turnaround', detail: 'Measure total time from receipt to accepted case completion.' },
-      { title: 'Lower staff effort', detail: 'Measure preparation, review, intervention and correction hours per case.' },
-      { title: 'Accepted case completion', detail: 'Count cases that meet the business standard without material staff repair.' },
-      { title: 'Cost per accepted case', detail: 'Combine staff time, supplier use and support cost for completed cases.' },
+    faqs: [
+      { question: 'Can staff approval be required before an action?', answer: 'Yes. Financial, customer, compliance and operational actions can require approval from an identified role.' },
+      { question: 'Does the service connect to current case systems?', answer: 'Yes. Supported APIs, webhooks, managed connectors and optional MCP connectors can connect approved applications.' },
+      { question: 'Are action logs and case status included?', answer: 'Yes. The case workspace can show status, actions, approvals, exceptions and timestamped service activity.' },
+      { question: 'Can one service cover several case types?', answer: 'Yes. Each type receives separate information requirements, permissions, actions, approval limits and reporting.' },
     ],
-    expertise: ['Case economics', 'Supervised AI services', 'Staff decision design', 'Case quality testing'],
   },
   {
-    slug: 'legacy-modernisation',
-    group: 'Build',
-    title: 'Legacy System Modernisation',
-    shortTitle: 'Legacy modernisation',
-    promise: 'A maintainable business service in place of a fragile spreadsheet or ageing application.',
-    summary: 'Assessment, replacement and continuity support for critical business systems that have become costly, fragile or hard to change.',
-    explanation: 'A legacy system becomes a material business issue after support ends, key knowledge sits with a small group or routine change carries unacceptable risk. Quiet Gears identifies the business rules and user needs that still matter, compares replacement options and provides a maintainable service. Leadership can judge the investment through continuity, accepted user tasks, rule accuracy, support demand and running cost.',
+    slug: 'legacy-modernisation', group: 'Build', title: 'Legacy System Modernisation', shortTitle: 'Legacy modernisation',
+    summary: 'Assessment and replacement of unsupported applications, spreadsheets, databases and isolated business systems.',
+    outcome: 'A maintainable application that preserves required business rules, information and system connections.',
+    offerings: [
+      { title: 'Application assessment', detail: 'A decision-ready account of business use, continuity exposure, support demand and suitable replacement options.', subservices: [
+        { title: 'Application portfolio review', detail: 'A catalogue of business applications, users, dependencies, support status and replacement priority.' },
+        { title: 'Replacement specification', detail: 'Required user tasks, business rules, information, permissions, integrations and service expectations.' },
+      ] },
+      { title: 'Interface and access replacement', detail: 'Modern user access for a current database or business service that remains operationally useful.', subservices: [
+        { title: 'Web or desktop interface', detail: 'An authenticated replacement interface for approved tasks, roles and business rules.' },
+        { title: 'API access layer', detail: 'Supported interfaces for current data, calculations and permitted business actions.' },
+      ] },
+      { title: 'Module and application replacement', detail: 'Replacement of selected modules or a complete unsupported application with a maintainable service.', subservices: [
+        { title: 'Module replacement', detail: 'A focused replacement for selected calculations, forms, reports, approvals or operating functions.' },
+        { title: 'Application replacement', detail: 'A complete supported application for approved users, information and business functions.' },
+      ] },
+      { title: 'Data and support transition', detail: 'Usable current information, accessible archive material and documented support for the replacement service.', subservices: [
+        { title: 'Data migration package', detail: 'Validated active information, archive outputs, reconciliation results and migration documentation.' },
+        { title: 'Test and support pack', detail: 'Business-rule checks, representative task results, configuration details and service documentation.' },
+      ] },
+    ],
     applications: [
-      {
-        title: 'Business-critical spreadsheets',
-        detail: 'A connected set of spreadsheets supports planning, pricing or operations but contains duplicated information, hidden formula risk and dependence on specialist staff. A shared application can protect essential rules and improve controlled access.',
-      },
-      {
-        title: 'Unsupported desktop application',
-        detail: 'An Access database or ageing desktop product remains central to daily work after supplier or internal support has declined. A modern service can reduce continuity risk and support secure concurrent use.',
-      },
-      {
-        title: 'Costly supplier dependency',
-        detail: 'An old commercial system has high licence or change cost, limited integration and weak support for current user needs. Leadership needs a reasoned choice between retention, a new product and a focused rebuild.',
-      },
+      { title: 'Unsupported desktop applications', detail: 'An ageing Access, desktop or server application remains central after supplier or internal support has declined.' },
+      { title: 'Spreadsheet-based business systems', detail: 'Connected spreadsheets support pricing, planning or operations with hidden formula risk and limited access control.' },
+      { title: 'Isolated business software', detail: 'A line-of-business system has costly licences, limited integration, an obsolete interface or weak support.' },
     ],
-    serviceSections: [
-      {
-        title: 'Continuity economics',
-        paragraphs: [
-          'Quiet Gears and company leaders quantify the cost of unplanned interruption, annual licences, specialist support and slow business change. Advisers identify critical tasks that depend on unsupported software or one specialist.',
-          'Contract, retention and continuity duties sit beside the financial case. Leadership receives one basis for deciding urgency, budget and the value of removing each dependency.',
-        ],
-      },
-      {
-        title: 'Business rules and user service',
-        paragraphs: [
-          'Experienced users identify the calculations, approvals, exceptions and specialist knowledge the business still requires. They use current tasks to define the replacement without copying old screens or administrative burdens that add no value.',
-          'Staff test critical rules against representative historic and current cases. They set an accepted standard for task completion, information accuracy and daily support.',
-        ],
-      },
-      {
-        title: 'Replacement and continuity service',
-        paragraphs: [
-          'Decision makers compare continued use, retirement, new hosting, product purchase, platform change and custom rebuilding against user fit, supplier terms and long-term cost. The chosen replacement gives staff suitable company access and the connections required for their tasks.',
-          'Leaders decide which historic material remains active and which moves to archive. They approve retirement after staff complete the accepted tasks, critical rules pass their checks and the company can recover from interruption.',
-        ],
-      },
+    deliverables: [
+      { title: 'Modernisation assessment', detail: 'A prioritised account of business dependency, continuity exposure, support status and replacement options.' },
+      { title: 'Target architecture', detail: 'The selected application, data, identity, interface, hosting and support structure.' },
+      { title: 'Replacement interface or application', detail: 'A supported web, desktop or mobile service for approved users and business tasks.' },
+      { title: 'Compatibility and API layer', detail: 'Supported interfaces for retained databases, applications, identity services and business actions.' },
+      { title: 'Migrated data and archive', detail: 'Validated active information, accessible archive outputs and reconciliation results.' },
+      { title: 'Test and operating pack', detail: 'Business-rule checks, representative task results, configuration and service documentation.' },
     ],
-    decisions: [
-      { title: 'Modernisation option', detail: 'Choose retention, retirement, new hosting, product purchase, platform change or rebuilding against business need.' },
-      { title: 'Essential business rules', detail: 'Identify the calculations, permissions and specialist decisions the replacement must preserve.' },
-      { title: 'Historic information', detail: 'Select the material required for active use, statutory retention and archive access.' },
-      { title: 'Continuity standard', detail: 'Set accepted user tasks, rule checks, fallback and support conditions for retirement of the old service.' },
+    technicalScope: [
+      { term: 'Application targets', detail: 'Responsive web applications, supported desktop services, mobile interfaces and business APIs.' },
+      { term: 'Interfaces', detail: 'REST, GraphQL, webhooks, SQL databases, file exchange and managed application connectors.' },
+      { term: 'Platform options', detail: 'Supported cloud, private-cloud, on-premises and container-based services.' },
+      { term: 'Identity and access', detail: 'Current company identity services, SAML 2.0, OpenID Connect, RBAC and service accounts.' },
     ],
-    results: [
-      { title: 'Less unplanned interruption', detail: 'Measure service outages, recovery time and business hours lost after replacement.' },
-      { title: 'Single-person dependency removed', detail: 'Count critical tasks that another trained employee or supplier can support.' },
-      { title: 'Accepted user tasks', detail: 'Compare task completion, correction effort and support demand with the former service.' },
-      { title: 'Lower service cost', detail: 'Measure licence, infrastructure, specialist support and routine change cost.' },
+    faqs: [
+      { question: 'Can selected modules be modernised separately?', answer: 'Yes. Calculations, forms, reports, approvals, interfaces or integrations can be replaced as separate defined services.' },
+      { question: 'Does the service include data migration?', answer: 'Yes. Active information, archive outputs, reconciliation results and migration documentation can be included.' },
+      { question: 'Can current databases and identity services remain?', answer: 'Yes. Supported databases and identity services can remain when they meet replacement application requirements.' },
+      { question: 'Are testing and support materials included?', answer: 'Yes. Deliverables can include business-rule checks, representative task results, configuration details and operating documentation.' },
     ],
-    expertise: ['Legacy risk assessment', 'Business rule recovery', 'Application replacement', 'Continuity planning'],
   },
 ];
 

@@ -23,14 +23,14 @@ export const study: CaseStudy = {
   code: {
     title: 'Development appraisal to funded next action',
     lines: ['facility = finance.open(development)', 'material = documents.index(facility)', 'gate = funding.review(facility, material)', 'action = assign(gate.conditions, colleague, dueDate)', 'status = team.summarise(facility, action)'],
-    nodes: ['Development appraisal', 'Financing view', 'Lender documents', 'Named condition', 'Funding summary'],
+    nodes: ['Development appraisal', 'Financing view', 'Lender documents', 'identified condition', 'Funding summary'],
   },
   nextSteps: ['Agree the documents for each funding gate', 'Complete the starting sample check', 'Run one financing route for six weeks', 'Use condition visibility and staff effort to decide expansion'],
 };
 
 export const editorial: CaseEditorial = {
   statusStatement: 'The client requested anonymity because naming the business could identify developments and counterparties. The client has not supplied the completed starting sample. This page describes the financing intervention and reports no production result.',
-  thesis: 'A development can appear ready to fund while lender conditions and approvals remain hidden across spreadsheets, messages and documents. The custom workspace gives the team one view of appraisal assumptions, funding material and named actions.',
+  thesis: 'A development can appear ready to fund while lender conditions and approvals remain hidden across spreadsheets, messages and documents. The custom workspace gives the team one view of appraisal assumptions, funding material and identified actions.',
   sceneLabel: 'A representative development-finance review',
   openingTitle: 'A drawdown rests on one missing approval',
   openingParagraphs: [
@@ -45,7 +45,7 @@ export const editorial: CaseEditorial = {
       paragraphs: [
         { text: 'Commercial property work crosses customers, agents, surveyors, solicitors, lenders and counterparties. Each participant contributes messages, documents, approvals and deadlines. A busy file can look healthy because people keep working even when one item prevents the next major decision.' },
         { text: 'The cost appears late. A weekly meeting turns into a search across email and shared folders. A colleague chases an approval under time pressure. Management receives an optimistic status because the underlying blocker has not reached the team’s main view. The firm then spends senior time resolving a problem that first appeared weeks earlier.' },
-        { text: 'The planned discovery sample covers live and recently closed transactions in one asset class. Reviewers will compare the stated stage with the documents, facts and approvals required for that stage. Each gap will enter one of five categories: approval absent, current document unclear, unanswered question with no named colleague, third-party reply not filed or deadline held in one place.' },
+        { text: 'The planned discovery sample covers live and recently closed transactions in one asset class. Reviewers will compare the stated stage with the documents, facts and approvals required for that stage. Each gap will enter one of five categories: approval absent, current document unclear, unanswered question with no identified colleague, third-party reply not filed or deadline held in one place.' },
         { text: 'HM Land Registry reports that 815,000 of more than 4.4 million applications in 2024 to 2025 needed further information, adding about fifteen working days to an affected registration. Government figures put the average home purchase at 120 days and about one sale in three falling through, with £400 million in annual seller cost. These figures concern other parts of the property market and provide context only.', sources: [0, 1] },
       ],
     },
@@ -62,7 +62,7 @@ export const editorial: CaseEditorial = {
     {
       heading: 'The firm has defined a six-week test',
       paragraphs: [
-        { text: 'Management has agreed four stages, five blocker categories and the shape of the shared transaction view. Each open question also needs a named colleague and due date. These decisions define the intervention but show no improvement.' },
+        { text: 'Management has agreed four stages, five blocker categories and the shape of the shared transaction view. Each open question also needs an identified colleague and due date. These decisions define the intervention but show no improvement.' },
         { text: 'Staff burden and trust will decide whether the intervention lasts. A long checklist could slow straightforward work. Staff could approve weak exceptions to move faster, while document suggestions could contain errors. Private spreadsheets could continue if the shared view takes too long to update.' },
         { text: 'The weekly review will track old questions, stage reversals, exceptions, corrections and continued use of private trackers. These measures will show whether the new view exposes blockers before the team commits to a completion date.' },
       ],

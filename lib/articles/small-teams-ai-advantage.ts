@@ -24,13 +24,13 @@ export const article: NewsEditorial = {
       ],
     },
     {
-      heading: 'Four named roles stand between decision and release',
+      heading: 'Four identified roles stand between decision and release',
       transition: 'Because all three scarce inputs are forms of somebody’s attention, the constraint resolves into a question about who, specifically, is available to give it.',
       paragraphs: [
-        { text: 'A smaller firm needs four named people before it builds anything: a director answerable for the result, the manager who runs the process day to day, whoever controls the data the service is allowed to read, and the engineer who will maintain it. In a firm of twenty that may be three people and one of them wearing two hats. The roles still have to be named, and naming them is not the same as hiring for them.' },
+        { text: 'A smaller firm needs four identified people before it builds anything: a director answerable for the result, the manager who runs the process day to day, whoever controls the data the service is allowed to read, and the engineer who will maintain it. In a firm of twenty that may be three people and one of them wearing two hats. The roles still have to be identified, and naming them is not the same as hiring for them.' },
         { text: 'Naming them is useful because it exposes double-counting immediately. If the manager who runs the process is also the person who will review the output, what the firm has is a second opinion from the author. If the engineer who will maintain the service already maintains everything else, the maintenance commitment is being taken out of work that is already scheduled. Neither problem is visible in a decision meeting. Both are visible the moment four roles are written on one page. A large organisation hides double-counting inside a headcount plan. A firm of twenty cannot hide it and gains nothing by trying.' },
-        { text: 'The OECD surveyed more than 5,000 SMEs across seven countries and found generative AI in use at 31 percent of them. Among those users, 28.6 percent had issued any internal guidance on how staff should use it, and under 30 percent reported employees taking part in AI-related training. The report’s own summary is that a third or fewer of SME adopters are doing anything about training, guidelines or the legal position. Use has arrived in these firms. The capacity that supports it has not.', sources: [oecdWorkforce] },
-        { text: 'That gap sets what a first release has to produce beyond a working feature. It needs an evaluation set somebody can rerun, a written rule about which records the service may read, and a log of what it did that a reviewer can read in ten minutes. Each release should then end with an expand, adjust, hold or stop decision, taken by the named director on the evidence the release produced.' },
+        { text: 'The OECD surveyed more than 5,000 SMEs across seven countries and found generative AI in use at 31 percent of them. Among those users, 28.6 percent had issued any internal guidance on how staff should use it, and under 30 percent reported employees taking part in AI-related training. The report summary is that a third or fewer of SME adopters are doing anything about training, guidelines or the legal position. Use has arrived in these firms. The capacity that supports it has not.', sources: [oecdWorkforce] },
+        { text: 'That gap sets what a first release has to produce beyond a working feature. It needs an evaluation set somebody can rerun, a written rule about which records the service may read, and a log of what it did that a reviewer can read in ten minutes. Each release should then end with an expand, adjust, hold or stop decision, taken by the identified director on the evidence the release produced.' },
         { text: 'None of that is governance in the sense a large organisation means the word. It is the minimum record that lets a second person take the work over. In a firm where one resignation removes a quarter of the technical capability, the ability to hand a service to somebody else is the control that matters most, and it costs a few hours per release to keep current.' },
       ],
       exhibits: [{ kind: 'evidence', view: 0, afterParagraph: 2 }, { kind: 'system', afterParagraph: 3 }],
@@ -42,18 +42,18 @@ export const article: NewsEditorial = {
       paragraphs: [
         { text: 'Small firms are catching up, and quickly. The US Census Bureau’s Business Trends and Outlook Survey, read by the Small Business Administration’s Office of Advocacy, put AI use among firms under 250 employees at 6.3 percent in early 2025 and 8.8 percent by that August, against 11.1 percent for large firms at the earlier reading. The Advocacy note describes small firms as roughly a year behind large ones and closing. On that trajectory the capacity problem is being solved without anyone naming a role.', sources: [sbaAdvocacy] },
         { text: 'The mechanism behind that closing is real. Most of what a smaller firm wants from AI now arrives inside software it already rents, so there is no build, no data pipeline and no engineer to name. Drafting, summarising, transcription and search turn up as features in the customer system and the accounting package. An argument about delivery capacity aimed at bespoke work says nothing about a firm that gets most of the benefit by turning on a setting.' },
-        { text: 'There is a worse version of the same objection. A firm told that it needs four named roles, an evaluation set and a data rule before it starts will conclude that it should not start, and it will be right to conclude that if the first candidate is a bespoke workflow. Advice built on constraints has an obvious failure mode, which is that it supplies a reason to wait, and waiting is what most of these firms have been doing already.' },
-        { text: 'Both points hold for tools bought off the shelf, and neither holds once a service touches the firm’s own records. When something reads a customer file, writes to an order or produces output a client sees, the roles reappear, because somebody has to decide what it may read and somebody has to answer for it when it is wrong. The useful line runs between use that stays inside one person’s working day and use that enters the operating record. The first needs almost nothing. The second needs all four.' },
+        { text: 'There is a worse version of the same objection. A firm told that it needs four identified roles, an evaluation set and a data rule before it starts will conclude that it should not start, and it will be right to conclude that if the first candidate is a bespoke workflow. Advice built on constraints has an obvious failure mode, which is that it supplies a reason to wait, and waiting is what most of these firms have been doing already.' },
+        { text: 'Both points hold for tools bought off the shelf, and neither holds once a service touches the firm’s internal records. When something reads a customer file, writes to an order or produces output a client sees, the roles reappear, because somebody has to decide what it may read and somebody has to answer for it when it is wrong. The useful line runs between use that stays inside one person’s working day and use that enters the operating record. The first needs almost nothing. The second needs all four.' },
       ],
       exhibits: [{ kind: 'evidence', view: 1, afterParagraph: 0 }],
     },
     {
       heading: 'Size the first release to the capacity available',
       role: 'conclusion',
-      transition: 'Since the four roles bind only once a service reaches the firm’s own records, the practical question is how large a first release the available capacity will support.',
+      transition: 'Since the four roles bind only once a service reaches the firm’s internal records, the practical question is how large a first release the available capacity will support.',
       paragraphs: [
         { text: 'Start by counting, before choosing. Capacity is countable in a small firm in a way it is not in a large one: the hours per week the process manager can give to review, the days per month the engineer is not already committed, and whether the records the idea needs are in one place or three. Those three numbers, gathered honestly in an afternoon, set the size of the first release. Most firms pick the workflow first and meet the numbers later, which is where the pilot stalls.' },
-        { text: 'A release sized to that count looks unambitious and is the only kind that finishes. One recurring job, one outcome measured before the work starts, one reviewer with named hours in the diary, and a written list of what the firm has decided not to attempt this quarter. The exclusions do more work than the inclusions, because every extra candidate competes for the same manager, the same records and the same engineer. The same count decides what the firm should refuse to promise anyone outside the delivery group, since a release sized to one reviewer will not absorb a second department’s requests.' },
+        { text: 'A release sized to that count looks unambitious and is the only kind that finishes. One recurring job, one outcome measured before the work starts, one reviewer with identified hours in the diary, and a written list of what the firm has decided not to attempt this quarter. The exclusions do more work than the inclusions, because every extra candidate competes for the same manager, the same records and the same engineer. The same count decides what the firm should refuse to promise anyone outside the delivery group, since a release sized to one reviewer will not absorb a second department’s requests.' },
         { text: 'Proximity remains an advantage, and it does more for the second release than the first. A firm of twenty can look at what a release actually did, take the expand, adjust, hold or stop decision on that evidence, and act on it the same week. Large organisations struggle at that point. Short decision lines pay once there is something to decide on, and producing that something is a capacity problem.' },
       ],
     },
@@ -64,11 +64,11 @@ export const evidenceViews: EvidenceView[] = [
   {
     label: 'SME preparation',
     title: 'Use has outrun the preparation that would support it',
-    summary: 'A representative 2024 OECD survey of more than 5,000 SMEs in seven countries. Each measure has its own respondent base and should be read on its own.',
+    summary: 'A representative 2024 OECD survey of more than 5,000 SMEs in seven countries. Each measure has a separate respondent base and should be read independently.',
     interpretation: {
       establishes: 'Generative AI is in use across a material share of surveyed SMEs, while internal guidance and staff training remain uncommon among those same users.',
       doesNotEstablish: 'The survey does not measure delivery capacity, does not show that unprepared use fails, and does not compare results between prepared and unprepared firms.',
-      management: 'Treat written guidance, training and a named reviewer as part of the first release, on the evidence that most surveyed peers have deferred all three.',
+      management: 'Treat written guidance, training and an identified reviewer as part of the first release, on the evidence that most surveyed peers have deferred all three.',
     },
     source: 'OECD, Generative AI and the SME Workforce, 2025',
     href: 'https://www.oecd.org/en/publications/generative-ai-and-the-sme-workforce_2d08b99d-en/full-report.html',
@@ -80,7 +80,7 @@ export const evidenceViews: EvidenceView[] = [
   },
   {
     label: 'Adoption gap',
-    title: 'Smaller firms are closing the gap on their own',
+    title: 'Smaller firms are closing the gap independently',
     summary: 'Census BTOS surveys around 200,000 US businesses every two weeks. The two small-firm readings are six months apart and cover firms under 250 employees.',
     interpretation: {
       establishes: 'Reported AI use among US small firms rose over the six months to August 2025 and moved closer to the large-firm rate.',

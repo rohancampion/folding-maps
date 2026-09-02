@@ -1,6 +1,6 @@
 /**
  * Figures inside a report. Both are numbered exhibits with a caption, because
- * that is how a reader refers back to them, and both carry their own note
+ * that is how a reader refers back to them, and both carry a separate note
  * rather than relying on the surrounding prose to explain them.
  */
 

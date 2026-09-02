@@ -18,7 +18,7 @@ export const study: CaseStudy = {
     { label: 'Understand', detail: 'Identify the request and permitted customer context.' },
     { label: 'Answer', detail: 'Retrieve approved material and cite the source.' },
     { label: 'Prepare', detail: 'Draft a handover brief and surface open questions.' },
-    { label: 'Transfer', detail: 'Route advisory work to an accountable professional.' },
+    { label: 'Transfer', detail: 'Route advisory work to a responsible professional.' },
   ],
   code: {
     title: 'Customer request to professional handover',
@@ -35,7 +35,7 @@ export const editorial: CaseEditorial = {
   openingTitle: 'A client question crosses the boundary into professional advice',
   openingParagraphs: [
     'A trusted contact sends an urgent referral on Thursday afternoon. The message names the prospective client and describes the issue, but it omits the counterparty, funding basis and a key document.',
-    'A partner searches old correspondence while an assistant drafts questions. The firm wants to respond quickly, but it cannot complete its mandatory checks or decide whether the matter fits the service. By Monday, senior time has gone into gathering facts that the first request could have named.',
+    'A partner searches old correspondence while an assistant drafts questions. The firm wants to respond quickly, but it cannot complete its mandatory checks or decide whether the matter fits the service. By Monday, senior time has gone into gathering facts that the first request could have identified.',
     'The engagement focuses on the work before the professional decision. The firm wants complete facts, consistent checks and a faster answer for the prospective client or referrer.',
   ],
   centralQuestion: 'Can the firm shorten customer response while protecting confidentiality and keeping professional advice with a qualified person?',
@@ -44,7 +44,7 @@ export const editorial: CaseEditorial = {
       heading: 'Incomplete referrals cost time and suitable work',
       paragraphs: [
         { text: 'Specialist advisory firms receive work through email, telephone and trusted introductions. Referral quality varies. One message may contain everything needed for an initial decision. Another may describe urgency and commercial value while omitting the people, documents and funding details needed for mandatory checks.' },
-        { text: 'The cost reaches both sides. Senior professionals repeat searches and questions before they can apply judgement. Assistants manage several rounds of clarification. Referrers wait without knowing the size of the request. Prospective clients may receive a late decline after days of effort. A commercial service provider’s 2025 mystery-shopping study covered 430 enquiries across 219 professional-services firms. Only 13 percent received follow-up, and the enquiry-stage Net Promoter Score was minus 44. The firm can treat those figures as a market warning; its own pilot must establish the result.', sources: [5] },
+        { text: 'The cost reaches both sides. Senior professionals repeat searches and questions before they can apply judgement. Assistants manage several rounds of clarification. Referrers wait without knowing the size of the request. Prospective clients may receive a late decline after days of effort. A commercial service provider’s 2025 mystery-shopping study covered 430 enquiries across 219 professional-services firms. Only 13 percent received follow-up, and the enquiry-stage Net Promoter Score was minus 44. The firm can treat those figures as a market warning; its internal pilot must establish the result.', sources: [5] },
         { text: 'The planned baseline covers one service line. Reviewers will assess each referral as received against five required items: prospective-client identity, full counterparty names, referenced documents, funding basis and enough scope to choose a service route. They will count clarification rounds, preparation time, queue age and the final decision.' },
         { text: 'SRA file review found missing source-of-funds checks and supporting material gathered without scrutiny. Legal-sector guidance also requires demonstrable due diligence and conflict checks before the firm opens a matter. These findings support complete, reproducible checks and do not establish a result for this firm.', sources: [0, 1, 2] },
       ],

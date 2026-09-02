@@ -8,7 +8,7 @@ export const study: CaseStudy = {
   title: 'Field planning that protects customer commitments',
   summary: 'A regional service operator is testing faster replanning for urgent jobs without invalid assignments or hidden disruption for other customers.',
   status: 'Anonymised',
-  brief: 'The operator requested anonymity. The specified six-week work-order extract has not been supplied, so this case reports no travel, overtime, service or planning result. The pilot will show dispatchers feasible options and the customer impact of each choice.',
+  brief: 'The operator requested anonymity. The defined six-week work-order extract has not been supplied, so this case reports no travel, overtime, service or planning result. The pilot will show dispatchers feasible options and the customer impact of each choice.',
   metrics: [
     { value: '6 weeks', label: 'work-order sample requested', detail: 'One region, awaiting supply' },
     { value: '3', label: 'hard condition groups', detail: 'Certification, working limits and parts' },
@@ -62,7 +62,7 @@ export const editorial: CaseEditorial = {
     {
       heading: 'The operator has prepared a shadow test',
       paragraphs: [
-        { text: 'Dispatch leaders have specified the six-week sample, three hard condition groups and the information needed for each option. They removed the earlier uncalibrated preference weights. These decisions define the pilot and provide no operating improvement. A Deloitte survey of 900 leaders at organisations with at least 1,000 staff and $500 million in annual revenue found a 73 percent first-time-fix rate among higher-maturity organisations and 64 percent among lower-maturity organisations. That large-enterprise association supplies context and no causal forecast for this operator.', sources: [6] },
+        { text: 'Dispatch leaders have defined the six-week sample, three hard condition groups and the information needed for each option. They removed the earlier uncalibrated preference weights. These decisions define the pilot and provide no operating improvement. A Deloitte survey of 900 leaders at organisations with at least 1,000 staff and $500 million in annual revenue found a 73 percent first-time-fix rate among higher-maturity organisations and 64 percent among lower-maturity organisations. That large-enterprise association supplies context and no causal forecast for this operator.', sources: [6] },
         { text: 'Missing duration estimates, stale parts information and inaccurate travel assumptions could produce poor options. Customer factors may also exist only in staff memory, and too many changes after publication can disrupt the day. Repeated poor suggestions could make dispatchers ignore useful options.' },
         { text: 'Historical replay will test the hard conditions against assignments the operator accepted. Shadow use will then produce options beside the live plan while dispatchers continue their current work. Research on algorithm aversion supports close review of disagreement reasons because explanation alone does not ensure trust or use.', sources: [2] },
       ],

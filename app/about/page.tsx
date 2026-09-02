@@ -1,144 +1,254 @@
+import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
-import { FullBleedHero } from '@/components/FullBleedHero';
+import {
+  ArrowRight,
+  CircleCheck,
+  Gauge,
+  Hammer,
+  Handshake,
+  Mail,
+  MapPin,
+  Network,
+  RefreshCw,
+  SearchCheck,
+  ShieldCheck,
+  UsersRound,
+} from 'lucide-react';
 import { createPageMetadata } from '@/lib/seo';
 import styles from './about.module.css';
 
 export const metadata = createPageMetadata({
   title: 'About Quiet Gears',
-  description: 'Quiet Gears is a London AI consultancy and engineering studio for UK SMEs. Senior consultants advise, build software and help teams use AI with control.',
+  description: 'Senior AI advice, production software and team enablement for UK SMEs, delivered by Quiet Gears consultants in London.',
   path: '/about',
 });
 
-const capabilities = [
-  { number: '01', title: 'Advise', text: 'We examine the operation, test the case for investment and set a plan tied to a business result. Leaders get a clear view of cost and risk before committing funds.', href: '/services/ai-strategy' },
-  { number: '02', title: 'Build', text: 'We design and engineer focused AI systems, workflow software and integrations. Each release has a defined job, acceptance tests and a responsible person inside the client team.', href: '/services/ai-implementation' },
-  { number: '03', title: 'Enable', text: 'We help staff use AI within clear limits. Training, evaluation methods and operating guidance give the client team the skill to run and improve the work after launch.', href: '/services/enterprise-ai' },
+const atAGlance = [
+  ['Decision brief', 'Priority, budget range and controls'],
+  ['Working release', 'Software ready for staff use'],
+  ['Operating pack', 'Access, support and service records'],
+  ['Handover', 'Documentation and staff training'],
 ];
 
-const workingPrinciples = [
-  { number: '01', title: 'Senior attention', text: 'A lead consultant stays involved from the first discussion through delivery. Clients speak with the people who analyse the problem and make the software.' },
-  { number: '02', title: 'Operational evidence', text: 'We study real records, hand-offs, exceptions and decisions. That evidence defines the scope and gives the team a baseline for measuring change.' },
-  { number: '03', title: 'Focused releases', text: 'We reduce a broad ambition to a useful first release. Short feedback cycles expose weak assumptions before they consume the budget.' },
-  { number: '04', title: 'Clear control', text: 'People retain authority over material decisions. Access rules, review steps and audit records form part of the design from the first release.' },
+const reasons = [
+  { Icon: UsersRound, title: 'Senior consultant responsibility', body: 'A lead consultant remains responsible for the client relationship, delivery quality and final acceptance.' },
+  { Icon: SearchCheck, title: 'Defined scope', body: 'Every proposal states the deliverable, acceptance criteria, cost range and client responsibilities.' },
+  { Icon: Hammer, title: 'Production assets', body: 'Software, integrations, interfaces, terminals and documentation are delivered as usable client assets.' },
+  { Icon: ShieldCheck, title: 'Security controls', body: 'Role-based access, source restrictions, approval authority and audit records are defined for business use.' },
+  { Icon: Gauge, title: 'Evidence at review', body: 'Accepted tasks, staff effort, elapsed time, service errors and operating cost form the review record.' },
+  { Icon: RefreshCw, title: 'Complete handover', body: 'The client receives the repository, service documentation, training materials and support pack.' },
 ];
 
-const engagementSteps = [
-  { number: '01', title: 'Examine the work', text: 'We trace the current process, its data, its delays and the decisions that need judgement.' },
-  { number: '02', title: 'Set the case', text: 'We define the result, delivery boundary, controls and measures before selecting the technical approach.' },
-  { number: '03', title: 'Make the release', text: 'We build with representative data, test difficult cases and involve the staff who will use the system.' },
-  { number: '04', title: 'Support the team', text: 'We document the system, train its users and review performance against the agreed measures.' },
+const expansion = [
+  ['Decision pack', 'Executive approval', 'Investment brief, ranked opportunities, budget range and control requirements.'],
+  ['First release', 'Operational acceptance', 'Production application, approved integration, user interface and evaluation report.'],
+  ['Operating service', 'Staff use', 'Access permissions, dashboards, service records, training and support documentation.'],
+  ['Expansion pack', 'Additional capacity', 'Approved users, sites, channels, task groups and connected systems.'],
 ];
 
-const leadConsultants = [
-  { name: 'Luc Balonwu', role: 'Lead consultant' },
-  { name: 'Rohan Campion', role: 'Lead consultant' },
+const pathways = [
+  {
+    image: '/images/rebrand/research-fern-desktop.webp',
+    group: 'Advise',
+    title: 'Approve the right investment',
+    detail: 'Receive ranked opportunities, commercial assumptions, risks, budget range and a recommended decision.',
+    services: 'Decision briefs and controls',
+    href: '/services/ai-strategy',
+  },
+  {
+    image: '/images/rebrand/services-workbench-desktop.webp',
+    group: 'Build',
+    title: 'Put a production service in use',
+    detail: 'Receive the application, integrations, interfaces, terminals, evaluation report and support documentation.',
+    services: 'Software and AI applications',
+    href: '/services/ai-implementation',
+  },
+  {
+    image: '/images/rebrand/studio-table-desktop.webp',
+    group: 'Enable',
+    title: 'Set a company standard',
+    detail: 'Receive approved tools, access rules, staff training, service guidance and adoption reporting.',
+    services: 'Standards and team capability',
+    href: '/services/enterprise-ai',
+  },
+];
+
+const team = [
+  {
+    initials: 'LB',
+    name: 'Luc Balonwu',
+    role: 'Lead consultant',
+    body: 'Leads client engagements, commercial decisions and delivery quality.',
+  },
+  {
+    initials: 'RC',
+    name: 'Rohan Campion',
+    role: 'Lead consultant',
+    body: 'Leads service design, engineering decisions and technical delivery.',
+  },
+  {
+    initials: 'AB',
+    name: 'Alice Brasher',
+    role: 'Senior consultant',
+    body: 'Supports consulting assignments, client research and delivery materials.',
+  },
+  {
+    initials: 'QG',
+    name: 'Specialist network',
+    role: null,
+    body: 'Provides relevant technical or sector expertise for defined assignments.',
+  },
 ];
 
 export default function About() {
-  return <>
-    <FullBleedHero
-      desktopSrc="/images/rebrand/studio-table-desktop.webp"
-      mobileSrc="/images/rebrand/studio-table-mobile.webp"
-      eyebrow="About Quiet Gears"
-      title="AI consulting and engineering for practical business change."
-      summary="Quiet Gears helps UK SMEs make sound technology decisions, build useful software and give staff the confidence to use it."
-      focalPosition="50% 50%"
-    />
-
-    <section className={styles.introduction} aria-labelledby="company-title">
-      <p className={styles.label}>The company</p>
-      <div className={styles.introductionCopy}>
-        <h2 id="company-title">A senior-led studio based in London.</h2>
-        <p>Quiet Gears works with UK SMEs facing operational strain or technology uncertainty. A process may depend on repeated manual work. Customer information may sit across several systems. A leadership team may see potential in AI and lack a credible route from interest to a working service.</p>
-        <p>We bring management advice and software engineering into one engagement. The same team can assess the case, design the service and build the release. This keeps commercial reasoning connected to technical choices throughout the work.</p>
-        <p>Our size shapes the service. Clients have access to senior consultants and short decision lines. The team can adapt the work as evidence changes. We accept a limited number of engagements so each project receives sustained attention.</p>
-      </div>
-    </section>
-
-    <section className={styles.purpose} aria-labelledby="purpose-title">
-      <div className={styles.sectionHeading}>
-        <p className={styles.label}>Our purpose</p>
-        <h2 id="purpose-title">Turn technical potential into useful work.</h2>
-      </div>
-      <div className={styles.purposeGrid}>
-        <p>AI creates value through a process that staff can use, inspect and improve. That requires sound data and clear responsibility. Staff also need software fitted to the operation.</p>
-        <p>Quiet Gears gives smaller firms access to combined advisory and engineering support. We keep the engagement proportionate to the client and the expected result.</p>
-      </div>
-    </section>
-
-    <section className={styles.capabilities} aria-labelledby="capabilities-title">
-      <div className={styles.sectionHeading}>
-        <p className={styles.label}>Our work</p>
-        <h2 id="capabilities-title">Advice and software, backed by team capability.</h2>
-      </div>
-      <div className={styles.capabilityGrid}>
-        {capabilities.map((capability) => <Link href={capability.href} className={styles.capability} key={capability.title}>
-          <span>{capability.number}</span>
-          <h3>{capability.title}</h3>
-          <p>{capability.text}</p>
-          <ArrowUpRight size={18} aria-hidden="true" />
-        </Link>)}
-      </div>
-    </section>
-
-    <section className={styles.principles} aria-labelledby="principles-title">
-      <div className={styles.sectionHeading}>
-        <p className={styles.label}>Working principles</p>
-        <h2 id="principles-title">The standards behind each engagement.</h2>
-      </div>
-      <div className={styles.principleGrid}>
-        {workingPrinciples.map((principle) => <article key={principle.title}>
-          <span>{principle.number}</span>
-          <h3>{principle.title}</h3>
-          <p>{principle.text}</p>
-        </article>)}
-      </div>
-    </section>
-
-    <section className={styles.engagement} aria-labelledby="engagement-title">
-      <div className={styles.sectionHeading}>
-        <p className={styles.label}>An engagement</p>
-        <h2 id="engagement-title">From operating problem to supported release.</h2>
-      </div>
-      <div className={styles.engagementList}>
-        {engagementSteps.map((step) => <article key={step.title}>
-          <span>{step.number}</span>
-          <h3>{step.title}</h3>
-          <p>{step.text}</p>
-        </article>)}
-      </div>
-    </section>
-
-    <section className={styles.people} aria-labelledby="people-title">
-      <div className={styles.peopleIntro}>
-        <p className={styles.label}>People</p>
-        <div>
-          <h2 id="people-title">The lead consultants stay close to the work.</h2>
-          <p>Quiet Gears keeps a small core team and brings in specialist support to suit the engagement. A lead consultant remains accountable for the client relationship and the quality of delivery.</p>
+  return (
+    <div className={styles.page}>
+      <section className={styles.hero} id="about-top" aria-labelledby="about-title">
+        <div className={styles.heroContent}>
+          <div className={styles.brandLine}>
+            <Image src="/brand/quiet-gears-logo.jpg" alt="" width={46} height={46} priority />
+            <p>Senior-led · London · working UK-wide</p>
+          </div>
+          <h1 id="about-title">Quiet Gears<br />Consulting</h1>
+          <h2>Senior AI advice. Production software.</h2>
+          <p className={styles.heroCopy}>
+            Quiet Gears gives UK SME leadership teams a clear investment decision, a defined software deliverable and a service their staff can use.
+          </p>
+          <p className={styles.heroNote}>Independent advice. Senior consultants. Complete client handover.</p>
+          <div className={styles.heroActions}>
+            <Link className={`${styles.button} ${styles.buttonSignal}`} href="/contact">
+              Start a conversation <ArrowRight size={18} aria-hidden="true" />
+            </Link>
+            <Link className={`${styles.button} ${styles.buttonOutline}`} href="/services">
+              Explore our services <ArrowRight size={18} aria-hidden="true" />
+            </Link>
+          </div>
         </div>
-      </div>
-      <div className={styles.consultantList}>
-        {leadConsultants.map((consultant, index) => <article key={consultant.name}>
-          <span>0{index + 1}</span>
-          <h3>{consultant.name}</h3>
-          <p>{consultant.role}</p>
-        </article>)}
-      </div>
-    </section>
 
-    <section className={styles.fit} aria-labelledby="fit-title">
-      <p className={styles.label}>Client fit</p>
-      <div>
-        <h2 id="fit-title">Built for leaders with a material problem to solve.</h2>
-        <p>Our clients tend to have a clear operational concern and access to the staff who understand it. They also have the authority to change the process. They value direct advice and evidence over theatre.</p>
-        <p>A first discussion tests the problem, its business effect and the practical conditions for progress. If specialist support would serve the need better, we say so.</p>
-      </div>
-    </section>
+        <aside className={styles.glanceCard} aria-label="Quiet Gears at a glance">
+          <p>Quiet Gears at a glance</p>
+          {atAGlance.map(([value, label]) => (
+            <div className={styles.glanceItem} key={value}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+            </div>
+          ))}
+        </aside>
+      </section>
 
-    <section className={`${styles.cta} contact-band`} aria-labelledby="about-cta-title">
-      <h2 id="about-cta-title">Discuss the work that needs attention.</h2>
-      <Link href="/contact">Start a conversation <ArrowRight size={17} aria-hidden="true" /></Link>
-    </section>
-  </>;
+      <section className={styles.impactStrip} aria-label="Quiet Gears capabilities">
+        <div><strong>Clarity</strong><span>Approved investment brief</span></div>
+        <div><strong>Capacity</strong><span>Less repeated administration</span></div>
+        <div><strong>Service</strong><span>Faster staff and customer response</span></div>
+        <div><strong>Control</strong><span>Clear authority and records</span></div>
+      </section>
+
+      <section className={`${styles.section} ${styles.reasonsSection}`} aria-labelledby="reasons-title">
+        <div className={`${styles.sectionHeading} ${styles.centeredHeading}`}>
+          <p className={styles.sectionLabel}>Quiet Gears standard</p>
+          <h2 id="reasons-title">Six commitments on every engagement.</h2>
+          <p>Clear responsibility, defined assets and a complete record of delivery.</p>
+        </div>
+        <div className={styles.reasonsGrid}>
+          {reasons.map(({ Icon, title, body }) => (
+            <article className={styles.reasonCard} key={title}>
+              <Icon aria-hidden="true" />
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.teamSection} aria-label="People">
+        <div className={`${styles.sectionHeading} ${styles.teamHeading}`}>
+          <p className={styles.sectionLabel}>People</p>
+        </div>
+        <div className={styles.teamGrid}>
+          {team.map((person) => (
+            <article className={styles.teamCard} key={person.name}>
+              <div className={styles.initials}><span>{person.initials}</span></div>
+              <div className={styles.teamCopy}>
+                {person.role && <small>{person.role}</small>}
+                <h3>{person.name}</h3>
+                <p>{person.body}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.expansionSection} aria-labelledby="expansion-title">
+        <div className={`${styles.sectionHeading} ${styles.expansionHeading}`}>
+          <p className={styles.sectionLabel}>Service expansion</p>
+          <h2 id="expansion-title">A defined deliverable<br />at every investment level.</h2>
+          <p>
+            Each engagement is contracted around visible outputs, acceptance criteria and a defined business result. Additional scope requires evidence from operational use.
+          </p>
+        </div>
+        <div className={styles.expansionTable} role="table" aria-label="Quiet Gears engagement stages">
+          <div className={styles.expansionHead} role="row">
+            <span role="columnheader">Package</span>
+            <span role="columnheader">Business result</span>
+            <span role="columnheader">Included outputs</span>
+          </div>
+          {expansion.map(([stage, decision, detail]) => (
+            <div className={styles.expansionRow} role="row" key={stage}>
+              <span role="cell">{stage}</span>
+              <strong role="cell">{decision}</strong>
+              <span role="cell">{detail}</span>
+            </div>
+          ))}
+        </div>
+        <div className={styles.expansionCallout}>
+          <CircleCheck aria-hidden="true" />
+          <p>The client receives the agreed software, documentation, service records and training materials.</p>
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.pathwaysSection}`} aria-labelledby="pathways-title">
+        <div className={`${styles.sectionHeading} ${styles.splitHeading}`}>
+          <div>
+            <p className={styles.sectionLabel}>Ways we work</p>
+            <h2 id="pathways-title">Three commercial<br />engagement paths.</h2>
+          </div>
+          <p className={styles.sectionIntro}>
+            Commission a decision brief, a production service or a company enablement package. Each path has a separate specification and deliverables.
+          </p>
+        </div>
+        <div className={styles.pathwayGrid}>
+          {pathways.map((pathway) => (
+            <Link className={styles.pathwayCard} href={pathway.href} key={pathway.group}>
+              <div className={styles.pathwayImage}>
+                <Image src={pathway.image} alt="" fill sizes="(min-width: 981px) 33vw, 100vw" />
+                <span>{pathway.group}</span>
+                <div><small>{pathway.services}</small><h3>{pathway.title}</h3></div>
+              </div>
+              <div className={styles.pathwayBody}>
+                <p>{pathway.detail}</p>
+                <ArrowRight size={22} aria-hidden="true" />
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className={`${styles.contactSection} contact-band`} aria-labelledby="contact-title">
+        <div>
+          <p className={styles.sectionLabel}>Start with the problem</p>
+          <h2 id="contact-title">Bring us the business problem.</h2>
+          <div className={styles.contactIntro}>The first meeting produces a concise view of fit, expected deliverable and likely engagement size.</div>
+          <Link className={`${styles.button} ${styles.buttonSignal}`} href="/contact">
+            Start a conversation <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
+        <aside className={styles.contactPanel} aria-label="Quiet Gears contact details">
+          <div><span>Email</span><a href="mailto:enquiries@quietgears.xyz"><Mail size={18} /> enquiries@quietgears.xyz</a></div>
+          <div><span>Base</span><strong><MapPin size={18} /> London</strong></div>
+          <div><span>Coverage</span><strong><Network size={18} /> Working UK-wide</strong></div>
+          <div><span>Working model</span><strong><Handshake size={18} /> Senior-led</strong></div>
+        </aside>
+      </section>
+    </div>
+  );
 }
