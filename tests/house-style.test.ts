@@ -46,7 +46,17 @@ const headings = [
   ...articles.flatMap((item) => newsEditorial[item.slug].sections.map((section) => section.heading)),
   ...cases.flatMap((item) => caseEditorial[item.slug].sections.map((section) => section.heading)),
   ...industries.flatMap((item) => [item.contextTitle, item.opportunitiesTitle, item.decisionsTitle, item.controlTitle, item.roadmapTitle]),
-  ...services.map((item) => item.title),
+  ...services.flatMap((item) => [
+    item.title,
+    ...item.offerings.flatMap((offering) => [
+      offering.title,
+      ...offering.subservices.map((subservice) => subservice.title),
+    ]),
+    ...item.applications.map((application) => application.title),
+    ...item.deliverables.map((deliverable) => deliverable.title),
+    ...(item.technicalScope ?? []).map((specification) => specification.term),
+    ...item.faqs.map((faq) => faq.question),
+  ]),
 ].filter((value): value is string => typeof value === 'string');
 
 const offenders = (pattern: RegExp) =>
@@ -246,7 +256,7 @@ describe('house style', () => {
   it('holds the page copy to the same bans as the content data', () => {
     // The content files are data; these are the pages a visitor lands on
     // first, and they were drifting under a separate standard.
-    const pages = ['app/page.tsx', 'app/about/page.tsx', 'app/services/page.tsx', 'app/industries/page.tsx', 'app/case-studies/page.tsx', 'app/news/page.tsx', 'app/contact/page.tsx']
+    const pages = ['app/page.tsx', 'app/about/page.tsx', 'app/services/page.tsx', 'app/services/[slug]/page.tsx', 'app/industries/page.tsx', 'app/case-studies/page.tsx', 'app/news/page.tsx', 'app/contact/page.tsx']
       .map((path) => ({ path, text: readFileSync(path, 'utf8') }));
     pages.forEach(({ path, text }) => {
       // Comments record past defects on purpose and are not copy.
