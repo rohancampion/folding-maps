@@ -32,6 +32,13 @@ export type CaseStudy = {
   phases: { label: string; detail: string }[];
   code: { title: string; lines: string[]; nodes: string[] };
   nextSteps: string[];
+  visuals?: {
+    src: string;
+    alt: string;
+    caption: string;
+    width: number;
+    height: number;
+  }[];
   actionPanel?: { eyebrow: string; title: string };
   showcase?: {
     label: string;

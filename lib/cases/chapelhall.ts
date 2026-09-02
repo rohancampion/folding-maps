@@ -47,6 +47,10 @@ export const study: CaseStudy = {
       },
       { src: '/images/cases/chapelhall/artwork-variant.png', alt: 'Variant of the abstract ChapelHall artwork with mineral blue and oxblood passages', caption: 'Artwork variant with the original composition preserved' },
       { src: '/images/cases/chapelhall/studio-variant.png', alt: 'Variant of the ChapelHall gallery interior with revised artworks in the original cases', caption: 'Gallery variant with the original display structure preserved' },
+      { src: '/images/cases/chapelhall/art-market-booth-wide.png', alt: 'Collectors viewing paintings and sculpture in a warm brick art-market hall', caption: 'Independent booth campaign study' },
+      { src: '/images/cases/chapelhall/art-market-viewer-portrait.png', alt: 'Visitor studying a tall mixed-media painting at a contemporary art market', caption: 'Close viewing campaign study' },
+      { src: '/images/cases/chapelhall/artwork-variant-2.png', alt: 'Photographic artwork variant in mineral blue, oxblood and chalk white', caption: 'Second pigment study with the original composition preserved' },
+      { src: '/images/cases/chapelhall/studio-variant-2.png', alt: 'Gallery interior with contemporary abstract works inside the original display cases', caption: 'Second gallery study with the display structure preserved' },
     ],
   },
 };
@@ -77,7 +81,7 @@ export const editorial: CaseEditorial = {
       paragraphs: [
         { text: 'The finished website uses expansive hero imagery and gallery-scale typography to establish ChapelHall immediately. Responsive layouts preserve that character on mobile screens, with navigation, artwork and contact routes remaining clear at smaller sizes.' },
         { text: 'A dedicated portfolio presents six launch works with title, artist, year and medium. Artwork carousels also appear on the main and studio pages, allowing selected work and behind-the-scenes material to support more than one public story.' },
-        { text: 'The about page introduces the studio and head curator Luc Balonwu. The contact page supports project, visit and collaboration enquiries, giving each public audience a specific next action.' },
+        { text: 'The about page introduces the studio and head curator Luc Balonwu. The contact page supports project, visit and collaboration enquiries, giving each public audience a direct next action.' },
       ],
     },
     {

@@ -1,5 +1,34 @@
 # The no-ai-slop audit
 
+## Case-study subpages, 2 September 2026
+
+Hallmark 1.1.0 was downloaded from `Nutlope/hallmark` and applied to the dynamic case-study route, its shared narrative components and the six project records. The target was the rendered project pages, not the case-study index.
+
+### Removed
+
+| Finding | Severity | Change |
+|---|---|---|
+| Invented-metric layout | Critical | Removed the three-number strip from every project subpage. The underlying planning data remains available to internal code but no longer appears as proof. |
+| Detached qualification block | Major | Removed the leading “Current result” block. Project status now sits inside the project narrative and page summary. |
+| Marketing thesis panel | Major | Removed the “Result sought” panel and its repeated summary. |
+| Labelled-list rhythm | Major | Removed the numbered contents rail, section numerals and decorative opening label from case-study subpages. |
+| Peripheral source disclaimer | Minor | Removed the generic source explanation. The source list now begins with the cited material. |
+| Repeated photographic sequence | Major | Expanded ChapelHall from six to ten visual studies, including two art-market photographs and two composition-preserving edits. |
+
+### Copy checks
+
+The case-study route and project records were checked for em dashes, question-word headings, the prohibited marketing terms in the brief, “good to know”, binary filler constructions, generic promise language and the removed labels. The displayed case-study copy contains none of those patterns. An official article title containing a question word was shortened in the source label while its link remains unchanged.
+
+### Visual checks
+
+The generated artwork variants keep the source artwork’s 2:3 proportion and major contours. The gallery variants keep the room, cases, plinths, crop and camera position. New art-market photographs use asymmetrical documentary framing, natural light and no visible brand or legible wall copy.
+
+### Hallmark result
+
+Pre-emit critique: Philosophy 5, Hierarchy 5, Execution 4, Specificity 5, Restraint 5, Variety 5.
+
+Final audit: 0 critical, 0 major, 0 minor findings in the requested case-study scope after remediation.
+
 Run of the [no-ai-slop](https://github.com/petergyang/no-ai-slop) skill over the
 whole site: 59 pages, 4,390 sentences. The skill is vendored unmodified at
 `.claude/skills/no-ai-slop/`, with its commit recorded in `PROVENANCE.md`
