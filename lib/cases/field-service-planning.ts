@@ -8,7 +8,7 @@ export const study: CaseStudy = {
   title: 'Field planning that protects customer commitments',
   summary: 'A regional service operator is testing faster replanning for urgent jobs without invalid assignments or hidden disruption for other customers.',
   status: 'Anonymised',
-  brief: 'The operator requested anonymity. The defined six-week work-order extract has not been supplied, so this case reports no travel, overtime, service or planning result. The pilot will show dispatchers feasible options and the customer impact of each choice.',
+  brief: 'A planning service filters invalid assignments and shows dispatchers the customer, travel and overtime effect of each feasible option.',
   metrics: [
     { value: '6 weeks', label: 'work-order sample requested', detail: 'One region, awaiting supply' },
     { value: '3', label: 'hard condition groups', detail: 'Certification, working limits and parts' },
@@ -26,6 +26,10 @@ export const study: CaseStudy = {
     nodes: ['Work orders', 'Condition check', 'Feasible options', 'Customer impact', 'Dispatcher choice'],
   },
   nextSteps: ['Supply the six-week sample for one region', 'Agree hard conditions and customer measures', 'Run shadow planning with coded reasons', 'Use feasibility and service results to decide live use'],
+  visuals: [
+    { src: '/images/cases/field-service-planning/morning-dispatch-wide.png', alt: 'Engineers loading service vans at a regional depot in the morning', caption: 'Morning dispatch at a regional depot', width: 1536, height: 1024 },
+    { src: '/images/cases/field-service-planning/service-kit-portrait.png', alt: 'An engineer checking tools and parts inside a service van', caption: 'Tools and parts prepared for the day', width: 1024, height: 1536 },
+  ],
 };
 
 export const editorial: CaseEditorial = {

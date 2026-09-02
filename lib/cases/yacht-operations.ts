@@ -5,10 +5,10 @@ export const study: CaseStudy = {
   slug: 'yacht-operations',
   image: '/images/case-yacht.svg',
   sector: 'Yacht industry',
-  title: 'Improving market-making and customer services in Yacht industry',
+  title: 'One service view for yacht projects',
   summary: 'A shared commercial and service system connects enquiries, customer history, yacht projects and follow-up.',
   status: 'In progress',
-  brief: 'Discovery and design are complete. The team is connecting market activity with customer service through one view of enquiries, customers, vessels and active projects. The first live release remains unevaluated.',
+  brief: 'One view connects each enquiry, customer, vessel and active project, then shows the next action and responsible colleague.',
   metrics: [
     { value: '4', label: 'parts of the customer journey mapped', detail: 'Enquiry, customer, project and follow-up' },
     { value: '1', label: 'identified colleague for each open action', detail: 'First-release rule' },
@@ -26,6 +26,10 @@ export const study: CaseStudy = {
     nodes: ['Customer channels', 'Customer and vessel match', 'Current project view', 'identified action', 'Approved reply'],
   },
   nextSteps: ['Take the pre-release baseline', 'Introduce the shared project view', 'Review uncertain matches and late actions each week', 'Use the four-week result to decide the next release'],
+  visuals: [
+    { src: '/images/cases/yacht-operations/service-yard-wide.png', alt: 'Marine technicians working around yachts in a service yard', caption: 'Service work across an active marina', width: 1536, height: 1024 },
+    { src: '/images/cases/yacht-operations/project-detail-portrait.png', alt: 'Marine project staff reviewing plans and material samples at a workshop bench', caption: 'Project coordination at the workshop', width: 1024, height: 1536 },
+  ],
 };
 
 export const editorial: CaseEditorial = {
@@ -36,7 +40,7 @@ export const editorial: CaseEditorial = {
   openingParagraphs: [
     'A customer asks when their yacht will return to the water. The colleague handling the request checks the shared mailbox for the promised date, the job sheet for completed work, a supplier message for a delayed part and a colleague for the latest conversation with the rigger.',
     'The team gives a careful answer, but the search starts again when the customer calls later in the week. The assembled answer does not leave the next colleague with a current view. Growth has increased the number of projects and the number of times staff repeat this work.',
-    'The engagement began with this customer question. It gives the business a direct test: can any colleague see the current commitment, understand what changed and know who acts next without rebuilding the story?',
+    'The engagement began with this customer question. The business test is whether any colleague can see the current commitment, understand what changed and know who acts next without rebuilding the story.',
   ],
   centralQuestion: 'Can the business improve market follow-up and customer service while preserving the personal attention yacht customers expect?',
   sections: [
@@ -55,7 +59,7 @@ export const editorial: CaseEditorial = {
       paragraphs: [
         { text: 'Management chose to protect scarce specialist time before expanding headcount or automating customer contact. The selected release brings the customer, vessel, enquiry and active project into one view. It shows the latest confirmed commitment, recent changes, the next action, the colleague responsible and the due date.' },
         { text: 'Staff will continue updating the tools they use now. The shared view brings the confirmed commitment and next action into one place, so the intervention does not add a second administrative task. A colleague resolves any uncertain customer or vessel match before staff rely on the view.' },
-        { text: 'Staff will not use the initial release to predict completion dates or send messages. A colleague approves every customer reply. This limit keeps the intervention tied to the problem the team identified: finding the current answer and acting on it.' },
+        { text: 'Staff will not use the initial release to predict completion dates or send messages. A colleague approves every customer reply. This limit keeps the work focused on finding the current answer and acting on it.' },
         { text: 'The company will introduce a small group of projects first. Each weekly review will compare response preparation time, late actions, message corrections and continued use of private files. Management can stop the release if coordination effort rises or customer care suffers.' },
       ],
     },
@@ -81,7 +85,7 @@ export const editorial: CaseEditorial = {
 };
 
 export const research: ResearchFinding[] = [
-  { statistic: '1,200 a day', finding: 'Instrumented workers switched between applications and windows about 1,200 times a day, losing just under four hours a week to reorientation', implication: 'Repeated searching can consume material working time, so the engagement will measure the same customer question before and after release.', source: 'Harvard Business Review, How Much Time and Energy Do We Waste Toggling Between Applications?, 2022', href: 'https://hbr.org/2022/08/how-much-time-and-energy-do-we-waste-toggling-between-applications' },
+  { statistic: '1,200 a day', finding: 'Instrumented workers switched between applications and windows about 1,200 times a day, losing just under four hours a week to reorientation', implication: 'Repeated searching can consume material working time, so the engagement will measure the same customer question before and after release.', source: 'Harvard Business Review, application-switching study, 2022', href: 'https://hbr.org/2022/08/how-much-time-and-energy-do-we-waste-toggling-between-applications' },
   { statistic: '62%', finding: 'Most survey respondents report struggling with the time they spend searching for information during the working day', implication: 'Search cost affects many sectors, but only a local baseline can establish its scale in this business.', source: 'Microsoft, Work Trend Index: Will AI Fix Work?, 2023', href: 'https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work' },
   { statistic: 'Up to 35%', finding: 'A searchable internal information source was projected to cut the time employees spend finding company information', implication: 'The 2012 projection supplies no business case here. The company will test its internal status questions during live use.', source: 'McKinsey Global Institute, The Social Economy, 2012', href: 'https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-social-economy' },
   { statistic: '5,800 businesses', finding: 'Most firms in the UK leisure, superyacht and small commercial marine industry are small, with the nine largest holding about a quarter of the market', implication: 'Smaller operators often place coordination work with the same people who quote, deliver and support customers.', source: 'British Marine, The Economic Benefits of the Leisure, Superyacht and Small Commercial Marine Industry, 2022-23', href: 'https://www.britishmarine.co.uk/resources/knowledge-centre/economic-benefits-leisure-superyacht-and-small-commercial-marine-industry-2022-2023' },

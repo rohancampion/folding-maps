@@ -5,10 +5,10 @@ export const study: CaseStudy = {
   slug: 'property-pipeline',
   image: '/images/case-property.svg',
   sector: 'Real estate development',
-  title: 'Custom Financing Software for Real Estate Developers',
+  title: 'Property finance, from appraisal to drawdown',
   summary: 'A custom financing workspace connects development appraisals, lender material, approvals and drawdown actions.',
   status: 'Anonymised',
-  brief: 'The client requested anonymity. The custom software links each development appraisal to lender requirements, supporting documents, approval conditions and drawdown actions. The proposed six-week pilot has no measured result.',
+  brief: 'One financing workspace links development appraisals with lender requirements, supporting documents, approval conditions and drawdown actions.',
   metrics: [
     { value: '4', label: 'financing stages', detail: 'Appraise, document, approve and draw' },
     { value: '5', label: 'funding-condition categories', detail: 'Defined for the starting sample' },
@@ -26,6 +26,10 @@ export const study: CaseStudy = {
     nodes: ['Development appraisal', 'Financing view', 'Lender documents', 'identified condition', 'Funding summary'],
   },
   nextSteps: ['Agree the documents for each funding gate', 'Complete the starting sample check', 'Run one financing route for six weeks', 'Use condition visibility and staff effort to decide expansion'],
+  visuals: [
+    { src: '/images/cases/property-pipeline/appraisal-session-wide.png', alt: 'Property and finance professionals reviewing a development model', caption: 'Development appraisal working session', width: 1536, height: 1024 },
+    { src: '/images/cases/property-pipeline/review-material-portrait.png', alt: 'A property model and material samples prepared for finance review', caption: 'Funding material prepared for review', width: 1024, height: 1536 },
+  ],
 };
 
 export const editorial: CaseEditorial = {

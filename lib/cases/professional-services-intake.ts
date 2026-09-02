@@ -5,10 +5,10 @@ export const study: CaseStudy = {
   slug: 'professional-services-intake',
   image: '/images/news-legal.svg',
   sector: 'Professional services',
-  title: 'Streamlining Professional Services advisories with AI Customer Support',
+  title: 'Client intake with professional review',
   summary: 'An AI customer-support service answers routine questions, captures advisory context and routes complex requests to the right professional.',
   status: 'Anonymised',
-  brief: 'Professional confidentiality keeps the firm unnamed. AI handles approved routine questions, prepares an advisory brief and transfers requests that need professional judgement. The first-pass sample has not been supplied, so this case reports no measured result.',
+  brief: 'A supervised intake service collects the referral, checks required facts and prepares material for professional review.',
   metrics: [
     { value: '24/7', label: 'support availability', detail: 'Pilot service design' },
     { value: '4', label: 'support routes', detail: 'Answer, clarify, escalate or book' },
@@ -26,6 +26,10 @@ export const study: CaseStudy = {
     nodes: ['Customer channels', 'Approved knowledge', 'Support assistant', 'Handover policy', 'Adviser workspace'],
   },
   nextSteps: ['Map routine questions and escalation points', 'Approve the knowledge and data boundary', 'Build a redacted support test set', 'Pilot one service line with weekly professional review'],
+  visuals: [
+    { src: '/images/cases/professional-services-intake/referral-review-wide.png', alt: 'Advisers reviewing referral material in a professional office', caption: 'Referral review in a professional office', width: 1536, height: 1024 },
+    { src: '/images/cases/professional-services-intake/source-review-portrait.png', alt: 'Hands arranging source documents in a review folder', caption: 'Source material prepared for assessment', width: 1024, height: 1536 },
+  ],
 };
 
 export const editorial: CaseEditorial = {

@@ -67,7 +67,7 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
   ];
 
   if (study.slug === 'chapelhall' && study.showcase) {
-    const [marketWide, artwork, marketPortrait, studio, artworkVariant, studioVariant] = study.showcase.images;
+    const [marketWide, artwork, marketPortrait, studio, artworkVariant, studioVariant, marketBooth, marketViewer, artworkVariantTwo, studioVariantTwo] = study.showcase.images;
 
     return (
       <>
@@ -103,6 +103,11 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
             <div>{editorial.sections[1].paragraphs.slice(0, 2).map((paragraph) => <p key={paragraph.text}>{paragraph.text}</p>)}</div>
           </section>
 
+          <section className={styles.marketPair} aria-label="Further art-market campaign studies">
+            <figure><Image src={marketBooth.src} alt={marketBooth.alt} width={1536} height={1024} sizes="(max-width: 60rem) 100vw, 58vw" /><figcaption>{marketBooth.caption}</figcaption></figure>
+            <figure><Image src={marketViewer.src} alt={marketViewer.alt} width={1024} height={1536} sizes="(max-width: 60rem) 100vw, 32vw" /><figcaption>{marketViewer.caption}</figcaption></figure>
+          </section>
+
           <figure className={styles.fullFoldDark}>
             <Image src={studio.src} alt={studio.alt} width={1600} height={1260} sizes="100vw" />
             <figcaption>{studio.caption}</figcaption>
@@ -116,6 +121,11 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
           <section className={styles.variantSplit} aria-label="ChapelHall artwork variants">
             <figure><Image src={artworkVariant.src} alt={artworkVariant.alt} width={1024} height={1536} sizes="(max-width: 60rem) 100vw, 42vw" /><figcaption>{artworkVariant.caption}</figcaption></figure>
             <figure><Image src={studioVariant.src} alt={studioVariant.alt} width={1411} height={1114} sizes="(max-width: 60rem) 100vw, 50vw" /><figcaption>{studioVariant.caption}</figcaption></figure>
+          </section>
+
+          <section className={styles.materialStudy} aria-label="Further artwork and gallery studies">
+            <figure><Image src={artworkVariantTwo.src} alt={artworkVariantTwo.alt} width={1024} height={1536} sizes="(max-width: 60rem) 100vw, 36vw" /><figcaption>{artworkVariantTwo.caption}</figcaption></figure>
+            <figure><Image src={studioVariantTwo.src} alt={studioVariantTwo.alt} width={1536} height={1152} sizes="(max-width: 60rem) 100vw, 54vw" /><figcaption>{studioVariantTwo.caption}</figcaption></figure>
           </section>
 
           <section className={styles.delivery}>
@@ -148,28 +158,7 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
         </Link>
       </FullBleedHero>
 
-      <article className="report rebrand-report-body">
-        <div className="metric-strip">
-          {study.metrics.map((metric) => (
-            <div className="metric-item" key={metric.label}>
-              <strong>{metric.value}</strong>
-              <span>{metric.label}</span>
-              {metric.detail ? <small>{metric.detail}</small> : null}
-            </div>
-          ))}
-        </div>
-
-        <p className="caveat">
-          <strong>Current result</strong>
-          {editorial.statusStatement}
-        </p>
-
-        <p className="lede">{report.standfirst}</p>
-
-        <div className="executive-brief">
-          <span>Result sought</span>
-          <p>{report.thesis}</p>
-        </div>
+      <article className={`report rebrand-report-body ${styles.caseNarrative}`}>
 
         {study.showcase ? (
           <section className={styles.showcase} aria-labelledby="client-showcase-title">
@@ -194,12 +183,18 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
 
         {report.opening && (
           <NarrativeOpening
-            label={report.opening.label}
             title={report.opening.title}
             paragraphs={report.opening.paragraphs}
             centralQuestion={report.opening.centralQuestion}
           />
         )}
+
+        {study.visuals?.[0] ? (
+          <figure className={styles.caseVisualWide}>
+            <Image src={study.visuals[0].src} alt={study.visuals[0].alt} width={study.visuals[0].width} height={study.visuals[0].height} sizes="(max-width: 60rem) 100vw, 86vw" />
+            <figcaption>{study.visuals[0].caption}</figcaption>
+          </figure>
+        ) : null}
 
         <NarrativeSections
           sections={report.sections}
@@ -207,11 +202,19 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
           contentsLabel="Contents"
           idPrefix={`case-${study.slug}`}
           renderExhibit={() => null}
+          showContents={false}
+          showSectionNumbers={false}
         />
 
+        {study.visuals?.[1] ? (
+          <figure className={styles.caseVisualPortrait}>
+            <Image src={study.visuals[1].src} alt={study.visuals[1].alt} width={study.visuals[1].width} height={study.visuals[1].height} sizes="(max-width: 40rem) 100vw, 34rem" />
+            <figcaption>{study.visuals[1].caption}</figcaption>
+          </figure>
+        ) : null}
+
         <ReportActionAgenda
-          eyebrow={study.actionPanel?.eyebrow ?? 'Next decision'}
-          title={study.actionPanel?.title ?? 'Next steps for this engagement'}
+          title={study.actionPanel?.title ?? 'Next steps'}
           actions={report.actionAgenda}
         />
 
@@ -219,7 +222,6 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
           <ReportReferences
             id="case-references"
             title="Sources"
-            introduction="External sources provide context only. Client results are stated separately."
             sources={references}
           />
         ) : null}

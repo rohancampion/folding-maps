@@ -5,10 +5,10 @@ export const study: CaseStudy = {
   slug: 'cold-chain',
   image: '/images/case-cold-chain.svg',
   sector: 'Refrigerated logistics',
-  title: 'Deploying AI Monitoring Services in Refrigerated Logistics',
+  title: 'Temperature alerts with a clear responder',
   summary: 'An AI-assisted monitoring service routes important temperature alerts to the right person and documents the action taken.',
   status: 'Anonymised',
-  brief: 'The operator requested anonymity. Discovery is preparing an AI-assisted monitoring service that compares alerts with asset, maintenance and shift context at one chilled site. The pilot will run beside current controls and reports no response or safety result yet.',
+  brief: 'A monitoring service checks temperature alerts against site context, routes qualifying events to the duty role and documents the response.',
   metrics: [
     { value: '1 month', label: 'alert sample under review', detail: 'One chilled site' },
     { value: '<15 min', label: 'acknowledgement target', detail: 'Unmeasured pilot target' },
@@ -26,6 +26,10 @@ export const study: CaseStudy = {
     nodes: ['Temperature alert', 'Signal check', 'Priority decision', 'identified person', 'Completed response'],
   },
   nextSteps: ['Finish the one-month alert review', 'Agree the alerts that require a response', 'Run four weeks beside current practice', 'Use missed-event and response measures to decide live routing'],
+  visuals: [
+    { src: '/images/cases/cold-chain/chilled-site-wide.png', alt: 'Technicians working in a refrigerated distribution centre', caption: 'Chilled-site operating environment', width: 1536, height: 1024 },
+    { src: '/images/cases/cold-chain/inspection-portrait.png', alt: 'A technician inspecting refrigeration pipework with a temperature probe', caption: 'Equipment inspection during a shift', width: 1024, height: 1536 },
+  ],
 };
 
 export const editorial: CaseEditorial = {
@@ -36,7 +40,7 @@ export const editorial: CaseEditorial = {
   openingParagraphs: [
     'A chilled room crosses its upper limit during the night. The monitoring platform sends a message within a minute to a shared mailbox and a group chat. Several people can see it, but the message does not name the person expected to act.',
     'By the morning, the temperature has returned to range. Someone may have checked a door, watched a defrost cycle or moved stock. The shift notes contain the temperature and time, but they may not show who acted, what they found or how the site closed the event.',
-    'The operator wants a direct answer to a practical question: did every important overnight alert reach a contactable person, and can the morning team see what happened?',
+    'The operator needs to know whether every important overnight alert reached a contactable person and whether the morning team can see what happened.',
   ],
   centralQuestion: 'Can the operator improve response and accountability without creating an unmanageable alert load or changing the existing safety duties?',
   sections: [

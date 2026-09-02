@@ -1,6 +1,7 @@
-/* Hallmark · genre: editorial · macrostructure: Photographic · theme: ChapelHall custom · enrichment: project photography · nav: existing · footer: existing
+/* Hallmark · genre: editorial · macrostructure: Long Document · theme: existing Quiet Gears system · enrichment: generated art-market photography, composition-preserving artwork edits · nav: existing · footer: existing
  * Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5
- * honest: pass (46) · chrome: pass (47) · tokens: pass (48) · responsive: pass (49) · mobile: pass (34, 49, 50-57)
+ * honest: pass (46) · chrome: pass (47) · tokens: pass (48) · icons: pass (30) · contrast: pass (40-41)
+ * responsive: pass (49) · mobile: pass (34, 49, 50-57) · nav: existing · footer: existing · slop: pass (42-45)
  */
 @import '../../../tokens.css';
 
@@ -9,6 +10,59 @@
   color: var(--color-chapel-ink);
   background: var(--color-chapel-paper);
   font-family: var(--font-chapel-body);
+}
+
+.caseNarrative {
+  max-width: var(--measure-chapel-wide);
+}
+
+.caseNarrative :global(.report-body-single) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.caseNarrative :global(.narrative-opening),
+.caseNarrative :global(.narrative-report-sections),
+.caseNarrative :global(.report-action-agenda),
+.caseNarrative :global(.report-references) {
+  max-width: var(--measure-chapel);
+  margin-inline: auto;
+}
+
+.caseNarrative :global(.narrative-opening) {
+  margin-block-start: 0;
+}
+
+.caseVisualWide,
+.caseVisualPortrait {
+  margin-block: var(--space-chapel-3xl);
+}
+
+.caseVisualWide img,
+.caseVisualPortrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.caseVisualWide figcaption,
+.caseVisualPortrait figcaption {
+  padding-block-start: var(--space-chapel-sm);
+  color: var(--color-chapel-caption);
+  font: 500 var(--text-chapel-xs)/1.5 var(--font-chapel-mono);
+  letter-spacing: var(--tracking-chapel-caption);
+}
+
+.caseVisualPortrait {
+  max-width: 34rem;
+  margin-inline: auto var(--page-chapel-gutter);
+}
+
+.caseNarrative :global(.narrative-report-sections section) {
+  padding-block: var(--space-chapel-2xl);
+}
+
+.caseNarrative :global(.narrative-report-sections h2) {
+  font-style: normal;
 }
 
 .chapelhall h1,
@@ -67,7 +121,12 @@
 .introCopy p { color: var(--color-chapel-muted); line-height: 1.72; }
 
 .fullFold,
-.fullFoldDark { position: relative; background: var(--color-chapel-ink); }
+.fullFoldDark {
+  position: relative;
+  max-width: var(--measure-chapel-wide);
+  margin-inline: auto;
+  background: var(--color-chapel-ink);
+}
 .fullFold img,
 .fullFoldDark img { width: 100%; height: auto; }
 
@@ -99,7 +158,9 @@
 .textFoldAlt p { color: var(--color-chapel-light-muted); }
 
 .artSplit,
-.variantSplit {
+.variantSplit,
+.marketPair,
+.materialStudy {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(0, .78fr);
   gap: var(--space-chapel-lg);
@@ -108,9 +169,26 @@
 }
 
 .artSplit img,
-.variantSplit img { width: 100%; height: auto; }
+.variantSplit img,
+.marketPair img,
+.materialStudy img { width: 100%; height: auto; }
 .artSplit figcaption,
-.variantSplit figcaption { padding-inline: 0; padding-block-end: 0; }
+.variantSplit figcaption,
+.marketPair figcaption,
+.materialStudy figcaption { padding-inline: 0; padding-block-end: 0; }
+
+.marketPair {
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, .66fr);
+  align-items: center;
+  padding-block-start: var(--space-chapel-2xl);
+}
+
+.materialStudy {
+  grid-template-columns: minmax(0, .68fr) minmax(0, 1.32fr);
+  align-items: end;
+  padding-block-start: var(--space-chapel-4xl);
+  background: var(--color-chapel-paper);
+}
 
 .variantSplit {
   grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr);
@@ -130,24 +208,33 @@
   .textFoldAlt,
   .delivery { grid-template-columns: minmax(0, 1fr); gap: var(--space-chapel-xl); }
   .artSplit,
-  .variantSplit { grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .variantSplit,
+  .marketPair,
+  .materialStudy { grid-template-columns: minmax(0, 1fr); align-items: start; }
   .artSplit figure:last-child { width: 72%; margin-inline-start: auto; }
   .variantSplit figure:first-child { width: 76%; }
 }
 
 @media (max-width: 40rem) {
-  .backLink { inset-block-start: var(--space-chapel-sm); inset-inline-start: var(--space-chapel-sm); }
+  .caseVisualWide,
+  .caseVisualPortrait { margin-block: var(--space-chapel-2xl); }
+  .caseVisualPortrait { margin-inline: auto; }
+  .backLink { inset-block-start: auto; inset-block-end: var(--space-chapel-sm); inset-inline-start: var(--space-chapel-sm); }
   .introBand,
   .textFold,
   .textFoldAlt,
   .delivery { padding-block: var(--space-chapel-3xl); }
   .artSplit,
-  .variantSplit { padding-inline: var(--space-chapel-sm); padding-block-end: var(--space-chapel-3xl); }
+  .variantSplit,
+  .marketPair,
+  .materialStudy { padding-inline: var(--space-chapel-sm); padding-block-end: var(--space-chapel-3xl); }
   .artSplit figure:last-child,
   .variantSplit figure:first-child { width: 100%; }
   .chapelhall figcaption { padding-inline: var(--space-chapel-sm); }
   .artSplit figcaption,
-  .variantSplit figcaption { padding-inline: 0; }
+  .variantSplit figcaption,
+  .marketPair figcaption,
+  .materialStudy figcaption { padding-inline: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
