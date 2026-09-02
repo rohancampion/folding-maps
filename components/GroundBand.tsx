@@ -15,7 +15,7 @@ import styles from './GroundBand.module.css';
  * The cycle is CSS. Three overlaid frames, staggered opacity keyframes and a
  * slow scale on each, which means it runs with scripting off and costs no
  * frame budget on the main thread. The only thing React is here for is the
- * pause control: content that animates on its own for more than five seconds
+ * pause control: content that animates alone for more than five seconds
  * needs a way to stop it (WCAG 2.2.2), and honouring prefers-reduced-motion
  * covers the people who set it but not the person who simply finds it
  * distracting.

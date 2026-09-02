@@ -84,7 +84,7 @@ export default async function IndustryDetail({ params }: { params: Promise<{ slu
             <span className={styles.sectionNum}>02</span>
             <h2>{industry.opportunitiesTitle}</h2>
             <p className={styles.sectionLede}>
-              Each has a defined scope, a named owner and a measure that would show it
+              Each has a defined scope, a lead responsible for delivery and a measure that would show it
               working. An opportunity without the third is a hypothesis.
             </p>
             <div className={styles.opportunities}>
@@ -146,7 +146,7 @@ export default async function IndustryDetail({ params }: { params: Promise<{ slu
 
           <section id="services" className={styles.section}>
             <span className={styles.sectionNum}>06</span>
-            <h2>Where a first engagement usually starts in {industry.name.toLowerCase()}.</h2>
+            <h2>A typical first engagement in {industry.name.toLowerCase()}.</h2>
             <p className={styles.sectionLede}>
               A first engagement here normally draws on these. The reasoning matters more
               than the label: where it does not match the situation, the label is wrong.

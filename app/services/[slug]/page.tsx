@@ -52,19 +52,43 @@ export default async function ServiceDetailPage({ params }: PageProps) {
       </FullBleedHero>
 
       <article className={styles.detail}>
-        <section className={styles.explanation} aria-labelledby="service-scope">
-          <p>{service.promise}</p>
+        <section className={styles.outcome} aria-labelledby="service-result">
           <div>
-            <span className={styles.eyebrow}>Service brief</span>
-            <h2 id="service-scope">The business case for this service.</h2>
-            <p>{service.explanation}</p>
+            <p className={styles.eyebrow}>Service result</p>
+            <h2 id="service-result">{service.outcome}</h2>
+          </div>
+        </section>
+
+        <section className={styles.offerings} aria-labelledby="offerings-title">
+          <div className={styles.sectionHeading}>
+            <p>Services</p>
+            <h2 id="offerings-title">Available services.</h2>
+          </div>
+          <div className={styles.offeringList}>
+            {service.offerings.map((offering, index) => (
+              <article key={offering.title}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3>{offering.title}</h3>
+                  <p>{offering.detail}</p>
+                  <div className={styles.subservices}>
+                    {offering.subservices.map((subservice) => (
+                      <div key={subservice.title}>
+                        <h4>{subservice.title}</h4>
+                        <p>{subservice.detail}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
         </section>
 
         <section className={styles.applications} aria-labelledby="applications-title">
           <div className={styles.sectionHeading}>
             <p>Applications</p>
-            <h2 id="applications-title">Common business conditions.</h2>
+            <h2 id="applications-title">Business applications.</h2>
           </div>
           <div className={styles.applicationGrid}>
             {service.applications.map((application, index) => (
@@ -77,58 +101,54 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className={styles.serviceContent} aria-labelledby="included-title">
+        <section className={styles.deliverables} aria-labelledby="deliverables-title">
           <div className={styles.sectionHeading}>
-            <p>Service</p>
-            <h2 id="included-title">Service scope.</h2>
+            <p>Deliverables</p>
+            <h2 id="deliverables-title">Included deliverables.</h2>
           </div>
-          <div className={styles.serviceSections}>
-            {service.serviceSections.map((section, index) => (
-              <article key={section.title}>
-                <span>0{index + 1}</span>
-                <div>
-                  <h3>{section.title}</h3>
-                  {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-                </div>
+          <div className={styles.deliverableGrid}>
+            {service.deliverables.map((deliverable, index) => (
+              <article key={deliverable.title}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <h3>{deliverable.title}</h3>
+                <p>{deliverable.detail}</p>
               </article>
             ))}
           </div>
-          <div className={styles.expertise}>
-            <p className={styles.eyebrow}>Supporting expertise</p>
-            <div>
-              {service.expertise.map((item) => <span key={item}>{item}</span>)}
+        </section>
+
+        {service.technicalScope && (
+          <section className={styles.technical} aria-labelledby="technical-title">
+            <div className={styles.sectionHeading}>
+              <p>Specifications</p>
+              <h2 id="technical-title">Technical scope.</h2>
             </div>
-          </div>
-        </section>
+            <dl className={styles.specificationList}>
+              {service.technicalScope.map((item, index) => (
+                <div key={item.term}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <dt>{item.term}</dt>
+                  <dd>{item.detail}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
 
-        <section className={styles.decisions} aria-labelledby="decisions-title">
+        <section className={styles.faq} aria-labelledby="faq-title">
           <div className={styles.sectionHeading}>
-            <p>Decisions</p>
-            <h2 id="decisions-title">Leadership decisions.</h2>
+            <p>FAQ</p>
+            <h2 id="faq-title">Frequently asked questions.</h2>
           </div>
-          <div className={styles.decisionGrid}>
-            {service.decisions.map((decision, index) => (
-              <article key={decision.title}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <h3>{decision.title}</h3>
-                <p>{decision.detail}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.results} aria-labelledby="results-title">
-          <div className={styles.sectionHeading}>
-            <p>Results</p>
-            <h2 id="results-title">Investment measures.</h2>
-          </div>
-          <div className={styles.resultGrid}>
-            {service.results.map((result, index) => (
-              <article key={result.title}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <h3>{result.title}</h3>
-                <p>{result.detail}</p>
-              </article>
+          <div className={styles.faqList}>
+            {service.faqs.map((item, index) => (
+              <details key={item.question}>
+                <summary>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  {item.question}
+                </summary>
+                <p>{item.answer}</p>
+              </details>
             ))}
           </div>
         </section>

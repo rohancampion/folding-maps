@@ -7,7 +7,7 @@ export const industryServiceRecommendations: Record<string, IndustryServiceRecom
   'aerospace-and-defense': [
     { slug: 'ai-strategy', rationale: 'Assess data, security, engineering assurance and programme ownership before introducing AI into controlled work.' },
     { slug: 'secure-ai-systems', rationale: 'Provide cited access to approved technical knowledge within defined security and access boundaries.' },
-    { slug: 'workflow-automation', rationale: 'Improve requirements, supplier evidence and approval workflows without removing accountable review.' },
+    { slug: 'workflow-automation', rationale: 'Improve requirements, supplier evidence and approval workflows without removing responsible review.' },
   ],
   agriculture: [
     { slug: 'enterprise-ai', rationale: 'Prioritise practical improvements that fit seasonal operations, available data and internal capacity.' },
@@ -52,7 +52,7 @@ export const industryServiceRecommendations: Record<string, IndustryServiceRecom
   'financial-services': [
     { slug: 'enterprise-ai', rationale: 'Establish shared architecture, assurance and portfolio governance across regulated functions.' },
     { slug: 'secure-ai-systems', rationale: 'Provide controlled access to client, policy and product knowledge with auditable permissions.' },
-    { slug: 'chatgpt-training-for-teams', rationale: 'Build role-specific proficiency in verification, data handling and accountable use.' },
+    { slug: 'chatgpt-training-for-teams', rationale: 'Build role-specific proficiency in verification, data handling and responsible use.' },
   ],
   healthcare: [
     { slug: 'ai-strategy', rationale: 'Assess clinical, operational, information-governance and adoption requirements before delivery.' },
@@ -62,7 +62,7 @@ export const industryServiceRecommendations: Record<string, IndustryServiceRecom
   industrials: [
     { slug: 'workflow-automation', rationale: 'Improve quote, order, quality and service workflows across operational systems.' },
     { slug: 'legacy-modernisation', rationale: 'Modernise specialist applications and databases that limit visibility and integration.' },
-    { slug: 'agentic-ai', rationale: 'Prepare multi-step operational work and route exceptions to accountable specialists.' },
+    { slug: 'agentic-ai', rationale: 'Prepare multi-step operational work and route exceptions to responsible specialists.' },
   ],
   infrastructure: [
     { slug: 'ai-strategy', rationale: 'Prioritise use cases against programme outcomes, asset risk and long-term operating requirements.' },
@@ -70,7 +70,7 @@ export const industryServiceRecommendations: Record<string, IndustryServiceRecom
     { slug: 'secure-ai-systems', rationale: 'Protect commercially sensitive and security-relevant project knowledge.' },
   ],
   'life-sciences': [
-    { slug: 'ai-strategy', rationale: 'Evaluate data provenance, validation, quality systems and accountable ownership before implementation.' },
+    { slug: 'ai-strategy', rationale: 'Evaluate data provenance, validation, quality systems and responsible ownership before implementation.' },
     { slug: 'secure-ai-systems', rationale: 'Provide controlled access to research, quality and regulatory knowledge with full source visibility.' },
     { slug: 'claude-implementation', rationale: 'Create rigorous, cited research workflows with explicit expert verification.' },
   ],

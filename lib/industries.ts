@@ -36,7 +36,7 @@ export const industries: Industry[] = [
     name: 'Aerospace & Defence',
     family: 'Advanced industries',
     eyebrow: 'Precision under constraint',
-    headline: 'Programme decisions wait on evidence held across engineering, quality and the customer’s own approvals.',
+    headline: 'Programme decisions wait on evidence held across engineering, quality and customer approvals.',
     lead: 'For specialist aerospace and defence suppliers, AI can strengthen programme control, engineering knowledge and aftermarket service without weakening the evidence chain that customers and regulators expect.',
     thesis: 'The strongest first move is rarely autonomous engineering. It is a controlled decision layer that connects requirements, evidence, capacity and exceptions across the programme.',
     contextTitle: 'The hidden cost sits between systems',
@@ -47,7 +47,7 @@ export const industries: Industry[] = [
     opportunitiesTitle: 'Three practical places to begin',
     opportunities: [
       { title: 'Requirements intelligence', copy: 'Connect contract clauses, engineering changes and verification evidence so teams can identify affected work packages and missing approvals sooner.', measure: 'Measure: change-impact review time' },
-      { title: 'Supplier evidence control', copy: 'Classify incoming certificates, inspection records and concessions, then route incomplete packs to the accountable reviewer.', measure: 'Measure: right-first-time evidence packs' },
+      { title: 'Supplier evidence control', copy: 'Classify incoming certificates, inspection records and concessions, then route incomplete packs to the responsible reviewer.', measure: 'Measure: right-first-time evidence packs' },
       { title: 'Aftermarket knowledge', copy: 'Give service teams a cited view across manuals, prior repairs and asset history while keeping final technical disposition with authorised staff.', measure: 'Measure: time to supported response' },
     ],
     signalTitle: 'A programme signal, read at a glance',
@@ -58,7 +58,7 @@ export const industries: Industry[] = [
     controlTitle: 'Design assurance into the workflow',
     controls: [
       { title: 'Evidence before confidence', copy: 'Retrieved sources, document revisions and configuration identifiers sit beside each generated summary. Missing evidence produces an exception. The system will not fill the gap with a plausible completion.' },
-      { title: 'Authority stays explicit', copy: 'The system may prepare, compare and route. Named engineers, quality staff and commercial owners retain approval rights under the existing management system.' },
+      { title: 'Authority stays explicit', copy: 'The system may prepare, compare and route. Engineers, quality staff and commercial leaders retain approval rights under the existing management system.' },
     ],
     roadmapTitle: 'A credible first release in one programme',
     roadmap: [
@@ -120,7 +120,7 @@ export const industries: Industry[] = [
     contextTitle: 'Small interruptions compound quickly',
     context: [
       'A late component, ambiguous work instruction or recurring fault can move through planning, production and customer service before its full cost is visible. Supervisors often resolve the issue through experience, then lose the learning in a shift note or private message.',
-      'AI can make those patterns reusable by structuring evidence around the part, process, asset and order. The result should be a shorter route from abnormal condition to owned response, with no dilution of quality authority.',
+      'AI can make those patterns reusable by structuring evidence around the part, process, asset and order. The result should be a shorter route from abnormal condition to responsible response, with no dilution of quality authority.',
     ],
     opportunitiesTitle: 'Focus the plant on exceptions that matter',
     opportunities: [
@@ -140,7 +140,7 @@ export const industries: Industry[] = [
     ],
     roadmapTitle: 'Prove value on one recurring loss',
     roadmap: [
-      { title: 'Select a stable problem', copy: 'Choose a repeated exception with usable records and an accountable cross-functional team.' },
+      { title: 'Select a stable problem', copy: 'Choose a repeated exception with usable records and a responsible cross-functional team.' },
       { title: 'Connect the minimum evidence', copy: 'Join only the quality, maintenance and planning fields required to support the chosen response.' },
       { title: 'Review at shift cadence', copy: 'Measure adoption and operating effect in existing meetings, then extend to adjacent loss modes.' },
     ],
@@ -213,7 +213,7 @@ export const industries: Industry[] = [
     decisions: ['The weekly decision that would improve if the same evidence arrived a day earlier is the one to target.', 'Retailer, ecommerce and internal product identifiers have to describe the same item before anything is automated.', 'Brand and margin guardrails need setting, so an apparently efficient recommendation cannot be a strategically poor one.'],
     controlTitle: 'Protect trust and commercial intent',
     controls: [
-      { title: 'Claims remain governed', copy: 'Generated product and campaign material uses approved claim libraries, market restrictions and named sign-off.' },
+      { title: 'Claims remain governed', copy: 'Generated product and campaign material uses approved claim libraries, market restrictions and responsible sign-off.' },
       { title: 'Customer data stays purposeful', copy: 'Personalisation begins with explicit use cases, minimised fields and clear retention. Data accumulated without a decision need has no place in it.' },
     ],
     roadmapTitle: 'Start in the trading rhythm',
@@ -252,7 +252,7 @@ export const industries: Industry[] = [
     decisions: ['The use case has to create more time for teaching, support or informed dialogue.', 'Any learner who could be disadvantaged by an incomplete or historically biased record must be identified first.', 'Educators and learners need to be able to understand, correct and challenge the information used.'],
     controlTitle: 'Safeguarding comes before convenience',
     controls: [
-      { title: 'No automated high-stakes judgement', copy: 'Admissions, grading, safeguarding and disciplinary decisions keep accountable professional review and documented reasoning.' },
+      { title: 'No automated high-stakes judgement', copy: 'Admissions, grading, safeguarding and disciplinary decisions keep responsible professional review and documented reasoning.' },
       { title: 'Age and context shape access', copy: 'Data use, interfaces and escalation are designed for the learner group, with protected information restricted to appropriate roles.' },
     ],
     roadmapTitle: 'Pilot where benefit is visible and risk is bounded',
@@ -300,7 +300,7 @@ export const industries: Industry[] = [
       { title: 'Observe beside operations', copy: 'Run recommendations in shadow mode across normal, degraded and missing-data scenarios.' },
       { title: 'Release with resilience tests', copy: 'Train users, validate fallback and measure response quality before expanding network scope.' },
     ],
-    closing: 'Improve the speed and quality of energy decisions while keeping safety, resilience and accountable control exactly where they belong.',
+    closing: 'Improve the speed and quality of energy decisions while keeping safety, resilience and responsible control exactly where they belong.',
     accent: '#f2a735',
     motif: 'pulse',
   },
@@ -320,7 +320,7 @@ export const industries: Industry[] = [
     opportunitiesTitle: 'Connect planning to execution',
     opportunities: [
       { title: 'Scenario preparation', copy: 'Bring demand, input, capacity and logistics assumptions into comparable operating scenarios for leadership review.', measure: 'Measure: time to a decision-ready scenario' },
-      { title: 'Resource-loss intelligence', copy: 'Join production, energy and quality events to identify where avoidable yield or consumption loss begins.', measure: 'Measure: recurring loss with an owned cause' },
+      { title: 'Resource-loss intelligence', copy: 'Join production, energy and quality events to identify where avoidable yield or consumption loss begins.', measure: 'Measure: recurring loss with an allocated cause' },
       { title: 'Customer and supplier evidence', copy: 'Prepare traceable product, provenance and performance packs from approved records.', measure: 'Measure: evidence requests completed right first time' },
     ],
     signalTitle: 'One value chain, four decision lenses',
@@ -358,7 +358,7 @@ export const industries: Industry[] = [
     ],
     opportunitiesTitle: 'Improve control across the project spine',
     opportunities: [
-      { title: 'Change-impact preparation', copy: 'Compare scope and design revisions, then identify affected packages, queries and commercial records for review.', measure: 'Measure: elapsed time from change to owned assessment' },
+      { title: 'Change-impact preparation', copy: 'Compare scope and design revisions, then identify affected packages, queries and commercial records for review.', measure: 'Measure: elapsed time from change to responsible assessment' },
       { title: 'Site-record intelligence', copy: 'Structure diaries, photographs and progress notes into searchable evidence linked to location and work package.', measure: 'Measure: time spent reconstructing site events' },
       { title: 'Bid and preconstruction reuse', copy: 'Retrieve relevant assumptions, rates, risks and delivery lessons from prior projects without copying stale context blindly.', measure: 'Measure: reviewed knowledge reused per bid' },
     ],
@@ -366,7 +366,7 @@ export const industries: Industry[] = [
     signalCopy: 'Scope, design, programme and commercial impact form a connected chain. The graphic makes missing ownership and stale status visible.',
     signalLabels: ['Scope', 'Design', 'Programme', 'Commercial'],
     decisionsTitle: 'Project controls to settle before build',
-    decisions: ['The information handoff producing the most late clarification and duplicated checking is where to begin.', 'The system has to distinguish current, superseded, proposed and contractually instructed records.', 'Each impact needs a named person accountable for accepting it, and a record of where that decision was taken.'],
+    decisions: ['The information handoff producing the most late clarification and duplicated checking is where to begin.', 'The system has to distinguish current, superseded, proposed and contractually instructed records.', 'Each impact needs a responsible person and a record of where the decision was taken.'],
     controlTitle: 'Contractual status cannot be inferred',
     controls: [
       { title: 'Document state stays prominent', copy: 'Every extraction and comparison shows revision, issue purpose, source and effective status.' },
@@ -397,7 +397,7 @@ export const industries: Industry[] = [
     ],
     opportunitiesTitle: 'Target the casework around judgement',
     opportunities: [
-      { title: 'Case-pack preparation', copy: 'Assemble verified customer facts, documents, prior contact and open conditions for the accountable reviewer.', measure: 'Measure: review time spent gathering evidence' },
+      { title: 'Case-pack preparation', copy: 'Assemble verified customer facts, documents, prior contact and open conditions for the responsible reviewer.', measure: 'Measure: review time spent gathering evidence' },
       { title: 'Policy and procedure guidance', copy: 'Answer staff questions from current controlled material with direct citations and effective dates.', measure: 'Measure: supported answers accepted without correction' },
       { title: 'Quality and conduct review', copy: 'Prioritise cases for human testing using transparent indicators across outcome, communication and process evidence.', measure: 'Measure: material findings per review hour' },
     ],
@@ -408,7 +408,7 @@ export const industries: Industry[] = [
     decisions: ['Preparation has to be separated from the regulated or fiduciary judgement it supports.', 'A reviewer must be able to see the source, transformation and confidence of every material fact.', 'Outcomes need monitoring across customer groups and vulnerable circumstances.'],
     controlTitle: 'Make accountability legible',
     controls: [
-      { title: 'Deterministic gates surround generation', copy: 'Eligibility, mandatory disclosure, sanctions and approval thresholds remain governed rules with named ownership.' },
+      { title: 'Deterministic gates surround generation', copy: 'Eligibility, mandatory disclosure, sanctions and approval thresholds remain governed rules with allocated responsibility.' },
       { title: 'Outcome monitoring starts in the pilot', copy: 'Quality, correction, override and customer-outcome measures are captured from the first release. Adding them after scale means the baseline is gone.' },
     ],
     roadmapTitle: 'Release around a low-discretion burden',
@@ -483,7 +483,7 @@ export const industries: Industry[] = [
     signalCopy: 'Product, configuration, condition and intervention must remain linked so teams work from the machine in front of them and not from a generic manual.',
     signalLabels: ['Product', 'Configuration', 'Condition', 'Intervention'],
     decisionsTitle: 'Scaling specialist knowledge',
-    decisions: ['The customer response that repeatedly sends an expert to the same families of evidence is the one to address.', 'Product and document revisions have to resolve reliably for the installed configuration.', 'Commercial and technical commitments always require named approval.'],
+    decisions: ['The customer response that repeatedly sends an expert to the same families of evidence is the one to address.', 'Product and document revisions have to resolve reliably for the installed configuration.', 'Commercial and technical commitments always require formal approval.'],
     controlTitle: 'Keep technical context attached',
     controls: [
       { title: 'Configuration-aware retrieval', copy: 'The service filters and labels evidence by serial, option, revision and applicability. The nearest text match is the wrong answer here.' },
@@ -555,7 +555,7 @@ export const industries: Industry[] = [
     opportunities: [
       { title: 'Scientific evidence mapping', copy: 'Connect claims, mechanisms, studies and unresolved questions into a source-linked research view.', measure: 'Measure: time to a review-ready evidence map' },
       { title: 'Quality-event preparation', copy: 'Assemble batch, equipment, procedure and comparable-event context before investigation.', measure: 'Measure: investigation time spent gathering records' },
-      { title: 'Regulatory intelligence', copy: 'Track commitments, authority correspondence and affected controlled documents for accountable review.', measure: 'Measure: changes identified before submission work' },
+      { title: 'Regulatory intelligence', copy: 'Track commitments, authority correspondence and affected controlled documents for responsible review.', measure: 'Measure: changes identified before submission work' },
     ],
     signalTitle: 'Evidence needs a validation status',
     signalCopy: 'Scientific relevance, validation state, product applicability and decision consequence shape whether a source can support action.',
@@ -592,7 +592,7 @@ export const industries: Industry[] = [
     ],
     opportunitiesTitle: 'Build around exception flow',
     opportunities: [
-      { title: 'Exception case assembly', copy: 'Correlate movement events, partner messages and service commitments into one owned operational case.', measure: 'Measure: time from disruption to accountable action' },
+      { title: 'Exception case assembly', copy: 'Correlate movement events, partner messages and service commitments into one responsible operational case.', measure: 'Measure: time from disruption to responsible action' },
       { title: 'Dynamic work prioritisation', copy: 'Order the operations queue by consequence, recoverability and customer need with visible reasoning.', measure: 'Measure: preventable service failures' },
       { title: 'Customer communication', copy: 'Draft accurate updates from confirmed events and next actions, with ambiguous cases held for review.', measure: 'Measure: repeat contacts for the same exception' },
     ],
@@ -631,7 +631,7 @@ export const industries: Industry[] = [
     ],
     opportunitiesTitle: 'Focus expertise on recoverable loss',
     opportunities: [
-      { title: 'Shift-loss narrative', copy: 'Join production, delay and operator records into a reviewed account of where time and yield were lost.', measure: 'Measure: repeated loss without an owned action' },
+      { title: 'Shift-loss narrative', copy: 'Join production, delay and operator records into a reviewed account of where time and yield were lost.', measure: 'Measure: repeated loss without a responsible action' },
       { title: 'Maintenance work intelligence', copy: 'Prepare equipment history, symptoms, parts and operating context before intervention.', measure: 'Measure: diagnostic delay and repeat work' },
       { title: 'Process stability support', copy: 'Highlight operating conditions associated with stable recovery or quality for technical review.', measure: 'Measure: time inside the agreed operating window' },
     ],
@@ -651,7 +651,7 @@ export const industries: Industry[] = [
       { title: 'Reconstruct representative shifts', copy: 'Include stable, abnormal and missing-data periods, with frontline interpretation.' },
       { title: 'Deploy into daily review', copy: 'Use the signal to focus investigation and action, then validate effect before any optimisation step.' },
     ],
-    closing: 'Help operational teams learn from every shift while keeping safety, variability and accountable technical judgement in full view.',
+    closing: 'Help operational teams learn from every shift while keeping safety, variability and responsible technical judgement in full view.',
     accent: '#b36c3d',
     motif: 'orbit',
   },
@@ -678,11 +678,11 @@ export const industries: Industry[] = [
     signalCopy: 'Condition, operation, barrier state and intervention history remain distinct layers in the technical decision.',
     signalLabels: ['Condition', 'Operation', 'Barrier', 'Intervention'],
     decisionsTitle: 'Decisions for the asset owner',
-    decisions: ['The preparation burden repeatedly delaying a named engineering or maintenance decision is the target.', 'System separation has to prove the AI layer cannot influence process control directly.', 'Management-of-change requirements must extend to sources, prompts, models and workflow updates.'],
+    decisions: ['The preparation burden repeatedly delaying a specific engineering or maintenance decision is the target.', 'System separation has to prove the AI layer cannot influence process control directly.', 'Management-of-change requirements must extend to sources, prompts, models and workflow updates.'],
     controlTitle: 'Process safety defines the architecture',
     controls: [
       { title: 'Read-only where consequence is high', copy: 'Initial services retrieve and prepare evidence through controlled interfaces, with no actuation or automatic set-point path.' },
-      { title: 'Barrier evidence cannot be summarised away', copy: 'Conflicting, overdue or missing assurance remains a visible exception requiring accountable review.' },
+      { title: 'Barrier evidence cannot be summarised away', copy: 'Conflicting, overdue or missing assurance remains a visible exception requiring responsible review.' },
     ],
     roadmapTitle: 'Pilot on a bounded technical workflow',
     roadmap: [
@@ -749,7 +749,7 @@ export const industries: Industry[] = [
     opportunitiesTitle: 'Connect the deal cycle to operating value',
     opportunities: [
       { title: 'AI diligence lens', copy: 'Assess process economics, data rights, technology constraints and credible use cases alongside commercial diligence.', measure: 'Measure: value hypotheses validated before signing' },
-      { title: 'Portfolio initiative view', copy: 'Track baselines, release progress, adoption, control and realised value across businesses without flattening context.', measure: 'Measure: initiatives with an accountable operating owner' },
+      { title: 'Portfolio initiative view', copy: 'Track baselines, release progress, adoption, control and realised value across businesses without flattening context.', measure: 'Measure: initiatives with a responsible operating owner' },
       { title: 'Reusable enablement', copy: 'Provide reference controls, vendor questions, evaluation methods and specialist support to reduce repeated setup cost.', measure: 'Measure: time from hypothesis to safe pilot' },
     ],
     signalTitle: 'Readiness and value must travel together',
@@ -759,8 +759,8 @@ export const industries: Industry[] = [
     decisions: ['AI is either central to the underwriting case, a value-creation option, or an operating hygiene issue, and the three lead to different work.', 'The first ownership phase has to establish what must be true for the value hypothesis to hold.', 'Capabilities belonging at portfolio level have to be separated from those that stay with company management.'],
     controlTitle: 'Govern without creating portfolio theatre',
     controls: [
-      { title: 'Baselines before benefits', copy: 'Each initiative starts with a named operational measure, current performance and value mechanism agreed by management.' },
-      { title: 'Company accountability remains intact', copy: 'Portfolio standards support risk and comparability, while operating leaders own process change, adoption and realised results.' },
+      { title: 'Baselines before benefits', copy: 'Each initiative starts with a defined operational measure, current performance and value mechanism agreed by management.' },
+      { title: 'Company accountability remains intact', copy: 'Portfolio standards support risk and comparability, while operating leaders remain responsible for process change, adoption and realised results.' },
     ],
     roadmapTitle: 'Build a repeatable value-creation motion',
     roadmap: [
@@ -776,7 +776,7 @@ export const industries: Industry[] = [
     slug: 'public-sector',
     name: 'Public Sector',
     family: 'Public and social impact',
-    eyebrow: 'Better service with accountable technology',
+    eyebrow: 'Better service with responsible technology',
     headline: 'Case preparation and access decisions have to be explainable to the resident they affect, and challengeable.',
     lead: 'Councils, agencies and public-service suppliers can use AI to improve case preparation, access and operational capacity when transparency, equality and public accountability lead the design.',
     thesis: 'Public-sector AI should make a service easier to navigate and a decision easier to explain, without placing an opaque system between a person and their rights.',
@@ -795,7 +795,7 @@ export const industries: Industry[] = [
     signalCopy: 'Need, completeness, consequence and capacity shape the operating response. No single score should determine entitlement or priority.',
     signalLabels: ['Need', 'Completeness', 'Consequence', 'Capacity'],
     decisionsTitle: 'Public accountability decisions',
-    decisions: ['The resident outcome that should improve must be named, along with how the organisation will hear from people who struggle with the new route.', 'Any effect on eligibility, enforcement, liberty or access to an essential provision has to be established first.', 'An officer and a resident both need to understand the material evidence, the policy and the route to correction or appeal.'],
+    decisions: ['The resident outcome that should improve must be defined, along with the organisation’s route for hearing from people who struggle with the new service.', 'Any effect on eligibility, enforcement, liberty or access to an essential provision has to be established first.', 'An officer and a resident both need to understand the material evidence, the policy and the route to correction or appeal.'],
     controlTitle: 'Keep rights and alternatives visible',
     controls: [
       { title: 'Assisted digital remains available', copy: 'The service retains accessible non-digital and human routes, with no penalty for people who cannot use the AI-enabled channel.' },
@@ -822,11 +822,11 @@ export const industries: Industry[] = [
     contextTitle: 'Every asset has a fragmented operating story',
     context: [
       'Leases, enquiries, inspections, work orders, energy records and capex plans sit with different teams and suppliers. Portfolio reporting compresses that detail, often hiding the reason an asset is underperforming or a tenant issue remains unresolved.',
-      'AI can structure the property record, prepare comparable evidence and make open actions visible. Decisions on value, safety, tenant rights and capital remain with accountable professionals.',
+      'AI can structure the property record, prepare comparable evidence and make open actions visible. Decisions on value, safety, tenant rights and capital remain with responsible professionals.',
     ],
     opportunitiesTitle: 'Build intelligence around the asset lifecycle',
     opportunities: [
-      { title: 'Leasing pipeline control', copy: 'Connect enquiries, space requirements, documents and next actions from first enquiry to signed lease.', measure: 'Measure: qualified demand without an owned next step' },
+      { title: 'Leasing pipeline control', copy: 'Connect enquiries, space requirements, documents and next actions from first enquiry to signed lease.', measure: 'Measure: qualified demand without an allocated next step' },
       { title: 'Property operations triage', copy: 'Combine tenant reports, work orders, asset history and service commitments to prioritise response.', measure: 'Measure: repeat issues and overdue actions' },
       { title: 'Capex evidence preparation', copy: 'Assemble condition, compliance, tenant and performance context for investment review.', measure: 'Measure: projects reprioritised after approval' },
     ],
@@ -857,7 +857,7 @@ export const industries: Industry[] = [
     eyebrow: 'Local action from live demand',
     headline: 'Range, availability and store execution decisions are taken daily by teams with no analyst behind them.',
     lead: 'Independent chains and specialist retailers can use AI to improve range, availability, service and store execution with tools sized to lean commercial teams.',
-    thesis: 'Retail AI should turn product, customer and operational signals into a small number of assigned actions. More reports for already stretched teams is the outcome to avoid.',
+    thesis: 'Retail AI should turn product, customer and operational signals into a small number of allocated actions. More reports for already stretched teams is the outcome to avoid.',
     contextTitle: 'The truth changes by item, channel and hour',
     context: [
       'Sales, stock, returns, reviews, labour and supplier data move at different speeds. A central average can hide a local availability issue, an emerging product problem or a promotion that drives volume without contribution.',
@@ -865,7 +865,7 @@ export const industries: Industry[] = [
     ],
     opportunitiesTitle: 'Put intelligence into the trading cadence',
     opportunities: [
-      { title: 'Availability intervention', copy: 'Identify demand lost through stock, fulfilment or shelf execution and propose the next operational check.', measure: 'Measure: material availability gaps with owned action' },
+      { title: 'Availability intervention', copy: 'Identify demand lost through stock, fulfilment or shelf execution and propose the next operational check.', measure: 'Measure: material availability gaps with responsible action' },
       { title: 'Merchant decision support', copy: 'Combine rate of sale, margin, returns and local context for range and replenishment review.', measure: 'Measure: time from signal to range decision' },
       { title: 'Service recovery', copy: 'Bring order, contact and policy context together so staff can resolve customer cases consistently.', measure: 'Measure: repeat contact and avoidable escalation' },
     ],
@@ -982,7 +982,7 @@ export const industries: Industry[] = [
     ],
     opportunitiesTitle: 'Embed AI in the operating loop',
     opportunities: [
-      { title: 'Product learning synthesis', copy: 'Combine usage, feedback, support and experiment evidence into a decision-ready product narrative.', measure: 'Measure: time from signal to owned product change' },
+      { title: 'Product learning synthesis', copy: 'Combine usage, feedback, support and experiment evidence into a decision-ready product narrative.', measure: 'Measure: time from signal to approved product change' },
       { title: 'Service operations', copy: 'Resolve routine cases from approved account and product context, escalating ambiguity with a complete handoff.', measure: 'Measure: customer effort and safe resolution' },
       { title: 'Engineering knowledge flow', copy: 'Connect incidents, architecture decisions and codebase context to improve diagnosis and change preparation.', measure: 'Measure: repeated investigation effort' },
     ],

@@ -11,7 +11,7 @@ export const study: CaseStudy = {
   brief: 'Discovery and design are complete. The team is connecting market activity with customer service through one view of enquiries, customers, vessels and active projects. The first live release remains unevaluated.',
   metrics: [
     { value: '4', label: 'parts of the customer journey mapped', detail: 'Enquiry, customer, project and follow-up' },
-    { value: '1', label: 'named colleague for each open action', detail: 'First-release rule' },
+    { value: '1', label: 'identified colleague for each open action', detail: 'First-release rule' },
     { value: '0', label: 'unapproved customer messages', detail: 'First-release limit' },
   ],
   phases: [
@@ -21,16 +21,16 @@ export const study: CaseStudy = {
     { label: 'Measure', detail: 'Compare search time, late actions and message corrections after four weeks.' },
   ],
   code: {
-    title: 'Customer update to named next action',
+    title: 'Customer update to identified next action',
     lines: ['update = capture(currentWork)', 'project = match(customer, vessel, enquiry)', 'status = assemble(update, project)', 'action = assign(status, colleague, dueDate)', 'message = colleague.approve(status)'],
-    nodes: ['Customer channels', 'Customer and vessel match', 'Current project view', 'Named action', 'Approved reply'],
+    nodes: ['Customer channels', 'Customer and vessel match', 'Current project view', 'identified action', 'Approved reply'],
   },
   nextSteps: ['Take the pre-release baseline', 'Introduce the shared project view', 'Review uncertain matches and late actions each week', 'Use the four-week result to decide the next release'],
 };
 
 export const editorial: CaseEditorial = {
   statusStatement: 'This engagement is in progress. Discovery and design are complete. The team has not evaluated the first live release or its business result. The company remains unnamed, and this account contains no customer or vessel identifiers.',
-  thesis: 'Growth has made market follow-up and routine customer service depend on repeated searches across email, job sheets, supplier messages and staff memory. A shared project view gives colleagues one current answer and one named next action. Four weeks of use will test the result.',
+  thesis: 'Growth has made market follow-up and routine customer service depend on repeated searches across email, job sheets, supplier messages and staff memory. A shared project view gives colleagues one current answer and one identified next action. Four weeks of use will test the result.',
   sceneLabel: 'A representative customer request',
   openingTitle: 'One customer question connects market activity with service delivery',
   openingParagraphs: [
@@ -62,8 +62,8 @@ export const editorial: CaseEditorial = {
     {
       heading: 'The design now has clear business tests',
       paragraphs: [
-        { text: 'Discovery has produced a shared definition of the customer journey, the minimum project information staff need and the rule that every open action has one named colleague and due date. The team has also agreed the limits on customer communication. These design decisions are complete. Operating improvements remain unmeasured.' },
-        { text: 'Live use has not shown faster replies, fewer late actions or lower coordination effort. Published projections about searchable company information also cannot supply those answers. Published estimates for customer-system failure range from 18 to 69 percent, so the company must use its own measures.', sources: [2, 4] },
+        { text: 'Discovery has produced a shared definition of the customer journey, the minimum project information staff need and the rule that every open action has one identified colleague and due date. The team has also agreed the limits on customer communication. These design decisions are complete. Operating improvements remain unmeasured.' },
+        { text: 'Live use has not shown faster replies, fewer late actions or lower coordination effort. Published projections about searchable company information also cannot supply those answers. Published estimates for customer-system failure range from 18 to 69 percent, so the company must use its internal measures.', sources: [2, 4] },
         { text: 'Before launch, the team will review a representative set of projects and measure sources consulted per status question, time spent preparing an accurate update, missing required details, duplicate customer or vessel matches, overdue actions and material corrections to customer messages.' },
       ],
     },
@@ -73,7 +73,7 @@ export const editorial: CaseEditorial = {
       transition: 'Four weeks of live use will decide whether the shared view solves the customer problem.',
       paragraphs: [
         { text: 'The same project sample and review method will run again after four working weeks. The team will also compare use of the shared view with continued searches through email, job sheets and private files. Management will agree acceptance thresholds before launch.' },
-        { text: 'Success means staff can answer sampled customer questions with fewer searches, every active project has a named next action, overdue work falls within the agreed limit and customer-message corrections do not rise. Staff must achieve this without creating a separate maintenance task.' },
+        { text: 'Success means staff can answer sampled customer questions with fewer searches, every active project has an identified next action, overdue work falls within the agreed limit and customer-message corrections do not rise. Staff must achieve this without creating a separate maintenance task.' },
         { text: 'If the result meets those conditions, the company can consider connected documents, management reporting and limited drafting support. If staff still rebuild the answer, the team will fix matching, capture or screen design first. The four-week review will use the same customer questions that formed the baseline.' },
       ],
     },
@@ -83,7 +83,7 @@ export const editorial: CaseEditorial = {
 export const research: ResearchFinding[] = [
   { statistic: '1,200 a day', finding: 'Instrumented workers switched between applications and windows about 1,200 times a day, losing just under four hours a week to reorientation', implication: 'Repeated searching can consume material working time, so the engagement will measure the same customer question before and after release.', source: 'Harvard Business Review, How Much Time and Energy Do We Waste Toggling Between Applications?, 2022', href: 'https://hbr.org/2022/08/how-much-time-and-energy-do-we-waste-toggling-between-applications' },
   { statistic: '62%', finding: 'Most survey respondents report struggling with the time they spend searching for information during the working day', implication: 'Search cost affects many sectors, but only a local baseline can establish its scale in this business.', source: 'Microsoft, Work Trend Index: Will AI Fix Work?, 2023', href: 'https://www.microsoft.com/en-us/worklab/work-trend-index/will-ai-fix-work' },
-  { statistic: 'Up to 35%', finding: 'A searchable internal information source was projected to cut the time employees spend finding company information', implication: 'The 2012 projection supplies no business case here. The company will test its own status questions during live use.', source: 'McKinsey Global Institute, The Social Economy, 2012', href: 'https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-social-economy' },
+  { statistic: 'Up to 35%', finding: 'A searchable internal information source was projected to cut the time employees spend finding company information', implication: 'The 2012 projection supplies no business case here. The company will test its internal status questions during live use.', source: 'McKinsey Global Institute, The Social Economy, 2012', href: 'https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/the-social-economy' },
   { statistic: '5,800 businesses', finding: 'Most firms in the UK leisure, superyacht and small commercial marine industry are small, with the nine largest holding about a quarter of the market', implication: 'Smaller operators often place coordination work with the same people who quote, deliver and support customers.', source: 'British Marine, The Economic Benefits of the Leisure, Superyacht and Small Commercial Marine Industry, 2022-23', href: 'https://www.britishmarine.co.uk/resources/knowledge-centre/economic-benefits-leisure-superyacht-and-small-commercial-marine-industry-2022-2023' },
   { statistic: '18% to 69%', finding: 'CIO reviewed twelve analyst estimates of customer-relationship project failure, which ranged from 18 to 69 percent and averaged about a third', implication: 'Published failure estimates differ too much to guide this release. Direct use and customer-service measures must decide it.', source: 'CIO, What to do when your CRM project fails, 2017', href: 'https://www.cio.com/article/288664/what-to-do-when-your-crm-project-fails.html' },
   { statistic: '82%', finding: 'A 2022 Scottish marine workforce survey found skills gaps at 82 percent of responding businesses, while 58 percent expected retirements within five years and 12 percent employed apprentices', implication: 'Marine firms face pressure on specialist capacity, which increases the value of reducing repeated coordination work.', source: 'British Marine Scotland, Economic Value of Boating Tourism in Scotland, 2023', href: 'https://britishmarine.co.uk/application/files/3617/3037/5970/Measuring_the_Economic_Value_of_Boating_Tourism_in_Scotland_-_27_March_2023.pdf' },

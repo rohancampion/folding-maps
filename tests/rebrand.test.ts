@@ -33,11 +33,12 @@ describe('botanical-industrial rebrand', () => {
 
     expect(page).not.toContain('ServiceSystemLab');
     expect(page).not.toContain('Operational ownership');
+    expect(page).toContain('service.offerings.map');
+    expect(page).toContain('offering.subservices.map');
     expect(page).toContain('service.applications.map');
-    expect(page).toContain('service.serviceSections.map');
-    expect(page).toContain('service.expertise.map');
-    expect(page).toContain('service.decisions.map');
-    expect(page).toContain('service.results.map');
+    expect(page).toContain('service.deliverables.map');
+    expect(page).toContain('service.technicalScope.map');
+    expect(page).toContain('service.faqs.map');
     expect(page).not.toMatch(/service\.(useCases|stages|provisions|safeguards|idealFor|poorFit|clientInputs|measures)/);
   });
 
