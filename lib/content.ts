@@ -3,6 +3,7 @@ import { study as cold_chain, research as cold_chain_research } from '@/lib/case
 import { study as property_pipeline, research as property_pipeline_research } from '@/lib/cases/property-pipeline';
 import { study as professional_services_intake, research as professional_services_intake_research } from '@/lib/cases/professional-services-intake';
 import { study as field_service_planning, research as field_service_planning_research } from '@/lib/cases/field-service-planning';
+import { study as chapelhall, research as chapelhall_research } from '@/lib/cases/chapelhall';
 
 export type Metric = { value: string; label: string; detail?: string };
 // `detail` is the tooltip shown when a reader selects a bar. It is optional
@@ -20,7 +21,7 @@ export type CaseStudy = {
   // 'Anonymised' marks a real engagement written up without naming the client.
   // Its figures are the design targets agreed for the work; where a measured
   // result exists it is stated as one.
-  status: 'In progress' | 'Anonymised';
+  status: 'In progress' | 'Anonymised' | 'Published';
   brief: string;
   metrics: Metric[];
   // A project publishes an evidence chart only when the firm has supplied the
@@ -31,12 +32,20 @@ export type CaseStudy = {
   phases: { label: string; detail: string }[];
   code: { title: string; lines: string[]; nodes: string[] };
   nextSteps: string[];
+  actionPanel?: { eyebrow: string; title: string };
+  showcase?: {
+    label: string;
+    title: string;
+    summary: string;
+    images: { src: string; alt: string; caption: string }[];
+  };
 };
 
 /** One file per project, under lib/cases. */
 export const cases: CaseStudy[] = [
   yacht_operations,
   cold_chain,
+  chapelhall,
   property_pipeline,
   professional_services_intake,
   field_service_planning,
@@ -127,6 +136,7 @@ export const articles: Article[] = [
 export type ResearchFinding = { statistic: string; finding: string; implication: string; source: string; href: string };
 
 export const caseResearch: Record<string, ResearchFinding[]> = {
+  chapelhall: chapelhall_research,
   'yacht-operations': yacht_operations_research,
   'cold-chain': cold_chain_research,
   'property-pipeline': property_pipeline_research,

@@ -14,6 +14,7 @@ export const metadata = createPageMetadata({
 });
 
 const caseImagery: Record<string, string> = {
+  chapelhall: '/images/cases/chapelhall/hero.png',
   'yacht-operations': '/images/cases/yacht-operations.webp',
   'cold-chain': '/images/cases/cold-chain.webp',
   'property-pipeline': '/images/cases/property-pipeline.webp',
@@ -46,7 +47,7 @@ export default function Cases() {
               <span className={styles.caseIndex}>{String(index + 1).padStart(2, '0')}</span>
             </div>
             <div className={styles.caseCopy}>
-              <PrecisionLabel index={study.status === 'In progress' ? 'ACTIVE' : 'ANONYMISED'} label={study.sector} />
+              <PrecisionLabel index={study.status === 'In progress' ? 'ACTIVE' : study.status === 'Published' ? 'CLIENT' : 'ANONYMISED'} label={study.sector} />
               <h3>{study.title}</h3>
               <p>{study.summary}</p>
               <span className={styles.caseAction}>Read the case study <ArrowUpRight size={16}/></span>

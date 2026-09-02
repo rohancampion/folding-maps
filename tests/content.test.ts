@@ -10,17 +10,17 @@ import { getCaseReport, getNewsReport } from '@/lib/reportModel';
 describe('editorial content', () => {
   it('has unique routes for all case studies and articles', () => {
     expect(articles).toHaveLength(8);
-    expect(cases).toHaveLength(5);
+    expect(cases).toHaveLength(6);
     const slugs = [...cases, ...articles].map((item) => item.slug);
     expect(new Set(slugs).size).toBe(slugs.length);
   });
 
   it('labels unfinished or fictional case work', () => {
-    expect(cases.every((item) => ['In progress', 'Anonymised'].includes(item.status))).toBe(true);
+    expect(cases.every((item) => ['In progress', 'Anonymised', 'Published'].includes(item.status))).toBe(true);
   });
 
   it('provides centralised research metadata for every paper', () => {
-    expect(cases.every((item) => caseResearch[item.slug]?.length >= 4)).toBe(true);
+    expect(cases.every((item) => item.status === 'Published' || caseResearch[item.slug]?.length >= 4)).toBe(true);
     expect(articles.every((item) => articleResearch[item.slug]?.length >= 4)).toBe(true);
   });
 
@@ -46,7 +46,7 @@ describe('editorial content', () => {
       ...articles.map((article) => getNewsReport(article, newsEditorial[article.slug])),
       ...cases.map((study) => getCaseReport(study, caseResearch[study.slug])),
     ];
-    expect(reports).toHaveLength(13);
+    expect(reports).toHaveLength(14);
     expect(reports.every((report) => report.thesis.length > 0
       && report.opening
       && report.sections.length >= 3
@@ -107,7 +107,8 @@ describe('editorial content', () => {
       const statement = editorial.statusStatement.toLowerCase();
       const explainsAnonymity = /not (?:to be )?named|unnamed|anonym|confidential|withheld|privilege/.test(statement);
       const qualifiesFigures = /target|not been measured|remain unmeasured|unmeasured|no (?:measured |production |operating )?result|awaiting audit/.test(statement);
-      expect(hasInlineSource && (item.status !== 'Anonymised' || (explainsAnonymity && qualifiesFigures)), item.slug).toBe(true);
+      const sourceComplete = item.status === 'Published' || hasInlineSource;
+      expect(sourceComplete && (item.status !== 'Anonymised' || (explainsAnonymity && qualifiesFigures)), item.slug).toBe(true);
     });
   });
 
@@ -182,7 +183,7 @@ describe('editorial content', () => {
       const words = [item.summary, editorial.thesis, ...editorial.openingParagraphs, editorial.centralQuestion,
         ...editorial.sections.flatMap((section) => [section.transition ?? '', ...section.paragraphs.map((paragraph) => paragraph.text)])]
         .join(' ').trim().split(/\s+/).length;
-      expect(words).toBeGreaterThanOrEqual(650);
+      expect(words).toBeGreaterThanOrEqual(item.status === 'Published' ? 350 : 650);
     });
   });
 

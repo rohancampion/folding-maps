@@ -1,0 +1,155 @@
+/* Hallmark · genre: editorial · macrostructure: Photographic · theme: ChapelHall custom · enrichment: project photography · nav: existing · footer: existing
+ * Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5
+ * honest: pass (46) · chrome: pass (47) · tokens: pass (48) · responsive: pass (49) · mobile: pass (34, 49, 50-57)
+ */
+@import '../../../tokens.css';
+
+.chapelhall {
+  overflow-x: clip;
+  color: var(--color-chapel-ink);
+  background: var(--color-chapel-paper);
+  font-family: var(--font-chapel-body);
+}
+
+.chapelhall h1,
+.chapelhall h2 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-family: var(--font-chapel-display);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.photoHero { position: relative; background: var(--color-chapel-paper-2); }
+.heroImage { width: 100%; height: auto; }
+
+.backLink {
+  position: absolute;
+  inset-block-start: var(--space-chapel-lg);
+  inset-inline-start: var(--page-chapel-gutter);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-chapel-xs);
+  min-height: var(--control-chapel-height);
+  padding-inline: var(--space-chapel-md);
+  color: var(--color-chapel-light);
+  background: var(--color-chapel-ink-overlay);
+  font: 600 var(--text-chapel-xs)/1 var(--font-chapel-body);
+  letter-spacing: var(--tracking-chapel-label);
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background-color var(--dur-chapel-short) var(--ease-chapel-out);
+}
+
+.backLink:hover { background: var(--color-chapel-red-dark); }
+.backLink:focus-visible { outline: var(--rule-chapel-focus) solid var(--color-chapel-focus); outline-offset: var(--space-chapel-2xs); }
+
+.introBand,
+.textFold,
+.textFoldAlt,
+.delivery {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: var(--space-chapel-xl) var(--space-chapel-3xl);
+  padding: var(--space-chapel-4xl) var(--page-chapel-gutter);
+}
+
+.introBand h1 {
+  max-width: 10ch;
+  margin: 0;
+  font-size: var(--text-chapel-display);
+  line-height: 1;
+  letter-spacing: var(--tracking-chapel-display);
+}
+
+.introCopy { align-self: end; max-width: var(--measure-chapel); }
+.introCopy p:first-child { font-size: var(--text-chapel-lg); color: var(--color-chapel-ink); }
+.introCopy p { color: var(--color-chapel-muted); line-height: 1.72; }
+
+.fullFold,
+.fullFoldDark { position: relative; background: var(--color-chapel-ink); }
+.fullFold img,
+.fullFoldDark img { width: 100%; height: auto; }
+
+.chapelhall figcaption {
+  padding: var(--space-chapel-sm) var(--page-chapel-gutter) var(--space-chapel-xl);
+  color: var(--color-chapel-caption);
+  font: 500 var(--text-chapel-xs)/1.5 var(--font-chapel-mono);
+  letter-spacing: var(--tracking-chapel-caption);
+}
+
+.fullFold figcaption { color: var(--color-chapel-muted); background: var(--color-chapel-paper); }
+.fullFoldDark figcaption { color: var(--color-chapel-light-muted); background: var(--color-chapel-ink); }
+
+.textFold h2,
+.textFoldAlt h2,
+.delivery h2 {
+  max-width: 13ch;
+  margin: 0;
+  font-size: var(--text-chapel-2xl);
+  line-height: 1.05;
+  letter-spacing: var(--tracking-chapel-heading);
+}
+
+.textFold > div,
+.textFoldAlt > div { max-width: var(--measure-chapel); }
+.textFold p,
+.textFoldAlt p { color: var(--color-chapel-muted); line-height: 1.75; }
+.textFoldAlt { color: var(--color-chapel-light); background: var(--color-chapel-red-dark); }
+.textFoldAlt p { color: var(--color-chapel-light-muted); }
+
+.artSplit,
+.variantSplit {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, .78fr);
+  gap: var(--space-chapel-lg);
+  align-items: end;
+  padding: 0 var(--page-chapel-gutter) var(--space-chapel-4xl);
+}
+
+.artSplit img,
+.variantSplit img { width: 100%; height: auto; }
+.artSplit figcaption,
+.variantSplit figcaption { padding-inline: 0; padding-block-end: 0; }
+
+.variantSplit {
+  grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr);
+  align-items: center;
+  padding-block-start: var(--space-chapel-2xl);
+  background: var(--color-chapel-paper-2);
+}
+
+.delivery { align-items: start; }
+.delivery ul { margin: 0; padding: 0; list-style: none; border-block-start: var(--rule-chapel-hairline) solid var(--color-chapel-rule); }
+.delivery li { padding-block: var(--space-chapel-md); border-block-end: var(--rule-chapel-hairline) solid var(--color-chapel-rule); font-size: var(--text-chapel-md); }
+.chapelContact a { white-space: nowrap; }
+
+@media (max-width: 60rem) {
+  .introBand,
+  .textFold,
+  .textFoldAlt,
+  .delivery { grid-template-columns: minmax(0, 1fr); gap: var(--space-chapel-xl); }
+  .artSplit,
+  .variantSplit { grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .artSplit figure:last-child { width: 72%; margin-inline-start: auto; }
+  .variantSplit figure:first-child { width: 76%; }
+}
+
+@media (max-width: 40rem) {
+  .backLink { inset-block-start: var(--space-chapel-sm); inset-inline-start: var(--space-chapel-sm); }
+  .introBand,
+  .textFold,
+  .textFoldAlt,
+  .delivery { padding-block: var(--space-chapel-3xl); }
+  .artSplit,
+  .variantSplit { padding-inline: var(--space-chapel-sm); padding-block-end: var(--space-chapel-3xl); }
+  .artSplit figure:last-child,
+  .variantSplit figure:first-child { width: 100%; }
+  .chapelhall figcaption { padding-inline: var(--space-chapel-sm); }
+  .artSplit figcaption,
+  .variantSplit figcaption { padding-inline: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backLink { transition-duration: var(--dur-chapel-reduced); }
+}

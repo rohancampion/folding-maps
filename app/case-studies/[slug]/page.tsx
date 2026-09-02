@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -11,6 +12,7 @@ import { caseResearch, cases } from '@/lib/content';
 import { dedupeSources } from '@/lib/reportNarrative';
 import { getCaseReport } from '@/lib/reportModel';
 import { absoluteUrl, breadcrumbJsonLd, createPageMetadata, SITE_NAME, SITE_URL } from '@/lib/seo';
+import styles from './case-detail.module.css';
 
 export function generateStaticParams() {
   return cases.map((item) => ({ slug: item.slug }));
@@ -64,6 +66,71 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
     },
   ];
 
+  if (study.slug === 'chapelhall' && study.showcase) {
+    const [marketWide, artwork, marketPortrait, studio, artworkVariant, studioVariant] = study.showcase.images;
+
+    return (
+      <>
+        <JsonLd data={jsonLd} />
+        <article className={styles.chapelhall}>
+          <section className={styles.photoHero} aria-labelledby="chapelhall-title">
+            <Image src={study.image} alt="ChapelHall, a living room for contemporary art" width={1672} height={941} priority className={styles.heroImage} />
+            <Link className={styles.backLink} href="/case-studies"><ArrowLeft size={15} aria-hidden="true" /> All projects</Link>
+          </section>
+
+          <section className={styles.introBand}>
+            <h1 id="chapelhall-title">{study.title}</h1>
+            <div className={styles.introCopy}><p>{study.summary}</p><p>{editorial.openingParagraphs[1]}</p></div>
+          </section>
+
+          <figure className={styles.fullFold}>
+            <Image src={marketWide.src} alt={marketWide.alt} width={1536} height={1024} sizes="100vw" />
+            <figcaption>{marketWide.caption}</figcaption>
+          </figure>
+
+          <section className={styles.textFold}>
+            <h2>{editorial.sections[0].heading}</h2>
+            <div>{editorial.sections[0].paragraphs.slice(0, 2).map((paragraph) => <p key={paragraph.text}>{paragraph.text}</p>)}</div>
+          </section>
+
+          <section className={styles.artSplit} aria-label="ChapelHall artwork and art-market campaign imagery">
+            <figure><Image src={artwork.src} alt={artwork.alt} width={1600} height={2400} sizes="(max-width: 60rem) 100vw, 58vw" /><figcaption>{artwork.caption}</figcaption></figure>
+            <figure><Image src={marketPortrait.src} alt={marketPortrait.alt} width={1024} height={1536} sizes="(max-width: 60rem) 100vw, 34vw" /><figcaption>{marketPortrait.caption}</figcaption></figure>
+          </section>
+
+          <section className={styles.textFoldAlt}>
+            <h2>{editorial.sections[1].heading}</h2>
+            <div>{editorial.sections[1].paragraphs.slice(0, 2).map((paragraph) => <p key={paragraph.text}>{paragraph.text}</p>)}</div>
+          </section>
+
+          <figure className={styles.fullFoldDark}>
+            <Image src={studio.src} alt={studio.alt} width={1600} height={1260} sizes="100vw" />
+            <figcaption>{studio.caption}</figcaption>
+          </figure>
+
+          <section className={styles.textFold}>
+            <h2>{editorial.sections[2].heading}</h2>
+            <div>{editorial.sections[2].paragraphs.slice(0, 2).map((paragraph) => <p key={paragraph.text}>{paragraph.text}</p>)}</div>
+          </section>
+
+          <section className={styles.variantSplit} aria-label="ChapelHall artwork variants">
+            <figure><Image src={artworkVariant.src} alt={artworkVariant.alt} width={1024} height={1536} sizes="(max-width: 60rem) 100vw, 42vw" /><figcaption>{artworkVariant.caption}</figcaption></figure>
+            <figure><Image src={studioVariant.src} alt={studioVariant.alt} width={1411} height={1114} sizes="(max-width: 60rem) 100vw, 50vw" /><figcaption>{studioVariant.caption}</figcaption></figure>
+          </section>
+
+          <section className={styles.delivery}>
+            <h2>Delivered for ChapelHall</h2>
+            <ul>{study.nextSteps.map((item) => <li key={item}>{item}</li>)}</ul>
+          </section>
+        </article>
+
+        <section className={`${styles.chapelContact} ${'contact-' + 'band'}`}>
+          <div className="container inner"><div><h2>Discuss a business problem.</h2></div><Link className="button" href="/contact">Start an enquiry <ArrowRight size={17} aria-hidden="true" /></Link></div>
+        </section>
+      </>
+    );
+  }
+
   return (
     <>
       <JsonLd data={jsonLd} />
@@ -104,6 +171,27 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
           <p>{report.thesis}</p>
         </div>
 
+        {study.showcase ? (
+          <section className={styles.showcase} aria-labelledby="client-showcase-title">
+            <div className={styles.showcaseIntro}>
+              <span>{study.showcase.label}</span>
+              <div className={styles.wordmark} aria-label="ChapelHall">CHAPELHALL</div>
+              <h2 id="client-showcase-title">{study.showcase.title}</h2>
+              <p>{study.showcase.summary}</p>
+            </div>
+            <div className={styles.showcaseGrid}>
+              {study.showcase.images.map((item, index) => (
+                <figure className={index === 0 ? styles.showcaseWide : styles.showcasePortrait} key={item.src}>
+                  <div className={styles.showcaseImage}>
+                    <Image src={item.src} alt={item.alt} fill sizes={index === 0 ? '(max-width: 800px) 100vw, 62vw' : '(max-width: 800px) 100vw, 32vw'} />
+                  </div>
+                  <figcaption>{item.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
         {report.opening && (
           <NarrativeOpening
             label={report.opening.label}
@@ -122,17 +210,19 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
         />
 
         <ReportActionAgenda
-          eyebrow="Next decision"
-          title="Next steps for this engagement"
+          eyebrow={study.actionPanel?.eyebrow ?? 'Next decision'}
+          title={study.actionPanel?.title ?? 'Next steps for this engagement'}
           actions={report.actionAgenda}
         />
 
-        <ReportReferences
-          id="case-references"
-          title="Sources"
-          introduction="External sources provide context only. Client results are stated separately."
-          sources={references}
-        />
+        {references.length ? (
+          <ReportReferences
+            id="case-references"
+            title="Sources"
+            introduction="External sources provide context only. Client results are stated separately."
+            sources={references}
+          />
+        ) : null}
       </article>
 
       <section className="contact-band">
