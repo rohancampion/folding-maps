@@ -181,6 +181,27 @@ export default async function CaseDetail({ params }: { params: Promise<{ slug: s
           </section>
         ) : null}
 
+        {study.showcase ? (
+          <section className={styles.showcase} aria-labelledby="client-showcase-title">
+            <div className={styles.showcaseIntro}>
+              <span>{study.showcase.label}</span>
+              <div className={styles.wordmark} aria-label="ChapelHall">CHAPELHALL</div>
+              <h2 id="client-showcase-title">{study.showcase.title}</h2>
+              <p>{study.showcase.summary}</p>
+            </div>
+            <div className={styles.showcaseGrid}>
+              {study.showcase.images.map((item, index) => (
+                <figure className={index === 0 ? styles.showcaseWide : styles.showcasePortrait} key={item.src}>
+                  <div className={styles.showcaseImage}>
+                    <Image src={item.src} alt={item.alt} fill sizes={index === 0 ? '(max-width: 800px) 100vw, 62vw' : '(max-width: 800px) 100vw, 32vw'} />
+                  </div>
+                  <figcaption>{item.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
         {report.opening && (
           <NarrativeOpening
             title={report.opening.title}
